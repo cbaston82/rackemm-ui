@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css?family=Anton");
+
+:root {
+    --error: #e7195a;
+    --cyan: #00cdcd;
+    --black: #000000;
+    --light-gray: #ebebeb;
+    --form: #fefce3;
+    --white: #ffffff;
+}
+
+#root {
+    min-height: 100vh;
+    background-color: var(--light-gray)
+}
+
+main {
+    margin-top: 100px;
+    margin-bottom: 100px
+}
+
+/* Nav */
+#main-navbar {
+    min-height: 100px;
+}
+
+/* HeroSection */
+#hero-section {
+    margin-top: -200px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+            rgba(0, 0, 0, .9),
+            rgba(0, 0, 0, .1)
+    ),
+    url(images/breaking_bg.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.navbar.active {
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    /*background: rgb(3 255 255 / 80%);*/
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cyan {
+    background-color: var(--cyan);
+    color: var(--black);
+    border: none;
+}
+
+.btn-cyan:hover, .btn-cyan:focus, .btn-cyan:disabled {
+    background-color: var(--cyan);
+    color: var(--black);
+}
+
+.bg-cyan {
+    background-color: var(--cyan) !important;
+}
+
+.text-cyan {
+    color: var(--cyan);
+}
+
+.text-stroke-cyan {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--cyan);
+}
+
+.content-section {
+    background-color: var(--white);
+    padding: 60px 30px;
+    min-height: 700px;
+}
+
+input.error, select.error {
+    border: 1px solid var(--error);
+}
+
+/* Forms*/
+
+#form .card-body {
+    background-color: var(--form)
+}
+
+/* Spinner */
+.loadingSpinnerContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingSpinner {
+    width: 64px;
+    height: 64px;
+    border: 8px solid;
+    border-color: #000 transparent #555 transparent;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
