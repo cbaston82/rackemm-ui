@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { FaUserAlt } from 'react-icons/fa'
-import Logo from '../images/logo.png'
-import { logoutUser } from '../redux'
+import Logo from '../../images/logo.png'
+import { logoutUser } from '../../redux'
 
 function MainNav({ logoutUser, auth }) {
     const handleLogout = () => {

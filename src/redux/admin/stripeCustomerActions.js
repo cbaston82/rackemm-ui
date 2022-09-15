@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getApiUrl } from '../../helpers/api.helpers'
 import {
     GET_USER_STRIPE_CUSTOMER_REQUEST,
     GET_USER_STRIPE_CUSTOMER_FAILURE,
@@ -7,6 +6,7 @@ import {
     RESET_STRIPE_CUSTOMER_REQUEST,
 } from './stripeCustomerTypes'
 import { toast } from 'react-toastify'
+import { getApiUrl } from '../../helpers/config'
 
 export const getUserStripeCustomerRequest = () => ({
     type: GET_USER_STRIPE_CUSTOMER_REQUEST,

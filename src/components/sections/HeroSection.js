@@ -9,7 +9,7 @@ function HeroSection() {
                     <div className="col-xs-1 col col-md-2 col-lg-2 col-xl-2 col-xxl-2"></div>
                     <div className="col-xs-1 col-sm-12 col-md-8 col-lg-8 col-xl-12 col-xxl-12">
                         <div className="text-center text-white mt-5">
-                            <img src="#" alt="" />
+                            <img src="client/src/components/sections/HeroSection#" alt="" />
                             <p
                                 className="display-4 text-stroke-cyan"
                                 style={{ fontFamily: '"Anton", sans-serif' }}

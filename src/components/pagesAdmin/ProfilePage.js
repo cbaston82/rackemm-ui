@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import button from 'bootstrap/js/src/button'
 import { getUserStripeCustomer } from '../../redux'
-import { getSubscriptionPlanSettings } from '../../helpers/config'
-import { toast } from 'react-toastify'
 import axios from 'axios'
-import { getApiUrl } from '../../helpers/api.helpers'
+import { getApiUrl } from '../../helpers/config'
 
 function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
     const initialValues = {

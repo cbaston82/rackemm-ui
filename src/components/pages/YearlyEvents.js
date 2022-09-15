@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { tournamentColumns } from '../tables/yearlyEventsColumns'
 import EventsTable from '../tables/EventsTable'
-import { getAllYearlyEvents } from '../redux'
+import { getAllYearlyEvents } from '../../redux'
 import { connect } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import { sortByDate } from '../redux/helpers/dates'
+import { sortByDate } from '../../redux/helpers/dates'
 
 function YearlyEvents({ getAllYearlyEvents, allYearlyEvents }) {
     const [searchParams, setSearchParams] = useSearchParams()

@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { MoonLoader } from 'react-spinners'
-import { FaSignInAlt } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { loginUser } from '../redux'
+import { FaUserAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { signupUser } from '../../redux'
 
-function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
+function RegisterPage({ signupUser, auth }) {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
+        password2: '',
+        fullName: '',
     })
 
-    const { email, password } = formData
+    const { email, password, password2, fullName } = formData
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        loginUser(formData)
+
+        if (password !== password2) {
+            return toast.error('Passwords do not match')
+        } else {
+            signupUser(formData)
+        }
     }
 
     const handleOnChange = (e) => {
@@ -32,9 +40,9 @@ function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
                 id="form-heading"
             >
                 <h1>
-                    <FaSignInAlt /> Login
+                    <FaUserAlt /> Register
                 </h1>
-                <p className="h5 text-black-50 mt-3">Please login</p>
+                <p className="h5 text-black-50 mt-3">Please create an account</p>
             </div>
             <div className="row d-flex justify-content-center mt-3">
                 <div className="col-sm-10 col-md-6 col-lg-4">
@@ -46,6 +54,22 @@ function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
                                 </div>
                             ) : (
                                 <form onSubmit={handleOnSubmit}>
+                                    <div className="mb-3">
+                                        <label
+                                            htmlFor="exampleFormControlInput1"
+                                            className="form-label"
+                                        >
+                                            Full Name
+                                        </label>
+                                        <input
+                                            onChange={handleOnChange}
+                                            type="text"
+                                            name="fullName"
+                                            className="form-control"
+                                            value={fullName}
+                                            placeholder="Full Name"
+                                        />
+                                    </div>
                                     <div className="mb-3">
                                         <label
                                             htmlFor="exampleFormControlInput1"
@@ -75,7 +99,23 @@ function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
                                             name="password"
                                             className="form-control"
                                             value={password}
-                                            placeholder="Enter your password"
+                                            placeholder="Password"
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label
+                                            htmlFor="exampleFormControlInput1"
+                                            className="form-label"
+                                        >
+                                            Confirm Password
+                                        </label>
+                                        <input
+                                            onChange={handleOnChange}
+                                            type="password"
+                                            name="password2"
+                                            className="form-control"
+                                            value={password2}
+                                            placeholder="Confirm your password"
                                         />
                                     </div>
                                     <div className="mb-3">
@@ -83,7 +123,7 @@ function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
                                             type="submit"
                                             className="form-control btn btn-outline-secondary"
                                         >
-                                            Login
+                                            Sign up
                                         </button>
                                     </div>
                                     <span className="text-black-50">Already have an account?</span>{' '}
@@ -99,13 +139,12 @@ function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
         </div>
     )
 }
-
 const mapStateToProps = (state) => ({
     auth: state.auth,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    loginUser: (user) => dispatch(loginUser(user)),
+    signupUser: (user) => dispatch(signupUser(user)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)

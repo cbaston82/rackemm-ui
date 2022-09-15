@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import '../pricing.css'
-import { getApiUrl } from '../helpers/api.helpers'
-import { plans } from '../helpers/config'
-import PriceCard from '../components/PriceCard'
+import '../../pricing.css'
+import { getApiUrl } from '../../helpers/config'
+import { plans } from '../../helpers/config'
+import PriceCard from '../PriceCard'
 
 function PricingPage({ auth, stripeCustomer }) {
     useEffect(() => {}, [])

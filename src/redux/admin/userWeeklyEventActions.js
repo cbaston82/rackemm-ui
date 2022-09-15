@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getApiUrl } from '../../helpers/api.helpers'
 import {
     CREATE_USER_WEEKLY_EVENT_REQUEST,
     CREATE_USER_WEEKLY_EVENT_SUCCESS,
@@ -16,6 +15,7 @@ import {
     RESET_USER_WEEKLY_EVENTS_REQUEST,
 } from './userWeeklyEventTypes'
 import { toast } from 'react-toastify'
+import { getApiUrl } from '../../helpers/config'
 
 export const createWeeklyEventRequest = () => ({
     type: CREATE_USER_WEEKLY_EVENT_REQUEST,

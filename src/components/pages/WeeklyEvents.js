@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { tournamentColumns } from '../tables/weeklyEventsColumns'
 import EventsTable from '../tables/EventsTable'
-import { getAllWeeklyEvents } from '../redux'
+import { getAllWeeklyEvents } from '../../redux'
 import { useSearchParams } from 'react-router-dom'
-import { sortByDayInWeek } from '../redux/helpers/dates'
+import { sortByDayInWeek } from '../../redux/helpers/dates'
 
 function WeeklyEvents({ getAllWeeklyEvents, allWeeklyEvents }) {
     const [searchParams, setSearchParams] = useSearchParams()

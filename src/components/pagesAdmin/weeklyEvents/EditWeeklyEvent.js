@@ -1,11 +1,11 @@
-import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import YearlyEventForm from './YearlyEventForm'
-import { updateUserYearlyEvent } from '../../../redux'
-import NotFound404 from '../../NotFound404'
+import WeeklyEventForm from './WeeklyEventForm'
+import { updateUserWeeklyEvent } from '../../../redux'
+import NotFound404 from '../../pages/NotFound404'
 
-function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent }) {
+function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent }) {
     const { id } = useParams()
     const [editEvent, setEditEvent] = useState(null)
     const navigate = useNavigate()
@@ -17,21 +17,21 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent }) {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
-        updateUserYearlyEvent(editEvent)
+        updateUserWeeklyEvent(editEvent)
     }
 
     useEffect(() => {
-        setEditEvent(userYearlyEvents.events.filter((event) => event._id === id).pop())
+        setEditEvent(userWeeklyEvents.events.filter((event) => event._id === id).pop())
 
-        if (userYearlyEvents.eventUpdated) {
-            navigate('/account/yearly-events')
+        if (userWeeklyEvents.eventUpdated) {
+            navigate('/account/weekly-events')
         }
-    }, [userYearlyEvents, id, navigate])
+    }, [userWeeklyEvents, navigate, id])
 
     return (
         <div className="container">
             {editEvent ? (
-                <YearlyEventForm
+                <WeeklyEventForm
                     handleFormValueChange={handleFormValueChange}
                     handleFormSubmit={handleFormSubmit}
                     editEvent={editEvent}
@@ -41,7 +41,7 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent }) {
                 <NotFound404
                     message="Event does not exists "
                     buttonText={'Back to yearly events'}
-                    redirectTo={'account/yearly-events'}
+                    redirectTo={'account/weekly-events'}
                 />
             )}
         </div>
@@ -49,11 +49,11 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent }) {
 }
 
 const mapStateToProps = (state) => ({
-    userYearlyEvents: state.userYearlyEvents,
+    userWeeklyEvents: state.userWeeklyEvents,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    updateUserYearlyEvent: (event) => dispatch(updateUserYearlyEvent(event)),
+    updateUserWeeklyEvent: (event) => dispatch(updateUserWeeklyEvent(event)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditYearlyEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(EditWeeklyEvent)

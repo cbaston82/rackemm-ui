@@ -2,26 +2,26 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import currencyFormatter from 'currency-formatter'
-import { FaEdit, FaTrashAlt } from 'react-icons/fa'
+import { FaEdit, FaEye, FaTrashAlt } from 'react-icons/fa'
 import Swal from 'sweetalert2'
-import { formatISO } from 'date-fns'
 import { MoonLoader } from 'react-spinners'
 import withReactContent from 'sweetalert2-react-content'
-import { getUserYearlyEvents, deleteUserYearlyEvent } from '../../../redux'
-import NewEventButton from '../../../components/features/NewEventButton'
-import EventsCreated from '../../../components/features/EventsCreated'
+import { getUserWeeklyEvents, deleteUserWeeklyEvent } from '../../../redux'
+import { sortByDayInWeek } from '../../../redux/helpers/dates'
+import EventsCreated from '../../features/EventsCreated'
+import NewEventButton from '../../features/NewEventButton'
 
-function YearlyEvents({
+function WeeklyEvents({
     stripeCustomer,
-    getUserYearlyEvents,
-    userYearlyEvents,
-    deleteUserYearlyEvent,
+    getUserWeeklyEvents,
+    userWeeklyEvents,
+    deleteUserWeeklyEvent,
 }) {
     const MySwal = withReactContent(Swal)
 
     useEffect(() => {
-        getUserYearlyEvents()
-    }, [getUserYearlyEvents])
+        getUserWeeklyEvents()
+    }, [])
 
     const handleDeleteEvent = async (_id) => {
         MySwal.fire({
@@ -34,7 +34,7 @@ function YearlyEvents({
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete.isConfirmed) {
-                deleteUserYearlyEvent(_id)
+                deleteUserWeeklyEvent(_id)
 
                 MySwal.fire({
                     confirmButtonColor: '#00cdcd',
@@ -49,27 +49,27 @@ function YearlyEvents({
         <div className="container">
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item active">Account yearly Events</li>
+                    <li className="breadcrumb-item active">Account weekly Events</li>
                 </ol>
             </nav>
-            {userYearlyEvents.loading ? (
+            {userWeeklyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
                     <MoonLoader size={150} loading={true} />
                 </div>
             ) : (
                 <>
-                    {userYearlyEvents.events && userYearlyEvents.events.length ? (
+                    {userWeeklyEvents.events && userWeeklyEvents.events.length ? (
                         <>
                             <NewEventButton
-                                path="/account/yearly-events/create"
-                                createdEventsCount={userYearlyEvents.events.length}
+                                path="/account/weekly-events/create"
+                                createdEventsCount={userWeeklyEvents.events.length}
                                 subscriptionPlanId={stripeCustomer.customer.subscriptionPlanId}
                             />
                             <table className="table table-dark mt-3">
                                 <thead>
                                     <tr>
+                                        <th>Day</th>
                                         <th>Venue</th>
-                                        <th>Date</th>
                                         <th>Time</th>
                                         <th className="d-none d-md-table-cell">Buy-in</th>
                                         <th className="d-none d-md-table-cell">Game</th>
@@ -79,15 +79,11 @@ function YearlyEvents({
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {userYearlyEvents.events &&
-                                        userYearlyEvents.events.map((event) => (
+                                    {userWeeklyEvents.events &&
+                                        sortByDayInWeek(userWeeklyEvents.events).map((event) => (
                                             <tr key={event._id}>
+                                                <td className="text-white-50">{event.day}</td>
                                                 <td className="text-white-50">{event.venue}</td>
-                                                <td className="text-white-50">
-                                                    {formatISO(new Date(event.startDate), {
-                                                        representation: 'date',
-                                                    })}
-                                                </td>
                                                 <td className="text-white-50">{event.startTime}</td>
                                                 <td className="text-white-50 d-none d-md-table-cell">
                                                     {currencyFormatter.format(event.buyIn, {
@@ -113,25 +109,32 @@ function YearlyEvents({
                                                 </td>
                                                 <td>
                                                     <div className="d-flex justify-content-center">
-                                                        <div>
+                                                        <div className="ms-3">
+                                                            <Link to={`/weekly-event/${event._id}`}>
+                                                                <button className="btn btn-outline-light btn-sm">
+                                                                    <FaEye />
+                                                                </button>
+                                                            </Link>
+                                                        </div>
+                                                        <div className="ms-3">
+                                                            <Link
+                                                                to={`/account/weekly-events/edit/${event._id}`}
+                                                            >
+                                                                <button className="btn btn-outline-info btn-sm">
+                                                                    <FaEdit />
+                                                                </button>
+                                                            </Link>
+                                                        </div>
+                                                        <div className="ms-3">
                                                             <button
+                                                                data-id={event._id}
                                                                 onClick={() =>
                                                                     handleDeleteEvent(event._id)
                                                                 }
                                                                 className="btn btn-outline-danger btn-sm"
                                                             >
-                                                                Delete
                                                                 <FaTrashAlt />
                                                             </button>
-                                                        </div>
-                                                        <div className="ms-3">
-                                                            <Link
-                                                                type="btn"
-                                                                to={`/account/yearly-events/edit/${event._id}`}
-                                                                className="btn btn-outline-warning btn-sm"
-                                                            >
-                                                                Edit <FaEdit />
-                                                            </Link>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -140,14 +143,14 @@ function YearlyEvents({
                                 </tbody>
                             </table>
                             <EventsCreated
-                                createdEvents={userYearlyEvents}
+                                createdEvents={userWeeklyEvents}
                                 stripeCustomer={stripeCustomer}
                             />
                         </>
                     ) : (
                         <div className="alert alert-info mt-3" role="alert">
-                            You have no yearly events yet. Create your first event{' '}
-                            <Link to="/account/yearly-events/create">Create</Link>
+                            You have no weekly events yet. Create your first event{' '}
+                            <Link to="/account/weekly-events/create">Create</Link>
                         </div>
                     )}
                 </>
@@ -157,13 +160,13 @@ function YearlyEvents({
 }
 
 const mapStateToProps = (state) => ({
-    userYearlyEvents: state.userYearlyEvents,
+    userWeeklyEvents: state.userWeeklyEvents,
     stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getUserYearlyEvents: () => dispatch(getUserYearlyEvents()),
-    deleteUserYearlyEvent: (eventId) => dispatch(deleteUserYearlyEvent(eventId)),
+    getUserWeeklyEvents: () => dispatch(getUserWeeklyEvents()),
+    deleteUserWeeklyEvent: (eventId) => dispatch(deleteUserWeeklyEvent(eventId)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvents)
+export default connect(mapStateToProps, mapDispatchToProps)(WeeklyEvents)

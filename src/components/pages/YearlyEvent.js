@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchSingleYearlyEvent } from '../redux'
+import { fetchSingleYearlyEvent } from '../../redux'
 import { Link, useParams } from 'react-router-dom'
 import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
-import poster from '../images/poster.jpeg'
-import '../event.css'
+import poster from '../../images/poster.jpeg'
+import '../../event.css'
 
 function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
     const { id } = useParams()
@@ -64,7 +64,7 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
                                                         className="nav-link active"
                                                         id="home-tab"
                                                         data-toggle="tab"
-                                                        href="#home"
+                                                        href="client/src/components/pages/YearlyEvent#home"
                                                         role="tab"
                                                         aria-controls="home"
                                                         aria-selected="true"

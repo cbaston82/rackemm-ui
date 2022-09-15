@@ -1,29 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MoonLoader } from 'react-spinners'
-import { connect } from 'react-redux'
-import { FaUserAlt } from 'react-icons/fa'
+import { FaSignInAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { signupUser } from '../redux'
+import { connect } from 'react-redux'
+import { loginUser } from '../../redux'
 
-function RegisterPage({ signupUser, auth }) {
+function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        password2: '',
-        fullName: '',
     })
 
-    const { email, password, password2, fullName } = formData
+    const { email, password } = formData
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
-
-        if (password !== password2) {
-            return toast.error('Passwords do not match')
-        } else {
-            signupUser(formData)
-        }
+        loginUser(formData)
     }
 
     const handleOnChange = (e) => {
@@ -40,9 +32,9 @@ function RegisterPage({ signupUser, auth }) {
                 id="form-heading"
             >
                 <h1>
-                    <FaUserAlt /> Register
+                    <FaSignInAlt /> Login
                 </h1>
-                <p className="h5 text-black-50 mt-3">Please create an account</p>
+                <p className="h5 text-black-50 mt-3">Please login</p>
             </div>
             <div className="row d-flex justify-content-center mt-3">
                 <div className="col-sm-10 col-md-6 col-lg-4">
@@ -54,22 +46,6 @@ function RegisterPage({ signupUser, auth }) {
                                 </div>
                             ) : (
                                 <form onSubmit={handleOnSubmit}>
-                                    <div className="mb-3">
-                                        <label
-                                            htmlFor="exampleFormControlInput1"
-                                            className="form-label"
-                                        >
-                                            Full Name
-                                        </label>
-                                        <input
-                                            onChange={handleOnChange}
-                                            type="text"
-                                            name="fullName"
-                                            className="form-control"
-                                            value={fullName}
-                                            placeholder="Full Name"
-                                        />
-                                    </div>
                                     <div className="mb-3">
                                         <label
                                             htmlFor="exampleFormControlInput1"
@@ -99,23 +75,7 @@ function RegisterPage({ signupUser, auth }) {
                                             name="password"
                                             className="form-control"
                                             value={password}
-                                            placeholder="Password"
-                                        />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label
-                                            htmlFor="exampleFormControlInput1"
-                                            className="form-label"
-                                        >
-                                            Confirm Password
-                                        </label>
-                                        <input
-                                            onChange={handleOnChange}
-                                            type="password"
-                                            name="password2"
-                                            className="form-control"
-                                            value={password2}
-                                            placeholder="Confirm your password"
+                                            placeholder="Enter your password"
                                         />
                                     </div>
                                     <div className="mb-3">
@@ -123,7 +83,7 @@ function RegisterPage({ signupUser, auth }) {
                                             type="submit"
                                             className="form-control btn btn-outline-secondary"
                                         >
-                                            Sign up
+                                            Login
                                         </button>
                                     </div>
                                     <span className="text-black-50">Already have an account?</span>{' '}
@@ -139,12 +99,13 @@ function RegisterPage({ signupUser, auth }) {
         </div>
     )
 }
+
 const mapStateToProps = (state) => ({
     auth: state.auth,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    signupUser: (user) => dispatch(signupUser(user)),
+    loginUser: (user) => dispatch(loginUser(user)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

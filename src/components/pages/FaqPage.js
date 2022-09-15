@@ -1,4 +1,4 @@
-import '../faq.css'
+import '../../faq.css'
 import { Link } from 'react-router-dom'
 function FaqPage() {
     return (

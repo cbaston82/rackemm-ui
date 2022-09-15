@@ -1,4 +1,4 @@
-import Spinner from '../global/Spinner'
+import Spinner from '../Spinner'
 
 function CustomLoader({ loaderMessage }) {
     return (

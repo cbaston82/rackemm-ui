@@ -1,6 +1,6 @@
-import HeroSection from '../components/HeroSection'
-import AboutFilterSection from '../components/AboutFilterSection'
-import UpcomingYearlyEvents from '../components/UpcomingYearlyEvents'
+import HeroSection from '../sections/HeroSection'
+import AboutFilterSection from '../sections/AboutFilterSection'
+import UpcomingYearlyEvents from '../sections/UpcomingYearlyEvents'
 
 function LandingPage() {
     return (

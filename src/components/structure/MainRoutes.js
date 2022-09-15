@@ -1,8 +1,8 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Protected from './Protected'
-import ProfilePage from '../pages/admin/ProfilePage'
+import ProfilePage from '../pagesAdmin/ProfilePage'
 import WeeklyEvents from '../pages/WeeklyEvents'
 import LandingPage from '../pages/LandingPage'
 import AboutPage from '../pages/AboutPage'
@@ -14,15 +14,15 @@ import WeeklyEvent from '../pages/WeeklyEvent'
 import YearlyEvent from '../pages/YearlyEvent'
 import LoginPage from '../pages/LoginPge'
 import RegisterPage from '../pages/RegisterPage'
-import AccountYearlyEvents from '../pages/admin/yearlyEvents/YearlyEvents'
+import AccountYearlyEvents from '../pagesAdmin/yearlyEvents/YearlyEvents'
 import TermsOfUse from '../pages/TermsOfUse'
 import PrivacyPolicy from '../pages/PrivacyPolicy'
-import CreateYearlyEvent from '../pages/admin/yearlyEvents/CreateYearlyEvent'
-import EditYearlyEvent from '../pages/admin/yearlyEvents/EditYearlyEvent'
-import AccountWeeklyEvents from '../pages/admin/weeklyEvents/WeeklyEvents'
-import CreateWeeklyEvent from '../pages/admin/weeklyEvents/CreateWeeklyEvent'
-import EditWeeklyEvent from '../pages/admin/weeklyEvents/EditWeeklyEvent'
-import LoggedIn from './LoggedIn'
+import CreateYearlyEvent from '../pagesAdmin/yearlyEvents/CreateYearlyEvent'
+import EditYearlyEvent from '../pagesAdmin/yearlyEvents/EditYearlyEvent'
+import AccountWeeklyEvents from '../pagesAdmin/weeklyEvents/WeeklyEvents'
+import CreateWeeklyEvent from '../pagesAdmin/weeklyEvents/CreateWeeklyEvent'
+import EditWeeklyEvent from '../pagesAdmin/weeklyEvents/EditWeeklyEvent'
+import LoggedIn from '../LoggedIn'
 
 function MainRoutes({ auth }) {
     return (
@@ -120,6 +120,7 @@ function MainRoutes({ auth }) {
                     </Protected>
                 }
             />
+            <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     )
 }

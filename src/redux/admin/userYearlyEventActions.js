@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getApiUrl } from '../../helpers/api.helpers'
+import { getApiUrl } from '../../helpers/config'
 import {
     CREATE_USER_YEARLY_EVENT_REQUEST,
     CREATE_USER_YEARLY_EVENT_SUCCESS,

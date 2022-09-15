@@ -30,6 +30,9 @@ export const plans = [
         subscriptionPlanId: 'price_1LgipcKr4ipGkAAR3nDQNOw0',
     },
 ]
+export const getApiUrl = () => {
+    return '/api/v1/'
+}
 
 export const getSubscriptionPlanSettings = (subscriptionPlanId) => {
     return plans

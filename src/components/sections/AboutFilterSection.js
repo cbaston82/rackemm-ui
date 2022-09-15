@@ -1,4 +1,4 @@
-import TableScreenshot from '../images/table-screenshot.png'
+import TableScreenshot from '../../images/table-screenshot.png'
 
 function AboutFilterSection() {
     return (
@@ -11,7 +11,7 @@ function AboutFilterSection() {
                             data-mdb-ripple-color="light"
                         >
                             <img src={TableScreenshot} alt="filter table" className="img-fluid" />
-                            <a href="client/src/components/AboutFilterSection#">
+                            <a href="client/src/components/sections/AboutFilterSection#">
                                 <div
                                     className="mask"
                                     style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}

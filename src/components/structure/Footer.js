@@ -4,10 +4,7 @@ function Footer() {
             <div className="container">
                 <ul className="nav justify-content-center border-bottom pb-3 mb-3">
                     <li className="nav-item">
-                        <a
-                            href="/client/src/components/pages"
-                            className="nav-link px-2 text-muted"
-                        >
+                        <a href="/client/src/components/pages" className="nav-link px-2 text-muted">
                             Home
                         </a>
                     </li>
@@ -22,7 +19,7 @@ function Footer() {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a href="/faq" className="nav-link px-2 text-muted">
+                        <a href="/client/public/faq" className="nav-link px-2 text-muted">
                             FAQs
                         </a>
                     </li>
@@ -33,7 +30,7 @@ function Footer() {
                     </li>
                     <li className="nav-item">
                         <a
-                            href="/client/src/pages/PrivacyPolicy"
+                            href="/client/src/components/pages/PrivacyPolicy"
                             className="nav-link px-2 text-muted"
                         >
                             Privacy Policy
@@ -41,7 +38,7 @@ function Footer() {
                     </li>
                     <li className="nav-item">
                         <a
-                            href="/client/src/pages/TermsOfUse"
+                            href="/client/src/components/pages/TermsOfUse"
                             className="nav-link px-2 text-muted"
                         >
                             Terms of Use

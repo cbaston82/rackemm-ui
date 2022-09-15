@@ -1,6 +1,7 @@
+import { FaEye } from 'react-icons/fa'
 const Button = () => (
     <button className="btn btn-primary btn-sm" type="button">
-        <a className="text-white-50" href="/">
+        <a className="text-white-50" href="/client/public">
             Download
         </a>
     </button>
@@ -33,11 +34,11 @@ export const tournamentColumns = [
         button: true,
         cell: (row) => (
             <a
-                className="btn btn-outline-warning btn-sm"
+                className="btn btn-outline-light btn-sm"
                 href={`/yearly-event/${row._id}`}
                 rel="noopener noreferrer"
             >
-                View
+                <FaEye />
             </a>
         ),
     },

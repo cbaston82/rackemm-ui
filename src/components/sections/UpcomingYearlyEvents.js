@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import UpcomingYearlyEventCard from './UpcomingYearlyEventCard'
-import { getAllYearlyEvents } from '../redux'
+import UpcomingYearlyEventCard from '../UpcomingYearlyEventCard'
+import { getAllYearlyEvents } from '../../redux'
 
 function UpcomingYearlyEvents({ getAllYearlyEvents, allYearlyEvents }) {
     const [events, setEvents] = useState(null)

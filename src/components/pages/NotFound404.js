@@ -8,7 +8,7 @@ function NotFound404({ message, redirectTo, buttonText }) {
                     className="card shadow-lg border-0 rounded-lg mt-5 mx-auto"
                     style={{ width: '30rem' }}
                 >
-                    <h3 className="card-header display-1 text-muted text-center">404</h3>
+                    <h3 className="card-header display-1 text-black-50 fw-bold text-center">404</h3>
 
                     <span className="card-subtitle mb-2 mt-2 text-muted text-center">
                         {message}
@@ -18,7 +18,7 @@ function NotFound404({ message, redirectTo, buttonText }) {
                         <Link
                             type="button"
                             to={`/${redirectTo}`}
-                            className="btn btn-sm btn-outline-secondary text-white"
+                            className="btn btn-sm btn-outline-secondary"
                         >
                             {' '}
                             {buttonText}
