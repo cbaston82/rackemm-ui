@@ -1,22 +1,27 @@
 // Used for exporting redux component folders
-export { loginUser } from './auth/authActions'
-export { logoutUser } from './auth/authActions'
-export { signupUser } from './auth/authActions'
-export { getAllWeeklyEvents } from './events/weeklyEventActions'
-export { fetchSingleWeeklyEvent } from './events/weeklyEventActions'
-export { getAllYearlyEvents } from './events/yearlyEventActions'
-export { fetchSingleYearlyEvent } from './events/yearlyEventActions'
+export { loginUser, logoutUser, signupUser } from './auth/authActions'
+export { getAllWeeklyEvents, fetchSingleWeeklyEvent } from './events/weeklyEventActions'
+export { getAllYearlyEvents, fetchSingleYearlyEvent } from './events/yearlyEventActions'
 // Auth
-export { createWeeklyEvent } from './admin/userWeeklyEventActions'
-export { getUserWeeklyEvents } from './admin/userWeeklyEventActions'
-export { resetUserWeeklyEvents } from './admin/userWeeklyEventActions'
-export { deleteUserWeeklyEvent } from './admin/userWeeklyEventActions'
-export { updateUserWeeklyEvent } from './admin/userWeeklyEventActions'
-export { createYearlyEvent } from './admin/userYearlyEventActions'
-export { getUserYearlyEvents } from './admin/userYearlyEventActions'
-export { resetUserYearlyEvents } from './admin/userYearlyEventActions'
-export { deleteUserYearlyEvent } from './admin/userYearlyEventActions'
-export { updateUserYearlyEvent } from './admin/userYearlyEventActions'
+export {
+    createWeeklyEvent,
+    updateUserWeeklyEvent,
+    deleteUserWeeklyEvent,
+    getUserWeeklyEvents,
+    resetUserWeeklyEvents,
+} from './admin/userWeeklyEventActions'
+export {
+    createYearlyEvent,
+    getUserYearlyEvents,
+    resetUserYearlyEvents,
+    deleteUserYearlyEvent,
+    updateUserYearlyEvent,
+} from './admin/userYearlyEventActions'
 export { getUserYearlyEvent } from './admin/userYearlyEventActions'
-export { getUserStripeCustomer } from './admin/stripeCustomerActions'
-export { resetUserStripeCustomer } from './admin/stripeCustomerActions'
+export { getUserStripeCustomer, resetUserStripeCustomer } from './admin/stripeCustomerActions'
+export {
+    uploadUserMedia,
+    resetUserMedia,
+    getUserMedia,
+    deleteUserMedia,
+} from './admin/userMediaActions'

@@ -57,6 +57,11 @@ function MainNav({ logoutUser, auth }) {
                                         </NavLink>
                                     </li>
                                     <li>
+                                        <NavLink className="dropdown-item" to="/account/media">
+                                            Media
+                                        </NavLink>
+                                    </li>
+                                    <li>
                                         <NavLink
                                             className="dropdown-item"
                                             to="/account/weekly-events"

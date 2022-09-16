@@ -1,9 +1,9 @@
 import { MoonLoader } from 'react-spinners'
 
-function Spinner() {
+function Spinner({ color }) {
     return (
         <div className="d-flex justify-content-center align-content-center">
-            <MoonLoader color="white" size={150} loading={true} />
+            <MoonLoader color={color} size={150} loading={true} />
         </div>
     )
 }

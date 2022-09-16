@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { differenceInDays, formatDistance, subDays } from 'date-fns'
 import { Link } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
@@ -10,13 +9,6 @@ function WeeklyEventForm({
     loading,
     pageRequest,
 }) {
-    const [file, setFile] = useState('')
-    const [fileName, setFileName] = useState('Choose File')
-    const onChangeFile = (e) => {
-        setFile(e.target.files[0])
-        setFileName(e.target.files[0].name)
-    }
-
     return (
         <>
             <nav aria-label="breadcrumb">

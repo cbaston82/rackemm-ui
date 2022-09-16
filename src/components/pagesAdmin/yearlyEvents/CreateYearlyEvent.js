@@ -46,7 +46,7 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent }) {
         if (userYearlyEvents.eventCreated) {
             navigate('/account/yearly-events')
         }
-    }, [userYearlyEvents])
+    }, [userYearlyEvents, navigate])
 
     return (
         <div className="container">

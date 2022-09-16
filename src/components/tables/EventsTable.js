@@ -25,7 +25,7 @@ function EventsTable({
 
     const cities = useMemo(() => {
         return [...new Set(tournamentCitiesInArray)]
-    }, [tournamentCitiesInArray]);
+    }, [tournamentCitiesInArray])
     const [pending, setPending] = useState(true)
     const [rows, setRows] = useState([])
     const [filterText, setFilterText] = useState(
@@ -129,7 +129,19 @@ function EventsTable({
                 ) : null}
             </>
         )
-    }, [filterText, filterCity, cities, maxBuyIn, minBuyIn,setBuyIn, setCity,setFilter, pending, filterBuyIn, resetPaginationToggle])
+    }, [
+        filterText,
+        filterCity,
+        cities,
+        maxBuyIn,
+        minBuyIn,
+        setBuyIn,
+        setCity,
+        setFilter,
+        pending,
+        filterBuyIn,
+        resetPaginationToggle,
+    ])
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -145,7 +157,9 @@ function EventsTable({
             columns={tournamentColumns}
             data={filteredItems}
             progressPending={pending}
-            progressComponent={pending && <CustomLoader loaderMessage={loaderMessage} />}
+            progressComponent={
+                pending && <CustomLoader color="white" loaderMessage={loaderMessage} />
+            }
             // expandableRows
             paginationResetDefaultPage={resetPaginationToggle}
             subHeaderComponent={subHeaderComponentMemo}

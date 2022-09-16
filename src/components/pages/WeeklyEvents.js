@@ -26,7 +26,7 @@ function WeeklyEvents({ getAllWeeklyEvents, allWeeklyEvents }) {
             city: city,
             filter: filter,
         })
-    }, [filter, buyIn, city])
+    }, [filter, buyIn, city, getAllWeeklyEvents, setSearchParams])
 
     return (
         <div className="container">

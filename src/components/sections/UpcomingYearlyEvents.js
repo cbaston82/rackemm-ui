@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import UpcomingYearlyEventCard from '../UpcomingYearlyEventCard'
 import { getAllYearlyEvents } from '../../redux'
 
 function UpcomingYearlyEvents({ getAllYearlyEvents, allYearlyEvents }) {
-    const [events, setEvents] = useState(null)
-
     useEffect(() => {
         getAllYearlyEvents()
-    }, [])
+    }, [getAllYearlyEvents])
 
     return (
         <section className="my-5 py-5" style={{ backgroundColor: '#303030' }}>

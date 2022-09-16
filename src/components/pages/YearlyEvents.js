@@ -26,7 +26,7 @@ function YearlyEvents({ getAllYearlyEvents, allYearlyEvents }) {
             city: city,
             filter: filter,
         })
-    }, [buyIn, city, filter])
+    }, [buyIn, city, filter, setSearchParams, getAllYearlyEvents])
 
     return (
         <div className="container">

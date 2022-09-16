@@ -5,11 +5,11 @@ import currencyFormatter from 'currency-formatter'
 import { FaEdit, FaEye, FaTrashAlt } from 'react-icons/fa'
 import Swal from 'sweetalert2'
 import { formatISO } from 'date-fns'
-import { MoonLoader } from 'react-spinners'
 import withReactContent from 'sweetalert2-react-content'
 import { getUserYearlyEvents, deleteUserYearlyEvent } from '../../../redux'
 import NewEventButton from '../../features/NewEventButton'
 import EventsCreated from '../../features/EventsCreated'
+import CustomLoader from '../../tables/CustomeLoader'
 
 function YearlyEvents({
     stripeCustomer,
@@ -54,7 +54,7 @@ function YearlyEvents({
             </nav>
             {userYearlyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
-                    <MoonLoader size={150} loading={true} />
+                    <CustomLoader color="black" loaderMessage="Fetching events" />
                 </div>
             ) : (
                 <>

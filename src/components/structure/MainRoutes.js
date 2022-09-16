@@ -23,6 +23,7 @@ import AccountWeeklyEvents from '../pagesAdmin/weeklyEvents/WeeklyEvents'
 import CreateWeeklyEvent from '../pagesAdmin/weeklyEvents/CreateWeeklyEvent'
 import EditWeeklyEvent from '../pagesAdmin/weeklyEvents/EditWeeklyEvent'
 import LoggedIn from '../LoggedIn'
+import MediaPage from '../pagesAdmin/MediaPage'
 
 function MainRoutes({ auth }) {
     return (
@@ -117,6 +118,15 @@ function MainRoutes({ auth }) {
                 element={
                     <Protected auth={auth}>
                         <EditWeeklyEvent />
+                    </Protected>
+                }
+            />
+            <Route
+                exact
+                path="/account/media"
+                element={
+                    <Protected auth={auth}>
+                        <MediaPage />
                     </Protected>
                 }
             />

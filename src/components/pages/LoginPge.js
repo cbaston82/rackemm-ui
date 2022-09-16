@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { MoonLoader } from 'react-spinners'
 import { FaSignInAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'

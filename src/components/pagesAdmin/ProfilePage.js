@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import button from 'bootstrap/js/src/button'
 import { getUserStripeCustomer } from '../../redux'
 import axios from 'axios'
 import { getApiUrl } from '../../helpers/config'
@@ -30,7 +29,7 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
             setSessionId(query.get('session_id'))
         }
         getUserStripeCustomer()
-    }, [sessionId])
+    }, [sessionId, getUserStripeCustomer])
 
     const loadUserStripeAccountDetails = async (e) => {
         e.preventDefault()

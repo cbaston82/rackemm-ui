@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 import currencyFormatter from 'currency-formatter'
 import { FaEdit, FaEye, FaTrashAlt } from 'react-icons/fa'
 import Swal from 'sweetalert2'
-import { MoonLoader } from 'react-spinners'
 import withReactContent from 'sweetalert2-react-content'
 import { getUserWeeklyEvents, deleteUserWeeklyEvent } from '../../../redux'
 import { sortByDayInWeek } from '../../../redux/helpers/dates'
 import EventsCreated from '../../features/EventsCreated'
 import NewEventButton from '../../features/NewEventButton'
+import CustomLoader from '../../tables/CustomeLoader'
 
 function WeeklyEvents({
     stripeCustomer,
@@ -21,7 +21,7 @@ function WeeklyEvents({
 
     useEffect(() => {
         getUserWeeklyEvents()
-    }, [])
+    }, [getUserWeeklyEvents])
 
     const handleDeleteEvent = async (_id) => {
         MySwal.fire({
@@ -54,7 +54,7 @@ function WeeklyEvents({
             </nav>
             {userWeeklyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
-                    <MoonLoader size={150} loading={true} />
+                    <CustomLoader color="black" loaderMessage="fetching events" />
                 </div>
             ) : (
                 <>
