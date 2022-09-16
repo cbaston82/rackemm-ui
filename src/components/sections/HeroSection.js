@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import '../../heroSection.css'
 
 function HeroSection() {
     return (
@@ -24,10 +25,10 @@ function HeroSection() {
                             <p className="text-white font-monospace fst-italic">
                                 Find a tournament anywhere. anytime. any place
                             </p>
-                            <button className="btn btn-cyan mt-3 btn-lg">
+                            <button className="btn btn-outline-light mt-3 btn-lg">
                                 <a
                                     href="/about"
-                                    className="text-black-50"
+                                    className="text-white-50"
                                     style={{ textDecoration: 'none' }}
                                 >
                                     Learn more{' '}

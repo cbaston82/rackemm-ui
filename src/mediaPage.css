@@ -1,15 +1,15 @@
-.lightbox-gallery{
+#media-page .lightbox-gallery{
     background-image: linear-gradient(#4A148C, #E53935);
     background-repeat: no-repeat;
     color: #000;
     overflow-x: hidden
 }
 
-.lightbox-gallery p{
+#media-page .lightbox-gallery p{
     color:#fff
 }
 
-.lightbox-gallery h2{
+#media-page .lightbox-gallery h2{
     font-weight:bold;
     margin-bottom:40px;
     padding-top:40px;
@@ -17,37 +17,37 @@
 }
 
 @media (max-width:767px){
-    .lightbox-gallery h2{
+    #media-page .lightbox-gallery h2{
         margin-bottom:25px;
         padding-top:25px;
         font-size:24px
     }
 }
 
-.lightbox-gallery .intro{
+#media-page .lightbox-gallery .intro{
     font-size:16px;
     max-width:500px;
     margin:0 auto 40px
 }
 
-.lightbox-gallery .intro p{
+#media-page .lightbox-gallery .intro p{
     margin-bottom:0
 }
 
-.lightbox-gallery .photos{
+#media-page .lightbox-gallery .photos{
     padding-bottom:20px
 }
 
-.lightbox-gallery .item{
+#media-page .lightbox-gallery .item{
     padding-bottom:30px
 }
 
 /* =========================================*/
-.item {
+#media-page .item {
     position: relative;
 }
 
-.item button {
+#media-page .item button {
     position: absolute;
     align-content: center;
     bottom: 5px;
@@ -56,18 +56,18 @@
 
 /* =========================================*/
 
-.my-masonry-grid {
+#media-page .my-masonry-grid {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     margin-left: -30px;
     width: auto;
 }
-.my-masonry-grid_column {
+#media-page .my-masonry-grid_column {
     padding-left: 30px;
     background-clip: padding-box;
 }
-.my-masonry-grid_column > div {
+#media-page .my-masonry-grid_column > div {
     background: rgba(0,0,0,.4);
     margin-bottom: 30px;
 }

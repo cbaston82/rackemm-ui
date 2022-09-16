@@ -19,7 +19,7 @@ function Footer() {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a href="/client/public/faq" className="nav-link px-2 text-muted">
+                        <a href="/faq" className="nav-link px-2 text-muted">
                             FAQs
                         </a>
                     </li>
@@ -29,18 +29,12 @@ function Footer() {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a
-                            href="/client/src/components/pages/PrivacyPolicy"
-                            className="nav-link px-2 text-muted"
-                        >
+                        <a href="/PrivacyPolicy" className="nav-link px-2 text-muted">
                             Privacy Policy
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a
-                            href="/client/src/components/pages/TermsOfUse"
-                            className="nav-link px-2 text-muted"
-                        >
+                        <a href="/TermsOfUse" className="nav-link px-2 text-muted">
                             Terms of Use
                         </a>
                     </li>

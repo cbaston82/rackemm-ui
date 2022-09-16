@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaTrash } from 'react-icons/fa'
 import Masonry from 'react-masonry-css'
-import '../../media.css'
+import '../../mediaPage.css'
 import CustomLoader from '../tables/CustomeLoader'
 import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import withReactContent from 'sweetalert2-react-content'
@@ -109,103 +109,105 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
 
     return (
         <div className="container">
-            <nav>
-                <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button
-                        className="nav-link active"
-                        id="nav-media-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#nav-media"
-                        type="button"
-                        role="tab"
-                        aria-controls="nav-media"
-                        aria-selected="true"
-                    >
-                        Media
-                    </button>
-                    <button
-                        className="nav-link"
-                        id="nav-upload-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#nav-upload"
-                        type="button"
-                        role="tab"
-                        aria-controls="nav-upload"
-                        aria-selected="false"
-                    >
-                        Upload
-                    </button>
-                </div>
-            </nav>
-            <div className="tab-content" id="nav-tabContent">
-                <div
-                    className="tab-pane fade show active"
-                    id="nav-media"
-                    role="tabpanel"
-                    aria-labelledby="nav-media-tab"
-                >
-                    <div className="row">
-                        <Masonry
-                            breakpointCols={breakpointColumnsObj}
-                            className="my-masonry-grid"
-                            columnClassName="my-masonry-grid_column"
+            <section id="media-page">
+                <nav>
+                    <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button
+                            className="nav-link active"
+                            id="nav-media-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-media"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-media"
+                            aria-selected="true"
                         >
-                            {items}
-                        </Masonry>
+                            Media
+                        </button>
+                        <button
+                            className="nav-link"
+                            id="nav-upload-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#nav-upload"
+                            type="button"
+                            role="tab"
+                            aria-controls="nav-upload"
+                            aria-selected="false"
+                        >
+                            Upload
+                        </button>
                     </div>
-                </div>
-                <div
-                    className="tab-pane fade"
-                    id="nav-upload"
-                    role="tabpanel"
-                    aria-labelledby="nav-upload-tab"
-                >
-                    <div className="intro text-center">
-                        <div className="row justify-content-center mt-3">
-                            <div className="col-6">
-                                <form onSubmit={handleUploadImage}>
-                                    <div className="row">
-                                        <div className="col-8">
-                                            <input
-                                                disabled={userMedia.loading}
-                                                type="file"
-                                                onChange={handleImageChange}
-                                                className="form-control"
-                                                id="customFile"
-                                            />
-                                        </div>
-                                        <div className="col-4 d-grid gap-2">
-                                            <button
-                                                disabled={userMedia.loading}
-                                                type="submit"
-                                                className="btn btn-outline-secondary"
-                                            >
-                                                {' '}
-                                                Upload
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                                {previewSource && (
-                                    <div className="row justify-content-center mt-3">
-                                        <div className="col">
-                                            {errorMessage && <p>{errorMessage}</p>}
-                                            {userMedia.loading ? (
-                                                <CustomLoader
-                                                    color="black"
-                                                    loaderMessage="Uploading image!"
+                </nav>
+                <div className="tab-content" id="nav-tabContent">
+                    <div
+                        className="tab-pane fade show active"
+                        id="nav-media"
+                        role="tabpanel"
+                        aria-labelledby="nav-media-tab"
+                    >
+                        <div className="row">
+                            <Masonry
+                                breakpointCols={breakpointColumnsObj}
+                                className="my-masonry-grid"
+                                columnClassName="my-masonry-grid_column"
+                            >
+                                {items}
+                            </Masonry>
+                        </div>
+                    </div>
+                    <div
+                        className="tab-pane fade"
+                        id="nav-upload"
+                        role="tabpanel"
+                        aria-labelledby="nav-upload-tab"
+                    >
+                        <div className="intro text-center">
+                            <div className="row justify-content-center mt-3">
+                                <div className="col-6">
+                                    <form onSubmit={handleUploadImage}>
+                                        <div className="row">
+                                            <div className="col-8">
+                                                <input
+                                                    disabled={userMedia.loading}
+                                                    type="file"
+                                                    onChange={handleImageChange}
+                                                    className="form-control"
+                                                    id="customFile"
                                                 />
-                                            ) : (
-                                                PreviewImage
-                                            )}
+                                            </div>
+                                            <div className="col-4 d-grid gap-2">
+                                                <button
+                                                    disabled={userMedia.loading}
+                                                    type="submit"
+                                                    className="btn btn-outline-secondary"
+                                                >
+                                                    {' '}
+                                                    Upload
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    </form>
+                                    {previewSource && (
+                                        <div className="row justify-content-center mt-3">
+                                            <div className="col">
+                                                {errorMessage && <p>{errorMessage}</p>}
+                                                {userMedia.loading ? (
+                                                    <CustomLoader
+                                                        color="black"
+                                                        loaderMessage="Uploading image!"
+                                                    />
+                                                ) : (
+                                                    PreviewImage
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     )
 }

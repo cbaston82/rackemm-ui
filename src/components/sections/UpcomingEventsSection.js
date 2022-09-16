@@ -2,14 +2,15 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import UpcomingYearlyEventCard from '../UpcomingYearlyEventCard'
 import { getAllYearlyEvents } from '../../redux'
+import '../../upcomingEventsSection.css'
 
-function UpcomingYearlyEvents({ getAllYearlyEvents, allYearlyEvents }) {
+function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
     useEffect(() => {
         getAllYearlyEvents()
     }, [getAllYearlyEvents])
 
     return (
-        <section className="my-5 py-5" style={{ backgroundColor: '#303030' }}>
+        <section className="my-5 py-5" id="upcoming-events-section">
             <div className="container">
                 <div className="text-center text-white mb-5">
                     <h4>
@@ -40,4 +41,4 @@ const mapDispatchToProps = (dispatch) => ({
     getAllYearlyEvents: () => dispatch(getAllYearlyEvents()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpcomingYearlyEvents)
+export default connect(mapStateToProps, mapDispatchToProps)(UpcomingEventsSection)

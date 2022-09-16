@@ -1,13 +1,13 @@
 import HeroSection from '../sections/HeroSection'
 import AboutFilterSection from '../sections/AboutFilterSection'
-import UpcomingYearlyEvents from '../sections/UpcomingYearlyEvents'
+import UpcomingEventsSection from '../sections/UpcomingEventsSection'
 
 function LandingPage() {
     return (
         <>
             <HeroSection />
             <AboutFilterSection />
-            <UpcomingYearlyEvents />
+            <UpcomingEventsSection />
         </>
     )
 }
