@@ -1,3 +1,2 @@
-# PoolApp
-
-An app for pool players.
+# RACKEMM
+A tournaments database. Find a tournament anywhere. anytime. any place
