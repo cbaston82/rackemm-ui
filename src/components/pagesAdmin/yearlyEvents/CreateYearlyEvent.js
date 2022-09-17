@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import YearlyEventForm from './YearlyEventForm'
 import { useNavigate } from 'react-router-dom'
-import { createYearlyEvent } from '../../../redux'
+import { createYearlyEvent, getUserMedia } from '../../../redux'
 
-function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent }) {
+function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, getUserMedia, userMedia }) {
     const initialFormValues = {
         type: 'yearly-event',
         bracket: '',
@@ -25,6 +25,7 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent }) {
         game: '',
         playerList: [],
         status: '',
+        posterImage: '',
     }
 
     const [editEvent, setEditEvent] = useState(initialFormValues)
@@ -51,6 +52,7 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent }) {
     return (
         <div className="container">
             <YearlyEventForm
+                userMedia={userMedia}
                 handleFormValueChange={handleFormValueChange}
                 handleFormSubmit={handleFormSubmit}
                 editEvent={editEvent}
@@ -63,10 +65,12 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent }) {
 
 const mapStateToProps = (state) => ({
     userYearlyEvents: state.userYearlyEvents,
+    userMedia: state.userMedia,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     createYearlyEvent: (editEvent) => dispatch(createYearlyEvent(editEvent)),
+    getUserMedia: () => dispatch(getUserMedia()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateYearlyEvent)

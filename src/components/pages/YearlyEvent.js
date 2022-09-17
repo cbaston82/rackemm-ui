@@ -4,7 +4,6 @@ import { fetchSingleYearlyEvent } from '../../redux'
 import { Link, useParams } from 'react-router-dom'
 import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
-import poster from '../../images/poster.jpeg'
 import '../../event.css'
 
 function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
@@ -38,11 +37,7 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="event-img">
-                                            <img src={poster} alt="" />
-                                            <div className="file btn btn-lg btn-primary">
-                                                Change Photo
-                                                <input type="file" name="file" />
-                                            </div>
+                                            <img src={allYearlyEvents.event.posterImage} alt="" />
                                         </div>
                                     </div>
                                     <div className="col-md-6">

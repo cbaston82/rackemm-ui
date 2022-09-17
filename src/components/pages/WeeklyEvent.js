@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom'
 import { fetchSingleWeeklyEvent } from '../../redux'
 import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
-import poster from '../../images/poster.jpeg'
 
 function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
     const { id } = useParams()

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaTrash } from 'react-icons/fa'
-import Masonry from 'react-masonry-css'
 import '../../mediaPage.css'
 import CustomLoader from '../tables/CustomeLoader'
 import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
@@ -74,20 +73,6 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
         uploadUserMedia(previewSource, `${fileName}-${timeStamp}`)
     }
 
-    const items = userMedia.media.map((image) => (
-        <div key={image._id} className="item my-3">
-            <a href={image.secureUrl} data-lightbox="photos">
-                <img className="img-fluid" alt="rackemm uploaded" src={image.secureUrl} />
-            </a>
-            <button
-                onClick={() => handleImageDelete(image.publicId)}
-                className="btn btn-danger btn-sm"
-            >
-                <FaTrash />
-            </button>
-        </div>
-    ))
-
     const PreviewImage = (
         <div>
             {errorMessage !== '' ? null : (
@@ -104,15 +89,6 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
     useEffect(() => {
         getUserMedia()
     }, [getUserMedia])
-
-    const breakpointColumnsObj = {
-        default: 4,
-        1100: 3,
-        700: 2,
-        500: 1,
-    }
-
-    useEffect(() => {})
 
     return (
         <div className="container">
@@ -153,13 +129,25 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                         aria-labelledby="nav-media-tab"
                     >
                         <div className="row">
-                            <Masonry
-                                breakpointCols={breakpointColumnsObj}
-                                className="my-masonry-grid"
-                                columnClassName="my-masonry-grid_column"
-                            >
-                                {items}
-                            </Masonry>
+                            {userMedia.media.map((image) => (
+                                <div className="col-md-4 col-lg-3">
+                                    <div key={image._id} className="item my-3">
+                                        <a href={image.secureUrl} data-lightbox="photos">
+                                            <img
+                                                className="img-fluid"
+                                                alt="rackemm uploaded"
+                                                src={image.secureUrl}
+                                            />
+                                        </a>
+                                        <button
+                                            onClick={() => handleImageDelete(image.publicId)}
+                                            className="btn btn-danger btn-sm"
+                                        >
+                                            <FaTrash />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div

@@ -1,6 +1,7 @@
 import { differenceInDays, formatDistance, formatISO, subDays } from 'date-fns'
 import { Link } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
+import { cleanPublicImageName } from '../../../helpers'
 
 function YearlyEventForm({
     handleFormValueChange,
@@ -8,6 +9,7 @@ function YearlyEventForm({
     editEvent,
     loading,
     pageRequest,
+    userMedia,
 }) {
     return (
         <>
@@ -43,7 +45,7 @@ function YearlyEventForm({
                         <form onSubmit={handleFormSubmit} className="grid-form">
                             <div className="row gx-3 mb-3">
                                 <fieldset>
-                                    <div data-row-span="1">
+                                    <div data-row-span="2">
                                         <div data-field-span="1">
                                             <label>Title *</label>
                                             <input
@@ -52,6 +54,21 @@ function YearlyEventForm({
                                                 name="title"
                                                 value={editEvent.title}
                                             />
+                                        </div>
+                                        <div data-field-span="1">
+                                            <label>Poster </label>
+                                            <select
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                name="posterImage"
+                                                value={editEvent.posterImage}
+                                            >
+                                                <option value="">-- select poster image --</option>
+                                                {userMedia.media.map((image) => (
+                                                    <option key={image.id} value={image.secureUrl}>
+                                                        {cleanPublicImageName(image.publicId)}
+                                                    </option>
+                                                ))}
+                                            </select>
                                         </div>
                                     </div>
                                 </fieldset>

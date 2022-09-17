@@ -2,10 +2,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import YearlyEventForm from './YearlyEventForm'
-import { updateUserYearlyEvent } from '../../../redux'
+import { getUserMedia, updateUserYearlyEvent } from '../../../redux'
 import NotFound404 from '../../pages/NotFound404'
 
-function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent }) {
+function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, getUserMedia, userMedia }) {
     const { id } = useParams()
     const [editEvent, setEditEvent] = useState(null)
     const navigate = useNavigate()
@@ -32,6 +32,7 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent }) {
         <div className="container">
             {editEvent ? (
                 <YearlyEventForm
+                    userMedia={userMedia}
                     handleFormValueChange={handleFormValueChange}
                     handleFormSubmit={handleFormSubmit}
                     editEvent={editEvent}
@@ -50,10 +51,12 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent }) {
 
 const mapStateToProps = (state) => ({
     userYearlyEvents: state.userYearlyEvents,
+    userMedia: state.userMedia,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     updateUserYearlyEvent: (event) => dispatch(updateUserYearlyEvent(event)),
+    getUserMedia: () => dispatch(getUserMedia()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditYearlyEvent)
