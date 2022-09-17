@@ -100,13 +100,13 @@ export const deleteUserMedia = (publicId) => (dispatch, state) => {
         })
 }
 
-export const uploadUserMedia = (media) => (dispatch, state) => {
+export const uploadUserMedia = (media, fileName) => (dispatch, state) => {
     dispatch(uploadUserMediaRequest())
 
     axios
         .post(
             `${getApiUrl()}media/upload`,
-            { data: media },
+            { data: media, fileName },
             {
                 headers: {
                     Authorization: `Bearer ${state().auth.user.token}`,

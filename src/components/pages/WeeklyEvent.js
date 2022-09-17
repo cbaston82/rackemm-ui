@@ -37,7 +37,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="event-img">
-                                            <img src={poster} alt="" />
+                                            <img src={allWeeklyEvents.event.posterImage} alt="" />
                                         </div>
                                     </div>
                                     <div className="col-md-6">

@@ -8,3 +8,13 @@ export const minDate = () => {
 
     return year + '-' + month + '-' + day
 }
+
+export const cleanFileName = (string) => {
+    return string.replace(/[!@#$%^&*()?><,./\\+ -]/g, '_')
+}
+
+export const allowedFileTypeUploads = () => ['image/jpeg', 'image/png', 'image/jpg']
+
+export const cleanPublicImageName = (publicId) => {
+    return publicId.split('/')[1].split('-')[0]
+}

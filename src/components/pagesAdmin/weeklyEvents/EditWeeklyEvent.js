@@ -2,10 +2,10 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import WeeklyEventForm from './WeeklyEventForm'
-import { updateUserWeeklyEvent } from '../../../redux'
+import { getUserMedia, updateUserWeeklyEvent } from '../../../redux'
 import NotFound404 from '../../pages/NotFound404'
 
-function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent }) {
+function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia, userMedia }) {
     const { id } = useParams()
     const [editEvent, setEditEvent] = useState(null)
     const navigate = useNavigate()
@@ -21,6 +21,10 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent }) {
     }
 
     useEffect(() => {
+        getUserMedia()
+    }, [getUserMedia])
+
+    useEffect(() => {
         setEditEvent(userWeeklyEvents.events.filter((event) => event._id === id).pop())
 
         if (userWeeklyEvents.eventUpdated) {
@@ -32,6 +36,7 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent }) {
         <div className="container">
             {editEvent ? (
                 <WeeklyEventForm
+                    userMedia={userMedia}
                     handleFormValueChange={handleFormValueChange}
                     handleFormSubmit={handleFormSubmit}
                     editEvent={editEvent}
@@ -50,10 +55,12 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent }) {
 
 const mapStateToProps = (state) => ({
     userWeeklyEvents: state.userWeeklyEvents,
+    userMedia: state.userMedia,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     updateUserWeeklyEvent: (event) => dispatch(updateUserWeeklyEvent(event)),
+    getUserMedia: () => dispatch(getUserMedia()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditWeeklyEvent)

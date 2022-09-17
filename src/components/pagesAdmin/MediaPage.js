@@ -7,10 +7,12 @@ import CustomLoader from '../tables/CustomeLoader'
 import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
+import { allowedFileTypeUploads, cleanFileName } from '../../helpers'
 
 function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }) {
     const [errorMessage, setErrorMessage] = useState('')
     const [previewSource, setPreviewSource] = useState('')
+    const [fileName, setFileName] = useState('')
     const [file, setFile] = useState()
 
     const MySwal = withReactContent(Swal)
@@ -21,6 +23,11 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
         reader.onloadend = () => {
             setPreviewSource(reader.result)
         }
+    }
+
+    const handleInputChange = (e) => {
+        const { value } = e.target
+        setFileName(cleanFileName(value))
     }
 
     const handleImageChange = (e) => {
@@ -55,16 +62,16 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
         setErrorMessage('')
         e.preventDefault()
 
-        const allowedFileTypes = ['image/jpeg', 'image/png', 'image/jpg']
+        const timeStamp = new Date().getTime()
 
         if (!previewSource) return
 
-        if (!allowedFileTypes.includes(file.type)) {
+        if (!allowedFileTypeUploads().includes(file.type)) {
             setErrorMessage('Only the allowed file types can be uploaded: png, jpg, jpeg')
             return
         }
 
-        uploadUserMedia(previewSource)
+        uploadUserMedia(previewSource, `${fileName}-${timeStamp}`)
     }
 
     const items = userMedia.media.map((image) => (
@@ -167,17 +174,27 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                                     <form onSubmit={handleUploadImage}>
                                         <div className="row">
                                             <div className="col-8">
-                                                <input
-                                                    disabled={userMedia.loading}
-                                                    type="file"
-                                                    onChange={handleImageChange}
-                                                    className="form-control"
-                                                    id="customFile"
-                                                />
+                                                <div className="file-upload">
+                                                    <input
+                                                        disabled={userMedia.loading}
+                                                        type="file"
+                                                        onChange={handleImageChange}
+                                                        className="form-control file-select"
+                                                    />
+
+                                                    <input
+                                                        type="text"
+                                                        className="form-control file-name"
+                                                        name="fileName"
+                                                        placeholder="File name"
+                                                        onChange={handleInputChange}
+                                                        value={fileName}
+                                                    />
+                                                </div>
                                             </div>
                                             <div className="col-4 d-grid gap-2">
                                                 <button
-                                                    disabled={userMedia.loading}
+                                                    disabled={userMedia.loading || fileName === ''}
                                                     type="submit"
                                                     className="btn btn-outline-secondary"
                                                 >
@@ -217,7 +234,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapStateToDispatch = (dispatch) => ({
-    uploadUserMedia: (media) => dispatch(uploadUserMedia(media)),
+    uploadUserMedia: (media, fileName) => dispatch(uploadUserMedia(media, fileName)),
     getUserMedia: () => dispatch(getUserMedia()),
     deleteUserMedia: (publicId) => dispatch(deleteUserMedia(publicId)),
 })
