@@ -40,7 +40,10 @@ function YearlyEvents({ getUserYearlyEvents, userYearlyEvents, deleteUserYearlyE
 
     return (
         <div className="container">
-            <BreadCrumbs previousLinks={[]} activeLink="Account yearly events" />
+            <BreadCrumbs
+                navigateToPreviousLink={false}
+                activeBreadcrumbTitle="Account weekly events"
+            />
             {userYearlyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
                     <CustomLoader color="black" loaderMessage="Fetching events" />

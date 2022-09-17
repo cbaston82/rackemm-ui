@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { fetchSingleWeeklyEvent } from '../../redux'
 import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
@@ -19,8 +19,8 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
             {allWeeklyEvents.event && !allWeeklyEvents.error ? (
                 <>
                     <BreadCrumbs
-                        previousLinks={[{ path: '/weekly-events', name: 'Weekly Events' }]}
-                        activeLink={allWeeklyEvents.event.title}
+                        navigateToPreviousLink={true}
+                        activeBreadcrumbTitle={allWeeklyEvents.event.title}
                     />
                     <div className=" emp-profile">
                         {allWeeklyEvents.loading ? (

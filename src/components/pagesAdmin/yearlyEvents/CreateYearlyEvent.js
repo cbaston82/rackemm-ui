@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import YearlyEventForm from './YearlyEventForm'
 import { useNavigate } from 'react-router-dom'
 import { createYearlyEvent, getUserMedia } from '../../../redux'
+import { formatPhoneNumber } from '../../../helpers'
 
 function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, getUserMedia, userMedia }) {
     const initialFormValues = {
@@ -34,7 +35,15 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, getUserMedia, 
     const handleFormValueChange = (e) => {
         const { name, value } = e.target
 
-        setEditEvent({ ...editEvent, [name]: value })
+        setEditEvent({
+            ...editEvent,
+            [name]:
+                name === 'pointOfContactPhone'
+                    ? formatPhoneNumber(value)
+                    : name === 'buyIn'
+                    ? parseInt(value)
+                    : value,
+        })
     }
 
     const handleFormSubmit = async (e) => {

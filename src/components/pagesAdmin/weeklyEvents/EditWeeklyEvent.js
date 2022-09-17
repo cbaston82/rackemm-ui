@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import WeeklyEventForm from './WeeklyEventForm'
 import { getUserMedia, updateUserWeeklyEvent } from '../../../redux'
 import NotFound404 from '../../pagesPublic/NotFound404'
+import { formatPhoneNumber } from '../../../helpers'
 
 function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia, userMedia }) {
     const { id } = useParams()
@@ -12,7 +13,15 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia
 
     const handleFormValueChange = (e) => {
         const { name, value } = e.target
-        setEditEvent({ ...editEvent, [name]: value })
+        setEditEvent({
+            ...editEvent,
+            [name]:
+                name === 'pointOfContactPhone'
+                    ? formatPhoneNumber(value)
+                    : name === 'buyIn'
+                    ? parseInt(value)
+                    : value,
+        })
     }
 
     const handleFormSubmit = async (e) => {

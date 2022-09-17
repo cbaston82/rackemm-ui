@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import YearlyEventForm from './YearlyEventForm'
 import { getUserMedia, updateUserYearlyEvent } from '../../../redux'
 import NotFound404 from '../../pagesPublic/NotFound404'
+import { formatPhoneNumber } from '../../../helpers'
 
 function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, getUserMedia, userMedia }) {
     const { id } = useParams()
@@ -12,7 +13,15 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, getUserMedia
 
     const handleFormValueChange = (e) => {
         const { name, value } = e.target
-        setEditEvent({ ...editEvent, [name]: value })
+        setEditEvent({
+            ...editEvent,
+            [name]:
+                name === 'pointOfContactPhone'
+                    ? formatPhoneNumber(value)
+                    : name === 'buyIn'
+                    ? parseInt(value)
+                    : value,
+        })
     }
 
     const handleFormSubmit = async (e) => {

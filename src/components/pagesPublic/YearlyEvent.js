@@ -20,8 +20,8 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
             {allYearlyEvents.event && !allYearlyEvents.error ? (
                 <>
                     <BreadCrumbs
-                        previousLinks={[{ path: '/yearly-events', name: 'Yearly Events' }]}
-                        activeLink={allYearlyEvents.event.title}
+                        navigateToPreviousLink={true}
+                        activeBreadcrumbTitle={allYearlyEvents.event.title}
                     />
                     <div className="emp-profile">
                         {allYearlyEvents.loading ? (

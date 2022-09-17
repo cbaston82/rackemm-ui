@@ -40,7 +40,10 @@ function WeeklyEvents({ getUserWeeklyEvents, userWeeklyEvents, deleteUserWeeklyE
 
     return (
         <div className="container">
-            <BreadCrumbs previousLinks={[]} activeLink="Account weekly events" />
+            <BreadCrumbs
+                navigateToPreviousLink={false}
+                activeBreadcrumbTitle="Account weekly events"
+            />
             {userWeeklyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
                     <CustomLoader color="black" loaderMessage="fetching events" />

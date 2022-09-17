@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import WeeklyEventForm from './WeeklyEventForm'
 import { useNavigate } from 'react-router-dom'
 import { createWeeklyEvent, getUserMedia } from '../../../redux'
+import { formatPhoneNumber } from '../../../helpers'
 
 function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, userMedia }) {
     const initialFormValues = {
@@ -31,7 +32,15 @@ function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, 
     const handleFormValueChange = (e) => {
         const { name, value } = e.target
 
-        setEditEvent({ ...editEvent, [name]: value })
+        setEditEvent({
+            ...editEvent,
+            [name]:
+                name === 'pointOfContactPhone'
+                    ? formatPhoneNumber(value)
+                    : name === 'buyIn'
+                    ? parseInt(value)
+                    : value,
+        })
     }
 
     const handleFormSubmit = (e) => {
