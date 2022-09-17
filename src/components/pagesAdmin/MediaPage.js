@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaTrash } from 'react-icons/fa'
-import '../../mediaPage.css'
+import '../../css/mediaPage.css'
 import CustomLoader from '../tables/CustomeLoader'
 import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import withReactContent from 'sweetalert2-react-content'

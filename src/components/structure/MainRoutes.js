@@ -3,20 +3,20 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Protected from './Protected'
 import ProfilePage from '../pagesAdmin/ProfilePage'
-import WeeklyEvents from '../pages/WeeklyEvents'
-import LandingPage from '../pages/LandingPage'
-import AboutPage from '../pages/AboutPage'
-import YearlyEvents from '../pages/YearlyEvents'
-import PricingPage from '../pages/PricingPage'
-import FaqPage from '../pages/FaqPage'
-import FeaturesPage from '../pages/FeaturesPage'
-import WeeklyEvent from '../pages/WeeklyEvent'
-import YearlyEvent from '../pages/YearlyEvent'
-import LoginPage from '../pages/LoginPge'
-import RegisterPage from '../pages/RegisterPage'
+import WeeklyEvents from '../pagesPublic/WeeklyEvents'
+import Landing from '../pagesPublic/home/Landing'
+import About from '../pagesPublic/About'
+import YearlyEvents from '../pagesPublic/YearlyEvents'
+import Pricing from '../pagesPublic/pricing/Pricing'
+import Faq from '../pagesPublic/Faq'
+import Features from '../pagesPublic/Features'
+import WeeklyEvent from '../pagesPublic/WeeklyEvent'
+import YearlyEvent from '../pagesPublic/YearlyEvent'
+import Login from '../pagesPublic/Login'
+import Register from '../pagesPublic/Register'
 import AccountYearlyEvents from '../pagesAdmin/yearlyEvents/YearlyEvents'
-import TermsOfUse from '../pages/TermsOfUse'
-import PrivacyPolicy from '../pages/PrivacyPolicy'
+import TermsOfUse from '../pagesPublic/TermsOfUse'
+import PrivacyPolicy from '../pagesPublic/PrivacyPolicy'
 import CreateYearlyEvent from '../pagesAdmin/yearlyEvents/CreateYearlyEvent'
 import EditYearlyEvent from '../pagesAdmin/yearlyEvents/EditYearlyEvent'
 import AccountWeeklyEvents from '../pagesAdmin/weeklyEvents/WeeklyEvents'
@@ -28,15 +28,15 @@ import MediaPage from '../pagesAdmin/MediaPage'
 function MainRoutes({ auth }) {
     return (
         <Routes>
-            <Route exact path="/" element={<LandingPage />} />
+            <Route exact path="/" element={<Landing />} />
             <Route exact path="/weekly-events" element={<WeeklyEvents />} />
             <Route exact path="/weekly-event/:id" element={<WeeklyEvent />} />
             <Route exact path="/yearly-event/:id" element={<YearlyEvent />} />
             <Route exact path="/yearly-events" element={<YearlyEvents />} />
-            <Route exact path="/about" element={<AboutPage />} />
-            <Route exact path="/features" element={<FeaturesPage />} />
-            <Route exact path="/faq" element={<FaqPage />} />
-            <Route exact path="/pricing" element={<PricingPage />} />
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/features" element={<Features />} />
+            <Route exact path="/faq" element={<Faq />} />
+            <Route exact path="/pricing" element={<Pricing />} />
             <Route exact path="/privacyPolicy" element={<PrivacyPolicy />} />
             <Route exact path="/termsOfUse" element={<TermsOfUse />} />
             {/* Auth Routes */}
@@ -45,7 +45,7 @@ function MainRoutes({ auth }) {
                 path="/login"
                 element={
                     <LoggedIn auth={auth}>
-                        <LoginPage />
+                        <Login />
                     </LoggedIn>
                 }
             />
@@ -54,7 +54,7 @@ function MainRoutes({ auth }) {
                 path="/register"
                 element={
                     <LoggedIn auth={auth}>
-                        <RegisterPage />
+                        <Register />
                     </LoggedIn>
                 }
             />

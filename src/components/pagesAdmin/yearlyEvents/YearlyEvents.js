@@ -1,22 +1,15 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import currencyFormatter from 'currency-formatter'
-import { FaEdit, FaEye, FaTrashAlt } from 'react-icons/fa'
 import Swal from 'sweetalert2'
-import { formatISO } from 'date-fns'
 import withReactContent from 'sweetalert2-react-content'
 import { getUserYearlyEvents, deleteUserYearlyEvent } from '../../../redux'
-import NewEventButton from '../../features/NewEventButton'
-import EventsCreated from '../../features/EventsCreated'
+import NewEventButton from '../../NewEventButton'
 import CustomLoader from '../../tables/CustomeLoader'
+import AlertMessageWithLinkEnd from '../../AlertMessageWithLinkEnd'
+import BreadCrumbs from '../../BreadCrumbs'
+import YearlyEventsTable from './YearlyEventsTable'
 
-function YearlyEvents({
-    stripeCustomer,
-    getUserYearlyEvents,
-    userYearlyEvents,
-    deleteUserYearlyEvent,
-}) {
+function YearlyEvents({ getUserYearlyEvents, userYearlyEvents, deleteUserYearlyEvent }) {
     const MySwal = withReactContent(Swal)
 
     useEffect(() => {
@@ -47,11 +40,7 @@ function YearlyEvents({
 
     return (
         <div className="container">
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item active">Account yearly Events</li>
-                </ol>
-            </nav>
+            <BreadCrumbs previousLinks={[]} activeLink="Account yearly events" />
             {userYearlyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
                     <CustomLoader color="black" loaderMessage="Fetching events" />
@@ -60,101 +49,17 @@ function YearlyEvents({
                 <>
                     {userYearlyEvents.events && userYearlyEvents.events.length ? (
                         <>
-                            <NewEventButton
-                                path="/account/yearly-events/create"
-                                createdEventsCount={userYearlyEvents.events.length}
-                                subscriptionPlanId={stripeCustomer.customer.subscriptionPlanId}
-                            />
-                            <table className="table table-dark mt-3">
-                                <thead>
-                                    <tr>
-                                        <th>Venue</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th className="d-none d-md-table-cell">Buy-in</th>
-                                        <th className="d-none d-md-table-cell">Game</th>
-                                        <th className="d-none d-md-table-cell">Status</th>
-                                        <th className="d-none d-md-table-cell">Rating System</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {userYearlyEvents.events &&
-                                        userYearlyEvents.events.map((event) => (
-                                            <tr key={event._id}>
-                                                <td className="text-white-50">{event.venue}</td>
-                                                <td className="text-white-50">
-                                                    {formatISO(new Date(event.startDate), {
-                                                        representation: 'date',
-                                                    })}
-                                                </td>
-                                                <td className="text-white-50">{event.startTime}</td>
-                                                <td className="text-white-50 d-none d-md-table-cell">
-                                                    {currencyFormatter.format(event.buyIn, {
-                                                        code: 'USD',
-                                                    })}
-                                                </td>
-                                                <td className="text-white-50 d-none d-md-table-cell">
-                                                    {event.game}
-                                                </td>
-                                                <td className="text-white-50 d-none d-md-table-cell">
-                                                    <span
-                                                        className={`badge bg-${
-                                                            event.status === 'active'
-                                                                ? 'success'
-                                                                : 'warning'
-                                                        }`}
-                                                    >
-                                                        {event.status}
-                                                    </span>
-                                                </td>
-                                                <td className="text-white-50 d-none d-md-table-cell">
-                                                    {event.ratingSystem}
-                                                </td>
-                                                <td>
-                                                    <div className="d-flex justify-content-center">
-                                                        <div className="ms-3">
-                                                            <Link to={`/yearly-event/${event._id}`}>
-                                                                <button className="btn btn-outline-light btn-sm">
-                                                                    <FaEye />
-                                                                </button>
-                                                            </Link>
-                                                        </div>
-                                                        <div className="ms-3">
-                                                            <Link
-                                                                type="btn"
-                                                                to={`/account/yearly-events/edit/${event._id}`}
-                                                                className="btn btn-outline-info btn-sm"
-                                                            >
-                                                                <FaEdit />
-                                                            </Link>
-                                                        </div>
-                                                        <div className="ms-3">
-                                                            <button
-                                                                onClick={() =>
-                                                                    handleDeleteEvent(event._id)
-                                                                }
-                                                                className="btn btn-outline-danger btn-sm"
-                                                            >
-                                                                <FaTrashAlt />
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                </tbody>
-                            </table>
-                            <EventsCreated
-                                createdEvents={userYearlyEvents}
-                                stripeCustomer={stripeCustomer}
+                            <NewEventButton path="/account/yearly-events/create" />
+                            <YearlyEventsTable
+                                events={userYearlyEvents.events}
+                                handleDeleteEvent={handleDeleteEvent}
                             />
                         </>
                     ) : (
-                        <div className="alert alert-info mt-3" role="alert">
-                            You have no yearly events yet. Create your first event{' '}
-                            <Link to="/account/yearly-events/create">Create</Link>
-                        </div>
+                        <AlertMessageWithLinkEnd
+                            path="/account/yearly-events/create"
+                            message="You have no yearly events yet. Create your first event"
+                        />
                     )}
                 </>
             )}
@@ -164,7 +69,6 @@ function YearlyEvents({
 
 const mapStateToProps = (state) => ({
     userYearlyEvents: state.userYearlyEvents,
-    stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({

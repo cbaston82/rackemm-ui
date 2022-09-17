@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import YearlyEventForm from './YearlyEventForm'
 import { getUserMedia, updateUserYearlyEvent } from '../../../redux'
-import NotFound404 from '../../pages/NotFound404'
+import NotFound404 from '../../pagesPublic/NotFound404'
 
 function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, getUserMedia, userMedia }) {
     const { id } = useParams()

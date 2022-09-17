@@ -1,6 +1,6 @@
-import '../../faq.css'
+import '../../css/faq.css'
 import { Link } from 'react-router-dom'
-function FaqPage() {
+function Faq() {
     return (
         <div className="container">
             <p>
@@ -103,4 +103,4 @@ function FaqPage() {
     )
 }
 
-export default FaqPage
+export default Faq

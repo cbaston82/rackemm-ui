@@ -1,4 +1,4 @@
-function FeaturesPage() {
+function Features() {
     return (
         <div className="container mt-5">
             <div className="row">
@@ -67,4 +67,4 @@ function FeaturesPage() {
     )
 }
 
-export default FeaturesPage
+export default Features

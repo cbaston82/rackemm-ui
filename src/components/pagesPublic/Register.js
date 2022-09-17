@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { signupUser } from '../../redux'
 
-function RegisterPage({ signupUser, auth }) {
+function Register({ signupUser, auth }) {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -147,4 +147,4 @@ const mapDispatchToProps = (dispatch) => ({
     signupUser: (user) => dispatch(signupUser(user)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

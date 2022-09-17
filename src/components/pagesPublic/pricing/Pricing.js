@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import '../../pricingPage.css'
-import { getApiUrl } from '../../helpers/config'
-import { plans } from '../../helpers/config'
-import PriceCard from '../PriceCard'
+import '../../../css/pricingPage.css'
+import { getApiUrl } from '../../../helpers/config'
+import { plans } from '../../../helpers/config'
+import PriceCard from './PriceCard'
 
-function PricingPage({ auth, stripeCustomer }) {
+function Pricing({ auth, stripeCustomer }) {
     useEffect(() => {}, [])
 
     const checkoutUser = async (e, priceId) => {
@@ -58,4 +58,4 @@ const mapStateToProps = (state) => ({
     stripeCustomer: state.stripeCustomer,
 })
 
-export default connect(mapStateToProps, null)(PricingPage)
+export default connect(mapStateToProps, null)(Pricing)

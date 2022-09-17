@@ -1,4 +1,3 @@
-/* HeroSection */
 #hero-section {
     margin-top: -200px;
     min-height: 100vh;
@@ -9,7 +8,7 @@
             rgba(0, 0, 0, .9),
             rgba(0, 0, 0, .1)
     ),
-    url(images/breaking_bg.jpeg);
+    url(https://res.cloudinary.com/imagine-design-develop/image/upload/v1663402485/rackemm_images/app_images/breaking_bg.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

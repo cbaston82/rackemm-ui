@@ -1,33 +1,30 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
-import { fetchSingleWeeklyEvent } from '../../redux'
+import { fetchSingleYearlyEvent } from '../../redux'
+import { useParams } from 'react-router-dom'
 import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
+import '../../css/event.css'
+import LightBoxImage from '../LightBoxImage'
+import BreadCrumbs from '../BreadCrumbs'
 
-function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
+function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
     const { id } = useParams()
 
     useEffect(() => {
-        fetchSingleWeeklyEvent(id)
-    }, [fetchSingleWeeklyEvent, id])
+        fetchSingleYearlyEvent(id)
+    }, [fetchSingleYearlyEvent, id])
 
     return (
         <div className="container">
-            {allWeeklyEvents.event && !allWeeklyEvents.error ? (
+            {allYearlyEvents.event && !allYearlyEvents.error ? (
                 <>
-                    <nav aria-label="breadcrumb">
-                        <ol className="breadcrumb">
-                            <li className="breadcrumb-item">
-                                <Link to="/weekly-events">Weekly Events</Link>
-                            </li>
-                            <li className="breadcrumb-item active" aria-current="page">
-                                {allWeeklyEvents.event.title}
-                            </li>
-                        </ol>
-                    </nav>
-                    <div className="container emp-profile">
-                        {allWeeklyEvents.loading ? (
+                    <BreadCrumbs
+                        previousLinks={[{ path: '/yearly-events', name: 'Yearly Events' }]}
+                        activeLink={allYearlyEvents.event.title}
+                    />
+                    <div className="emp-profile">
+                        {allYearlyEvents.loading ? (
                             <div className="d-flex justify-content-center align-content-center">
                                 <MoonLoader size={150} loading={true} />
                             </div>
@@ -36,20 +33,22 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="event-img">
-                                            <img src={allWeeklyEvents.event.posterImage} alt="" />
+                                            <LightBoxImage
+                                                image={allYearlyEvents.event.posterImage}
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="event-head">
-                                            <h5>{allWeeklyEvents.event.title}</h5>
-                                            <h6>{allWeeklyEvents.event.description}</h6>
+                                            <h5>{allYearlyEvents.event.title}</h5>
+                                            <h6>{allYearlyEvents.event.description}</h6>
                                             <p className="event-address">
                                                 ADDRESS :{' '}
                                                 <span>
-                                                    {allWeeklyEvents.event.address},{' '}
-                                                    {allWeeklyEvents.event.city}{' '}
-                                                    {allWeeklyEvents.event.state},{' '}
-                                                    {allWeeklyEvents.event.zipCode}
+                                                    {allYearlyEvents.event.address},{' '}
+                                                    {allYearlyEvents.event.city}{' '}
+                                                    {allYearlyEvents.event.state},{' '}
+                                                    {allYearlyEvents.event.zipCode}
                                                 </span>
                                             </p>
                                             <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -58,7 +57,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                                         className="nav-link active"
                                                         id="home-tab"
                                                         data-toggle="tab"
-                                                        href="client/src/components/pages/WeeklyEvent#home"
+                                                        href="client/src/components/pagesPublic/YearlyEvent#home"
                                                         role="tab"
                                                         aria-controls="home"
                                                         aria-selected="true"
@@ -69,15 +68,6 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                             </ul>
                                         </div>
                                     </div>
-                                    {/*<div className="col-md-2">*/}
-                                    {/*    <Link*/}
-                                    {/*        to={`/account/weekly-events/edit/${allWeeklyEvents.event._id}`}*/}
-                                    {/*    >*/}
-                                    {/*        <button className="btn btn-outline-secondary">*/}
-                                    {/*            Edit Event*/}
-                                    {/*        </button>*/}
-                                    {/*    </Link>*/}
-                                    {/*</div>*/}
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4">
@@ -106,7 +96,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                                         <label>Game</label>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <p>{allWeeklyEvents.event.game}</p>
+                                                        <p>{allYearlyEvents.event.game}</p>
                                                     </div>
                                                 </div>
                                                 <div className="row">
@@ -114,7 +104,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                                         <label>Rating System</label>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <p>{allWeeklyEvents.event.ratingSystem}</p>
+                                                        <p>{allYearlyEvents.event.ratingSystem}</p>
                                                     </div>
                                                 </div>
                                                 <div className="row">
@@ -122,7 +112,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                                         <label>Venue</label>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <p>{allWeeklyEvents.event.venue}</p>
+                                                        <p>{allYearlyEvents.event.venue}</p>
                                                     </div>
                                                 </div>
                                                 <div className="row">
@@ -131,7 +121,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                                     </div>
                                                     <div className="col-md-6">
                                                         <p>
-                                                            {allWeeklyEvents.event.pointOfContact}
+                                                            {allYearlyEvents.event.pointOfContact}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -142,7 +132,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                                     <div className="col-md-6">
                                                         <p>
                                                             {
-                                                                allWeeklyEvents.event
+                                                                allYearlyEvents.event
                                                                     .pointOfContactPhone
                                                             }
                                                         </p>
@@ -150,10 +140,25 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-6">
-                                                        <label>Day</label>
+                                                        <label>Date</label>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <p>{allWeeklyEvents.event.day}</p>
+                                                        <p>
+                                                            {allYearlyEvents.event.endDate >
+                                                            allYearlyEvents.event.startDate ? (
+                                                                <>
+                                                                    {new Date(
+                                                                        allYearlyEvents.event.startDate,
+                                                                    ).toDateString()}{' '}
+                                                                    -{' '}
+                                                                    {new Date(
+                                                                        allYearlyEvents.event.endDate,
+                                                                    ).toDateString()}
+                                                                </>
+                                                            ) : (
+                                                                <></>
+                                                            )}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div className="row">
@@ -163,7 +168,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                                     <div className="col-md-6">
                                                         <p>
                                                             {
-                                                                allWeeklyEvents.event
+                                                                allYearlyEvents.event
                                                                     .pointOfContactPhone
                                                             }
                                                         </p>
@@ -179,7 +184,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                 </>
             ) : (
                 <NotFound404
-                    message={allWeeklyEvents.error}
+                    message={allYearlyEvents.error}
                     buttonText={'Back to yearly events'}
                     redirectTo={'yearly-events'}
                 />
@@ -189,10 +194,10 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
 }
 
 const mapStateToProps = (state) => ({
-    allWeeklyEvents: state.allWeeklyEvents,
+    allYearlyEvents: state.allYearlyEvents,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchSingleWeeklyEvent: (id) => dispatch(fetchSingleWeeklyEvent(id)),
+    fetchSingleYearlyEvent: (id) => dispatch(fetchSingleYearlyEvent(id)),
 })
-export default connect(mapStateToProps, mapDispatchToProps)(WeeklyEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvent)

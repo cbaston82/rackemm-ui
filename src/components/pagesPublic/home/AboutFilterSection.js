@@ -1,5 +1,3 @@
-import TableScreenshot from '../../images/table-screenshot.png'
-
 function AboutFilterSection() {
     return (
         <section className="my-5 py-5" id="about-filter-section">
@@ -10,8 +8,12 @@ function AboutFilterSection() {
                             className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
                             data-mdb-ripple-color="light"
                         >
-                            <img src={TableScreenshot} alt="filter table" className="img-fluid" />
-                            <a href="client/src/components/sections/AboutFilterSection#">
+                            <img
+                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663402485/rackemm_images/app_images/table-screenshot.png"
+                                alt="filter table"
+                                className="img-fluid"
+                            />
+                            <a href="client/src/components/pagesPublic/home/AboutFilterSection#">
                                 <div
                                     className="mask"
                                     style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}

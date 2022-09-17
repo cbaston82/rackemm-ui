@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { FaUserAlt } from 'react-icons/fa'
-import Logo from '../../images/logo.png'
 import { logoutUser } from '../../redux'
 
 function MainNav({ logoutUser, auth }) {
@@ -13,7 +12,11 @@ function MainNav({ logoutUser, auth }) {
         <nav id="main-navbar" className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
                 <Link className="navbar-brand" to="/">
-                    <img src={Logo} height="40" alt="" />
+                    <img
+                        src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663402485/rackemm_images/app_images/logo.png"
+                        height="40"
+                        alt=""
+                    />
                 </Link>
                 <button
                     className="navbar-toggler"

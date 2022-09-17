@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import UpcomingYearlyEventCard from '../UpcomingYearlyEventCard'
-import { getAllYearlyEvents } from '../../redux'
-import '../../upcomingEventsSection.css'
+import UpcomingYearlyEventCard from './UpcomingYearlyEventCard'
+import { getAllYearlyEvents } from '../../../redux'
+import '../../../css/upcomingEventsSection.css'
 
 function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
     useEffect(() => {

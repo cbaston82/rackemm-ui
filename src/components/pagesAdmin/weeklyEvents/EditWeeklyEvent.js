@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import WeeklyEventForm from './WeeklyEventForm'
 import { getUserMedia, updateUserWeeklyEvent } from '../../../redux'
-import NotFound404 from '../../pages/NotFound404'
+import NotFound404 from '../../pagesPublic/NotFound404'
 
 function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia, userMedia }) {
     const { id } = useParams()

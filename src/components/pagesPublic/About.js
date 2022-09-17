@@ -1,6 +1,6 @@
-import '../../about.css'
+import '../../css/about.css'
 
-function AboutPage() {
+function About() {
     return (
         <div className="container mt-5 mb-5 d-flex justify-content-center">
             <div id="about-section">
@@ -32,4 +32,4 @@ function AboutPage() {
     )
 }
 
-export default AboutPage
+export default About

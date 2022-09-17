@@ -1,0 +1,26 @@
+#media-page .item {
+    position: relative;
+}
+
+#media-page .item button {
+    position: absolute;
+    align-content: center;
+    bottom: 5px;
+    left: 5px;
+}
+
+#media-page .file-upload{
+    position: relative;
+}
+
+#media-page .file-upload .file-select{
+    position: absolute;
+    left:0;
+    z-index: 1;
+    width: 100px;
+}
+
+#media-page .file-upload .file-name{
+    position: absolute;
+    padding-left: 103px;
+}
