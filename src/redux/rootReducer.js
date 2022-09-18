@@ -6,6 +6,7 @@ import userWeeklyEventsReducer from './admin/userWeeklyEventsReducer'
 import userYearlyEventsReducer from './admin/userYearlyEventsReducer'
 import stripeCustomerReducer from './admin/stripeCustomerReducer'
 import userMedia from './admin/userMediaReducer'
+import filtersReducer from './admin/filtersReducer'
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     allYearlyEvents: yearlyEventsReducer,
     stripeCustomer: stripeCustomerReducer,
     userMedia: userMedia,
+    filters: filtersReducer,
 })
 
 export default rootReducer

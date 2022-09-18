@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { tournamentColumns } from '../tables/weeklyEventsColumns'
 import EventsTable from '../tables/EventsTable'
-import { getAllWeeklyEvents } from '../../redux'
+import { getAllWeeklyEvents, getSavedFilters } from '../../redux'
 import { useSearchParams } from 'react-router-dom'
 import { sortByDayInWeek } from '../../redux/helpers/dates'
+import BreadCrumbs from '../BreadCrumbs'
+import Filters from '../Filters'
 
-function WeeklyEvents({ getAllWeeklyEvents, allWeeklyEvents }) {
+function WeeklyEvents({ getAllWeeklyEvents, allWeeklyEvents, getSavedFilters, savedFilters }) {
     const [searchParams, setSearchParams] = useSearchParams()
 
     const [buyIn, setBuyIn] = useState(decodeURI(searchParams.get('buyIn')))
@@ -20,6 +22,10 @@ function WeeklyEvents({ getAllWeeklyEvents, allWeeklyEvents }) {
     }
 
     useEffect(() => {
+        getSavedFilters()
+    }, [getSavedFilters])
+
+    useEffect(() => {
         getAllWeeklyEvents()
         setSearchParams({
             buyIn: buyIn,
@@ -30,11 +36,14 @@ function WeeklyEvents({ getAllWeeklyEvents, allWeeklyEvents }) {
 
     return (
         <div className="container">
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item">Weekly Events</li>
-                </ol>
-            </nav>
+            <div className="d-flex justify-content-between">
+                <BreadCrumbs activeBreadcrumbTitle="Weekly Events" />
+                <Filters
+                    type="weekly"
+                    buttonTitle="Weekly Filters"
+                    filters={savedFilters.filters}
+                />
+            </div>
             <EventsTable
                 setBuyIn={setBuyIn}
                 setCity={setCity}
@@ -49,10 +58,12 @@ function WeeklyEvents({ getAllWeeklyEvents, allWeeklyEvents }) {
 }
 const mapStateToProps = (state) => ({
     allWeeklyEvents: state.allWeeklyEvents,
+    savedFilters: state.filters,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     getAllWeeklyEvents: () => dispatch(getAllWeeklyEvents()),
+    getSavedFilters: () => dispatch(getSavedFilters()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeeklyEvents)

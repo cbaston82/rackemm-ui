@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { tournamentColumns } from '../tables/yearlyEventsColumns'
 import EventsTable from '../tables/EventsTable'
-import { getAllYearlyEvents } from '../../redux'
+import { getAllYearlyEvents, getSavedFilters } from '../../redux'
 import { connect } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { sortByDate } from '../../redux/helpers/dates'
+import BreadCrumbs from '../BreadCrumbs'
+import Filters from '../Filters'
 
-function YearlyEvents({ getAllYearlyEvents, allYearlyEvents }) {
+function YearlyEvents({ getAllYearlyEvents, allYearlyEvents, getSavedFilters, savedFilters }) {
     const [searchParams, setSearchParams] = useSearchParams()
 
     const [buyIn, setBuyIn] = useState(decodeURI(searchParams.get('buyIn')))
@@ -30,11 +32,14 @@ function YearlyEvents({ getAllYearlyEvents, allYearlyEvents }) {
 
     return (
         <div className="container">
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item">Yearly Events</li>
-                </ol>
-            </nav>
+            <div className="d-flex justify-content-between">
+                <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
+                <Filters
+                    type="yearly"
+                    buttonTitle="Yearly filters"
+                    filters={savedFilters.filters}
+                />
+            </div>
             <EventsTable
                 setFilter={setFilter}
                 setCity={setCity}
@@ -50,10 +55,12 @@ function YearlyEvents({ getAllYearlyEvents, allYearlyEvents }) {
 
 const mapStateToProps = (state) => ({
     allYearlyEvents: state.allYearlyEvents,
+    savedFilters: state.filters,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     getAllYearlyEvents: () => dispatch(getAllYearlyEvents()),
+    getSavedFilters: () => dispatch(getSavedFilters()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvents)
