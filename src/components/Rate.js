@@ -34,7 +34,7 @@ function Rate({
                         onMouseLeave={() => setHoverRating(0)}
                     />
                 )),
-        [count, rating, hoverRating],
+        [count, onRating, rating, hoverRating, getColor],
     )
 
     return <div>{starRating}</div>

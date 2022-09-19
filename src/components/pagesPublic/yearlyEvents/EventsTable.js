@@ -178,6 +178,7 @@ function EventsTable({
         filterText,
         filterCity,
         filterBuyIn,
+        filterGame,
         cities,
         games,
         setCity,
