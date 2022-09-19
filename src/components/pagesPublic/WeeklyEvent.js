@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchSingleWeeklyEvent } from '../../redux'
@@ -6,6 +6,7 @@ import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
 import LightBoxImage from '../LightBoxImage'
 import BreadCrumbs from '../BreadCrumbs'
+import Rate from '../Rate'
 
 function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
     const { id } = useParams()
@@ -15,13 +16,14 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
     }, [fetchSingleWeeklyEvent, id])
 
     return (
-        <div className="container">
+        <div className="container" id="event-section">
             {allWeeklyEvents.event && !allWeeklyEvents.error ? (
                 <>
                     <BreadCrumbs
                         navigateToPreviousLink={true}
                         activeBreadcrumbTitle={allWeeklyEvents.event.title}
                     />
+
                     <div className=" emp-profile">
                         {allWeeklyEvents.loading ? (
                             <div className="d-flex justify-content-center align-content-center">

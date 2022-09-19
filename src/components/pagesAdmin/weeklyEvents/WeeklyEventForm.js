@@ -62,7 +62,7 @@ function WeeklyEventForm({
                                                 name="posterImage"
                                                 value={editEvent.posterImage}
                                             >
-                                                <option value="">-- select poster image --</option>
+                                                <option value="">-- Select Poster --</option>
                                                 {userMedia.media.map((image) => (
                                                     <option key={image.id} value={image.secureUrl}>
                                                         {cleanPublicImageName(image.publicId)}

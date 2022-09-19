@@ -1,3 +1,5 @@
+import LightBoxImage from '../../LightBoxImage'
+
 function AboutFilterSection() {
     return (
         <section className="my-5 py-5" id="about-filter-section">
@@ -8,11 +10,7 @@ function AboutFilterSection() {
                             className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
                             data-mdb-ripple-color="light"
                         >
-                            <img
-                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663402485/rackemm_images/app_images/table-screenshot.png"
-                                alt="filter table"
-                                className="img-fluid"
-                            />
+                            <LightBoxImage image="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663565503/rackemm_images/app_images/Screen_Shot_2022-09-18_at_10.31.23_PM.png" />
                             <a href="client/src/components/pagesPublic/home/AboutFilterSection#">
                                 <div
                                     className="mask"

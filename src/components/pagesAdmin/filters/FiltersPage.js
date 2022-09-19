@@ -38,7 +38,7 @@ function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
             <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Saved Filters" />
             {savedFilters.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
-                    <CustomLoader color="black" loaderMessage="fetching events" />
+                    <CustomLoader color="white" loaderMessage="fetching events" />
                 </div>
             ) : (
                 <FiltersTable

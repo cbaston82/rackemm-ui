@@ -23,7 +23,7 @@ function YearlyEventForm({
                     </li>
                 </ol>
             </nav>
-            <div className="card" id="form">
+            <div className="card" id="grid-form-section">
                 <div className="card-header">
                     <div className="d-flex justify-content-between">
                         <span className="text-black-50"> Create an event</span>
@@ -62,7 +62,7 @@ function YearlyEventForm({
                                                 name="posterImage"
                                                 value={editEvent.posterImage}
                                             >
-                                                <option value="">-- select poster image --</option>
+                                                <option value="">-- Select Poster --</option>
                                                 {userMedia.media.map((image) => (
                                                     <option key={image.id} value={image.secureUrl}>
                                                         {cleanPublicImageName(image.publicId)}

@@ -7,7 +7,7 @@ function CustomLoader({ color, loaderMessage }) {
             style={{ padding: '24px' }}
         >
             <Spinner color={color} />
-            <div className="mt-4 text-center">{loaderMessage}</div>
+            <div className={`mt-4 text-center text-${color}`}>{loaderMessage}</div>
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import '../../../css/pricingPage.css'
 import { getApiUrl } from '../../../helpers/config'
 import { plans } from '../../../helpers/config'
 import PriceCard from './PriceCard'
@@ -33,22 +32,20 @@ function Pricing({ auth, stripeCustomer }) {
     }
 
     return (
-        <div className="container">
-            <section id="pricing-page">
-                <div className="row">
-                    <div className="pricing card-deck d-lg-flex justify-content-between mb-3">
-                        {plans.map((plan) => (
-                            <PriceCard
-                                subscriptionPlanId={stripeCustomer.customer.subscriptionPlanId}
-                                key={plan.name}
-                                plan={plan}
-                                auth={auth}
-                                checkoutUser={checkoutUser}
-                            />
-                        ))}
-                    </div>
+        <div className="container" id="pricing-section">
+            <div className="row">
+                <div className="pricing card-deck d-lg-flex justify-content-between mb-3">
+                    {plans.map((plan) => (
+                        <PriceCard
+                            subscriptionPlanId={stripeCustomer.customer.subscriptionPlanId}
+                            key={plan.name}
+                            plan={plan}
+                            auth={auth}
+                            checkoutUser={checkoutUser}
+                        />
+                    ))}
                 </div>
-            </section>
+            </div>
         </div>
     )
 }

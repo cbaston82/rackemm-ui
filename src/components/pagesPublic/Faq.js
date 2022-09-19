@@ -1,5 +1,5 @@
-import '../../css/faq.css'
 import { Link } from 'react-router-dom'
+
 function Faq() {
     return (
         <div className="container" id="faq-section">

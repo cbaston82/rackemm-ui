@@ -3,16 +3,22 @@ import { formatISO } from 'date-fns'
 function UpcomingYearlyEventCard({ event }) {
     return (
         <div className="col-md-4">
-            <div className="card text-bg-dark text-center mb-4">
-                <div className="card-header">{event.city}</div>
+            <div className="card text-center upcoming-event-card mb-4">
+                <div className="card-header">
+                    <span className="fw-bolder text-white">{event.city}</span>
+                </div>
                 <div className="card-body">
                     <h5 className="card-title">{event.event}</h5>
-                    <p className="card-text">${event.buyIn}</p>
-                    <a href={`/yearly-event/${event._id}`} className="btn btn-outline-secondary">
+                    <h5 className="card-text text-white fw-bolder mb-3">${event.buyIn} Buy-In</h5>
+                    <p className="text-white-50 fw-lighter">{event.description}</p>
+                    <a
+                        href={`/yearly-event/${event._id}`}
+                        className="btn btn-sm btn-outline-secondary"
+                    >
                         View
                     </a>
                 </div>
-                <div className="card-footer text-muted text-white-50">
+                <div className="card-footer text-white fw-light">
                     {formatISO(new Date(event.startDate), {
                         representation: 'date',
                     })}

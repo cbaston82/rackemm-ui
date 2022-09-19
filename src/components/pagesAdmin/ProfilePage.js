@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getUserStripeCustomer } from '../../redux'
 import axios from 'axios'
 import { getApiUrl } from '../../helpers/config'
-import '../../css/profile.css'
+import CustomLoader from '../pagesPublic/tables/CustomeLoader'
 
 function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
     const initialValues = {
@@ -57,79 +57,83 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
 
     return (
         <section id="profile-section">
-            <div className="container">
-                <div className="row">
-                    <div className="col-xl-12">
-                        <div className="card text-white mb-4">
-                            <div className="card-header">Account Details</div>
-                            <div className="card-body">
-                                <form>
-                                    <div className="row gx-3 mb-3">
-                                        <div className="col-md-6">
-                                            <label className="small mb-1" htmlFor="firstName">
-                                                First name
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                name="fullName"
-                                                type="text"
-                                                placeholder="Enter your first name"
-                                                onChange={(e) => handleOnChange(e)}
-                                                value={userInfo.fullName}
-                                            />
-                                        </div>
-                                        <div className="col-md-6">
-                                            <label className="small mb-1" htmlFor="email">
-                                                Email address
-                                            </label>
-                                            <input
-                                                className="form-control"
-                                                id="email"
-                                                name="email"
-                                                type="email"
-                                                placeholder="Enter your email address"
-                                                onChange={(e) => handleOnChange(e)}
-                                                value={userInfo.email}
-                                            />
-                                        </div>
-                                    </div>
-                                    <button
-                                        className="btn btn-outline-secondary text-white-50"
-                                        type="button"
-                                    >
-                                        Save changes
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    {stripeCustomer.customer.customerId !== '' && (
+            {stripeCustomer.loading ? (
+                <CustomLoader loaderMessage="Fetching user data." color="white" />
+            ) : (
+                <div className="container">
+                    <div className="row">
                         <div className="col-xl-12">
-                            <div className="card text-white">
-                                <div className="card-header">Billing Details</div>
+                            <div className="card text-white mb-4">
+                                <div className="card-header">Account Details</div>
                                 <div className="card-body">
-                                    <form onSubmit={loadUserStripeAccountDetails}>
-                                        <input
-                                            type="hidden"
-                                            id="customer-id"
-                                            name="customer_id"
-                                            value={stripeCustomer.customer.customerId}
-                                        />
+                                    <form>
+                                        <div className="row gx-3 mb-3">
+                                            <div className="col-md-6">
+                                                <label className="small mb-1" htmlFor="firstName">
+                                                    First name
+                                                </label>
+                                                <input
+                                                    className="form-control"
+                                                    name="fullName"
+                                                    type="text"
+                                                    placeholder="Enter your first name"
+                                                    onChange={(e) => handleOnChange(e)}
+                                                    value={userInfo.fullName}
+                                                />
+                                            </div>
+                                            <div className="col-md-6">
+                                                <label className="small mb-1" htmlFor="email">
+                                                    Email address
+                                                </label>
+                                                <input
+                                                    className="form-control"
+                                                    id="email"
+                                                    name="email"
+                                                    type="email"
+                                                    placeholder="Enter your email address"
+                                                    onChange={(e) => handleOnChange(e)}
+                                                    value={userInfo.email}
+                                                />
+                                            </div>
+                                        </div>
                                         <button
-                                            className="btn btn-outline-secondary text-white-50 mb-3"
-                                            id="checkout-and-portal-button"
-                                            type="submit"
+                                            className="btn btn-outline-secondary text-white-50"
+                                            type="button"
                                         >
-                                            Manage
+                                            Save changes
                                         </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                    )}
+
+                        {stripeCustomer.customer.customerId !== '' && (
+                            <div className="col-xl-12">
+                                <div className="card text-white">
+                                    <div className="card-header">Billing Details</div>
+                                    <div className="card-body">
+                                        <form onSubmit={loadUserStripeAccountDetails}>
+                                            <input
+                                                type="hidden"
+                                                id="customer-id"
+                                                name="customer_id"
+                                                value={stripeCustomer.customer.customerId}
+                                            />
+                                            <button
+                                                className="btn btn-outline-secondary text-white-50 mb-3"
+                                                id="checkout-and-portal-button"
+                                                type="submit"
+                                            >
+                                                Manage
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
+            )}
         </section>
     )
 }

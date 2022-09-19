@@ -4,7 +4,6 @@ import { fetchSingleYearlyEvent } from '../../redux'
 import { useParams } from 'react-router-dom'
 import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
-import '../../css/event.css'
 import LightBoxImage from '../LightBoxImage'
 import BreadCrumbs from '../BreadCrumbs'
 
@@ -16,7 +15,7 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
     }, [fetchSingleYearlyEvent, id])
 
     return (
-        <div className="container">
+        <div className="container" id="event-section">
             {allYearlyEvents.event && !allYearlyEvents.error ? (
                 <>
                     <BreadCrumbs

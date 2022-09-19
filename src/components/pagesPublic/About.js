@@ -1,5 +1,3 @@
-import '../../css/about.css'
-
 function About() {
     return (
         <div className="container mt-5 mb-5 d-flex justify-content-center">

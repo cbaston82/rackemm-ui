@@ -46,7 +46,7 @@ function YearlyEvents({ getUserYearlyEvents, userYearlyEvents, deleteUserYearlyE
             />
             {userYearlyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
-                    <CustomLoader color="black" loaderMessage="Fetching events" />
+                    <CustomLoader color="white" loaderMessage="Fetching events" />
                 </div>
             ) : (
                 <>

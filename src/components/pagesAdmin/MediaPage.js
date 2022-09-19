@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaTrash } from 'react-icons/fa'
-import '../../css/mediaPage.css'
 import CustomLoader from '../pagesPublic/tables/CustomeLoader'
 import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import withReactContent from 'sweetalert2-react-content'
@@ -91,11 +90,11 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
     }, [getUserMedia])
 
     return (
-        <div className="container">
+        <div className="container" id="media-section">
             {userMedia.loading ? (
-                <CustomLoader color="black" loaderMessage="Fetching media." />
+                <CustomLoader color="white" loaderMessage="Fetching media." />
             ) : (
-                <section id="media-page">
+                <div>
                     <nav>
                         <div className="nav nav-tabs" id="nav-tab" role="tablist">
                             <button
@@ -217,7 +216,7 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
             )}
         </div>
     )

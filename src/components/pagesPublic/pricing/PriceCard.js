@@ -4,7 +4,7 @@ import { FaCheck } from 'react-icons/fa'
 function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId }) {
     return (
         <div className="card col-sm-12 col-lg-3 card-pricing text-center px-3 mb-4">
-            <span className="h6 w-75 mx-auto px-4 py-1 rounded-bottom bg-secondary text-white shadow-sm">
+            <span className="h6 w-75 mx-auto px-4 py-1 rounded-bottom text-white shadow-sm">
                 {plan.name}
             </span>
             <div className="bg-transparent card-header pt-4 border-0">
