@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { fetchSingleWeeklyEvent } from '../../redux'
 import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'

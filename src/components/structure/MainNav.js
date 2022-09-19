@@ -9,11 +9,11 @@ function MainNav({ logoutUser, auth }) {
     }
 
     return (
-        <nav id="main-navbar" className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav id="main-navbar" className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
                 <Link className="navbar-brand" to="/">
                     <img
-                        src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663402485/rackemm_images/app_images/logo.png"
+                        src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663402485/rackemm_images/app_images/logo-white.png"
                         height="40"
                         alt=""
                     />
@@ -62,6 +62,11 @@ function MainNav({ logoutUser, auth }) {
                                     <li>
                                         <NavLink className="dropdown-item" to="/account/media">
                                             Media
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink className="dropdown-item" to="/account/filters">
+                                            Filters
                                         </NavLink>
                                     </li>
                                     <li>

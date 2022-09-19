@@ -11,6 +11,7 @@ import { getUserStripeCustomer, resetUserStripeCustomer } from '../admin/stripeC
 import { resetUserWeeklyEvents } from '../admin/userWeeklyEventActions'
 import { resetUserYearlyEvents } from '../admin/userYearlyEventActions'
 import { resetUserMedia } from '../admin/userMediaActions'
+import { resetFilters } from '../admin/filterActions'
 
 export const loginUserRequest = () => ({
     type: LOGIN_USER_REQUEST,
@@ -67,5 +68,6 @@ export const logoutUser = () => (dispatch) => {
     dispatch(resetUserWeeklyEvents())
     dispatch(resetUserYearlyEvents())
     dispatch(resetUserMedia())
+    dispatch(resetFilters())
     localStorage.setItem('state', '')
 }

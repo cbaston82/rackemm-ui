@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getUserStripeCustomer } from '../../redux'
 import axios from 'axios'
 import { getApiUrl } from '../../helpers/config'
+import '../../css/profile.css'
 
 function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
     const initialValues = {
@@ -59,7 +60,7 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
             <div className="container">
                 <div className="row">
                     <div className="col-xl-12">
-                        <div className="card mb-4">
+                        <div className="card text-white mb-4">
                             <div className="card-header">Account Details</div>
                             <div className="card-body">
                                 <form>
@@ -70,8 +71,7 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
                                             </label>
                                             <input
                                                 className="form-control"
-                                                id="firstName"
-                                                name="firstName"
+                                                name="fullName"
                                                 type="text"
                                                 placeholder="Enter your first name"
                                                 onChange={(e) => handleOnChange(e)}
@@ -93,7 +93,10 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
                                             />
                                         </div>
                                     </div>
-                                    <button className="btn btn-outline-secondary" type="button">
+                                    <button
+                                        className="btn btn-outline-secondary text-white-50"
+                                        type="button"
+                                    >
                                         Save changes
                                     </button>
                                 </form>
@@ -103,23 +106,9 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
 
                     {stripeCustomer.customer.customerId !== '' && (
                         <div className="col-xl-12">
-                            <div className="card">
+                            <div className="card text-white">
                                 <div className="card-header">Billing Details</div>
                                 <div className="card-body">
-                                    {
-                                        <p>
-                                            <span className="text-black-50">
-                                                Subscription status:
-                                            </span>{' '}
-                                            <span className="fw-bold">
-                                                {/*{*/}
-                                                {/*    getSubscriptionPlanSettings(*/}
-                                                {/*        stripeCustomer.customer.subscriptionPlanId,*/}
-                                                {/*    ).name*/}
-                                                {/*}*/}
-                                            </span>
-                                        </p>
-                                    }
                                     <form onSubmit={loadUserStripeAccountDetails}>
                                         <input
                                             type="hidden"
@@ -128,7 +117,7 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
                                             value={stripeCustomer.customer.customerId}
                                         />
                                         <button
-                                            className="btn btn-outline-secondary mb-3"
+                                            className="btn btn-outline-secondary text-white-50 mb-3"
                                             id="checkout-and-portal-button"
                                             type="submit"
                                         >

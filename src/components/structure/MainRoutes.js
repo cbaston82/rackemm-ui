@@ -3,10 +3,10 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Protected from './Protected'
 import ProfilePage from '../pagesAdmin/ProfilePage'
-import WeeklyEvents from '../pagesPublic/WeeklyEvents'
+import WeeklyEvents from '../pagesPublic/weeklyEvents/WeeklyEvents'
 import Landing from '../pagesPublic/home/Landing'
 import About from '../pagesPublic/About'
-import YearlyEvents from '../pagesPublic/YearlyEvents'
+import YearlyEvents from '../pagesPublic/yearlyEvents/YearlyEvents'
 import Pricing from '../pagesPublic/pricing/Pricing'
 import Faq from '../pagesPublic/Faq'
 import Features from '../pagesPublic/Features'
@@ -24,6 +24,7 @@ import CreateWeeklyEvent from '../pagesAdmin/weeklyEvents/CreateWeeklyEvent'
 import EditWeeklyEvent from '../pagesAdmin/weeklyEvents/EditWeeklyEvent'
 import LoggedIn from '../LoggedIn'
 import MediaPage from '../pagesAdmin/MediaPage'
+import FiltersPage from '../pagesAdmin/filters/FiltersPage'
 
 function MainRoutes({ auth }) {
     return (
@@ -127,6 +128,15 @@ function MainRoutes({ auth }) {
                 element={
                     <Protected auth={auth}>
                         <MediaPage />
+                    </Protected>
+                }
+            />
+            <Route
+                exact
+                path="/account/filters"
+                element={
+                    <Protected auth={auth}>
+                        <FiltersPage />
                     </Protected>
                 }
             />

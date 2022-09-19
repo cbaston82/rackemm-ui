@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                media: [...state.media, action.payload],
+                media: [action.payload, ...state.media.sort((a, b) => b.createdAt - a.createdAt)],
             }
         case UPLOAD_USER_MEDIA_RESET:
             return initialState

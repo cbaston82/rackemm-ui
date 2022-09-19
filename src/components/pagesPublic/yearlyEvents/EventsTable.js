@@ -1,9 +1,9 @@
 import DataTable, { createTheme } from 'react-data-table-component'
-import CustomLoader from './CustomeLoader'
+import CustomLoader from '../tables/CustomeLoader'
 
 import { useEffect, useMemo, useState } from 'react'
 import FilterComponent from './Filter'
-import { solarized } from './SolarizedTheme'
+import { solarized } from '../tables/SolarizedTheme'
 createTheme('solarizedTheme', solarized, 'dark')
 
 function EventsTable({
@@ -12,8 +12,9 @@ function EventsTable({
     events,
     filterValues,
     setBuyIn,
-    setCity,
     setFilter,
+    setCity,
+    setGame,
 }) {
     tournamentColumns[0].defaultExpanded = true
 
@@ -22,10 +23,16 @@ function EventsTable({
     const maxBuyIn = Math.max(...tournamentBuyInsArray).toString()
 
     const tournamentCitiesInArray = events.map((item) => item.city)
+    const gamesInArray = events.map((item) => item.game)
 
     const cities = useMemo(() => {
         return [...new Set(tournamentCitiesInArray)]
     }, [tournamentCitiesInArray])
+
+    const games = useMemo(() => {
+        return [...new Set(gamesInArray)]
+    }, [gamesInArray])
+
     const [pending, setPending] = useState(true)
     const [rows, setRows] = useState([])
     const [filterText, setFilterText] = useState(
@@ -37,6 +44,9 @@ function EventsTable({
     const [filterCity, setFilterCity] = useState(
         filterValues.city !== 'null' ? filterValues.city : 'all',
     )
+    const [filterGame, setFilterGame] = useState(
+        filterValues.game !== 'null' ? filterValues.game : 'all',
+    )
     const [resetPaginationToggle, setResetPaginationToggle] = useState(false)
 
     // TODO: Clean this mess up. Big Code Smell
@@ -47,48 +57,68 @@ function EventsTable({
                 (filterCity !== 'all'
                     ? item.city.toLowerCase().includes(filterCity.toLowerCase())
                     : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
                 item.event.toLowerCase().includes(filterText.toLowerCase())) ||
             (item.venue &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'
                     ? item.city.toLowerCase().includes(filterCity.toLowerCase())
                     : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
                 item.venue.toLowerCase().includes(filterText.toLowerCase())) ||
             (item.day &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'
                     ? item.city.toLowerCase().includes(filterCity.toLowerCase())
                     : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
                 item.day.toLowerCase().includes(filterText.toLowerCase())) ||
             (item.time &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'
                     ? item.city.toLowerCase().includes(filterCity.toLowerCase())
                     : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
                 item.time.toLowerCase().includes(filterText.toLowerCase())) ||
             (item.game &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'
                     ? item.city.toLowerCase().includes(filterCity.toLowerCase())
                     : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
                 item.game.toLowerCase().includes(filterText.toLowerCase())) ||
             (item.city &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'
                     ? item.city.toLowerCase().includes(filterCity.toLowerCase())
                     : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
                 item.city.toLowerCase().includes(filterText.toLowerCase())),
     )
 
     const subHeaderComponentMemo = useMemo(() => {
         const handleClear = () => {
             setResetPaginationToggle(!resetPaginationToggle)
-            setFilterText('')
-            setFilter('')
             setFilterBuyIn(maxBuyIn)
-            setBuyIn(maxBuyIn)
+            setFilterGame('all')
+            setFilterText('')
             setFilterCity('all')
+            setFilter('')
             setCity('all')
+            setGame('all')
+            setBuyIn(maxBuyIn)
         }
 
         const handlePriceChange = (e) => {
@@ -107,6 +137,14 @@ function EventsTable({
             }
         }
 
+        const handleGameChange = (e) => {
+            if (filterGame) {
+                let game = e.target.value
+                setFilterGame(game)
+                setGame(game)
+            }
+        }
+
         const handleFilterChange = (e) => {
             setFilterText(e.target.value)
             setFilter(e.target.value)
@@ -116,12 +154,15 @@ function EventsTable({
                 {!pending ? (
                     <FilterComponent
                         onFilter={(e) => handleFilterChange(e)}
-                        minBuyIn={minBuyIn}
-                        maxBuyIn={maxBuyIn}
-                        cities={cities}
+                        onGameChange={handleGameChange}
                         onClear={handleClear}
                         onPriceChange={handlePriceChange}
                         onCityChange={handleCityChange}
+                        minBuyIn={minBuyIn}
+                        maxBuyIn={maxBuyIn}
+                        cities={cities}
+                        games={games}
+                        filterGame={filterGame}
                         filterBuyIn={filterBuyIn}
                         filterText={filterText}
                         filterCity={filterCity}
@@ -130,17 +171,19 @@ function EventsTable({
             </>
         )
     }, [
-        filterText,
-        filterCity,
-        cities,
+        pending,
         maxBuyIn,
         minBuyIn,
-        setBuyIn,
-        setCity,
-        setFilter,
-        pending,
-        filterBuyIn,
         resetPaginationToggle,
+        filterText,
+        filterCity,
+        filterBuyIn,
+        cities,
+        games,
+        setCity,
+        setGame,
+        setBuyIn,
+        setFilter,
     ])
 
     useEffect(() => {
@@ -160,13 +203,13 @@ function EventsTable({
             progressComponent={
                 pending && <CustomLoader color="white" loaderMessage={loaderMessage} />
             }
-            // expandableRows
             paginationResetDefaultPage={resetPaginationToggle}
             subHeaderComponent={subHeaderComponentMemo}
             subHeader
+            pagination
+            // expandableRows
             // expandableRowExpanded={(row) => row.defaultExpanded}
             // expandableRowsComponent={Expanded}
-            pagination
         />
     )
 }

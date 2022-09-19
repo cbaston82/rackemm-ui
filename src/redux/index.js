@@ -25,4 +25,10 @@ export {
     getUserMedia,
     deleteUserMedia,
 } from './admin/userMediaActions'
-export { getSavedFilters } from './admin/filterActions'
+export {
+    getSavedFilters,
+    saveFilter,
+    resetFilters,
+    setFilter,
+    deleteFilter,
+} from './admin/filterActions'

@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
     allYearlyEvents: yearlyEventsReducer,
     stripeCustomer: stripeCustomerReducer,
     userMedia: userMedia,
-    filters: filtersReducer,
+    savedFilters: filtersReducer,
 })
 
 export default rootReducer

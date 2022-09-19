@@ -2,8 +2,8 @@ import '../../css/faq.css'
 import { Link } from 'react-router-dom'
 function Faq() {
     return (
-        <div className="container">
-            <p>
+        <div className="container" id="faq-section">
+            <p className="text-white">
                 Dont see your question and need further assistance? email us at{' '}
                 <a href="info@rackemm.com">info.rackemm.com</a>
             </p>

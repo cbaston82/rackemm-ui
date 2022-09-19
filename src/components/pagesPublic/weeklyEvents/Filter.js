@@ -1,18 +1,24 @@
 const FilterComponent = ({
     minBuyIn,
     maxBuyIn,
-    cities,
     filterBuyIn,
     filterText,
-    onFilter,
+    filterDay,
     filterCity,
+    filterGame,
     onCityChange,
+    onGameChange,
+    onDayChange,
+    onFilter,
     onPriceChange,
     onClear,
+    cities,
+    games,
+    days,
 }) => (
     <div className="col-12 mt-3">
         <div className="row">
-            <div className="col-lg-3">
+            <div className="col-lg-6">
                 <div className="input-group input-group-sm mb-3">
                     <span className="input-group-text" id="basic-addon1">
                         Max Buy In: ${filterBuyIn}
@@ -48,7 +54,6 @@ const FilterComponent = ({
                     </select>
                 </div>
             </div>
-
             <div className="col-lg-3">
                 <div className="input-group input-group-sm mb-3">
                     <span className="input-group-text" id="basic-addon1">
@@ -64,11 +69,56 @@ const FilterComponent = ({
                     />
                 </div>
             </div>
+
             <div className="col-lg-3">
+                <div className="input-group input-group-sm mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                        Game
+                    </span>
+                    <select
+                        className="form-control form-control-sm"
+                        aria-label="Search Input"
+                        value={filterGame}
+                        onChange={(e) => onGameChange(e)}
+                    >
+                        <option value="all">All Games</option>
+                        {games.map((game, index) => (
+                            <option key={index} value={game.toString()}>
+                                {game}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+            <div className="col-lg-3">
+                <div className="input-group input-group-sm mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                        Day
+                    </span>
+                    <select
+                        className="form-control form-control-sm"
+                        aria-label="Search Input"
+                        value={filterDay}
+                        onChange={(e) => onDayChange(e)}
+                    >
+                        <option value="all">All Days</option>
+                        {days.map((day, index) => (
+                            <option key={index} value={day.toString()}>
+                                {day}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+            <div className="col-lg-6">
                 <div className="d-grid gap-2">
                     <button
                         className={`btn  btn-sm ${
-                            filterCity !== 'all' || filterBuyIn !== maxBuyIn || filterText !== ''
+                            filterCity !== 'all' ||
+                            filterBuyIn !== maxBuyIn ||
+                            filterText !== '' ||
+                            filterDay !== 'all' ||
+                            filterGame !== 'all'
                                 ? 'btn-danger'
                                 : 'btn-outline-secondary'
                         }`}

@@ -1,11 +1,11 @@
 export const solarized = {
-    // text: {
-    //     primary: '#00ffff',
-    //     secondary: '#2aa198',
-    // },
-    // background: {
-    //     default: 'RGBA(33,37,41,var(--bs-bg-opacity,1))!important',
-    // },
+    text: {
+        primary: '#00ffff',
+        secondary: '#2aa198',
+    },
+    background: {
+        default: '#292c31',
+    },
     // context: {
     //     background: '#cb4b16',
     //     text: '#FFFFFF',

@@ -5,12 +5,12 @@ function About() {
         <div className="container mt-5 mb-5 d-flex justify-content-center">
             <div id="about-section">
                 <div className="card">
-                    <div className=" d-block justify-content-center">
+                    <div className="about-card d-block justify-content-center">
                         <div className="area1 p-3 py-5"></div>
                         <div className="area2 p- text-center px-3">
                             <div className="image mr-3">
                                 <img
-                                    src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663302985/rackemm_images/4C3BEB2A-AD23-4804-9E1E-31F703A7DAE1.jpg"
+                                    src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663302985/rackemm_images/app_images/4C3BEB2A-AD23-4804-9E1E-31F703A7DAE1.jpg"
                                     className="rounded"
                                     alt=""
                                     width="100"

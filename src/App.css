@@ -5,13 +5,14 @@
     --cyan: #00cdcd;
     --black: #000000;
     --light-gray: #ebebeb;
+    --dark-gray: #292c31;
     --form: #fefce3;
     --white: #ffffff;
 }
 
 #root {
     min-height: 100vh;
-    background-color: var(--light-gray)
+    background-color: #1e2024;
 }
 
 main {
