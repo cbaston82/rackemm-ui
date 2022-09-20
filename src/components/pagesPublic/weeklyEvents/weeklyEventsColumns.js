@@ -1,4 +1,4 @@
-import { FaEye } from 'react-icons/fa'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 
 export const tournamentColumns = [
     {
@@ -38,7 +38,7 @@ export const tournamentColumns = [
                 href={`/weekly-event/${row._id}`}
                 rel="noopener noreferrer"
             >
-                <FaEye />
+                <FaExternalLinkAlt />
             </a>
         ),
     },

@@ -1,64 +1,66 @@
+import { FaExternalLinkAlt } from 'react-icons/fa'
 function Features() {
     return (
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-12">
                     <div className="subscription text-left">
-                        <h5>Feature requests</h5>
+                        <h5 className="text-white-50">Feature requests</h5>
                     </div>
-                    <div className="plan p-3 bg-white">
-                        <span>Story</span>
-                        <div className="d-flex justify-content-between align-items-baseline align-content-center mt-2">
-                            <h5>Started</h5>
+                    <div className="p-3 bg-white">
+                        <span className="fw-bolder text-black">
+                            - Allow a subscriber to add an event to calendar
+                        </span>
+                        <div className="d-flex justify-content-between align-items-center mt-0 py-3">
+                            <h5 className="text-success p-0 m-0 fw-bolder">Started</h5>
                             <button
-                                className="btn btn-outline-primary btn-sm px-3 py-2"
+                                className="btn btn-outline-secondary btn-sm px-3 py-2"
                                 type="button"
                             >
-                                View Ticket
+                                <FaExternalLinkAlt /> View Ticket
                             </button>
                         </div>
                         <div>
-                            <span className="progress-info">
-                                As a user I would like to add a yearly event to my calendar
-                            </span>
                             <div className="progress">
                                 <div
                                     className="progress-bar"
                                     aria-valuenow="50"
                                     aria-valuemin="0"
                                     aria-valuemax="100"
-                                    style={{ width: '70%' }}
+                                    style={{ width: '70%', backgroundColor: 'var(--cyan) ' }}
                                 ></div>
                             </div>
-                            <span className="progress-info">Created - Jan 1st, 2023</span>
+                            <p className="progress-info text-black-50 fw-light mt-2 fst-italic">
+                                Created - Jan 1st, 2023
+                            </p>
                         </div>
                     </div>
-                    <div className="plan p-3 mt-3 bg-white">
-                        <span>Story</span>
-                        <div className="d-flex justify-content-between align-items-baseline align-content-center mt-2">
-                            <h5>Todo</h5>
+                    <div className="p-3 bg-white mt-3">
+                        <span className="fw-bolder text-black">
+                            - Allow Level 3 subscriber to link tournament payment option
+                        </span>
+                        <div className="d-flex justify-content-between align-items-center mt-0 py-3">
+                            <h5 className="text-warning m-0 p-0 fw-bolder">Todo</h5>
                             <button
-                                className="btn btn-outline-primary btn-sm px-3 py-2"
+                                className="btn btn-outline-secondary btn-sm px-3 py-2"
                                 type="button"
                             >
-                                View Ticket
+                                <FaExternalLinkAlt /> View Ticket
                             </button>
                         </div>
                         <div>
-                            <span className="progress-info">
-                                As a user I would like to create a player list to show the public
-                                who is entered into my tournament
-                            </span>
                             <div className="progress">
                                 <div
                                     className="progress-bar"
                                     aria-valuenow="50"
                                     aria-valuemin="0"
                                     aria-valuemax="100"
-                                    style={{ width: '0%' }}
+                                    style={{ width: '0%', backgroundColor: 'var(--cyan) ' }}
                                 ></div>
                             </div>
-                            <span className="progress-info">Created - Jan 4th, 2023</span>
+                            <p className="progress-info text-black-50 mt-2 fw-light fst-italic">
+                                Created - Jan 1st, 2023
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -1,29 +1,22 @@
 import { differenceInDays, formatDistance, subDays } from 'date-fns'
-import { Link } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
 import { cleanPublicImageName } from '../../../helpers'
+import BreadCrumbs from '../../BreadCrumbs'
 
 function WeeklyEventForm({
     handleFormValueChange,
     handleFormSubmit,
     editEvent,
     loading,
-    pageRequest,
     userMedia,
 }) {
     return (
         <>
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item">
-                        <Link to="/account/Weekly-events">Account Weekly Events</Link>
-                    </li>
-                    <li className="breadcrumb-item active" aria-current="page">
-                        {pageRequest}
-                    </li>
-                </ol>
-            </nav>
-            <div className="card" id="form">
+            <BreadCrumbs
+                previousLinks={[{ path: '/account/weekly-events', name: 'Account Weekly Events' }]}
+                activeBreadcrumbTitle="Create Weekly Event"
+            />
+            <div className="card rounded-0 rackemm-card-grid-form">
                 <div className="card-header">
                     <div className="d-flex justify-content-between">
                         <span className="text-black-50"> Create an event</span>

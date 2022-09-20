@@ -31,12 +31,36 @@ function Pricing({ auth, stripeCustomer }) {
             })
     }
 
+    const loadUserStripeAccountDetails = async (e) => {
+        e.preventDefault()
+
+        await axios
+            .post(
+                `${getApiUrl()}stripe/create-portal-session`,
+                {
+                    customerId: stripeCustomer.customer.customerId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${auth.user.token}`,
+                    },
+                },
+            )
+            .then((data) => {
+                window.location.replace(data.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     return (
         <div className="container" id="pricing-section">
             <div className="row">
                 <div className="pricing card-deck d-lg-flex justify-content-between mb-3">
                     {plans.map((plan) => (
                         <PriceCard
+                            loadUserStripeAccountDetails={loadUserStripeAccountDetails}
                             subscriptionPlanId={stripeCustomer.customer.subscriptionPlanId}
                             key={plan.name}
                             plan={plan}

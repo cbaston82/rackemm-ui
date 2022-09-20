@@ -22,28 +22,76 @@ main {
 }
 
 /*==================================================
-NAVBAR SECTION
+CUSTOM OVERRIDE CLASSES
 ===================================================*/
-#navbar-section {
-    min-height: 100px;
+/*dropdown menu*/
+.rackemm-dropdown-menu {
+    padding: 0px;
+    border-radius: 0;
+    background-color: var(--light-gray)
 }
 
-/*bootstrap override*/
-.navbar.active {
-    -moz-transition: all 0.2s ease-in;
-    -o-transition: all 0.2s ease-in;
-    -webkit-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+.rackemm-dropdown-menu hr {
+    margin: 0;
 }
+
+.rackemm-dropdown-menu .dropdown-item.active, .dropdown-item:active {
+    color: var(--dark-gray);
+    background-color: var(--cyan);
+}
+
+/*accordions*/
+.rackemm-accordion .accordion-button:not(.collapsed) {
+    border-radius: 0;
+    color: var(--light-gray);
+    background-color: var(--cyan);
+    box-shadow: inset 0calc(var(--bs-accordion-border-width) * -1) 0 var(--bs-accordion-border-color);
+}
+
+.rackemm-accordion .accordion-item:first-of-type {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.rackemm-accordion .accordion-item:last-of-type {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.rackemm-accordion .accordion-item {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-bottom: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
+}
+
 
 /*==================================================
-GLOBAL
+GLOBAL HLPERS
 ===================================================*/
-.content-section {
-    background-color: var(--white);
-    padding: 60px 30px;
-    min-height: 700px;
+.rackemm-border-bottom {
+    border-bottom: 1px solid rgba(255,255,255, 0.1)
+}
+
+.rackemm-border-top {
+    border-top: 1px solid rgba(255,255,255, 0.1)
+}
+
+.rackemm-text-stroke-cyan{
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--cyan);
+}
+
+.rackemm-text-cyan {
+    color: var(--cyan)
+}
+
+.rackemm-bg-cyan {
+    background-color: var(--cyan)
+}
+
+.rackemm-bg-light-gray {
+    background-color: var(--light-gray)
 }
 
 input.error, select.error {
@@ -51,46 +99,32 @@ input.error, select.error {
 }
 
 /*==================================================
-ABOUT SECTION
+CARD
 ===================================================*/
-#about-section .card {
-    border-radius: 0
+.rackemm-card {
+    border-radius: 0;
+    border:none;
 }
-#about-section .about-card {
-    background-color: var(--light-gray);
-    max-width: 700px;
-}
-#about-section .area1{
-    background-color: var(--cyan  );
-    padding-top: 83px !important
-}
-#about-section .image{
-    top: -62px;position: relative
+.rackemm-card-header {
+    background-color: var(--cyan);
+    border-radius: 0 !important;
 }
 
-/*==================================================
-FAQ SECTION
-===================================================*/
-#faq-section .accordion-item:first-of-type {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-#faq-section .accordion-item:last-of-type {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+.rackemm-card-body {
+    background-color: var(--dark-gray);
+    border-radius: 0;
 }
 
-/*==================================================
-FOOTER SECTION
-===================================================*/
-#footer-section .border-bottom {
-    border-bottom: var(--bs-border-width) var(--bs-border-style) #454647!important;
+.rackemm-card-footer {
+    background-color: var(--cyan);
+    border-radius: 0 !important;
 }
 
+
 /*==================================================
-HERO SECTION
+HEROS
 ===================================================*/
-#hero-section {
+.rackemm-hero-1 {
     margin-top: -200px;
     min-height: 100vh;
     display: flex;
@@ -106,18 +140,19 @@ HERO SECTION
     background-repeat: no-repeat;
 }
 
-/*==================================================
-PROFILE SECTION
-===================================================*/
-#profile-section .card {
-    border-radius: 0;
-    background-color: var(--dark-gray);
+.rackemm-hero-2 {
+    min-height: 400px;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+            rgba(0, 0, 0, .9),
+            rgba(0, 0, 0, .1)
+    ),
+    url(https://res.cloudinary.com/imagine-design-develop/image/upload/v1663629033/rackemm_images/app_images/me_breaking_2016_08_23_07_13_10_UTC.jpg);
+    background-size: cover;
 }
 
-/*==================================================
-UPCOMING EVENTS SECTION
-===================================================*/
-#upcoming-events-section {
+.rackemm-hero-3 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,8 +162,6 @@ UPCOMING EVENTS SECTION
             rgba(0, 0, 0, .3)
     ),
     url(https://res.cloudinary.com/imagine-design-develop/image/upload/v1663306074/rackemm_images/app_images/Screen_Shot_2022-09-15_at_10.27.35_PM.png);
-    /*url(https://res.cloudinary.com/imagine-design-develop/image/upload/v1663305838/rackemm_images/joao-alexandre-paulo-qA005Vbp7jk-unsplash.jpg);*/
-    /*url(https://res.cloudinary.com/imagine-design-develop/image/upload/v1663305248/rackemm_images/ashley-byrd-hH0x9ij3JnA-unsplash.jpg);*/
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -136,166 +169,12 @@ UPCOMING EVENTS SECTION
 }
 
 /*==================================================
-EVENT SECTION
-===================================================*/
-#event-section .emp-profile{
-    padding: 3%;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    border-radius: 0.5rem;
-    background: #fff;
-}
-#event-section .event-img{
-    text-align: center;
-}
-#event-section .event-img img{
-    width: 70%;
-    height: 100%;
-}
-#event-section .event-img .file {
-    position: relative;
-    overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
-    border: none;
-    border-radius: 0;
-    font-size: 15px;
-    background: #212529b8;
-}
-#event-section .event-img .file input {
-    position: absolute;
-    opacity: 0;
-    right: 0;
-    top: 40px;
-}
-
-#event-section .event-img .file-upload-button {
-    position: absolute;
-    opacity: 0;
-    right: 0;
-    top: 0;
-}
-#event-section .event-head h6{
-    color: #0062cc;
-}
-#event-section .event-address{
-    font-size: 12px;
-    color: #818182;
-    margin-top: 5%;
-}
-#event-section .event-address span{
-    color: #495057;
-    font-size: 15px;
-    font-weight: 600;
-}
-#event-section .event-head .nav-tabs{
-    margin-bottom:5%;
-}
-#event-section .event-head .nav-tabs .nav-link{
-    font-weight:600;
-    border: none;
-}
-#event-section .event-head .nav-tabs .nav-link.active{
-    border: none;
-    border-bottom:2px solid #0062cc;
-}
-#event-section .event-tags{
-    padding: 14%;
-    margin-top: -15%;
-}
-#event-section .event-tags p{
-    font-size: 12px;
-    color: #818182;
-    font-weight: 600;
-    margin-top: 10%;
-}
-#event-section .event-tags span.tag{
-    margin-left: 2px;
-    margin-right: 2px;
-}
-#event-section .event-tags ul{
-    list-style: none;
-}
-#event-section .event-tab label{
-    font-weight: 600;
-}
-#event-section .event-tab p{
-    font-weight: 600;
-    color: #0062cc;
-}
-
-/*==================================================
-MEDIA SECTION
-===================================================*/
-#media-section .item {
-    position: relative;
-}
-
-#media-section .item button {
-    position: absolute;
-    align-content: center;
-    bottom: 5px;
-    left: 5px;
-}
-
-#media-section .file-upload{
-    position: relative;
-}
-
-#media-section .file-upload .file-select{
-    position: absolute;
-    left:0;
-    z-index: 1;
-    width: 100px;
-}
-
-#media-section .file-upload .file-name{
-    position: absolute;
-    padding-left: 103px;
-}
-
-/*==================================================
 PRICING SECTION
 ===================================================*/
-#pricing-section .card > span:first-child {
-    background-color: var(--cyan);
-}
-#pricing-section .card {
-    border-radius: 0;
-}
-#pricing-section .card-pricing.popular {
-    z-index: 1;
-    border: 3px solid #007bff;
-}
-#pricing-section .card-pricing .list-unstyled li {
-    padding: .5rem 0;
-    color: #6c757d;
-}
-
-/*==================================================
-PRICING SECTION
-===================================================*/
-
-#grid-form-section {
+ .rackemm-card-grid-form{
     background-color: var(--grid-form)
 }
 
-.upcoming-event-card.card {
-    border-radius: 0;
-    border:none;
-}
-
-.upcoming-event-card .card-header {
-    background-color: var(--cyan);
-    border-radius: 0;
-}
-
-.upcoming-event-card .card-body {
-    background-color: var(--dark-gray);
-    border-radius: 0;
-}
-
-.upcoming-event-card .card-footer {
-    background-color: var(--cyan);
-    border-radius: 0;
+.rackemm-gradient-black-to-dark-gray {
+    background-image: linear-gradient(black, var(--dark-gray));
 }

@@ -1,22 +1,16 @@
 import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
 
-function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId }) {
+function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId, loadUserStripeAccountDetails }) {
     return (
-        <div className="card col-sm-12 col-lg-3 card-pricing text-center px-3 mb-4">
-            <span className="h6 w-75 mx-auto px-4 py-1 rounded-bottom text-white shadow-sm">
+        <div className="card col-sm-12 col-lg-3 card-pricing text-center px-3 mb-4 rounded-0 border-0">
+            <span className="h6 w-75 mx-auto px-4 py-1 rackemm-bg-cyan rounded-bottom text-white shadow-sm">
                 {plan.name}
             </span>
             <div className="bg-transparent card-header pt-4 border-0">
                 <h2 className="h2 fw-normal text-primary text-center mb-2" data-pricing-value="15">
-                    <span className="price">
-                        <span className="text-decoration-line-through text-danger">
-                            ${plan.price}
-                        </span>
-                        {' - '}
-                        <span className="text-primary">$0</span>
-                    </span>
-                    <span className="h6 text-black-50 m-2">/ month</span>
+                    <span className="text-secondary fw-bolder">${plan.price}</span>
+                    <span className="h6 text-black-50 fw-light m-2">/ month</span>
                 </h2>
             </div>
             <div className="card-body d-flex flex-column justify-content-between pt-0">
@@ -29,13 +23,35 @@ function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId }) {
                     <hr />
                     <p className="text-black-50 p-4">
                         Geared towards the regular player that might throw a tournament every now
-                        and again. Or a player wanting to unlock the following{' '}
+                        and again.
                     </p>
                 </div>
 
                 {auth.user.email ? (
                     <>
-                        {subscriptionPlanId !== plan.subscriptionPlanId ? (
+                        {subscriptionPlanId === plan.subscriptionPlanId && (
+                            <button
+                                disabled
+                                className="btn disabled btn-outline-success mb-3"
+                                id=" checkout-and-portal-button btn btn-outline-secondary mb-3"
+                                type="submit"
+                            >
+                                <FaCheck /> Subscribed
+                            </button>
+                        )}
+                        {subscriptionPlanId !== '' &&
+                            subscriptionPlanId !== plan.subscriptionPlanId && (
+                                <form onSubmit={loadUserStripeAccountDetails}>
+                                    <button
+                                        className="btn btn-outline-secondary mb-3"
+                                        id=" checkout-and-portal-button btn btn-outline-secondary mb-3"
+                                        type="submit"
+                                    >
+                                        Change Subscription
+                                    </button>
+                                </form>
+                            )}
+                        {subscriptionPlanId === '' && (
                             <form onSubmit={(e) => checkoutUser(e, plan.subscriptionPlanId)}>
                                 <button
                                     className="btn btn-outline-secondary mb-3"
@@ -45,15 +61,6 @@ function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId }) {
                                     Subscribe
                                 </button>
                             </form>
-                        ) : (
-                            <button
-                                disabled
-                                className="btn disabled btn-outline-success mb-3"
-                                id=" checkout-and-portal-button btn btn-outline-secondary mb-3"
-                                type="submit"
-                            >
-                                <FaCheck /> Subscribed
-                            </button>
                         )}
                     </>
                 ) : (

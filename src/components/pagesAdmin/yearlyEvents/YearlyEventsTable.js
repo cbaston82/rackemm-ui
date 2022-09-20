@@ -1,7 +1,7 @@
 import { formatISO } from 'date-fns'
 import currencyFormatter from 'currency-formatter'
 import { Link } from 'react-router-dom'
-import { FaEdit, FaEye, FaTrashAlt } from 'react-icons/fa'
+import { FaEdit, FaExternalLinkAlt, FaTrashAlt } from 'react-icons/fa'
 import EventsCreated from '../../EventsCreated'
 
 function YearlyEventsTable({ events, handleDeleteEvent }) {
@@ -56,7 +56,7 @@ function YearlyEventsTable({ events, handleDeleteEvent }) {
                                         <div className="ms-3">
                                             <Link to={`/yearly-event/${event._id}`}>
                                                 <button className="btn btn-outline-light btn-sm">
-                                                    <FaEye />
+                                                    <FaExternalLinkAlt />
                                                 </button>
                                             </Link>
                                         </div>

@@ -1,29 +1,22 @@
 import { differenceInDays, formatDistance, formatISO, subDays } from 'date-fns'
-import { Link } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
 import { cleanPublicImageName } from '../../../helpers'
+import BreadCrumbs from '../../BreadCrumbs'
 
 function YearlyEventForm({
     handleFormValueChange,
     handleFormSubmit,
     editEvent,
     loading,
-    pageRequest,
     userMedia,
 }) {
     return (
         <>
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item">
-                        <Link to="/account/yearly-events">Account yearly Events</Link>
-                    </li>
-                    <li className="breadcrumb-item active" aria-current="page">
-                        {pageRequest}
-                    </li>
-                </ol>
-            </nav>
-            <div className="card" id="grid-form-section">
+            <BreadCrumbs
+                previousLinks={[{ path: '/account/yearly-events', name: 'Account Yearly Events' }]}
+                activeBreadcrumbTitle="Create Yearly Event"
+            />
+            <div className="card rounded-0 rackemm-card-grid-form">
                 <div className="card-header">
                     <div className="d-flex justify-content-between">
                         <span className="text-black-50"> Create an event</span>

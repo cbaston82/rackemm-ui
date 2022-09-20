@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
-import { FaUserAlt } from 'react-icons/fa'
+import { FaUserAlt, FaSignOutAlt } from 'react-icons/fa'
 import { logoutUser } from '../../redux'
 
 function MainNav({ logoutUser, auth }) {
@@ -9,7 +9,7 @@ function MainNav({ logoutUser, auth }) {
     }
 
     return (
-        <nav id="navbar-section" className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-4 rackemm-border-bottom">
             <div className="container">
                 <Link className="navbar-brand" to="/">
                     <img
@@ -53,22 +53,28 @@ function MainNav({ logoutUser, auth }) {
                                 >
                                     <FaUserAlt /> {auth.user.email}
                                 </Link>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <ul
+                                    className="dropdown-menu rackemm-dropdown-menu"
+                                    aria-labelledby="navbarDropdown"
+                                >
                                     <li>
                                         <NavLink className="dropdown-item" to="/account/profile">
                                             Profile
                                         </NavLink>
                                     </li>
+                                    <hr />
                                     <li>
                                         <NavLink className="dropdown-item" to="/account/media">
                                             Media
                                         </NavLink>
                                     </li>
+                                    <hr />
                                     <li>
                                         <NavLink className="dropdown-item" to="/account/filters">
                                             Filters
                                         </NavLink>
                                     </li>
+                                    <hr />
                                     <li>
                                         <NavLink
                                             className="dropdown-item"
@@ -77,6 +83,7 @@ function MainNav({ logoutUser, auth }) {
                                             Weekly Events
                                         </NavLink>
                                     </li>
+                                    <hr />
                                     <li>
                                         <NavLink
                                             className="dropdown-item"
@@ -85,12 +92,10 @@ function MainNav({ logoutUser, auth }) {
                                             Yearly Events
                                         </NavLink>
                                     </li>
-                                    <li>
-                                        <hr className="dropdown-divider" />
-                                    </li>
+                                    <hr />
                                     <li>
                                         <button className="dropdown-item" onClick={handleLogout}>
-                                            Logout
+                                            <FaSignOutAlt /> Logout
                                         </button>
                                     </li>
                                 </ul>

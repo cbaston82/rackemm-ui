@@ -1,12 +1,14 @@
+import { Link } from 'react-router-dom'
+
 function Footer() {
     return (
-        <footer className="footer mt-auto py-3 bg-dark" id="footer-section">
+        <footer className="footer mt-auto pb-3 pt-5 bg-dark rackemm-border-top">
             <div className="container">
-                <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+                <ul className="nav justify-content-center pb-3 mb-3">
                     <li className="nav-item">
                         <a
                             href="/client/src/components/pagesPublic"
-                            className="nav-link px-2 text-muted"
+                            className="nav-link px-2 text-white-50"
                         >
                             Home
                         </a>
@@ -32,17 +34,26 @@ function Footer() {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a href="/PrivacyPolicy" className="nav-link px-2 text-white-50">
+                        <a href="/privacy-policy" className="nav-link px-2 text-white-50">
                             Privacy Policy
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a href="/TermsOfUse" className="nav-link px-2 text-white-50">
+                        <a href="/terms-of-use" className="nav-link px-2 text-white-50">
                             Terms of Use
                         </a>
                     </li>
                 </ul>
-                <p className="text-center text-white-50">&#169; 2022 RACKEMM</p>
+                <div className="d-flex flex-row justify-content-center align-items-center">
+                    <p className="text-white p-0 m-0 m-3">&#169; 2022</p>
+                    <Link className="navbar-brand p-0 m-0 m-3" to="/">
+                        <img
+                            src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663402485/rackemm_images/app_images/logo-white.png"
+                            height="40"
+                            alt=""
+                        />
+                    </Link>
+                </div>
             </div>
         </footer>
     )

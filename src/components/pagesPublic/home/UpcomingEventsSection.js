@@ -9,7 +9,7 @@ function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
     }, [getAllYearlyEvents])
 
     return (
-        <section className="my-5 py-5" id="upcoming-events-section">
+        <div className="py-5 rackemm-hero-3">
             <div className="container">
                 <div className="text-center text-white mb-5">
                     <h4>
@@ -28,7 +28,7 @@ function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
                             ))}
                 </div>
             </div>
-        </section>
+        </div>
     )
 }
 

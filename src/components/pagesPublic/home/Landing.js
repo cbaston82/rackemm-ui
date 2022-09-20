@@ -1,12 +1,12 @@
 import HeroSection from './HeroSection'
 import UpcomingEventsSection from './UpcomingEventsSection'
-import CreateEventFeature from './CreateEventFeature'
+import FeaturesSection from './FeaturesSection'
 
 function Landing() {
     return (
         <>
             <HeroSection />
-            <CreateEventFeature />
+            <FeaturesSection />
             <UpcomingEventsSection />
         </>
     )

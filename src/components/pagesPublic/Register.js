@@ -39,10 +39,10 @@ function Register({ signupUser, auth }) {
                 className="d-flex flex-column align-items-center justify-content-center"
                 id="form-heading"
             >
-                <h1>
-                    <FaUserAlt /> Register
+                <h1 className="text-white">
+                    <FaUserAlt className="rackemm-text-cyan" /> Register
                 </h1>
-                <p className="h5 text-black-50 mt-3">Please create an account</p>
+                <p className="h5 text-white-50 mt-3">Please create an account</p>
             </div>
             <div className="row d-flex justify-content-center mt-3">
                 <div className="col-sm-10 col-md-6 col-lg-4">

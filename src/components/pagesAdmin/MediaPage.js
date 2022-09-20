@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { FaTrash } from 'react-icons/fa'
+import { FaTrash, FaUpload, FaImage } from 'react-icons/fa'
 import CustomLoader from '../pagesPublic/tables/CustomeLoader'
 import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import withReactContent from 'sweetalert2-react-content'
@@ -90,15 +90,19 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
     }, [getUserMedia])
 
     return (
-        <div className="container" id="media-section">
+        <div className="container">
             {userMedia.loading ? (
                 <CustomLoader color="white" loaderMessage="Fetching media." />
             ) : (
-                <div>
+                <>
                     <nav>
-                        <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                        <div
+                            className="nav nav-tabs rackemm-border-bottom"
+                            id="nav-tab"
+                            role="tablist"
+                        >
                             <button
-                                className="nav-link active"
+                                className="nav-link active rackemm-bg-light-gray rounded-0 border-0"
                                 id="nav-media-tab"
                                 data-bs-toggle="tab"
                                 data-bs-target="#nav-media"
@@ -107,10 +111,10 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                                 aria-controls="nav-media"
                                 aria-selected="true"
                             >
-                                Media
+                                <FaImage /> Media
                             </button>
                             <button
-                                className="nav-link"
+                                className="nav-link border-0 rounded-0"
                                 id="nav-upload-tab"
                                 data-bs-toggle="tab"
                                 data-bs-target="#nav-upload"
@@ -119,7 +123,7 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                                 aria-controls="nav-upload"
                                 aria-selected="false"
                             >
-                                Upload
+                                <FaUpload /> Upload
                             </button>
                         </div>
                     </nav>
@@ -133,7 +137,7 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                             <div className="row">
                                 {userMedia.media.map((image) => (
                                     <div className="col-md-4 col-lg-3">
-                                        <div key={image._id} className="item my-3">
+                                        <div key={image._id} className="position-relative my-3">
                                             <a href={image.secureUrl} data-lightbox="photos">
                                                 <img
                                                     className="img-fluid"
@@ -143,7 +147,8 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                                             </a>
                                             <button
                                                 onClick={() => handleImageDelete(image.publicId)}
-                                                className="btn btn-danger btn-sm"
+                                                className="btn btn-outline-danger position-absolute btn-sm"
+                                                style={{ bottom: '0', left: '0' }}
                                             >
                                                 <FaTrash />
                                             </button>
@@ -158,65 +163,64 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                             role="tabpanel"
                             aria-labelledby="nav-upload-tab"
                         >
-                            <div className="intro text-center">
-                                <div className="row justify-content-center mt-3">
-                                    <div className="col-6">
-                                        <form onSubmit={handleUploadImage}>
-                                            <div className="row">
-                                                <div className="col-8">
-                                                    <div className="file-upload">
-                                                        <input
-                                                            disabled={userMedia.loading}
-                                                            type="file"
-                                                            onChange={handleImageChange}
-                                                            className="form-control file-select"
-                                                        />
-
-                                                        <input
-                                                            type="text"
-                                                            className="form-control file-name"
-                                                            name="fileName"
-                                                            placeholder="File name"
-                                                            onChange={handleInputChange}
-                                                            value={fileName}
-                                                        />
-                                                    </div>
+                            <div className="row d-flex flex-row justify-content-center">
+                                <div className="col-4">
+                                    <form onSubmit={handleUploadImage}>
+                                        <div className="card rounded-0 mt-3">
+                                            <div className="card-body">
+                                                <div className="form-group">
+                                                    <input
+                                                        disabled={userMedia.loading}
+                                                        type="file"
+                                                        onChange={handleImageChange}
+                                                        className="form-control"
+                                                    />
                                                 </div>
-                                                <div className="col-4 d-grid gap-2">
+                                                <div className="form-group mt-3">
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        name="fileName"
+                                                        placeholder="File name"
+                                                        onChange={handleInputChange}
+                                                        value={fileName}
+                                                    />
+                                                </div>
+                                                <div className="form-group mt-3">
                                                     <button
                                                         disabled={
                                                             userMedia.loading || fileName === ''
                                                         }
                                                         type="submit"
-                                                        className="btn btn-outline-secondary"
+                                                        className="btn btn-outline-secondary form-control"
                                                     >
                                                         {' '}
-                                                        Upload
+                                                        <FaUpload /> Upload
                                                     </button>
                                                 </div>
                                             </div>
-                                        </form>
-                                        {previewSource && (
-                                            <div className="row justify-content-center mt-3">
-                                                <div className="col">
-                                                    {errorMessage && <p>{errorMessage}</p>}
-                                                    {userMedia.loading ? (
-                                                        <CustomLoader
-                                                            color="black"
-                                                            loaderMessage="Uploading image!"
-                                                        />
-                                                    ) : (
-                                                        PreviewImage
-                                                    )}
-                                                </div>
-                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {previewSource && (
+                                <div className="row d-flex flex-row justify-content-center mt-3">
+                                    <div className="col-4">
+                                        {errorMessage && <p>{errorMessage}</p>}
+                                        {userMedia.loading ? (
+                                            <CustomLoader
+                                                color="black"
+                                                loaderMessage="Uploading image!"
+                                            />
+                                        ) : (
+                                            PreviewImage
                                         )}
                                     </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
-                </div>
+                </>
             )}
         </div>
     )

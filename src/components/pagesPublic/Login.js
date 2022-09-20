@@ -31,10 +31,10 @@ function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
                 className="d-flex flex-column align-items-center justify-content-center"
                 id="form-heading"
             >
-                <h1>
-                    <FaSignInAlt /> Login
+                <h1 className="text-white">
+                    <FaSignInAlt className="rackemm-text-cyan" /> Login
                 </h1>
-                <p className="h5 text-black-50 mt-3">Please login</p>
+                <p className="h5 text-white-50 mt-3">Please login</p>
             </div>
             <div className="row d-flex justify-content-center mt-3">
                 <div className="col-sm-10 col-md-6 col-lg-4">

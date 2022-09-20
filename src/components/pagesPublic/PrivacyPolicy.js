@@ -1,7 +1,9 @@
 function PrivacyPolicy() {
     return (
         <div className="container">
-            <h5>Privacy Policy Page</h5>
+            <div className="card">
+                <div className="card-body"></div>
+            </div>
         </div>
     )
 }

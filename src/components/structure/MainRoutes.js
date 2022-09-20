@@ -38,8 +38,8 @@ function MainRoutes({ auth }) {
             <Route exact path="/features" element={<Features />} />
             <Route exact path="/faq" element={<Faq />} />
             <Route exact path="/pricing" element={<Pricing />} />
-            <Route exact path="/privacyPolicy" element={<PrivacyPolicy />} />
-            <Route exact path="/termsOfUse" element={<TermsOfUse />} />
+            <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route exact path="/terms-of-use" element={<TermsOfUse />} />
             {/* Auth Routes */}
             <Route
                 exact

@@ -53,23 +53,29 @@ function Filters({
                 >
                     <FaFilter /> {buttonTitle}
                 </button>
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu rackemm-dropdown-menu">
                     {savedFilters.filters.map(
                         (filter) =>
                             filter.type === filterType && (
-                                <li key={filter._id}>
-                                    <button
-                                        className={`dropdown-item ${
-                                            savedFilters.loadedFilter === filter._id ? 'active' : ''
-                                        }`}
-                                        onClick={(e) => handleSetFilter(e, filter._id, filter.url)}
-                                    >
-                                        {filter.description}
-                                    </button>
-                                </li>
+                                <>
+                                    <li key={filter._id}>
+                                        <button
+                                            className={`dropdown-item ${
+                                                savedFilters.loadedFilter === filter._id
+                                                    ? 'active'
+                                                    : ''
+                                            }`}
+                                            onClick={(e) =>
+                                                handleSetFilter(e, filter._id, filter.url)
+                                            }
+                                        >
+                                            {filter.description}
+                                        </button>
+                                    </li>
+                                    <hr />
+                                </>
                             ),
                     )}
-                    <hr />
                     <li>
                         <button
                             className="dropdown-item"
