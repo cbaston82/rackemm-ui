@@ -14,58 +14,101 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
         fetchSingleYearlyEvent(id)
     }, [fetchSingleYearlyEvent, id])
 
+    if (allYearlyEvents.event && allYearlyEvents.error) {
+        return (
+            <NotFound404
+                message={allYearlyEvents.error}
+                buttonText={'Back to yearly events'}
+                redirectTo={'yearly-events'}
+            />
+        )
+    }
+
     return (
         <div className="container" id="event-section">
-            {allYearlyEvents.event && !allYearlyEvents.error ? (
-                <>
-                    <BreadCrumbs
-                        navigateToPreviousLink={true}
-                        activeBreadcrumbTitle={allYearlyEvents.event.title}
-                    />
-                    <div className="emp-profile">
-                        {allYearlyEvents.loading ? (
-                            <div className="d-flex justify-content-center align-content-center">
-                                <MoonLoader size={150} loading={true} />
+            <BreadCrumbs
+                navigateToPreviousLink={true}
+                activeBreadcrumbTitle={allYearlyEvents.event.title}
+            />
+
+            {allYearlyEvents.loading ? (
+                <div className="d-flex justify-content-center align-content-center">
+                    <MoonLoader size={150} loading={true} />
+                </div>
+            ) : (
+                <div className="card rounded-0 p-3">
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col-md-3">
+                                <div className="text-center">
+                                    <LightBoxImage image={allYearlyEvents.event.posterImage} />
+                                </div>
                             </div>
-                        ) : (
-                            <form method="post">
+                            <div className="col-md-9">
+                                <h5>{allYearlyEvents.event.title}</h5>
+                                <h6 className="text-info">{allYearlyEvents.event.description}</h6>
+                                <p className="mt-3 fa-spin-pulse text-black-50">
+                                    ADDRESS :{' '}
+                                    <span>
+                                        {allYearlyEvents.event.address},{' '}
+                                        {allYearlyEvents.event.city} {allYearlyEvents.event.state},{' '}
+                                        {allYearlyEvents.event.zipCode}
+                                    </span>
+                                </p>
                                 <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="event-img">
-                                            <LightBoxImage
-                                                image={allYearlyEvents.event.posterImage}
-                                            />
-                                        </div>
+                                    <div className="col-md-6">
+                                        <label>Game</label>
                                     </div>
                                     <div className="col-md-6">
-                                        <div className="event-head">
-                                            <h5>{allYearlyEvents.event.title}</h5>
-                                            <h6>{allYearlyEvents.event.description}</h6>
-                                            <p className="event-address">
-                                                ADDRESS :{' '}
-                                                <span>
-                                                    {allYearlyEvents.event.address},{' '}
-                                                    {allYearlyEvents.event.city}{' '}
-                                                    {allYearlyEvents.event.state},{' '}
-                                                    {allYearlyEvents.event.zipCode}
-                                                </span>
-                                            </p>
-                                            <ul className="nav nav-tabs" id="myTab" role="tablist">
-                                                <li className="nav-item">
-                                                    <a
-                                                        className="nav-link active"
-                                                        id="home-tab"
-                                                        data-toggle="tab"
-                                                        href="client/src/components/pagesPublic/YearlyEvent#home"
-                                                        role="tab"
-                                                        aria-controls="home"
-                                                        aria-selected="true"
-                                                    >
-                                                        About
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <p>{allYearlyEvents.event.game}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Rating System</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p>{allYearlyEvents.event.ratingSystem}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Venue</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p>{allYearlyEvents.event.venue}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Point of Contact</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p>{allYearlyEvents.event.pointOfContact}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Point of Contact Phone</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p>{allYearlyEvents.event.pointOfContactPhone}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Day</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p>{allYearlyEvents.event.day}</p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Point of Contact Phone</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p>{allYearlyEvents.event.pointOfContactPhone}</p>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -82,111 +125,11 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-8">
-                                        <div className="tab-content event-tab" id="myTabContent">
-                                            <div
-                                                className="tab-pane fade show active"
-                                                id="home"
-                                                role="tabpanel"
-                                                aria-labelledby="home-tab"
-                                            >
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <label>Game</label>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <p>{allYearlyEvents.event.game}</p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <label>Rating System</label>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <p>{allYearlyEvents.event.ratingSystem}</p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <label>Venue</label>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <p>{allYearlyEvents.event.venue}</p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <label>Point of Contact</label>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <p>
-                                                            {allYearlyEvents.event.pointOfContact}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <label>Point of Contact Phone</label>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <p>
-                                                            {
-                                                                allYearlyEvents.event
-                                                                    .pointOfContactPhone
-                                                            }
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <label>Date</label>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <p>
-                                                            {allYearlyEvents.event.endDate >
-                                                            allYearlyEvents.event.startDate ? (
-                                                                <>
-                                                                    {new Date(
-                                                                        allYearlyEvents.event.startDate,
-                                                                    ).toDateString()}{' '}
-                                                                    -{' '}
-                                                                    {new Date(
-                                                                        allYearlyEvents.event.endDate,
-                                                                    ).toDateString()}
-                                                                </>
-                                                            ) : (
-                                                                <></>
-                                                            )}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <label>Point of Contact Phone</label>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <p>
-                                                            {
-                                                                allYearlyEvents.event
-                                                                    .pointOfContactPhone
-                                                            }
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                            </form>
-                        )}
+                            </div>
+                        </div>
                     </div>
-                </>
-            ) : (
-                <NotFound404
-                    message={allYearlyEvents.error}
-                    buttonText={'Back to yearly events'}
-                    redirectTo={'yearly-events'}
-                />
+                </div>
             )}
         </div>
     )

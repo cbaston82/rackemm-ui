@@ -29,13 +29,7 @@ export const plans = [
         weeklyEventsMax: 1000,
         yearlyEventsMax: 1000,
         price: '3.99',
-        features: [
-            'Unlimited events',
-            'Unlimited events',
-            'Player List export for Challonge',
-            'Player List expor for Digital Pool',
-            'Plus everything from Level 2',
-        ],
+        features: ['Unlimited events', 'Unlimited events', 'Plus everything from Level 2'],
         description:
             'Geared towards the regular player that might throw a tournament every now and again. Or a player wanting to unlock the following',
         subscriptionPlanId: 'price_1LgipcKr4ipGkAAR3nDQNOw0',

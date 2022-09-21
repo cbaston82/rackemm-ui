@@ -18,8 +18,8 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
         return (
             <NotFound404
                 message={allWeeklyEvents.error}
-                buttonText={'Back to yearly events'}
-                redirectTo={'yearly-events'}
+                buttonText={'Back to weekly events'}
+                redirectTo={'weekly-events'}
             />
         )
     }

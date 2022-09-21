@@ -30,7 +30,7 @@ function HeroSection() {
                                     className="text-white"
                                     style={{ textDecoration: 'none' }}
                                 >
-                                    Learn more{' '}
+                                    {' '}
                                     <FontAwesomeIcon icon={faCaretRight} className="fa-search" />
                                 </a>
                             </button>

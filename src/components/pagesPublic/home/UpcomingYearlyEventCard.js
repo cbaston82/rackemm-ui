@@ -6,7 +6,7 @@ function UpcomingYearlyEventCard({ event }) {
         <div className="col-md-4">
             <div className="card text-center mb-4 rackemm-card">
                 <div className="card-header rackemm-card-header">
-                    <span className="fw-bolder text-white">
+                    <span className="fw-bold text-white">
                         <FaMapMarked /> {event.city}
                     </span>
                 </div>
