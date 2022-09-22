@@ -34,7 +34,7 @@ export const tournamentColumns = [
         button: true,
         cell: (row) => (
             <a
-                className="btn btn-outline-light btn-sm"
+                className="btn btn-light btn-sm"
                 href={`/weekly-event/${row._id}`}
                 rel="noopener noreferrer"
             >

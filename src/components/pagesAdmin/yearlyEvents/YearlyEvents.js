@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getUserYearlyEvents, deleteUserYearlyEvent } from '../../../redux'
 import NewEventButton from '../../NewEventButton'
-import CustomLoader from '../../pagesPublic/tables/CustomeLoader'
+import CustomLoader from '../../CustomeLoader'
 import AlertMessageWithLinkEnd from '../../AlertMessageWithLinkEnd'
 import BreadCrumbs from '../../BreadCrumbs'
 import YearlyEventsTable from './YearlyEventsTable'
@@ -21,7 +21,7 @@ function YearlyEvents({ getUserYearlyEvents, userYearlyEvents, deleteUserYearlyE
         <div className="container">
             <BreadCrumbs
                 navigateToPreviousLink={false}
-                activeBreadcrumbTitle="Account weekly events"
+                activeBreadcrumbTitle="Account Year Events"
             />
             {userYearlyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">

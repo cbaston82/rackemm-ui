@@ -1,83 +1,107 @@
-import { sortByDayInWeek } from '../../../redux/helpers/dates'
 import currencyFormatter from 'currency-formatter'
 import { Link } from 'react-router-dom'
 import { FaEdit, FaExternalLinkAlt, FaTrashAlt } from 'react-icons/fa'
 import EventsCreated from '../../EventsCreated'
+import DataTable from 'react-data-table-component'
+import '../../SolarizedTheme'
 
 function WeeklyEventTable({ events, handleDeleteEvent }) {
+    const paginationComponentOptions = {
+        rowsPerPageText: 'Events per page',
+        rangeSeparatorText: 'of',
+    }
+    const columns = [
+        {
+            name: 'Day',
+            selector: (row) => row.day,
+            sortable: true,
+        },
+        {
+            name: 'Venue',
+            selector: (row) => row.venue,
+            sortable: true,
+        },
+        {
+            name: 'Time',
+            selector: (row) => row.startTime,
+            sortable: true,
+        },
+        {
+            name: 'Buy-In',
+            selector: (row) =>
+                currencyFormatter.format(row.buyIn, {
+                    code: 'USD',
+                }),
+            sortable: true,
+        },
+        {
+            name: 'Game',
+            selector: (row) => row.game,
+            sortable: true,
+        },
+        {
+            name: 'Status',
+            selector: (row) => row.status,
+            sortable: true,
+            conditionalCellStyles: [
+                {
+                    when: (row) => row.status === 'active',
+                    style: {
+                        backgroundColor: 'rgba(80, 124, 102, 0.9)',
+                        color: 'white',
+                        '&:hover': {
+                            cursor: 'pointer',
+                        },
+                    },
+                },
+                {
+                    when: (row) => row.status === 'inactive',
+                    style: {
+                        backgroundColor: 'rgba(153, 95, 101, 1)',
+                        color: 'white',
+                        '&:hover': {
+                            cursor: 'pointer',
+                        },
+                    },
+                },
+            ],
+        },
+        {
+            name: '',
+            button: true,
+            cell: (row) => (
+                <>
+                    <Link className="ms-3" to={`/weekly-event/${row._id}`}>
+                        <button className="btn btn-light btn-sm">
+                            <FaExternalLinkAlt />
+                        </button>
+                    </Link>
+                    <Link className="ms-3" to={`/account/weekly-events/edit/${row._id}`}>
+                        <button className="btn btn-info btn-sm">
+                            <FaEdit />
+                        </button>
+                    </Link>
+                    <button
+                        data-id={row._id}
+                        onClick={() => handleDeleteEvent(row._id)}
+                        className="btn btn-danger btn-sm ms-3"
+                    >
+                        <FaTrashAlt />
+                    </button>
+                </>
+            ),
+        },
+    ]
     return (
         <>
-            <table className="table table-dark mt-3">
-                <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>Venue</th>
-                        <th>Time</th>
-                        <th className="d-none d-md-table-cell">Buy-in</th>
-                        <th className="d-none d-md-table-cell">Game</th>
-                        <th className="d-none d-md-table-cell">Status</th>
-                        <th className="d-none d-md-table-cell">Rating System</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {events &&
-                        sortByDayInWeek(events).map((event) => (
-                            <tr key={event._id}>
-                                <td className="text-white-50">{event.day}</td>
-                                <td className="text-white-50">{event.venue}</td>
-                                <td className="text-white-50">{event.startTime}</td>
-                                <td className="text-white-50 d-none d-md-table-cell">
-                                    {currencyFormatter.format(event.buyIn, {
-                                        code: 'USD',
-                                    })}
-                                </td>
-                                <td className="text-white-50 d-none d-md-table-cell">
-                                    {event.game}
-                                </td>
-                                <td className="text-white-50 d-none d-md-table-cell">
-                                    <span
-                                        className={`badge bg-${
-                                            event.status === 'active' ? 'success' : 'warning'
-                                        }`}
-                                    >
-                                        {event.status}
-                                    </span>
-                                </td>
-                                <td className="text-white-50 d-none d-md-table-cell">
-                                    {event.ratingSystem}
-                                </td>
-                                <td>
-                                    <div className="d-flex justify-content-center">
-                                        <div className="ms-3">
-                                            <Link to={`/weekly-event/${event._id}`}>
-                                                <button className="btn btn-outline-light btn-sm">
-                                                    <FaExternalLinkAlt />
-                                                </button>
-                                            </Link>
-                                        </div>
-                                        <div className="ms-3">
-                                            <Link to={`/account/weekly-events/edit/${event._id}`}>
-                                                <button className="btn btn-outline-info btn-sm">
-                                                    <FaEdit />
-                                                </button>
-                                            </Link>
-                                        </div>
-                                        <div className="ms-3">
-                                            <button
-                                                data-id={event._id}
-                                                onClick={() => handleDeleteEvent(event._id)}
-                                                className="btn btn-outline-danger btn-sm"
-                                            >
-                                                <FaTrashAlt />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                </tbody>
-            </table>
+            <DataTable
+                className="mt-3"
+                theme="rackemm_theme_admin"
+                columns={columns}
+                data={events}
+                pagination
+                paginationComponentOptions={paginationComponentOptions}
+            />
 
             <EventsCreated events={events} />
         </>

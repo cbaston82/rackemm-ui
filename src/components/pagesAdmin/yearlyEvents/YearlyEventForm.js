@@ -41,7 +41,10 @@ function YearlyEventForm({
                                 <fieldset>
                                     <div data-row-span="2">
                                         <div data-field-span="1">
-                                            <label>Title *</label>
+                                            <label>
+                                                Title{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
                                                 type="text"
@@ -52,7 +55,7 @@ function YearlyEventForm({
                                         <div data-field-span="1">
                                             <label>Poster </label>
                                             <select
-                                                className="form-control"
+                                                className="form-control rounded-0"
                                                 onChange={(e) => handleFormValueChange(e)}
                                                 name="posterImage"
                                                 value={editEvent.posterImage}
@@ -71,7 +74,8 @@ function YearlyEventForm({
                                     <div data-row-span="1">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="description">
-                                                Description *
+                                                Description{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <textarea
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -85,7 +89,8 @@ function YearlyEventForm({
                                     <div data-row-span="2">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="venue">
-                                                Venue *
+                                                Venue{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -95,7 +100,10 @@ function YearlyEventForm({
                                             />
                                         </div>
                                         <div data-field-span="1">
-                                            <label>Buy-in *</label>
+                                            <label>
+                                                Buy-in{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
                                                 type="number"
@@ -125,7 +133,8 @@ function YearlyEventForm({
                                     <div data-row-span="2">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="pointOfContact">
-                                                Point of contact *
+                                                Point of contact{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -139,7 +148,8 @@ function YearlyEventForm({
                                                 className="small mb-1"
                                                 htmlFor="pointOfContactPhone"
                                             >
-                                                Point of contact phone *
+                                                Point of contact phone{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -154,7 +164,8 @@ function YearlyEventForm({
                                     <div data-row-span="3">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="startDate">
-                                                Start Date *
+                                                Start Date{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -167,7 +178,8 @@ function YearlyEventForm({
                                         </div>
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="endDate">
-                                                End Date *
+                                                End Date{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -180,7 +192,8 @@ function YearlyEventForm({
                                         </div>
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="startTime">
-                                                Start time *
+                                                Start time{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -193,7 +206,8 @@ function YearlyEventForm({
                                     <div data-row-span="4">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="address">
-                                                Address *
+                                                Address{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -204,7 +218,8 @@ function YearlyEventForm({
                                         </div>
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="city">
-                                                City *
+                                                City{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -215,7 +230,8 @@ function YearlyEventForm({
                                         </div>
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="state">
-                                                State *
+                                                State{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -226,7 +242,8 @@ function YearlyEventForm({
                                         </div>
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="zipCode">
-                                                Zip code *
+                                                Zip code{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -239,7 +256,8 @@ function YearlyEventForm({
                                     <div data-row-span="3">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="ratingSystem">
-                                                Rating system *
+                                                Rating system{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -250,13 +268,14 @@ function YearlyEventForm({
                                         </div>
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="game">
-                                                Game Type *
+                                                Game Type{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <select
                                                 value={editEvent.game}
                                                 name="game"
                                                 onChange={(e) => handleFormValueChange(e)}
-                                                className="form-control"
+                                                className="form-control rounded-0"
                                             >
                                                 <option value="">Choose...</option>
                                                 <option value="8-ball">8-Ball</option>
@@ -266,13 +285,14 @@ function YearlyEventForm({
                                         </div>
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="status">
-                                                Status *
+                                                Status{' '}
+                                                <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <select
                                                 value={editEvent.status}
                                                 name="status"
                                                 onChange={(e) => handleFormValueChange(e)}
-                                                className="form-control"
+                                                className="form-control rounded-0"
                                             >
                                                 <option value="">Choose...</option>
                                                 <option value="active">Active</option>
@@ -281,7 +301,10 @@ function YearlyEventForm({
                                         </div>
                                     </div>
 
-                                    <button className="btn btn-outline-success mt-3" type="submit">
+                                    <button
+                                        className="btn btn-success rounded-0 mt-3"
+                                        type="submit"
+                                    >
                                         <FaRegSave /> Save
                                     </button>
                                 </fieldset>

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getUserWeeklyEvents, deleteUserWeeklyEvent } from '../../../redux'
 import NewEventButton from '../../NewEventButton'
-import CustomLoader from '../../pagesPublic/tables/CustomeLoader'
+import CustomLoader from '../../CustomeLoader'
 import AlertMessageWithLinkEnd from '../../AlertMessageWithLinkEnd'
 import WeeklyEventTable from './WeeklyEventTable'
 import BreadCrumbs from '../../BreadCrumbs'
@@ -22,7 +22,7 @@ function WeeklyEvents({ getUserWeeklyEvents, userWeeklyEvents, deleteUserWeeklyE
         <div className="container">
             <BreadCrumbs
                 navigateToPreviousLink={false}
-                activeBreadcrumbTitle="Account weekly events"
+                activeBreadcrumbTitle="Account Weekly Events"
             />
             {userWeeklyEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">

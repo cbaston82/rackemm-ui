@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import BreadCrumbs from '../../BreadCrumbs'
-import CustomLoader from '../../pagesPublic/tables/CustomeLoader'
+import CustomLoader from '../../CustomeLoader'
 import { getSavedFilters, deleteFilter } from '../../../redux'
 import FiltersTable from './FiltersTable'
 import MySwal from 'sweetalert2'

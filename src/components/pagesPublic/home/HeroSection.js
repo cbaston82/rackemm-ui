@@ -27,7 +27,7 @@ function HeroSection() {
                             </p>
                             <button className="btn btn-outline-secondary mt-3 btn-lg">
                                 <Link
-                                    to="/regisgter"
+                                    to="/register"
                                     className="text-white"
                                     style={{ textDecoration: 'none' }}
                                 >

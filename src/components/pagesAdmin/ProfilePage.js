@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getUserStripeCustomer } from '../../redux'
 import axios from 'axios'
 import { getApiUrl } from '../../helpers/config'
-import CustomLoader from '../pagesPublic/tables/CustomeLoader'
+import CustomLoader from '../CustomeLoader'
 import usePageTitle from '../../hoook/usePageTitle'
 
 function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {

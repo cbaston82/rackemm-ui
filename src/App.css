@@ -241,16 +241,6 @@ HEROS
 /*==================================================
 PRICING SECTION
 ===================================================*/
- .rackemm-card-grid-form{
-    background-color: var(--grid-form)
-}
-
- .rackemm-card-grid-form [data-row-span] [data-field-span]:hover, .rackemm-card-grid-form [data-row-span] [data-field-span]:focus,
- .rackemm-card-grid-form [data-row-span] [data-field-span]:focus-within{
-     background-color: var(--dark-yellow) !important;
-     border: 1px solid var(--cyan)
- }
-
 .rackemm-gradient-black-to-dark-gray {
     background-image: linear-gradient(black, var(--medium-gray));
 }
@@ -260,6 +250,33 @@ PRICING SECTION
     float: left;
 }
 
+/*==================================================
+GRID FORM
+===================================================*/
+.rackemm-card-grid-form{
+    background-color: var(--grid-form)
+}
+.rackemm-card-grid-form [data-row-span] [data-field-span] label:first-child {
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    color: #333;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.rackemm-card-grid-form [data-row-span] [data-field-span]:hover, .rackemm-card-grid-form [data-row-span] [data-field-span]:focus,
+.rackemm-card-grid-form [data-row-span] [data-field-span]:focus-within{
+    background-color: var(--dark-yellow) !important;
+    border: 1px solid var(--cyan)
+}
+
+
+/*==================================================
+REACT TABLE COMPONENT
+===================================================*/
 .rdt_TableHead {
     font-size: 1rem !important;
     font-weight: bold !important;
@@ -267,4 +284,7 @@ PRICING SECTION
 
 .rdt_TableRow {
     font-size: .9rem !important;
+}
+.hITlxo {
+    min-width: 180px !important;
 }

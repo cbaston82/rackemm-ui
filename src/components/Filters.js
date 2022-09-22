@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaSave, FaFilter, FaRegSave } from 'react-icons/fa'
-import CurrencyFormat from 'react-currency-format'
-import CustomLoader from './pagesPublic/tables/CustomeLoader'
+import CustomLoader from './CustomeLoader'
 import { getSavedFilters, saveFilter, setFilter } from '../redux'
 
 function Filters({

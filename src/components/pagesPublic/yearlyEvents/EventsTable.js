@@ -1,8 +1,8 @@
 import DataTable from 'react-data-table-component'
-import CustomLoader from '../tables/CustomeLoader'
+import CustomLoader from '../../CustomeLoader'
 import { useEffect, useMemo, useState } from 'react'
 import FilterComponent from './Filter'
-import '../tables/SolarizedTheme'
+import '../../SolarizedTheme'
 
 function EventsTable({
     loaderMessage,
@@ -205,9 +205,6 @@ function EventsTable({
             subHeaderComponent={subHeaderComponentMemo}
             subHeader
             pagination
-            expandableRows
-            expandableRowExpanded={(row) => row.defaultExpanded}
-            // expandableRowsComponent={Expanded}
         />
     )
 }
