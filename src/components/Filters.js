@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { FaSave, FaFilter } from 'react-icons/fa'
+import { FaSave, FaFilter, FaRegSave } from 'react-icons/fa'
 import CurrencyFormat from 'react-currency-format'
 import CustomLoader from './pagesPublic/tables/CustomeLoader'
 import { getSavedFilters, saveFilter, setFilter } from '../redux'
@@ -94,8 +94,8 @@ function Filters({
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
             >
-                <div className="modal-dialog">
-                    <div className="modal-content">
+                <div className="modal-dialog modal-lg">
+                    <div className="modal-content rounded-0">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">
                                 <FaFilter /> Save filter
@@ -120,37 +120,6 @@ function Filters({
                                                     <p className="text-center fst-italic fw-ligh text-success">
                                                         {url}
                                                     </p>
-                                                    <div className="d-flex justify-content-around">
-                                                        <p>
-                                                            <span className="fw-bolder text-black">
-                                                                Buy-in:
-                                                            </span>{' '}
-                                                            <span className="fw-light">
-                                                                <CurrencyFormat
-                                                                    value={filterValues.buyIn}
-                                                                    displayType={'text'}
-                                                                    thousandSeparator={true}
-                                                                    prefix={'$'}
-                                                                />
-                                                            </span>
-                                                        </p>
-                                                        <p>
-                                                            <span className="fw-bolder text-black">
-                                                                City:
-                                                            </span>{' '}
-                                                            <span className="fw-light">
-                                                                {filterValues.city}
-                                                            </span>
-                                                        </p>
-                                                        <p>
-                                                            <span className="fw-bolder text-black">
-                                                                Search:
-                                                            </span>{' '}
-                                                            <span className="fw-light">
-                                                                {filterValues.filter}
-                                                            </span>
-                                                        </p>
-                                                    </div>
                                                     <div className="form-group">
                                                         <input
                                                             placeholder="Filter description. e.g 8-Ball Thursdays at Putters"
@@ -172,7 +141,7 @@ function Filters({
                         <div className="modal-footer">
                             <button
                                 type="button"
-                                className="btn btn-secondary"
+                                className="btn btn-secondary-secondary"
                                 data-bs-dismiss="modal"
                             >
                                 Close
@@ -181,9 +150,9 @@ function Filters({
                                 disabled={!filterDescription.length}
                                 type="button"
                                 onClick={handleSaveFilter}
-                                className="btn btn-outline-primary"
+                                className="btn btn-outline-success"
                             >
-                                Save Filter
+                                <FaRegSave /> Save Filter
                             </button>
                         </div>
                     </div>

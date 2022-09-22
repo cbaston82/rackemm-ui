@@ -1,10 +1,8 @@
-import DataTable, { createTheme } from 'react-data-table-component'
+import DataTable from 'react-data-table-component'
 import CustomLoader from '../tables/CustomeLoader'
-
 import { useEffect, useMemo, useState } from 'react'
 import FilterComponent from './Filter'
-import { solarized } from '../tables/SolarizedTheme'
-createTheme('solarizedTheme', solarized, 'dark')
+import '../tables/SolarizedTheme'
 
 function EventsTable({
     loaderMessage,
@@ -17,7 +15,6 @@ function EventsTable({
     setGame,
 }) {
     tournamentColumns[0].defaultExpanded = true
-
     const tournamentBuyInsArray = events.map((item) => item.buyIn)
     const minBuyIn = Math.min(...tournamentBuyInsArray).toString()
     const maxBuyIn = Math.max(...tournamentBuyInsArray).toString()
@@ -197,7 +194,7 @@ function EventsTable({
 
     return (
         <DataTable
-            theme="solarizedTheme"
+            theme="rackemm_theme"
             columns={tournamentColumns}
             data={filteredItems}
             progressPending={pending}
@@ -208,8 +205,8 @@ function EventsTable({
             subHeaderComponent={subHeaderComponentMemo}
             subHeader
             pagination
-            // expandableRows
-            // expandableRowExpanded={(row) => row.defaultExpanded}
+            expandableRows
+            expandableRowExpanded={(row) => row.defaultExpanded}
             // expandableRowsComponent={Expanded}
         />
     )

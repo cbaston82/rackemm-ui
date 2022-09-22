@@ -1,4 +1,8 @@
+import usePageTitle from '../../hoook/usePageTitle'
+import { Link } from 'react-router-dom'
+
 function About() {
+    usePageTitle('- About')
     return (
         <div className="container mt-5 mb-5 d-flex justify-content-center">
             <div className="card w-75 border-0 rounded-0">
@@ -37,10 +41,9 @@ function About() {
                             </p>
                             <p className="lead">
                                 I've decided to utilize my skills in writing software to help solve
-                                some of these problems we all face today. I've attempted this a
-                                couple of times on a much smaller scale to support my local pool
-                                community in Las Vegas and realized it's much deeper than just
-                                Vegas.{' '}
+                                some of these problems. I've attempted this a couple of times on a
+                                much smaller scale to support my local pool community in Las Vegas
+                                and realized it's much deeper than just Vegas.{' '}
                                 <span className="rackemm-text-cyan fw-semibold">RACKEMM</span> is a
                                 tool that can help bridge the pool tournament scene on a global
                                 scale—making it a one-stop search to find a tournament anywhere,
@@ -48,6 +51,15 @@ function About() {
                                 <span className="rackemm-text-cyan fw-semibold">RACKEMM</span> is a
                                 database for all pool tournaments that will allow a player to filter
                                 through every tournament entered into the system.
+                            </p>
+                            <p className="lead">
+                                I'm not just the developer, and creator of{' '}
+                                <span className="rackemm-text-cyan fw-semibold">RACKEMM</span>. I'm
+                                also a pool player and love the game quite a bit and believe I
+                                understand what it is the average pool player is looking and that is
+                                find a tournament without hassle. This is going to be a growing
+                                application geared towards the pool player first and open to all{' '}
+                                <Link to="/feature">suggestions and feature requests</Link>.
                             </p>
                         </div>
                     </div>

@@ -1,10 +1,8 @@
-import DataTable, { createTheme } from 'react-data-table-component'
+import DataTable from 'react-data-table-component'
 import CustomLoader from '../tables/CustomeLoader'
-
 import { useEffect, useMemo, useState } from 'react'
 import FilterComponent from './Filter'
-import { solarized } from '../tables/SolarizedTheme'
-createTheme('solarizedTheme', solarized, 'dark')
+import '../tables/SolarizedTheme'
 
 function EventsTable({
     loaderMessage,
@@ -240,7 +238,7 @@ function EventsTable({
 
     return (
         <DataTable
-            theme="solarizedTheme"
+            theme="rackemm_theme"
             columns={tournamentColumns}
             data={filteredItems}
             progressPending={pending}

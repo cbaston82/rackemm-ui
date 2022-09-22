@@ -1,42 +1,22 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import { getUserWeeklyEvents, deleteUserWeeklyEvent } from '../../../redux'
 import NewEventButton from '../../NewEventButton'
 import CustomLoader from '../../pagesPublic/tables/CustomeLoader'
 import AlertMessageWithLinkEnd from '../../AlertMessageWithLinkEnd'
 import WeeklyEventTable from './WeeklyEventTable'
 import BreadCrumbs from '../../BreadCrumbs'
+import useDeleteSwalModal from '../../../hoook/useDeleteSwalModal'
+import usePageTitle from '../../../hoook/usePageTitle'
 
 function WeeklyEvents({ getUserWeeklyEvents, userWeeklyEvents, deleteUserWeeklyEvent }) {
-    const MySwal = withReactContent(Swal)
+    usePageTitle('- Account Weekly Events')
 
     useEffect(() => {
         getUserWeeklyEvents()
     }, [getUserWeeklyEvents])
 
-    const handleDeleteEvent = async (_id) => {
-        MySwal.fire({
-            showCancelButton: true,
-            title: 'Are you sure?',
-            text: 'You want to delete this event?',
-            confirmButtonColor: '#00cdcd',
-            confirmButtonText: 'Yes, delete this event!',
-            icon: 'question',
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete.isConfirmed) {
-                deleteUserWeeklyEvent(_id)
-
-                MySwal.fire({
-                    confirmButtonColor: '#00cdcd',
-                    title: 'Your event has been deleted',
-                    icon: 'success',
-                })
-            }
-        })
-    }
+    const [handleDeleteEvent] = useDeleteSwalModal(deleteUserWeeklyEvent)
 
     return (
         <div className="container">

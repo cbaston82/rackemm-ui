@@ -6,19 +6,89 @@
     --error: #e7195a;
     --cyan: #00cdcd;
     --light-gray: #eef4ff;
+    --medium-gray: #525559;
     --dark-gray: #292c31;
     --grid-form: #fefce3;
-    --yellow: #fff8a5
+    --yellow: #fff8a5;
+    --dark-yellow: #fff9af;
+
+    /* Font sizes*/
+    --h1: 33px;
+    --h2: 30px;
+    --h3: 26px;
+    --h4: 24px;
+    --h5: 19px;
+    --h6: 18px;
+    --border-radius: 0px;
+    --letter-spacing: 2px;
+}
+
+/* Text Font Size
+---------------------------------------------------*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: var(--letter-spacing);
+}
+
+h1 {
+    font-size: var(--h1);
+}
+
+h2 {
+    font-size: var(--h2);
+}
+
+h3 {
+    font-size: var(--h3);
+}
+
+h4 {
+    font-size: var(--h4);
+}
+
+h5 {
+    font-size: var(--h5);
+}
+
+h6 {
+    font-size: var(--h6);
 }
 
 #root {
+    border-radius: var(--border-radius);
     min-height: 100vh;
-    background-color: #1e2024;
+    background-color: var(--dark-gray);
+}
+
+html, html a {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.btn {
+    border-radius: var(--border-radius);
 }
 
 main {
     margin-top: 100px;
     margin-bottom: 100px
+}
+
+.rackemm-navbar {
+    color: var(--bs-navbar-active-color);
 }
 
 /*==================================================
@@ -36,7 +106,7 @@ CUSTOM OVERRIDE CLASSES
 }
 
 .rackemm-dropdown-menu .dropdown-item.active, .dropdown-item:active {
-    color: var(--dark-gray);
+    color: var(--medium-gray);
     background-color: var(--cyan);
 }
 
@@ -175,6 +245,26 @@ PRICING SECTION
     background-color: var(--grid-form)
 }
 
+ .rackemm-card-grid-form [data-row-span] [data-field-span]:hover, .rackemm-card-grid-form [data-row-span] [data-field-span]:focus,
+ .rackemm-card-grid-form [data-row-span] [data-field-span]:focus-within{
+     background-color: var(--dark-yellow) !important;
+     border: 1px solid var(--cyan)
+ }
+
 .rackemm-gradient-black-to-dark-gray {
-    background-image: linear-gradient(black, var(--dark-gray));
+    background-image: linear-gradient(black, var(--medium-gray));
+}
+
+.rackemm-grid-form-data-span {
+    padding: 8px;
+    float: left;
+}
+
+.rdt_TableHead {
+    font-size: 1rem !important;
+    font-weight: bold !important;
+}
+
+.rdt_TableRow {
+    font-size: .9rem !important;
 }

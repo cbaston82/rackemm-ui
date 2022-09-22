@@ -6,8 +6,10 @@ import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
 import LightBoxImage from '../LightBoxImage'
 import BreadCrumbs from '../BreadCrumbs'
+import usePageTitle from '../../hoook/usePageTitle'
 
 function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
+    usePageTitle('- Weekly Event')
     const { id } = useParams()
 
     useEffect(() => {
@@ -41,7 +43,11 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                         <div className="row">
                             <div className="col-md-3">
                                 <div className="text-center">
-                                    <LightBoxImage image={allWeeklyEvents.event.posterImage} />
+                                    {allWeeklyEvents.event.posterImage ? (
+                                        <LightBoxImage image={allWeeklyEvents.event.posterImage} />
+                                    ) : (
+                                        <LightBoxImage image="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png" />
+                                    )}
                                 </div>
                             </div>
                             <div className="col-md-9">

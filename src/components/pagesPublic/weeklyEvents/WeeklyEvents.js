@@ -7,8 +7,10 @@ import { useSearchParams } from 'react-router-dom'
 import { sortByDayInWeek } from '../../../redux/helpers/dates'
 import BreadCrumbs from '../../BreadCrumbs'
 import Filters from '../../Filters'
+import usePageTitle from '../../../hoook/usePageTitle'
 
 function WeeklyEvents({ auth, getAllWeeklyEvents, allWeeklyEvents }) {
+    usePageTitle('- Weekly Events')
     const [searchParams, setSearchParams] = useSearchParams()
 
     const [buyIn, setBuyIn] = useState(decodeURI(searchParams.get('buyIn')))

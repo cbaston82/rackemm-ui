@@ -6,14 +6,6 @@ function Footer() {
             <div className="container">
                 <ul className="nav justify-content-center pb-3 mb-3">
                     <li className="nav-item">
-                        <a
-                            href="/client/src/components/pagesPublic"
-                            className="nav-link px-2 text-white-50"
-                        >
-                            Home
-                        </a>
-                    </li>
-                    <li className="nav-item">
                         <a href="/features" className="nav-link px-2 text-white-50">
                             Features
                         </a>

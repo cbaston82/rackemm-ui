@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import usePageTitle from '../../hoook/usePageTitle'
 
 function NotFound404({ message, redirectTo, buttonText }) {
+    usePageTitle('- 404 Not Found')
     return (
         <div className="row justify-content-center">
             <div className="col-md-12 col-sm-12">

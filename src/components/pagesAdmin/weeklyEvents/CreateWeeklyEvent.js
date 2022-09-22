@@ -4,8 +4,10 @@ import WeeklyEventForm from './WeeklyEventForm'
 import { useNavigate } from 'react-router-dom'
 import { createWeeklyEvent, getUserMedia } from '../../../redux'
 import { formatPhoneNumber } from '../../../helpers'
+import usePageTitle from '../../../hoook/usePageTitle'
 
 function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, userMedia }) {
+    usePageTitle('- Account Weekly Event Create')
     const initialFormValues = {
         type: 'weekly-event',
         title: '',

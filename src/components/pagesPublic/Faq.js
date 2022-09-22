@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import usePageTitle from '../../hoook/usePageTitle'
 
 function Faq() {
+    usePageTitle('- FAQ')
     return (
         <div className="container" id="faq-section">
             <p className="text-white">

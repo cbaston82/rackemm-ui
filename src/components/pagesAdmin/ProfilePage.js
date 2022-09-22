@@ -4,8 +4,11 @@ import { getUserStripeCustomer } from '../../redux'
 import axios from 'axios'
 import { getApiUrl } from '../../helpers/config'
 import CustomLoader from '../pagesPublic/tables/CustomeLoader'
+import usePageTitle from '../../hoook/usePageTitle'
 
 function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
+    usePageTitle('- Account Profile')
+
     const initialValues = {
         fullName: auth.user.fullName ?? '',
         email: auth.user.email ?? '',

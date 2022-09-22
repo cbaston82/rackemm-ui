@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
 import { differenceInDays, formatDistance, subDays } from 'date-fns'
 import { MoonLoader } from 'react-spinners'
 import { cleanPublicImageName } from '../../../helpers'
 import BreadCrumbs from '../../BreadCrumbs'
+import { FaRegSave } from 'react-icons/fa'
 
 function WeeklyEventForm({
     handleFormValueChange,
@@ -56,7 +56,7 @@ function WeeklyEventForm({
                                                 name="posterImage"
                                                 value={editEvent.posterImage}
                                             >
-                                                <option value="">-- Select Poster --</option>
+                                                <option value="">Choose...</option>
                                                 {userMedia.media.map((image) => (
                                                     <option key={image.id} value={image.secureUrl}>
                                                         {cleanPublicImageName(image.publicId)}
@@ -141,8 +141,9 @@ function WeeklyEventForm({
                                                 value={editEvent.day}
                                                 name="day"
                                                 onChange={(e) => handleFormValueChange(e)}
+                                                className="form-control"
                                             >
-                                                <option value="">-- Choose a day --</option>
+                                                <option value="">Choose...</option>
                                                 <option value="Sunday">Sunday</option>
                                                 <option value="Monday">Monday</option>
                                                 <option value="Tuesday">Tuesday</option>
@@ -230,8 +231,9 @@ function WeeklyEventForm({
                                                 value={editEvent.game}
                                                 name="game"
                                                 onChange={(e) => handleFormValueChange(e)}
+                                                className="form-control"
                                             >
-                                                <option value="">-- Choose Game--</option>
+                                                <option value="">Choose...</option>
                                                 <option value="8-ball">8-Ball</option>
                                                 <option value="9-ball">9-Ball</option>
                                                 <option value="10-ball">10-Ball</option>
@@ -245,8 +247,9 @@ function WeeklyEventForm({
                                                 value={editEvent.status}
                                                 name="status"
                                                 onChange={(e) => handleFormValueChange(e)}
+                                                className="form-control"
                                             >
-                                                <option value="">-- Choose Type--</option>
+                                                <option value="">Choose...</option>
                                                 <option value="active">Active</option>
                                                 <option value="inactive">Inactive</option>
                                             </select>
@@ -256,7 +259,7 @@ function WeeklyEventForm({
                                         className="btn btn-outline-secondary mt-3"
                                         type="submit"
                                     >
-                                        Save
+                                        <FaRegSave /> Save
                                     </button>
                                 </fieldset>
                             </div>

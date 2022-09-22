@@ -4,8 +4,11 @@ import YearlyEventForm from './YearlyEventForm'
 import { useNavigate } from 'react-router-dom'
 import { createYearlyEvent, getUserMedia } from '../../../redux'
 import { formatPhoneNumber } from '../../../helpers'
+import usePageTitle from '../../../hoook/usePageTitle'
 
 function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, getUserMedia, userMedia }) {
+    usePageTitle('- Account Yearly Event Create')
+
     const initialFormValues = {
         type: 'yearly-event',
         bracket: '',

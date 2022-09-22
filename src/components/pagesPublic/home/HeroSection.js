@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 function HeroSection() {
     return (
@@ -25,14 +26,14 @@ function HeroSection() {
                                 Find a tournament anywhere. anytime. any place
                             </p>
                             <button className="btn btn-outline-secondary mt-3 btn-lg">
-                                <a
-                                    href="/about"
+                                <Link
+                                    to="/regisgter"
                                     className="text-white"
                                     style={{ textDecoration: 'none' }}
                                 >
-                                    {' '}
+                                    Sign up for free{' '}
                                     <FontAwesomeIcon icon={faCaretRight} className="fa-search" />
-                                </a>
+                                </Link>
                             </button>
                         </div>
                     </div>

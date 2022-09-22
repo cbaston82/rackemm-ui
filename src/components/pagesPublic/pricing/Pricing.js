@@ -4,8 +4,10 @@ import { connect } from 'react-redux'
 import { getApiUrl } from '../../../helpers/config'
 import { plans } from '../../../helpers/config'
 import PriceCard from './PriceCard'
+import usePageTitle from '../../../hoook/usePageTitle'
 
 function Pricing({ auth, stripeCustomer }) {
+    usePageTitle('- Pricing')
     useEffect(() => {}, [])
 
     const checkoutUser = async (e, priceId) => {

@@ -1,84 +1,58 @@
-import LightBoxImage from '../../LightBoxImage'
-
 function FeaturesSection() {
     return (
         <section className="py-5 rackemm-gradient-black-to-dark-gray">
             <div className="container">
-                <div className="row">
-                    <div className="col-md-6 gx-5 mb-4">
-                        <div
-                            className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
-                            data-mdb-ripple-color="light"
-                        >
-                            <LightBoxImage image="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663565503/rackemm_images/app_images/Screen_Shot_2022-09-18_at_10.31.23_PM.png" />
-                            <a href="client/src/components/pagesPublic/home/AboutFilterSection#">
-                                <div
-                                    className="mask"
-                                    style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}
-                                ></div>
-                            </a>
-                        </div>
-                    </div>
+                <div className="row d-flex flex-row-reverse">
                     <div className="col-md-6 gx-5 mt-5 mb-5 my-md-0 d-flex flex-column justify-content-around">
                         <div className="text-center">
                             <h4 className="text-white">
                                 <strong>Create Events Quickly</strong>
                             </h4>
-                            <p className="text-white-50">
-                                Our easy to use forms allow you to quickly create an event.
-                            </p>
+                            <div className="d-flex">
+                                <p className="text-white-50 w-75 mx-auto">
+                                    Our easy to use forms allow you to quickly create events hassle
+                                    free.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="row d-flex flex-row-reverse mt-5">
                     <div className="col-md-6 gx-5 mb-4">
                         <div
                             className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
                             data-mdb-ripple-color="light"
                         >
-                            <LightBoxImage image="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663565503/rackemm_images/app_images/Screen_Shot_2022-09-18_at_10.31.23_PM.png" />
-                            <a href="client/src/components/pagesPublic/home/AboutFilterSection#">
-                                <div
-                                    className="mask"
-                                    style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}
-                                ></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-md-6 gx-5 mt-5 mb-5 mt-md-0 d-flex flex-column justify-content-around a">
-                        <div className="text-center">
-                            <h4 className="text-white">
-                                <strong>Create Events Quickly</strong>
-                            </h4>
-                            <p className="text-white-50">
-                                Our easy to use forms allow you to quickly create an event.
-                            </p>
+                            <img
+                                className="img-fluid img-thumbnail bg-transparent border-0"
+                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663796146/rackemm_images/app_images/web%20and%20mobile%20friendly%20forms.png"
+                                alt=""
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="row mt-5">
+                    <div className="col-md-6 gx-5 mt-5 mb-5 mt-md-0 d-flex flex-column justify-content-around a">
+                        <div className="text-center">
+                            <h4 className="text-white">
+                                <strong>Find any game</strong>
+                            </h4>
+                            <div className="d-flex">
+                                <p className="text-white-50 w-75 mx-auto">
+                                    Filter through thousands of events in second. Spend more time
+                                    playing and less time searching.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <div className="col-md-6 gx-5 mb-4">
                         <div
                             className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
                             data-mdb-ripple-color="light"
                         >
-                            <LightBoxImage image="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663565503/rackemm_images/app_images/Screen_Shot_2022-09-18_at_10.31.23_PM.png" />
-                            <a href="client/src/components/pagesPublic/home/AboutFilterSection#">
-                                <div
-                                    className="mask"
-                                    style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}
-                                ></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-md-6 gx-5 mt-5 mb-5 my-md-0 d-flex flex-column justify-content-around">
-                        <div className="text-center">
-                            <h4 className="text-white">
-                                <strong>Create Events Quickly</strong>
-                            </h4>
-                            <p className="text-white-50">
-                                Our easy to use forms allow you to quickly create an event.
-                            </p>
+                            <img
+                                className="img-fluid img-thumbnail border-0 bg-transparent"
+                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663798938/rackemm_images/app_images/filtering_features.png"
+                                alt=""
+                            />
                         </div>
                     </div>
                 </div>

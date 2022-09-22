@@ -9,7 +9,7 @@ function MainNav({ logoutUser, auth }) {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-4 rackemm-border-bottom">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-4 rackemm-navbar rackemm-border-bottom">
             <div className="container">
                 <Link className="navbar-brand" to="/">
                     <img

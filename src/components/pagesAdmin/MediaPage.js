@@ -6,8 +6,10 @@ import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
 import { allowedFileTypeUploads, cleanFileName } from '../../helpers'
+import usePageTitle from '../../hoook/usePageTitle'
 
 function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }) {
+    usePageTitle('- Account Media')
     const [errorMessage, setErrorMessage] = useState('')
     const [previewSource, setPreviewSource] = useState('')
     const [fileName, setFileName] = useState('')

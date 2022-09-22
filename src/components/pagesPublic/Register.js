@@ -5,8 +5,10 @@ import { FaUserAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { signupUser } from '../../redux'
+import usePageTitle from '../../hoook/usePageTitle'
 
 function Register({ signupUser, auth }) {
+    usePageTitle('- Register')
     const [formData, setFormData] = useState({
         email: '',
         password: '',

@@ -6,8 +6,10 @@ import NotFound404 from './NotFound404'
 import { MoonLoader } from 'react-spinners'
 import LightBoxImage from '../LightBoxImage'
 import BreadCrumbs from '../BreadCrumbs'
+import usePageTitle from '../../hoook/usePageTitle'
 
 function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
+    usePageTitle('- Yearly Event')
     const { id } = useParams()
 
     useEffect(() => {

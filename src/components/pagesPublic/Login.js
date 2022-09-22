@@ -4,8 +4,10 @@ import { FaSignInAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginUser } from '../../redux'
+import usePageTitle from '../../hoook/usePageTitle'
 
 function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
+    usePageTitle('- Login')
     const [formData, setFormData] = useState({
         email: '',
         password: '',

@@ -2,6 +2,7 @@ import { differenceInDays, formatDistance, formatISO, subDays } from 'date-fns'
 import { MoonLoader } from 'react-spinners'
 import { cleanPublicImageName } from '../../../helpers'
 import BreadCrumbs from '../../BreadCrumbs'
+import { FaRegSave } from 'react-icons/fa'
 
 function YearlyEventForm({
     handleFormValueChange,
@@ -51,11 +52,12 @@ function YearlyEventForm({
                                         <div data-field-span="1">
                                             <label>Poster </label>
                                             <select
+                                                className="form-control"
                                                 onChange={(e) => handleFormValueChange(e)}
                                                 name="posterImage"
                                                 value={editEvent.posterImage}
                                             >
-                                                <option value="">-- Select Poster --</option>
+                                                <option value="">Choose...</option>
                                                 {userMedia.media.map((image) => (
                                                     <option key={image.id} value={image.secureUrl}>
                                                         {cleanPublicImageName(image.publicId)}
@@ -254,8 +256,9 @@ function YearlyEventForm({
                                                 value={editEvent.game}
                                                 name="game"
                                                 onChange={(e) => handleFormValueChange(e)}
+                                                className="form-control"
                                             >
-                                                <option value="">-- Choose Game--</option>
+                                                <option value="">Choose...</option>
                                                 <option value="8-ball">8-Ball</option>
                                                 <option value="9-ball">9-Ball</option>
                                                 <option value="10-ball">10-Ball</option>
@@ -269,19 +272,17 @@ function YearlyEventForm({
                                                 value={editEvent.status}
                                                 name="status"
                                                 onChange={(e) => handleFormValueChange(e)}
+                                                className="form-control"
                                             >
-                                                <option value="">-- Choose Type--</option>
+                                                <option value="">Choose...</option>
                                                 <option value="active">Active</option>
                                                 <option value="inactive">Inactive</option>
                                             </select>
                                         </div>
                                     </div>
 
-                                    <button
-                                        className="btn btn-outline-secondary mt-3"
-                                        type="submit"
-                                    >
-                                        Save
+                                    <button className="btn btn-outline-success mt-3" type="submit">
+                                        <FaRegSave /> Save
                                     </button>
                                 </fieldset>
                             </div>

@@ -7,8 +7,10 @@ import { useSearchParams } from 'react-router-dom'
 import { sortByDate } from '../../../redux/helpers/dates'
 import BreadCrumbs from '../../BreadCrumbs'
 import Filters from '../../Filters'
+import usePageTitle from '../../../hoook/usePageTitle'
 
 function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents }) {
+    usePageTitle('- Yearly Events')
     const [searchParams, setSearchParams] = useSearchParams()
 
     const [buyIn, setBuyIn] = useState(decodeURI(searchParams.get('buyIn')))

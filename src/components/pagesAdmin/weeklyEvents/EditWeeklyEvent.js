@@ -5,8 +5,10 @@ import WeeklyEventForm from './WeeklyEventForm'
 import { getUserMedia, updateUserWeeklyEvent } from '../../../redux'
 import NotFound404 from '../../pagesPublic/NotFound404'
 import { formatPhoneNumber } from '../../../helpers'
+import usePageTitle from '../../../hoook/usePageTitle'
 
 function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia, userMedia }) {
+    usePageTitle('- Account Weekly Event Edit')
     const { id } = useParams()
     const [editEvent, setEditEvent] = useState(null)
     const navigate = useNavigate()
