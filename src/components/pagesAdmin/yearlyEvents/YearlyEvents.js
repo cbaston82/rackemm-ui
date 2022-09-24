@@ -1,21 +1,29 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getUserYearlyEvents, deleteUserYearlyEvent } from '../../../redux'
-import NewEventButton from '../../NewEventButton'
 import CustomLoader from '../../CustomeLoader'
-import AlertMessageWithLinkEnd from '../../AlertMessageWithLinkEnd'
-import BreadCrumbs from '../../BreadCrumbs'
 import YearlyEventsTable from './YearlyEventsTable'
+import BreadCrumbs from '../../BreadCrumbs'
 import useDeleteSwalModal from '../../../hoook/useDeleteSwalModal'
 import usePageTitle from '../../../hoook/usePageTitle'
+import { userHasEvents } from '../../../helpers/config'
+import useCanUserCreateEventsAlertMessage from '../../../hoook/useCanUserCreateEventsAlertMessage'
+import useCanUserCreateEventsButton from '../../../hoook/useCanUserCreateEventsButton'
 
-function YearlyEvents({ getUserYearlyEvents, userYearlyEvents, deleteUserYearlyEvent }) {
+function YearlyEvents({
+    getUserYearlyEvents,
+    userYearlyEvents,
+    deleteUserYearlyEvent,
+    stripeCustomer,
+}) {
     usePageTitle('- Account Yearly Event')
+    const [canUserCreateEventsAlertMessage] = useCanUserCreateEventsAlertMessage()
+    const [handleDeleteEvent] = useDeleteSwalModal(deleteUserYearlyEvent)
+    const [canUserCreateEventButton] = useCanUserCreateEventsButton()
+
     useEffect(() => {
         getUserYearlyEvents()
     }, [getUserYearlyEvents])
-
-    const [handleDeleteEvent] = useDeleteSwalModal(deleteUserYearlyEvent)
 
     return (
         <div className="container">
@@ -24,24 +32,27 @@ function YearlyEvents({ getUserYearlyEvents, userYearlyEvents, deleteUserYearlyE
                 activeBreadcrumbTitle="Account Year Events"
             />
             {userYearlyEvents.loading ? (
-                <div className="d-flex justify-content-center align-content-center">
-                    <CustomLoader color="white" loaderMessage="Fetching events" />
-                </div>
+                <CustomLoader color="white" loaderMessage="Fetching events" />
             ) : (
                 <>
-                    {userYearlyEvents.events && userYearlyEvents.events.length ? (
+                    {userHasEvents(userYearlyEvents) ? (
                         <>
-                            <NewEventButton path="/account/yearly-events/create" />
+                            {canUserCreateEventButton(
+                                stripeCustomer,
+                                userYearlyEvents,
+                                'yearly-events',
+                            )}
                             <YearlyEventsTable
                                 events={userYearlyEvents.events}
                                 handleDeleteEvent={handleDeleteEvent}
                             />
                         </>
                     ) : (
-                        <AlertMessageWithLinkEnd
-                            path="/account/yearly-events/create"
-                            message="You have no yearly events yet. Create your first event"
-                        />
+                        canUserCreateEventsAlertMessage(
+                            stripeCustomer,
+                            userYearlyEvents,
+                            'yearly-events',
+                        )
                     )}
                 </>
             )}
@@ -51,6 +62,7 @@ function YearlyEvents({ getUserYearlyEvents, userYearlyEvents, deleteUserYearlyE
 
 const mapStateToProps = (state) => ({
     userYearlyEvents: state.userYearlyEvents,
+    stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({

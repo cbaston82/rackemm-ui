@@ -2,14 +2,15 @@ import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { FaUserAlt, FaSignOutAlt } from 'react-icons/fa'
 import { logoutUser } from '../../redux'
+import { isSubscriptionValid } from '../../helpers/config'
 
-function MainNav({ logoutUser, auth }) {
+function MainNav({ logoutUser, auth, stripeCustomer }) {
     const handleLogout = () => {
         logoutUser()
     }
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-4 rackemm-navbar rackemm-border-bottom">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-4 rackemm-border-bottom">
             <div className="container">
                 <Link className="navbar-brand" to="/">
                     <img
@@ -63,36 +64,46 @@ function MainNav({ logoutUser, auth }) {
                                         </NavLink>
                                     </li>
                                     <hr />
-                                    <li>
-                                        <NavLink className="dropdown-item" to="/account/media">
-                                            Media
-                                        </NavLink>
-                                    </li>
-                                    <hr />
-                                    <li>
-                                        <NavLink className="dropdown-item" to="/account/filters">
-                                            Filters
-                                        </NavLink>
-                                    </li>
-                                    <hr />
-                                    <li>
-                                        <NavLink
-                                            className="dropdown-item"
-                                            to="/account/weekly-events"
-                                        >
-                                            Weekly Events
-                                        </NavLink>
-                                    </li>
-                                    <hr />
-                                    <li>
-                                        <NavLink
-                                            className="dropdown-item"
-                                            to="/account/yearly-events"
-                                        >
-                                            Yearly Events
-                                        </NavLink>
-                                    </li>
-                                    <hr />
+                                    {isSubscriptionValid(stripeCustomer) && (
+                                        <>
+                                            <li>
+                                                <NavLink
+                                                    className="dropdown-item"
+                                                    to="/account/media"
+                                                >
+                                                    Media
+                                                </NavLink>
+                                            </li>
+                                            <hr />
+                                            <li>
+                                                <NavLink
+                                                    className="dropdown-item"
+                                                    to="/account/filters"
+                                                >
+                                                    Filters
+                                                </NavLink>
+                                            </li>
+                                            <hr />
+                                            <li>
+                                                <NavLink
+                                                    className="dropdown-item"
+                                                    to="/account/weekly-events"
+                                                >
+                                                    Weekly Events
+                                                </NavLink>
+                                            </li>
+                                            <hr />
+                                            <li>
+                                                <NavLink
+                                                    className="dropdown-item"
+                                                    to="/account/yearly-events"
+                                                >
+                                                    Yearly Events
+                                                </NavLink>
+                                            </li>
+                                            <hr />
+                                        </>
+                                    )}
                                     <li>
                                         <button className="dropdown-item" onClick={handleLogout}>
                                             <FaSignOutAlt /> Logout
@@ -123,6 +134,7 @@ function MainNav({ logoutUser, auth }) {
 
 const mapStateToProps = (state) => ({
     auth: state.auth,
+    stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({

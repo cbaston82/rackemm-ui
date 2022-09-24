@@ -25,8 +25,9 @@ import EditWeeklyEvent from '../pagesAdmin/weeklyEvents/EditWeeklyEvent'
 import LoggedIn from '../LoggedIn'
 import MediaPage from '../pagesAdmin/MediaPage'
 import FiltersPage from '../pagesAdmin/filters/FiltersPage'
+import HasActiveSubscription from './HasActiveSubscription'
 
-function MainRoutes({ auth }) {
+function MainRoutes({ auth, stripeCustomer }) {
     return (
         <Routes>
             <Route exact path="/" element={<Landing />} />
@@ -72,72 +73,72 @@ function MainRoutes({ auth }) {
                 exact
                 path="/account/yearly-events/"
                 element={
-                    <Protected auth={auth}>
+                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
                         <AccountYearlyEvents />
-                    </Protected>
+                    </HasActiveSubscription>
                 }
             />
             <Route
                 exact
                 path="/account/yearly-events/create"
                 element={
-                    <Protected auth={auth}>
+                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
                         <CreateYearlyEvent />
-                    </Protected>
+                    </HasActiveSubscription>
                 }
             />
             <Route
                 exact
                 path="/account/yearly-events/edit/:id"
                 element={
-                    <Protected auth={auth}>
+                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
                         <EditYearlyEvent />
-                    </Protected>
+                    </HasActiveSubscription>
                 }
             />
             <Route
                 exact
                 path="/account/weekly-events/"
                 element={
-                    <Protected auth={auth}>
+                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
                         <AccountWeeklyEvents />
-                    </Protected>
+                    </HasActiveSubscription>
                 }
             />
             <Route
                 exact
                 path="/account/weekly-events/create"
                 element={
-                    <Protected auth={auth}>
+                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
                         <CreateWeeklyEvent />
-                    </Protected>
+                    </HasActiveSubscription>
                 }
             />
             <Route
                 exact
                 path="/account/weekly-events/edit/:id"
                 element={
-                    <Protected auth={auth}>
+                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
                         <EditWeeklyEvent />
-                    </Protected>
+                    </HasActiveSubscription>
                 }
             />
             <Route
                 exact
                 path="/account/media"
                 element={
-                    <Protected auth={auth}>
+                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
                         <MediaPage />
-                    </Protected>
+                    </HasActiveSubscription>
                 }
             />
             <Route
                 exact
                 path="/account/filters"
                 element={
-                    <Protected auth={auth}>
+                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
                         <FiltersPage />
-                    </Protected>
+                    </HasActiveSubscription>
                 }
             />
             <Route path="*" element={<Navigate to="/" />} />
@@ -146,6 +147,7 @@ function MainRoutes({ auth }) {
 }
 const mapStateToProps = (state) => ({
     auth: state.auth,
+    stripeCustomer: state.stripeCustomer,
 })
 
 export default connect(mapStateToProps, null)(MainRoutes)

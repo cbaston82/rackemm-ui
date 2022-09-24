@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { FaSave, FaFilter, FaRegSave } from 'react-icons/fa'
 import CustomLoader from './CustomeLoader'
 import { getSavedFilters, saveFilter, setFilter } from '../redux'
+import { canUserSaveFilters } from '../helpers/config'
+import useNoSubscriptionToast from '../hoook/useNoSubscriptionToast'
 
 function Filters({
     getSavedFilters,
@@ -10,9 +12,11 @@ function Filters({
     savedFilters,
     filterType,
     buttonTitle,
-    filterValues,
     setFilter,
+    auth,
+    stripeCustomer,
 }) {
+    const [handleNoSubscription] = useNoSubscriptionToast()
     const [filterDescription, setFilterDescription] = useState('')
     const url = window.location.pathname + window.location.search
 
@@ -56,8 +60,8 @@ function Filters({
                     {savedFilters.filters.map(
                         (filter) =>
                             filter.type === filterType && (
-                                <>
-                                    <li key={filter._id}>
+                                <div key={filter._id}>
+                                    <li>
                                         <button
                                             className={`dropdown-item ${
                                                 savedFilters.loadedFilter === filter._id
@@ -72,17 +76,23 @@ function Filters({
                                         </button>
                                     </li>
                                     <hr />
-                                </>
+                                </div>
                             ),
                     )}
                     <li>
-                        <button
-                            className="dropdown-item"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                        >
-                            <FaSave /> Save current filter
-                        </button>
+                        {auth.user.email && canUserSaveFilters(stripeCustomer) ? (
+                            <button
+                                className="dropdown-item"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                            >
+                                <FaSave /> Save current filter
+                            </button>
+                        ) : (
+                            <button onClick={handleNoSubscription} className="dropdown-item">
+                                <FaSave /> Save current filter
+                            </button>
+                        )}
                     </li>
                 </ul>
             </div>
@@ -163,6 +173,8 @@ function Filters({
 
 const mapStateToProps = (state) => ({
     savedFilters: state.savedFilters,
+    auth: state.auth,
+    stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({

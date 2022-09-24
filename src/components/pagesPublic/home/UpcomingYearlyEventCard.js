@@ -5,12 +5,12 @@ function UpcomingYearlyEventCard({ event }) {
     return (
         <div className="col-md-4">
             <div className="card text-center mb-4 rackemm-card">
-                <div className="card-header rackemm-card-header">
+                <div className="card-header">
                     <span className="fw-bold text-white">
                         <FaMapMarked /> {event.city}
                     </span>
                 </div>
-                <div className="card-body rackemm-card-body">
+                <div className="card-body">
                     <h5 className="card-title">{event.event}</h5>
                     <h5 className="card-text text-white fw-bolder mb-3">${event.buyIn} Buy-In</h5>
                     <p className="text-white-50 fw-lighter text-truncate">{event.description}</p>
@@ -21,7 +21,7 @@ function UpcomingYearlyEventCard({ event }) {
                         <FaExternalLinkAlt /> View
                     </a>
                 </div>
-                <div className="card-footer text-white fw-light rackemm-card-footer">
+                <div className="card-footer text-white fw-light">
                     {formatISO(new Date(event.startDate), {
                         representation: 'date',
                     })}

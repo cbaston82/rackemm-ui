@@ -26,14 +26,17 @@ function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents }) {
     }
 
     useEffect(() => {
-        getAllYearlyEvents()
         setSearchParams({
             buyIn: buyIn,
             city: city,
             game: game,
             filter: filter,
         })
-    }, [buyIn, city, game, filter, setSearchParams, getAllYearlyEvents])
+    }, [buyIn, city, game, filter, setSearchParams])
+
+    useEffect(() => {
+        getAllYearlyEvents()
+    }, [getAllYearlyEvents])
 
     return (
         <div className="container">

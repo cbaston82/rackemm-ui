@@ -97,7 +97,7 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                 <CustomLoader color="white" loaderMessage="Fetching media." />
             ) : (
                 <>
-                    <nav>
+                    <nav className="rackemm-nav-tabs">
                         <div
                             className="nav nav-tabs rackemm-border-bottom"
                             id="nav-tab"

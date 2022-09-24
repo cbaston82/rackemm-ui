@@ -5,7 +5,7 @@ import EventsCreated from '../../EventsCreated'
 import DataTable from 'react-data-table-component'
 import '../../SolarizedTheme'
 
-function WeeklyEventTable({ events, handleDeleteEvent }) {
+function WeeklyEventsTable({ events, handleDeleteEvent }) {
     const paginationComponentOptions = {
         rowsPerPageText: 'Events per page',
         rangeSeparatorText: 'of',
@@ -107,4 +107,4 @@ function WeeklyEventTable({ events, handleDeleteEvent }) {
         </>
     )
 }
-export default WeeklyEventTable
+export default WeeklyEventsTable

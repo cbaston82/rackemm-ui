@@ -5,7 +5,6 @@ import MainRoutes from './components/structure/MainRoutes'
 import MainNav from './components/structure/MainNav'
 import './App.css'
 import Footer from './components/structure/Footer'
-
 function App() {
     return (
         <>

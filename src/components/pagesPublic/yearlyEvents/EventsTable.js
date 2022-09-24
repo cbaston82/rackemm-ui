@@ -46,7 +46,6 @@ function EventsTable({
     )
     const [resetPaginationToggle, setResetPaginationToggle] = useState(false)
 
-    // TODO: Clean this mess up. Big Code Smell
     const filteredItems = rows.filter(
         (item) =>
             (item.event &&
@@ -119,27 +118,21 @@ function EventsTable({
         }
 
         const handlePriceChange = (e) => {
-            if (filterBuyIn) {
-                let buyIn = e.target.value
-                setBuyIn(buyIn)
-                setFilterBuyIn(buyIn)
-            }
+            let buyIn = e.target.value
+            setBuyIn(buyIn)
+            setFilterBuyIn(buyIn)
         }
 
         const handleCityChange = (e) => {
-            if (filterCity) {
-                let city = e.target.value
-                setFilterCity(city)
-                setCity(city)
-            }
+            let city = e.target.value
+            setFilterCity(city)
+            setCity(city)
         }
 
         const handleGameChange = (e) => {
-            if (filterGame) {
-                let game = e.target.value
-                setFilterGame(game)
-                setGame(game)
-            }
+            let game = e.target.value
+            setFilterGame(game)
+            setGame(game)
         }
 
         const handleFilterChange = (e) => {
@@ -185,12 +178,9 @@ function EventsTable({
     ])
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            setRows(events)
-            setPending(false)
-        }, 100)
-        return () => clearTimeout(timeout)
-    }, [events])
+        setRows(events)
+        setPending(false)
+    }, [events, setRows, setPending])
 
     return (
         <DataTable

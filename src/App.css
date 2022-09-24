@@ -21,6 +21,7 @@
     --h6: 18px;
     --border-radius: 0px;
     --letter-spacing: 2px;
+    --gradient-black-to-dark-gray: linear-gradient(black, var(--medium-gray))
 }
 
 /* Text Font Size
@@ -87,12 +88,55 @@ main {
     margin-bottom: 100px
 }
 
-.rackemm-navbar {
-    color: var(--bs-navbar-active-color);
+/*input.error, select.error {*/
+/*    border: 1px solid var(--error);*/
+/*}*/
+
+/*==================================================
+GLOBAL HELPERS
+===================================================*/
+.rackemm-border-bottom {
+    border-bottom: 1px solid rgba(255,255,255, 0.1)
+}
+
+.rackemm-border-top {
+    border-top: 1px solid rgba(255,255,255, 0.1)
+}
+
+.rackemm-text-stroke-cyan{
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--cyan);
+}
+
+.rackemm-gradient-black-to-dark-gray {
+    background-image: var(--gradient-black-to-dark-gray)
+}
+
+.rackemm-text-cyan {
+    color: var(--cyan)
+}
+
+.rackemm-bg-cyan {
+    background-color: var(--cyan)
+}
+
+.rackemm-bg-light-gray {
+    background-color: var(--light-gray)
 }
 
 /*==================================================
-CUSTOM OVERRIDE CLASSES
+RACKEMM NAV TABS
+===================================================*/
+.rackemm-nav-tabs .nav-item.show .nav-link, .rackemm-nav-tabs .nav-link.active {
+    background-color: rgba(0,0,0,0);
+    border-top: 1px solid white !important;
+    border-right: 1px solid white !important;
+    border-left: 1px solid white !important;
+    color: white;
+}
+
+/*==================================================
+RACKEMM DROPDOWN
 ===================================================*/
 /*dropdown menu*/
 .rackemm-dropdown-menu {
@@ -110,7 +154,9 @@ CUSTOM OVERRIDE CLASSES
     background-color: var(--cyan);
 }
 
-/*accordions*/
+/*==================================================
+RACKEMM ACCORDION
+===================================================*/
 .rackemm-accordion .accordion-button:not(.collapsed) {
     border-radius: 0;
     color: var(--light-gray);
@@ -135,64 +181,31 @@ CUSTOM OVERRIDE CLASSES
     border-bottom: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
 }
 
-
 /*==================================================
-GLOBAL HLPERS
-===================================================*/
-.rackemm-border-bottom {
-    border-bottom: 1px solid rgba(255,255,255, 0.1)
-}
-
-.rackemm-border-top {
-    border-top: 1px solid rgba(255,255,255, 0.1)
-}
-
-.rackemm-text-stroke-cyan{
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: var(--cyan);
-}
-
-.rackemm-text-cyan {
-    color: var(--cyan)
-}
-
-.rackemm-bg-cyan {
-    background-color: var(--cyan)
-}
-
-.rackemm-bg-light-gray {
-    background-color: var(--light-gray)
-}
-
-input.error, select.error {
-    border: 1px solid var(--error);
-}
-
-/*==================================================
-CARD
+RACKEMM CARD
 ===================================================*/
 .rackemm-card {
     border-radius: 0;
     border:none;
 }
-.rackemm-card-header {
+.rackemm-card .card-header {
     background-color: var(--cyan);
     border-radius: 0 !important;
 }
 
-.rackemm-card-body {
+.rackemm-card .card-body {
     background-color: var(--dark-gray);
     border-radius: 0;
 }
 
-.rackemm-card-footer {
+.rackemm-card .card-footer {
     background-color: var(--cyan);
     border-radius: 0 !important;
 }
 
 
 /*==================================================
-HEROS
+HERO BACKGROUNDS
 ===================================================*/
 .rackemm-hero-1 {
     margin-top: -200px;
@@ -239,19 +252,7 @@ HEROS
 }
 
 /*==================================================
-PRICING SECTION
-===================================================*/
-.rackemm-gradient-black-to-dark-gray {
-    background-image: linear-gradient(black, var(--medium-gray));
-}
-
-.rackemm-grid-form-data-span {
-    padding: 8px;
-    float: left;
-}
-
-/*==================================================
-GRID FORM
+RACKEMM GRID FORM
 ===================================================*/
 .rackemm-card-grid-form{
     background-color: var(--grid-form)
@@ -273,9 +274,8 @@ GRID FORM
     border: 1px solid var(--cyan)
 }
 
-
 /*==================================================
-REACT TABLE COMPONENT
+REACT TABLE COMPONENT OVERRIDES
 ===================================================*/
 .rdt_TableHead {
     font-size: 1rem !important;

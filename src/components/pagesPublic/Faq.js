@@ -9,7 +9,7 @@ function Faq() {
                 Dont see your question and need further assistance? email us at{' '}
                 <a href="info@rackemm.com">info.rackemm.com</a>
             </p>
-            <div className="accordion rackemm-accordion" id="accordionExample">
+            <div className="accordion rackemm-accordion">
                 <div className="accordion-item">
                     <h2 className="accordion-header" id="headingOne">
                         <button

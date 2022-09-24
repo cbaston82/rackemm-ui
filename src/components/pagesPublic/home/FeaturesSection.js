@@ -23,7 +23,7 @@ function FeaturesSection() {
                         >
                             <img
                                 className="img-fluid img-thumbnail bg-transparent border-0"
-                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663796146/rackemm_images/app_images/web%20and%20mobile%20friendly%20forms.png"
+                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663863933/rackemm_images/app_images/web_and_mobile_view_forms.png"
                                 alt=""
                             />
                         </div>

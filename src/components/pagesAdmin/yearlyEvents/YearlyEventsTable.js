@@ -74,12 +74,12 @@ function YearlyEventsTable({ events, handleDeleteEvent }) {
             button: true,
             cell: (row) => (
                 <>
-                    <Link className="ms-3" to={`/weekly-event/${row._id}`}>
+                    <Link className="ms-3" to={`/yearly-event/${row._id}`}>
                         <button className="btn btn-light btn-sm">
                             <FaExternalLinkAlt />
                         </button>
                     </Link>
-                    <Link className="ms-3" to={`/account/weekly-events/edit/${row._id}`}>
+                    <Link className="ms-3" to={`/account/yearly-events/edit/${row._id}`}>
                         <button className="btn btn-info btn-sm">
                             <FaEdit />
                         </button>

@@ -1,22 +1,29 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getUserWeeklyEvents, deleteUserWeeklyEvent } from '../../../redux'
-import NewEventButton from '../../NewEventButton'
 import CustomLoader from '../../CustomeLoader'
-import AlertMessageWithLinkEnd from '../../AlertMessageWithLinkEnd'
-import WeeklyEventTable from './WeeklyEventTable'
+import WeeklyEventsTable from './WeeklyEventsTable'
 import BreadCrumbs from '../../BreadCrumbs'
 import useDeleteSwalModal from '../../../hoook/useDeleteSwalModal'
 import usePageTitle from '../../../hoook/usePageTitle'
+import { userHasEvents } from '../../../helpers/config'
+import useCanUserCreateEventsAlertMessage from '../../../hoook/useCanUserCreateEventsAlertMessage'
+import useCanUserCreateEventsButton from '../../../hoook/useCanUserCreateEventsButton'
 
-function WeeklyEvents({ getUserWeeklyEvents, userWeeklyEvents, deleteUserWeeklyEvent }) {
+function WeeklyEvents({
+    getUserWeeklyEvents,
+    userWeeklyEvents,
+    stripeCustomer,
+    deleteUserWeeklyEvent,
+}) {
     usePageTitle('- Account Weekly Events')
+    const [canUserCreateEventsAlertMessage] = useCanUserCreateEventsAlertMessage()
+    const [handleDeleteEvent] = useDeleteSwalModal(deleteUserWeeklyEvent)
+    const [canUserCreateEventButton] = useCanUserCreateEventsButton()
 
     useEffect(() => {
         getUserWeeklyEvents()
     }, [getUserWeeklyEvents])
-
-    const [handleDeleteEvent] = useDeleteSwalModal(deleteUserWeeklyEvent)
 
     return (
         <div className="container">
@@ -25,24 +32,27 @@ function WeeklyEvents({ getUserWeeklyEvents, userWeeklyEvents, deleteUserWeeklyE
                 activeBreadcrumbTitle="Account Weekly Events"
             />
             {userWeeklyEvents.loading ? (
-                <div className="d-flex justify-content-center align-content-center">
-                    <CustomLoader color="white" loaderMessage="fetching events" />
-                </div>
+                <CustomLoader color="white" loaderMessage="fetching events" />
             ) : (
                 <>
-                    {userWeeklyEvents.events && userWeeklyEvents.events.length ? (
+                    {userHasEvents(userWeeklyEvents) ? (
                         <>
-                            <NewEventButton path="/account/weekly-events/create" />
-                            <WeeklyEventTable
+                            {canUserCreateEventButton(
+                                stripeCustomer,
+                                userWeeklyEvents,
+                                'weekly-events',
+                            )}
+                            <WeeklyEventsTable
                                 events={userWeeklyEvents.events}
                                 handleDeleteEvent={handleDeleteEvent}
                             />
                         </>
                     ) : (
-                        <AlertMessageWithLinkEnd
-                            path="/account/weekly-events/create"
-                            message="You have no weekly events yet. Create your first event"
-                        />
+                        canUserCreateEventsAlertMessage(
+                            stripeCustomer,
+                            userWeeklyEvents,
+                            'weekly-events',
+                        )
                     )}
                 </>
             )}

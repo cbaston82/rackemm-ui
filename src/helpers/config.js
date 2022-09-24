@@ -29,30 +29,81 @@ export const plans = [
         weeklyEventsMax: 1000,
         yearlyEventsMax: 1000,
         price: '3.99',
-        features: ['Unlimited events', 'Unlimited events', 'Plus everything from Level 2'],
+        features: [
+            'Unlimited weekly events',
+            'Unlimited yearly events',
+            'Plus everything from Level 2',
+        ],
         description:
             'Geared towards the regular player that might throw a tournament every now and again. Or a player wanting to unlock the following',
         subscriptionPlanId: 'price_1LgipcKr4ipGkAAR3nDQNOw0',
     },
 ]
+
 export const getApiUrl = () => {
     return '/api/v1/'
 }
 
-export const getSubscriptionPlanSettings = (subscriptionPlanId) => {
+export const isSubscriptionValid = (stripeCustomer) => {
+    if (
+        stripeCustomer.customer.subscriptionEnd === null ||
+        stripeCustomer.customer.subscriptionEnd === ''
+    ) {
+        return false
+    }
+
+    const locale = Intl.DateTimeFormat().resolvedOptions().locale
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+    const currentDate = new Date(
+        new Date()
+            .toLocaleString(locale, {
+                timeZone: timezone,
+            })
+            .split(',')[0],
+    ).toString()
+
+    const subscriptionEndDate = new Date(
+        new Date(stripeCustomer.customer.subscriptionEnd)
+            .toLocaleString(locale, {
+                timeZone: timezone,
+            })
+            .split(',')[0],
+    ).toString()
+
+    return currentDate < subscriptionEndDate
+}
+
+export const canUserSaveFilters = (stripeCustomer) => {
+    return isSubscriptionValid(stripeCustomer)
+}
+
+export const canUserCreateEvents = (stripeCustomer, userCreatedEvents, type) => {
+    if (type === 'weekly') {
+        return (
+            isSubscriptionValid(stripeCustomer) &&
+            currentUserEventsCount(userCreatedEvents) <
+                allowedUserEvents(stripeCustomer).weeklyEventsMax
+        )
+    }
+
+    return (
+        isSubscriptionValid(stripeCustomer) &&
+        currentUserEventsCount(userCreatedEvents) <
+            allowedUserEvents(stripeCustomer).yearlyEventsMax
+    )
+}
+
+export const allowedUserEvents = (stripeCustomer) => {
     return plans
-        .filter((plan) => {
-            return plan.subscriptionPlanId === subscriptionPlanId
-        })
+        .filter((plan) => plan.subscriptionPlanId === stripeCustomer.customer.subscriptionPlanId)
         .pop()
 }
-export const getWeeklyEventsMax = (subscriptionPlanId) => {
-    return plans
-        .filter((plan) => {
-            return plan.subscriptionPlanId === subscriptionPlanId
-        })
-        .pop().weeklyEventsMax
+
+export const userHasEvents = (userEvents) => {
+    return userEvents && userEvents.events.length > 0
 }
-export const canCreateWeeklyEvent = (subscriptionPlanId, createdEventsCount) => {
-    return createdEventsCount < getWeeklyEventsMax(subscriptionPlanId)
+
+export const currentUserEventsCount = (userEvents) => {
+    return userEvents && userEvents.events.length
 }
