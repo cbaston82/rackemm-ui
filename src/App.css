@@ -288,3 +288,9 @@ REACT TABLE COMPONENT OVERRIDES
 .hITlxo {
     min-width: 180px !important;
 }
+
+
+.rackemm-footer .active {
+    font-weight: bold;
+    color: white
+}

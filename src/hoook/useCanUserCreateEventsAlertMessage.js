@@ -6,6 +6,7 @@ function useCanUserCreateEventsAlertMessage() {
         if (canUserCreateEvents(stripeCustomer, userEvents, type)) {
             return (
                 <AlertMessageWithLinkEnd
+                    className="alert alert-info mt-3"
                     path={`/account/${type}/create`}
                     linkText="Create event"
                     message="You have no events yet."

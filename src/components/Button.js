@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 function Button({
+    link = '',
     path = '',
     className = '',
     buttonText = '',
@@ -13,6 +14,16 @@ function Button({
             <button onClick={onClick} className={className}>
                 {buttonText} {children}
             </button>
+        )
+    }
+
+    if (link) {
+        return (
+            <a href={link} target="_blank" rel="noreferrer">
+                <button disabled={disabled} onClick={onClick && onClick} className={className}>
+                    {buttonText} {children}
+                </button>
+            </a>
         )
     }
 

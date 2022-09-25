@@ -22,6 +22,7 @@
         "gapi-script": "^1.2.0",
         "immer": "^9.0.15",
         "moment": "^2.29.4",
+        "octokit": "^2.0.7",
         "react": "^18.2.0",
         "react-currency-format": "^1.1.0",
         "react-data-table-component": "^7.5.3",
