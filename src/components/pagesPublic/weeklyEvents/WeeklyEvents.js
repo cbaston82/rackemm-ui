@@ -6,9 +6,11 @@ import { getAllWeeklyEvents } from '../../../redux'
 import { useSearchParams } from 'react-router-dom'
 import { sortByDayInWeek } from '../../../redux/helpers/dates'
 import usePageTitle from '../../../hoook/usePageTitle'
-import BreadCrumbsWilFilters from '../../BreadCrumbsWilFilters'
+import BreadCrumbs from '../../BreadCrumbs'
+import { userCanSaveFilters } from '../../../helpers/config'
+import Filters from '../../Filters'
 
-function WeeklyEvents({ auth, getAllWeeklyEvents, allWeeklyEvents }) {
+function WeeklyEvents({ stripeCustomer, getAllWeeklyEvents, allWeeklyEvents }) {
     usePageTitle('- Weekly Events')
     const [searchParams, setSearchParams] = useSearchParams()
     const [buyIn, setBuyIn] = useState(decodeURI(searchParams.get('buyIn')))
@@ -40,7 +42,16 @@ function WeeklyEvents({ auth, getAllWeeklyEvents, allWeeklyEvents }) {
 
     return (
         <div className="container">
-            <BreadCrumbsWilFilters filterValues={filterValues} auth={auth} />
+            <div className="d-flex justify-content-between">
+                <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
+                {userCanSaveFilters(stripeCustomer) && (
+                    <Filters
+                        filterValues={filterValues}
+                        filterType="weekly"
+                        buttonTitle="Weekly Filters"
+                    />
+                )}
+            </div>
             <EventsTable
                 setBuyIn={setBuyIn}
                 setCity={setCity}
@@ -58,6 +69,7 @@ function WeeklyEvents({ auth, getAllWeeklyEvents, allWeeklyEvents }) {
 const mapStateToProps = (state) => ({
     allWeeklyEvents: state.allWeeklyEvents,
     auth: state.auth,
+    stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({

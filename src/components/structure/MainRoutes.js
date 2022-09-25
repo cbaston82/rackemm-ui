@@ -25,7 +25,7 @@ import EditWeeklyEvent from '../pagesAdmin/weeklyEvents/EditWeeklyEvent'
 import LoggedIn from '../LoggedIn'
 import MediaPage from '../pagesAdmin/MediaPage'
 import FiltersPage from '../pagesAdmin/filters/FiltersPage'
-import HasActiveSubscription from './HasActiveSubscription'
+import HasSubscriptionRoutes from './HasSubscriptionRoutes'
 
 function MainRoutes({ auth, stripeCustomer }) {
     return (
@@ -73,72 +73,72 @@ function MainRoutes({ auth, stripeCustomer }) {
                 exact
                 path="/account/yearly-events/"
                 element={
-                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
+                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <AccountYearlyEvents />
-                    </HasActiveSubscription>
+                    </HasSubscriptionRoutes>
                 }
             />
             <Route
                 exact
                 path="/account/yearly-events/create"
                 element={
-                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
+                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <CreateYearlyEvent />
-                    </HasActiveSubscription>
+                    </HasSubscriptionRoutes>
                 }
             />
             <Route
                 exact
                 path="/account/yearly-events/edit/:id"
                 element={
-                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
+                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <EditYearlyEvent />
-                    </HasActiveSubscription>
+                    </HasSubscriptionRoutes>
                 }
             />
             <Route
                 exact
                 path="/account/weekly-events/"
                 element={
-                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
+                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <AccountWeeklyEvents />
-                    </HasActiveSubscription>
+                    </HasSubscriptionRoutes>
                 }
             />
             <Route
                 exact
                 path="/account/weekly-events/create"
                 element={
-                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
+                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <CreateWeeklyEvent />
-                    </HasActiveSubscription>
+                    </HasSubscriptionRoutes>
                 }
             />
             <Route
                 exact
                 path="/account/weekly-events/edit/:id"
                 element={
-                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
+                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <EditWeeklyEvent />
-                    </HasActiveSubscription>
+                    </HasSubscriptionRoutes>
                 }
             />
             <Route
                 exact
                 path="/account/media"
                 element={
-                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
+                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <MediaPage />
-                    </HasActiveSubscription>
+                    </HasSubscriptionRoutes>
                 }
             />
             <Route
                 exact
                 path="/account/filters"
                 element={
-                    <HasActiveSubscription auth={auth} stripeCustomer={stripeCustomer}>
+                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <FiltersPage />
-                    </HasActiveSubscription>
+                    </HasSubscriptionRoutes>
                 }
             />
             <Route path="*" element={<Navigate to="/" />} />

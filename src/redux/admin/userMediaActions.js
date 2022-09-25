@@ -11,7 +11,7 @@ import {
     DELETE_USER_MEDIA_SUCCESS,
 } from './userMediaTypes'
 import { toast } from 'react-toastify'
-import { getApiUrl } from '../../helpers/config'
+import { getApiUrl } from '../../helpers'
 import axios from 'axios'
 
 export const uploadUserMediaRequest = () => ({

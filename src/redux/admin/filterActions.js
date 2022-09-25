@@ -13,7 +13,7 @@ import {
 } from './filterTypes'
 
 import { toast } from 'react-toastify'
-import { getApiUrl } from '../../helpers/config'
+import { getApiUrl } from '../../helpers'
 import axios from 'axios'
 
 export const getSavedFiltersRequest = () => ({

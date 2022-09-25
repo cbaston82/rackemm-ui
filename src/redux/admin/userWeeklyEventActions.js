@@ -15,7 +15,7 @@ import {
     RESET_USER_WEEKLY_EVENTS_REQUEST,
 } from './userWeeklyEventTypes'
 import { toast } from 'react-toastify'
-import { getApiUrl } from '../../helpers/config'
+import { getApiUrl } from '../../helpers'
 
 export const createWeeklyEventRequest = () => ({
     type: CREATE_USER_WEEKLY_EVENT_REQUEST,

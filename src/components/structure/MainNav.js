@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { FaUserAlt, FaSignOutAlt } from 'react-icons/fa'
 import { logoutUser } from '../../redux'
-import { isSubscriptionValid } from '../../helpers/config'
+import { userHasSubscription } from '../../helpers/config'
 
 function MainNav({ logoutUser, auth, stripeCustomer }) {
     const handleLogout = () => {
@@ -64,7 +64,7 @@ function MainNav({ logoutUser, auth, stripeCustomer }) {
                                         </NavLink>
                                     </li>
                                     <hr />
-                                    {isSubscriptionValid(stripeCustomer) && (
+                                    {userHasSubscription(stripeCustomer) && (
                                         <>
                                             <li>
                                                 <NavLink

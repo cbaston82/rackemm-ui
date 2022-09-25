@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getUserStripeCustomer } from '../../redux'
 import axios from 'axios'
-import { getApiUrl } from '../../helpers/config'
+import { getApiUrl } from '../../helpers'
 import CustomLoader from '../CustomeLoader'
 import usePageTitle from '../../hoook/usePageTitle'
 

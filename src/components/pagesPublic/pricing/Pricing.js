@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { getApiUrl } from '../../../helpers/config'
-import { plans } from '../../../helpers/config'
+import { getApiUrl } from '../../../helpers'
+import { plans } from '../../../helpers/plans'
 import PriceCard from './PriceCard'
 import usePageTitle from '../../../hoook/usePageTitle'
 

@@ -10,8 +10,9 @@ import usePageTitle from '../../hoook/usePageTitle'
 import useCreateCalendarEvent from '../../hoook/useCreateCalendarEvent'
 import { FaGoogle } from 'react-icons/fa'
 import Button from '../Button'
+import { canUserSaveEventToCalendar } from '../../helpers/config'
 
-function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
+function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent }) {
     usePageTitle('- Yearly Event')
     const [handleCreateCalendarEvent] = useCreateCalendarEvent()
     const { id } = useParams()
@@ -60,12 +61,16 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
                                                 : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
                                         }
                                     />
-                                    <Button
-                                        className="btn btn-primary w-100 mt-3"
-                                        onClick={() => handleCreateCalendarEvent(allYearlyEvents)}
-                                    >
-                                        Add to calendar <FaGoogle />
-                                    </Button>
+                                    {canUserSaveEventToCalendar(stripeCustomer) && (
+                                        <Button
+                                            className="btn btn-primary w-100 mt-3"
+                                            onClick={() =>
+                                                handleCreateCalendarEvent(allYearlyEvents)
+                                            }
+                                        >
+                                            Add to calendar <FaGoogle />
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                             <div className="col-md-9">
@@ -163,6 +168,7 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
 
 const mapStateToProps = (state) => ({
     allYearlyEvents: state.allYearlyEvents,
+    stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({

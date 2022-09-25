@@ -1,9 +1,9 @@
-import { canUserCreateEvents } from '../helpers/config'
+import { userCanCreateEvents } from '../helpers/config'
 import AlertMessageWithLinkEnd from '../components/AlertMessageWithLinkEnd'
 
 function useCanUserCreateEventsAlertMessage() {
     const canUserCreateEventsAlertMessage = (stripeCustomer, userEvents, type) => {
-        if (canUserCreateEvents(stripeCustomer, userEvents, type)) {
+        if (userCanCreateEvents(stripeCustomer, userEvents, type)) {
             return (
                 <AlertMessageWithLinkEnd
                     className="alert alert-info mt-3"

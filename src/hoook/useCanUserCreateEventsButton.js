@@ -1,4 +1,4 @@
-import { canUserCreateEvents } from '../helpers/config'
+import { userCanCreateEvents } from '../helpers/config'
 import Button from '../components/Button'
 import { FaPlus } from 'react-icons/fa'
 import useNoSubscriptionToast from './useNoSubscriptionToast'
@@ -7,7 +7,7 @@ function useCanUserCreateEventsButton() {
     const [handleNoSubscriptionToast] = useNoSubscriptionToast()
 
     const canUserCreateEventButton = (stripeCustomer, userWeeklyEvents, type) => {
-        if (!canUserCreateEvents(stripeCustomer, userWeeklyEvents, type)) {
+        if (!userCanCreateEvents(stripeCustomer, userWeeklyEvents, type)) {
             return (
                 <Button
                     disabled={true}

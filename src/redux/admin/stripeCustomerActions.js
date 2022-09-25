@@ -6,7 +6,7 @@ import {
     RESET_STRIPE_CUSTOMER_REQUEST,
 } from './stripeCustomerTypes'
 import { toast } from 'react-toastify'
-import { getApiUrl } from '../../helpers/config'
+import { getApiUrl } from '../../helpers'
 
 export const getUserStripeCustomerRequest = () => ({
     type: GET_USER_STRIPE_CUSTOMER_REQUEST,

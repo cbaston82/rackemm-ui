@@ -8,8 +8,9 @@ import { sortByDate } from '../../../redux/helpers/dates'
 import BreadCrumbs from '../../BreadCrumbs'
 import Filters from '../../Filters'
 import usePageTitle from '../../../hoook/usePageTitle'
+import { userCanSaveFilters } from '../../../helpers/config'
 
-function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents }) {
+function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents, stripeCustomer }) {
     usePageTitle('- Yearly Events')
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -42,7 +43,7 @@ function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents }) {
         <div className="container">
             <div className="d-flex justify-content-between">
                 <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
-                {auth.user.email && (
+                {userCanSaveFilters(stripeCustomer) && (
                     <Filters
                         filterValues={filterValues}
                         filterType="yearly"
@@ -67,6 +68,7 @@ function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents }) {
 const mapStateToProps = (state) => ({
     allYearlyEvents: state.allYearlyEvents,
     auth: state.auth,
+    stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({
