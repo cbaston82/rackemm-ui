@@ -44,3 +44,115 @@ export const formatPhoneNumber = (value) => {
     // bit of formatting and return it.
     return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`
 }
+
+export const formatTimeForWeeklyEvent = (time) => {
+    const militaryTo24 = [
+        {
+            military: '00',
+            nonMilitary: '12',
+        },
+        {
+            military: '01',
+            nonMilitary: '1',
+        },
+        {
+            military: '02',
+            nonMilitary: '2',
+        },
+        {
+            military: '03',
+            nonMilitary: '3',
+        },
+        {
+            military: '04',
+            nonMilitary: '4',
+        },
+        {
+            military: '05',
+            nonMilitary: '5',
+        },
+        {
+            military: '06',
+            nonMilitary: '6',
+        },
+        {
+            military: '07',
+            nonMilitary: '7',
+        },
+        {
+            military: '08',
+            nonMilitary: '8',
+        },
+        {
+            military: '09',
+            nonMilitary: '9',
+        },
+        {
+            military: '10',
+            nonMilitary: '10',
+        },
+        {
+            military: '11',
+            nonMilitary: '11',
+        },
+        {
+            military: '12',
+            nonMilitary: '12',
+        },
+        {
+            military: '13',
+            nonMilitary: '1',
+        },
+        {
+            military: '14',
+            nonMilitary: '2',
+        },
+        {
+            military: '15',
+            nonMilitary: '3',
+        },
+        {
+            military: '16',
+            nonMilitary: '4',
+        },
+        {
+            military: '17',
+            nonMilitary: '5',
+        },
+        {
+            military: '18',
+            nonMilitary: '6',
+        },
+        {
+            military: '19',
+            nonMilitary: '7',
+        },
+        {
+            military: '20',
+            nonMilitary: '8',
+        },
+        {
+            military: '21',
+            nonMilitary: '9',
+        },
+        {
+            military: '22',
+            nonMilitary: '10',
+        },
+        {
+            military: '23',
+            nonMilitary: '11',
+        },
+        {
+            military: '24',
+            nonMilitary: '12',
+        },
+    ]
+    let hours = time.split(':')[0]
+    let minutes = time.split(':')[1]
+    let timeOfDay = hours <= 11 || hours === '24' ? 'AM' : 'PM'
+
+    let cleanHour = militaryTo24.filter((ch) => ch.military === hours).pop().nonMilitary
+
+    return `${cleanHour}:${minutes} ${timeOfDay}`
+}

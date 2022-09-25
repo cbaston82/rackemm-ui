@@ -2,15 +2,21 @@ import { FaExternalLinkAlt } from 'react-icons/fa'
 
 export const tournamentColumns = [
     {
-        name: 'Date',
-        selector: (row) => new Date(row.startDate).toDateString(),
+        name: 'Start Time',
+        selector: (row) =>
+            new Date(row.startTime).toLocaleString([], {
+                month: '2-digit',
+                day: '2-digit',
+                year: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+            }),
         sortable: true,
     },
     {
         name: 'Venue',
         selector: (row) => row.venue,
         sortable: true,
-        hide: 'md',
     },
     {
         name: 'Game',
@@ -21,7 +27,6 @@ export const tournamentColumns = [
         name: 'City',
         selector: (row) => row.city,
         sortable: true,
-        hide: 'md',
     },
     {
         name: '',

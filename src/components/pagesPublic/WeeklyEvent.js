@@ -43,11 +43,13 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                         <div className="row">
                             <div className="col-md-3">
                                 <div className="text-center">
-                                    {allWeeklyEvents.event.posterImage ? (
-                                        <LightBoxImage image={allWeeklyEvents.event.posterImage} />
-                                    ) : (
-                                        <LightBoxImage image="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png" />
-                                    )}
+                                    <LightBoxImage
+                                        image={
+                                            allWeeklyEvents.event.posterImage.length
+                                                ? allWeeklyEvents.event.posterImage
+                                                : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
+                                        }
+                                    />
                                 </div>
                             </div>
                             <div className="col-md-9">

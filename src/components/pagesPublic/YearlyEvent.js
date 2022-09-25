@@ -7,9 +7,13 @@ import { MoonLoader } from 'react-spinners'
 import LightBoxImage from '../LightBoxImage'
 import BreadCrumbs from '../BreadCrumbs'
 import usePageTitle from '../../hoook/usePageTitle'
+import useCreateCalendarEvent from '../../hoook/useCreateCalendarEvent'
+import { FaGoogle } from 'react-icons/fa'
+import Button from '../Button'
 
 function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
     usePageTitle('- Yearly Event')
+    const [handleCreateCalendarEvent] = useCreateCalendarEvent()
     const { id } = useParams()
 
     useEffect(() => {
@@ -40,23 +44,51 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
             ) : (
                 <div className="card rounded-0 p-3">
                     <div className="card-body">
+                        <blockquote className="trello-card">
+                            <a href="https:&#x2F;&#x2F;trello.com&#x2F;c&#x2F;lRCG6Kmc&#x2F;4-private-list">
+                                Private List
+                            </a>
+                        </blockquote>
+                        <script src="https://p.trellocdn.com/embed.min.js"></script>
                         <div className="row">
                             <div className="col-md-3">
                                 <div className="text-center">
-                                    <LightBoxImage image={allYearlyEvents.event.posterImage} />
+                                    <LightBoxImage
+                                        image={
+                                            allYearlyEvents.event.posterImage.length
+                                                ? allYearlyEvents.event.posterImage
+                                                : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
+                                        }
+                                    />
+                                    <Button
+                                        className="btn btn-primary w-100 mt-3"
+                                        onClick={() => handleCreateCalendarEvent(allYearlyEvents)}
+                                    >
+                                        Add to calendar <FaGoogle />
+                                    </Button>
                                 </div>
                             </div>
                             <div className="col-md-9">
-                                <h5>{allYearlyEvents.event.title}</h5>
-                                <h6 className="text-info">{allYearlyEvents.event.description}</h6>
-                                <p className="mt-3 fa-spin-pulse text-black-50">
-                                    ADDRESS :{' '}
-                                    <span>
-                                        {allYearlyEvents.event.address},{' '}
-                                        {allYearlyEvents.event.city} {allYearlyEvents.event.state},{' '}
-                                        {allYearlyEvents.event.zipCode}
-                                    </span>
-                                </p>
+                                <div className="row d-flex flex-row-reverse">
+                                    <h4 className="fw-bolder">{allYearlyEvents.event.title}</h4>
+                                    <h6 className="lead fw-light mt-3">
+                                        {allYearlyEvents.event.description}
+                                    </h6>
+                                </div>
+                                <hr />
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label>Address</label>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <p>
+                                            {allYearlyEvents.event.address},{' '}
+                                            {allYearlyEvents.event.city}{' '}
+                                            {allYearlyEvents.event.state},{' '}
+                                            {allYearlyEvents.event.zipCode}
+                                        </p>
+                                    </div>
+                                </div>
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label>Game</label>
@@ -95,14 +127,6 @@ function YearlyEvent({ allYearlyEvents, fetchSingleYearlyEvent }) {
                                     </div>
                                     <div className="col-md-6">
                                         <p>{allYearlyEvents.event.pointOfContactPhone}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Day</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allYearlyEvents.event.day}</p>
                                     </div>
                                 </div>
                                 <div className="row">

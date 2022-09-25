@@ -1,4 +1,5 @@
 import { FaExternalLinkAlt } from 'react-icons/fa'
+import { formatTimeForWeeklyEvent } from '../../../helpers'
 
 export const tournamentColumns = [
     {
@@ -10,13 +11,11 @@ export const tournamentColumns = [
         name: 'Venue',
         selector: (row) => row.venue,
         sortable: true,
-        hide: 'md',
     },
     {
         name: 'Time',
-        selector: (row) => row.startTime,
+        selector: (row) => formatTimeForWeeklyEvent(row.startTime),
         sortable: true,
-        hide: 'md',
     },
     {
         name: 'Game',
@@ -27,7 +26,6 @@ export const tournamentColumns = [
         name: 'City',
         selector: (row) => row.city,
         sortable: true,
-        hide: 'md',
     },
     {
         name: '',

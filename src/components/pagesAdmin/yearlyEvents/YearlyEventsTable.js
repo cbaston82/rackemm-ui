@@ -1,4 +1,3 @@
-import { formatISO } from 'date-fns'
 import currencyFormatter from 'currency-formatter'
 import { Link } from 'react-router-dom'
 import { FaEdit, FaExternalLinkAlt, FaTrashAlt } from 'react-icons/fa'
@@ -17,16 +16,15 @@ function YearlyEventsTable({ events, handleDeleteEvent }) {
             sortable: true,
         },
         {
-            name: 'Date',
+            name: 'start',
             selector: (row) =>
-                formatISO(new Date(row.startDate), {
-                    representation: 'date',
+                new Date(row.startTime).toLocaleString([], {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
                 }),
-            sortable: true,
-        },
-        {
-            name: 'Time',
-            selector: (row) => row.startTime,
             sortable: true,
         },
         {

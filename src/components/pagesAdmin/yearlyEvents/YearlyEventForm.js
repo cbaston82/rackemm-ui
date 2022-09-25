@@ -1,4 +1,4 @@
-import { differenceInDays, formatDistance, formatISO, subDays } from 'date-fns'
+import { differenceInDays, formatDistance, subDays } from 'date-fns'
 import { MoonLoader } from 'react-spinners'
 import { cleanPublicImageName } from '../../../helpers'
 import BreadCrumbs from '../../BreadCrumbs'
@@ -161,45 +161,31 @@ function YearlyEventForm({
                                     </div>
                                 </fieldset>
                                 <fieldset>
-                                    <div data-row-span="3">
-                                        <div data-field-span="1">
-                                            <label className="small mb-1" htmlFor="startDate">
-                                                Start Date{' '}
-                                                <span className="text-danger fw-bolder">*</span>
-                                            </label>
-                                            <input
-                                                onChange={(e) => handleFormValueChange(e)}
-                                                type="date"
-                                                name="startDate"
-                                                value={formatISO(new Date(editEvent.startDate), {
-                                                    representation: 'date',
-                                                })}
-                                            />
-                                        </div>
-                                        <div data-field-span="1">
-                                            <label className="small mb-1" htmlFor="endDate">
-                                                End Date{' '}
-                                                <span className="text-danger fw-bolder">*</span>
-                                            </label>
-                                            <input
-                                                onChange={(e) => handleFormValueChange(e)}
-                                                type="date"
-                                                name="endDate"
-                                                value={formatISO(new Date(editEvent.endDate), {
-                                                    representation: 'date',
-                                                })}
-                                            />
-                                        </div>
+                                    <div data-row-span="2">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="startTime">
-                                                Start time{' '}
+                                                Start{' '}
                                                 <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
-                                                type="time"
+                                                type="datetime-local"
                                                 name="startTime"
                                                 value={editEvent.startTime}
+                                            />
+                                        </div>
+                                        <div data-field-span="1">
+                                            <label className="small mb-1" htmlFor="endTime">
+                                                End <span className="text-danger fw-bolder">*</span>
+                                                <span className="fw-light text-lowercase fw-bolder text-danger">
+                                                    Choose 11:59 PM if all day event
+                                                </span>
+                                            </label>
+                                            <input
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                type="datetime-local"
+                                                name="endTime"
+                                                value={editEvent.endTime}
                                             />
                                         </div>
                                     </div>
