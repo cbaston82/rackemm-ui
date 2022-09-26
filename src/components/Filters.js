@@ -126,7 +126,7 @@ function Filters({
                                         <form>
                                             <div className="row">
                                                 <div className="col">
-                                                    <p className="text-center fst-italic fw-ligh text-success">
+                                                    <p className="text-center fst-italic text-success">
                                                         {url}
                                                     </p>
                                                     <div className="form-group">

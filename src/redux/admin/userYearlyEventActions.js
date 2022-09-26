@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getApiUrl } from '../../helpers'
+import { getApiUrl, getDateTimeFromTimeString } from '../../helpers'
 import {
     CREATE_USER_YEARLY_EVENT_REQUEST,
     CREATE_USER_YEARLY_EVENT_SUCCESS,
@@ -89,6 +89,7 @@ export const getUserYearlyEventFailure = (error) => ({
     type: GET_USER_YEARLY_EVENT_FAILURE,
     payload: error,
 })
+
 export const resetUserYearlyEventsRequest = () => ({
     type: RESET_USER_YEARLY_EVENTS_REQUEST,
 })
@@ -99,13 +100,19 @@ export const resetUserYearlyEvents = () => (dispatch) => {
 
 export const createYearlyEvent = (event) => (dispatch, state) => {
     dispatch(createYearlyEventRequest())
+    const startTime = new Date(event.startTime).getTime() / 1000
+    const endTime = new Date(event.endTime).getTime() / 1000
 
     axios
-        .post(`${getApiUrl()}/yearly-events`, event, {
-            headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+        .post(
+            `${getApiUrl()}/yearly-events`,
+            { ...event, startTime, endTime },
+            {
+                headers: {
+                    Authorization: `Bearer ${state().auth.user.token}`,
+                },
             },
-        })
+        )
         .then((response) => {
             dispatch(createYearlyEventSuccess(response.data))
             toast.success(' successfully!')
@@ -127,7 +134,15 @@ export const getUserYearlyEvents = () => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(getUserYearlyEventsSuccess(response.data))
+            let events = response.data.map((event) => {
+                return {
+                    ...event,
+                    startTime: getDateTimeFromTimeString(event.startTime),
+                    endTime: getDateTimeFromTimeString(event.endTime),
+                }
+            })
+
+            dispatch(getUserYearlyEventsSuccess(events))
         })
         .catch((error) => {
             const errorMsg = error.response.statusText
@@ -135,6 +150,7 @@ export const getUserYearlyEvents = () => (dispatch, state) => {
             toast.error('Events could not be loaded!')
         })
 }
+
 export const deleteUserYearlyEvent = (eventId) => (dispatch, state) => {
     dispatch(deleteUserYearlyEventRequest())
 
@@ -157,13 +173,21 @@ export const deleteUserYearlyEvent = (eventId) => (dispatch, state) => {
 
 export const updateUserYearlyEvent = (event) => (dispatch, state) => {
     dispatch(updateUserYearlyEventRequest())
+    const startTime = new Date(event.startTime).getTime() / 1000
+    const endTime = new Date(event.endTime).getTime() / 1000
+
+    console.log({ ...event, startTime, endTime })
 
     axios
-        .patch(`${getApiUrl()}/yearly-events/${event._id}`, event, {
-            headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+        .patch(
+            `${getApiUrl()}/yearly-events/${event._id}`,
+            { ...event, startTime, endTime },
+            {
+                headers: {
+                    Authorization: `Bearer ${state().auth.user.token}`,
+                },
             },
-        })
+        )
         .then((response) => {
             dispatch(updateUserYearlyEventSuccess(response.data))
             toast.success('Event was updated successfully!')
@@ -185,7 +209,13 @@ export const getUserYearlyEvent = (id) => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(getUserYearlyEventSuccess(response.data))
+            dispatch(
+                getUserYearlyEventSuccess({
+                    ...response.data,
+                    startTime: getDateTimeFromTimeString(response.data.startTime),
+                    endTime: getDateTimeFromTimeString(response.data.endTime),
+                }),
+            )
         })
         .catch((error) => {
             const errorMsg = error.response.data.error

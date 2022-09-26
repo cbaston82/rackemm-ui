@@ -1,6 +1,6 @@
 import { FaTrashAlt } from 'react-icons/fa'
 
-function FiltersTable({ filters, handleDeleteFilter }) {
+function FiltersTable({ filters, handleDelete }) {
     return (
         <table className="table table-dark mt-3">
             <thead>
@@ -22,7 +22,7 @@ function FiltersTable({ filters, handleDeleteFilter }) {
                                 <div className="d-flex justify-content-center">
                                     <div className="ms-3">
                                         <button
-                                            onClick={() => handleDeleteFilter(filter._id)}
+                                            onClick={() => handleDelete(filter._id)}
                                             className="btn btn-outline-danger btn-sm"
                                         >
                                             <FaTrashAlt />

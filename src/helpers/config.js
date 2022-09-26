@@ -9,28 +9,8 @@ export const userSubscriptionValid = (stripeCustomer) => {
         return false
     }
 
-    const locale = Intl.DateTimeFormat().resolvedOptions().locale
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-
-    const currentDate = new Date(
-        new Date()
-            .toLocaleString(locale, {
-                timeZone: timezone,
-            })
-            .split(',')[0],
-    )
-
-    const subscriptionEndDate = new Date(
-        new Date(stripeCustomer.customer.subscriptionEnd)
-            .toLocaleString(locale, {
-                timeZone: timezone,
-            })
-            .split(',')[0],
-    )
-
-    console.log('currentDate', currentDate)
-    console.log('timeStamp', new Date(1664089200 * 1000))
-    console.log('subscriptionEndDate', subscriptionEndDate)
+    const currentDate = Date.now()
+    const subscriptionEndDate = stripeCustomer.customer.subscriptionEnd * 1000
 
     return currentDate < subscriptionEndDate
 }

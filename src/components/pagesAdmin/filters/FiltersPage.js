@@ -4,34 +4,14 @@ import BreadCrumbs from '../../BreadCrumbs'
 import CustomLoader from '../../CustomeLoader'
 import { getSavedFilters, deleteFilter } from '../../../redux'
 import FiltersTable from './FiltersTable'
-import MySwal from 'sweetalert2'
+import useDeleteSwalModal from '../../../hoook/useDeleteSwalModal'
 
 function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
     useEffect(() => {
         getSavedFilters()
     }, [getSavedFilters])
 
-    const handleDeleteFilter = (id) => {
-        MySwal.fire({
-            showCancelButton: true,
-            title: 'Are you sure?',
-            text: 'You want to delete this event?',
-            confirmButtonColor: 'red',
-            confirmButtonText: 'Yes, delete this filter!',
-            icon: 'question',
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete.isConfirmed) {
-                deleteFilter(id)
-
-                MySwal.fire({
-                    confirmButtonColor: '#00cdcd',
-                    title: 'Your filer has been deleted',
-                    icon: 'success',
-                })
-            }
-        })
-    }
+    const [handleDelete] = useDeleteSwalModal(deleteFilter)
 
     return (
         <div className="container">
@@ -39,10 +19,7 @@ function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
             {savedFilters.loading ? (
                 <CustomLoader color="white" loaderMessage="fetching events" />
             ) : (
-                <FiltersTable
-                    handleDeleteFilter={handleDeleteFilter}
-                    filters={savedFilters.filters}
-                />
+                <FiltersTable handleDelete={handleDelete} filters={savedFilters.filters} />
             )}
         </div>
     )

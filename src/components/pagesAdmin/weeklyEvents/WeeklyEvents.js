@@ -18,7 +18,7 @@ function WeeklyEvents({
 }) {
     usePageTitle('- Account Weekly Events')
     const [canUserCreateEventsAlertMessage] = useCanUserCreateEventsAlertMessage()
-    const [handleDeleteEvent] = useDeleteSwalModal(deleteUserWeeklyEvent)
+    const [handleDelete] = useDeleteSwalModal(deleteUserWeeklyEvent)
     const [canUserCreateEventButton] = useCanUserCreateEventsButton()
 
     useEffect(() => {
@@ -44,7 +44,7 @@ function WeeklyEvents({
                             )}
                             <WeeklyEventsTable
                                 events={userWeeklyEvents.events}
-                                handleDeleteEvent={handleDeleteEvent}
+                                handleDeleteEvent={handleDelete}
                             />
                         </>
                     ) : (

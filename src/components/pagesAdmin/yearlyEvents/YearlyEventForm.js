@@ -122,7 +122,6 @@ function YearlyEventForm({
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
                                                 name="bracket"
-                                                j
                                                 type="text"
                                                 value={editEvent.bracket}
                                             />

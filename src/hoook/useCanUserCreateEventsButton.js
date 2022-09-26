@@ -6,12 +6,14 @@ import useNoSubscriptionToast from './useNoSubscriptionToast'
 function useCanUserCreateEventsButton() {
     const [handleNoSubscriptionToast] = useNoSubscriptionToast()
 
-    const canUserCreateEventButton = (stripeCustomer, userWeeklyEvents, type) => {
-        if (!userCanCreateEvents(stripeCustomer, userWeeklyEvents, type)) {
+    const canUserCreateEventButton = (stripeCustomer, userCreatedEvents, type) => {
+        if (!userCanCreateEvents(stripeCustomer, userCreatedEvents, type)) {
             return (
                 <Button
                     disabled={true}
-                    onClick={handleNoSubscriptionToast}
+                    onClick={() =>
+                        handleNoSubscriptionToast(stripeCustomer, userCreatedEvents, type)
+                    }
                     buttonText="New Event"
                     className="btn btn-outline-secondary btn-sm"
                 >

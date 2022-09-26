@@ -12,7 +12,7 @@ function BreadCrumbs({
             <ol className="breadcrumb">
                 {previousLinks.length > 0 ? (
                     previousLinks.map((link) => (
-                        <li className="breadcrumb-item">
+                        <li key={link.name} className="breadcrumb-item">
                             <Link to={link.path}>{link.name}</Link>
                         </li>
                     ))

@@ -4,6 +4,7 @@ import { FaEdit, FaExternalLinkAlt, FaTrashAlt } from 'react-icons/fa'
 import EventsCreated from '../../EventsCreated'
 import DataTable from 'react-data-table-component'
 import '../../SolarizedTheme'
+import { formatTimeForWeeklyEvent } from '../../../helpers'
 
 function WeeklyEventsTable({ events, handleDeleteEvent }) {
     const paginationComponentOptions = {
@@ -23,7 +24,7 @@ function WeeklyEventsTable({ events, handleDeleteEvent }) {
         },
         {
             name: 'Time',
-            selector: (row) => row.startTime,
+            selector: (row) => formatTimeForWeeklyEvent(row.startTime),
             sortable: true,
         },
         {

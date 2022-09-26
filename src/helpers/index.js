@@ -2,6 +2,32 @@ export const cleanFileName = (string) => {
     return string.replace(/[!@#$%^&*()?><,./\\+ -]/g, '_')
 }
 
+export const getDateTimeFromTimeString = (timeStamp) => {
+    let a = new Date(timeStamp * 1000)
+    let year = a.getFullYear()
+    let month = a.getMonth() + 1
+    let date = a.getDate()
+    let hour = a.getHours()
+    let min = a.getMinutes()
+    if (month.toString().length < 2) {
+        month = '0' + month
+    }
+
+    if (date.toString().length < 2) {
+        date = '0' + date
+    }
+
+    if (min.toString().length < 2) {
+        min = '0' + min
+    }
+
+    if (hour === 0) {
+        hour = '00'
+    }
+
+    return year + '-' + month + '-' + date + 'T' + hour + ':' + min
+}
+
 export const allowedFileTypeUploads = () => ['image/jpeg', 'image/png', 'image/jpg']
 
 export const cleanPublicImageName = (publicId) => {
@@ -42,39 +68,39 @@ export const formatTimeForWeeklyEvent = (time) => {
         },
         {
             military: '01',
-            nonMilitary: '1',
+            nonMilitary: '01',
         },
         {
             military: '02',
-            nonMilitary: '2',
+            nonMilitary: '02',
         },
         {
             military: '03',
-            nonMilitary: '3',
+            nonMilitary: '03',
         },
         {
             military: '04',
-            nonMilitary: '4',
+            nonMilitary: '04',
         },
         {
             military: '05',
-            nonMilitary: '5',
+            nonMilitary: '05',
         },
         {
             military: '06',
-            nonMilitary: '6',
+            nonMilitary: '06',
         },
         {
             military: '07',
-            nonMilitary: '7',
+            nonMilitary: '07',
         },
         {
             military: '08',
-            nonMilitary: '8',
+            nonMilitary: '08',
         },
         {
             military: '09',
-            nonMilitary: '9',
+            nonMilitary: '09',
         },
         {
             military: '10',
@@ -90,39 +116,39 @@ export const formatTimeForWeeklyEvent = (time) => {
         },
         {
             military: '13',
-            nonMilitary: '1',
+            nonMilitary: '01',
         },
         {
             military: '14',
-            nonMilitary: '2',
+            nonMilitary: '02',
         },
         {
             military: '15',
-            nonMilitary: '3',
+            nonMilitary: '03',
         },
         {
             military: '16',
-            nonMilitary: '4',
+            nonMilitary: '04',
         },
         {
             military: '17',
-            nonMilitary: '5',
+            nonMilitary: '05',
         },
         {
             military: '18',
-            nonMilitary: '6',
+            nonMilitary: '06',
         },
         {
             military: '19',
-            nonMilitary: '7',
+            nonMilitary: '07',
         },
         {
             military: '20',
-            nonMilitary: '8',
+            nonMilitary: '08',
         },
         {
             military: '21',
-            nonMilitary: '9',
+            nonMilitary: '09',
         },
         {
             military: '22',

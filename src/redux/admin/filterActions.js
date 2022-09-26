@@ -103,6 +103,7 @@ export const saveFilter = (filter) => (dispatch, state) => {
         })
         .then((response) => {
             dispatch(saveFilterSuccess(response.data))
+            window.location.reload()
             toast.success('Filter successfully saved!')
         })
         .catch((error) => {

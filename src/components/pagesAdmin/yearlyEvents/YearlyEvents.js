@@ -18,7 +18,7 @@ function YearlyEvents({
 }) {
     usePageTitle('- Account Yearly Event')
     const [canUserCreateEventsAlertMessage] = useCanUserCreateEventsAlertMessage()
-    const [handleDeleteEvent] = useDeleteSwalModal(deleteUserYearlyEvent)
+    const [handleDelete] = useDeleteSwalModal(deleteUserYearlyEvent)
     const [canUserCreateEventButton] = useCanUserCreateEventsButton()
 
     useEffect(() => {
@@ -44,7 +44,7 @@ function YearlyEvents({
                             )}
                             <YearlyEventsTable
                                 events={userYearlyEvents.events}
-                                handleDeleteEvent={handleDeleteEvent}
+                                handleDeleteEvent={handleDelete}
                             />
                         </>
                     ) : (

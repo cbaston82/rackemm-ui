@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getApiUrl } from '../../helpers'
+import { getApiUrl, getDateTimeFromTimeString } from '../../helpers'
 import {
     FETCH_ALL_YEARLY_EVENTS_REQUEST,
     FETCH_ALL_YEARLY_EVENTS_SUCCESS,
@@ -43,7 +43,14 @@ export const getAllYearlyEvents = () => (dispatch) => {
     axios
         .get(`${getApiUrl()}/yearly-events/get`)
         .then((response) => {
-            dispatch(yearlyEventsSuccess(response.data))
+            let events = response.data.map((event) => {
+                return {
+                    ...event,
+                    startTime: getDateTimeFromTimeString(event.startTime),
+                    endTime: getDateTimeFromTimeString(event.endTime),
+                }
+            })
+            dispatch(yearlyEventsSuccess(events))
         })
         .catch((error) => {
             const errorMsg = error.message
@@ -57,7 +64,13 @@ export const fetchSingleYearlyEvent = (id) => (dispatch) => {
     axios
         .get(`${getApiUrl()}/yearly-events/get/${id}`)
         .then((response) => {
-            dispatch(fetchSingleYearlyEventSuccess(response.data))
+            dispatch(
+                fetchSingleYearlyEventSuccess({
+                    ...response.data,
+                    startTime: getDateTimeFromTimeString(response.data.startTime),
+                    endTime: getDateTimeFromTimeString(response.data.endTime),
+                }),
+            )
         })
         .catch((error) => {
             const errorMsg = error.response.data.error

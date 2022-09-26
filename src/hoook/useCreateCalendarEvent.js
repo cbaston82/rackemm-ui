@@ -26,11 +26,11 @@ function useCreateCalendarEvent() {
                         location: `${allYearlyEvents.event.address}, ${allYearlyEvents.event.city}, ${allYearlyEvents.event.state} ${allYearlyEvents.event.zipCode}`,
                         description: allYearlyEvents.event.description,
                         start: {
-                            dateTime: allYearlyEvents.event.startTime,
+                            dateTime: new Date(allYearlyEvents.event.startTime),
                             timeZone: 'America/Los_Angeles',
                         },
                         end: {
-                            dateTime: allYearlyEvents.event.endTime,
+                            dateTime: new Date(allYearlyEvents.event.endTime),
                             timeZone: 'America/Los_Angeles',
                         },
                         recurrence: ['RRULE:FREQ=DAILY;COUNT=2'],

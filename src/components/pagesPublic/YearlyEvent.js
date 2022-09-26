@@ -45,11 +45,6 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent }
             ) : (
                 <div className="card rounded-0 p-3">
                     <div className="card-body">
-                        <blockquote className="trello-card">
-                            <a href="https:&#x2F;&#x2F;trello.com&#x2F;c&#x2F;lRCG6Kmc&#x2F;4-private-list">
-                                Private List
-                            </a>
-                        </blockquote>
                         <script src="https://p.trellocdn.com/embed.min.js"></script>
                         <div className="row">
                             <div className="col-md-3">
