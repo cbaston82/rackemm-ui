@@ -53,85 +53,59 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                 </div>
                             </div>
                             <div className="col-md-9">
-                                <h5>{allWeeklyEvents.event.title}</h5>
-                                <h6 className="text-info">{allWeeklyEvents.event.description}</h6>
-                                <p className="mt-3 fa-spin-pulse text-black-50">
-                                    ADDRESS :{' '}
-                                    <span>
-                                        {allWeeklyEvents.event.address},{' '}
-                                        {allWeeklyEvents.event.city} {allWeeklyEvents.event.state},{' '}
-                                        {allWeeklyEvents.event.zipCode}
-                                    </span>
-                                </p>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Game</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allWeeklyEvents.event.game}</p>
-                                    </div>
+                                <div className="row d-flex flex-row-reverse">
+                                    <h4 className="fw-bolder">{allWeeklyEvents.event.title}</h4>
+                                    <h6 className="fw-light mt-3">
+                                        {allWeeklyEvents.event.description}
+                                    </h6>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Rating System</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allWeeklyEvents.event.ratingSystem}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Venue</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allWeeklyEvents.event.venue}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Point of Contact</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allWeeklyEvents.event.pointOfContact}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Point of Contact Phone</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allWeeklyEvents.event.pointOfContactPhone}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Day</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allWeeklyEvents.event.day}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Point of Contact Phone</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allWeeklyEvents.event.pointOfContactPhone}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="event-tags">
-                                            <p>TAGS</p>
-                                            <div>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                            </div>
-                                        </div>
+                                <div className="row mt-5">
+                                    <div className="col-md-12">
+                                        <ul className="list-group">
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">Venue</label>
+                                                <p className="mb-0 fw-light">
+                                                    {allWeeklyEvents.event.venue}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">Address</label>
+                                                <p className="mb-0 text-primary">
+                                                    {allWeeklyEvents.event.address},{' '}
+                                                    {allWeeklyEvents.event.city}{' '}
+                                                    {allWeeklyEvents.event.state},{' '}
+                                                    {allWeeklyEvents.event.zipCode}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">Game</label>
+                                                <p className="m-0 fw-light">
+                                                    {allWeeklyEvents.event.game}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">Rating System</label>
+                                                <p className="mb-0 fw-light">
+                                                    {allWeeklyEvents.event.ratingSystem}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">
+                                                    Point of Contact
+                                                </label>
+                                                <p className="mb-0 fw-light">
+                                                    {allWeeklyEvents.event.pointOfContact}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">
+                                                    Point of Contact Phone
+                                                </label>
+                                                <p className="mb-0 fw-light">
+                                                    {allWeeklyEvents.event.pointOfContactPhone}
+                                                </p>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

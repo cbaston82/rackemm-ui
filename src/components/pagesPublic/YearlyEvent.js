@@ -71,85 +71,57 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent }
                             <div className="col-md-9">
                                 <div className="row d-flex flex-row-reverse">
                                     <h4 className="fw-bolder">{allYearlyEvents.event.title}</h4>
-                                    <h6 className="lead fw-light mt-3">
+                                    <h6 className="fw-light mt-3">
                                         {allYearlyEvents.event.description}
                                     </h6>
                                 </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Address</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>
-                                            {allYearlyEvents.event.address},{' '}
-                                            {allYearlyEvents.event.city}{' '}
-                                            {allYearlyEvents.event.state},{' '}
-                                            {allYearlyEvents.event.zipCode}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Game</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allYearlyEvents.event.game}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Rating System</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allYearlyEvents.event.ratingSystem}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Venue</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allYearlyEvents.event.venue}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Point of Contact</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allYearlyEvents.event.pointOfContact}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Point of Contact Phone</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allYearlyEvents.event.pointOfContactPhone}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>Point of Contact Phone</label>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <p>{allYearlyEvents.event.pointOfContactPhone}</p>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="event-tags">
-                                            <p>TAGS</p>
-                                            <div>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                                <span className="badge bg-secondary tag">Food</span>
-                                            </div>
-                                        </div>
+                                <div className="row mt-5">
+                                    <div className="col-md-12">
+                                        <ul className="list-group">
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">Venue</label>
+                                                <p className="mb-0 fw-light">
+                                                    {allYearlyEvents.event.venue}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">Address</label>
+                                                <p className="mb-0 text-primary">
+                                                    {allYearlyEvents.event.address},{' '}
+                                                    {allYearlyEvents.event.city}{' '}
+                                                    {allYearlyEvents.event.state},{' '}
+                                                    {allYearlyEvents.event.zipCode}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">Game</label>
+                                                <p className="m-0 fw-light">
+                                                    {allYearlyEvents.event.game}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">Rating System</label>
+                                                <p className="mb-0 fw-light">
+                                                    {allYearlyEvents.event.ratingSystem}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">
+                                                    Point of Contact
+                                                </label>
+                                                <p className="mb-0 fw-light">
+                                                    {allYearlyEvents.event.pointOfContact}
+                                                </p>
+                                            </li>
+                                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                                <label className="fw-bolder">
+                                                    Point of Contact Phone
+                                                </label>
+                                                <p className="mb-0 fw-light">
+                                                    {allYearlyEvents.event.pointOfContactPhone}
+                                                </p>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
