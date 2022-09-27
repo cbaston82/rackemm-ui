@@ -8,7 +8,7 @@ import { sortByDate } from '../../../redux/helpers/dates'
 import BreadCrumbs from '../../BreadCrumbs'
 import Filters from '../../Filters'
 import usePageTitle from '../../../hoook/usePageTitle'
-import { userCanSaveFilters } from '../../../helpers/config'
+import { userHasValidSubscription } from '../../../helpers/config'
 
 function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents, stripeCustomer }) {
     usePageTitle('- Yearly Events')
@@ -43,7 +43,7 @@ function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents, stripeCustome
         <div className="container">
             <div className="d-flex justify-content-between">
                 <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
-                {userCanSaveFilters(stripeCustomer) && (
+                {userHasValidSubscription(stripeCustomer) && (
                     <Filters
                         filterValues={filterValues}
                         filterType="yearly"

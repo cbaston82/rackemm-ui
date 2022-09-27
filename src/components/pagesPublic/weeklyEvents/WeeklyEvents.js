@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom'
 import { sortByDayInWeek } from '../../../redux/helpers/dates'
 import usePageTitle from '../../../hoook/usePageTitle'
 import BreadCrumbs from '../../BreadCrumbs'
-import { userSubscriptionValid } from '../../../helpers/config'
+import { userHasValidSubscription } from '../../../helpers/config'
 import Filters from '../../Filters'
 
 function WeeklyEvents({ stripeCustomer, getAllWeeklyEvents, allWeeklyEvents }) {
@@ -44,7 +44,7 @@ function WeeklyEvents({ stripeCustomer, getAllWeeklyEvents, allWeeklyEvents }) {
         <div className="container">
             <div className="d-flex justify-content-between">
                 <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
-                {userSubscriptionValid(stripeCustomer) && (
+                {userHasValidSubscription(stripeCustomer) && (
                     <Filters
                         filterValues={filterValues}
                         filterType="weekly"

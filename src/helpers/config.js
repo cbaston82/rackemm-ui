@@ -4,7 +4,7 @@ export const userHasSubscription = (stripeCustomer) => {
     return stripeCustomer.customer.subscriptionStart !== null
 }
 
-export const userSubscriptionValid = (stripeCustomer) => {
+export const userHasValidSubscription = (stripeCustomer) => {
     if (!userHasSubscription(stripeCustomer)) {
         return false
     }
@@ -15,24 +15,16 @@ export const userSubscriptionValid = (stripeCustomer) => {
     return currentDate < subscriptionEndDate
 }
 
-export const userCanSaveFilters = (stripeCustomer) => {
-    return userSubscriptionValid(stripeCustomer)
-}
-
-export const canUserSaveEventToCalendar = (stripeCustomer) => {
-    return userSubscriptionValid(stripeCustomer)
-}
-
 export const userCanCreateEvents = (stripeCustomer, userCreatedEvents, type) => {
     if (type === 'weekly') {
         return (
-            userSubscriptionValid(stripeCustomer) &&
+            userHasValidSubscription(stripeCustomer) &&
             userEventsCount(userCreatedEvents) < userAllowedEvents(stripeCustomer).weeklyEventsMax
         )
     }
 
     return (
-        userSubscriptionValid(stripeCustomer) &&
+        userHasValidSubscription(stripeCustomer) &&
         userEventsCount(userCreatedEvents) < userAllowedEvents(stripeCustomer).yearlyEventsMax
     )
 }

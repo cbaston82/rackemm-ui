@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { FaSave, FaFilter, FaRegSave } from 'react-icons/fa'
 import CustomLoader from './CustomeLoader'
 import { getSavedFilters, saveFilter, setFilter } from '../redux'
-import { userCanSaveFilters } from '../helpers/config'
+import { userHasValidSubscription } from '../helpers/config'
 import useNoSubscriptionToast from '../hoook/useNoSubscriptionToast'
 
 function Filters({
@@ -80,7 +80,7 @@ function Filters({
                             ),
                     )}
                     <li>
-                        {auth.user.email && userCanSaveFilters(stripeCustomer) ? (
+                        {auth.user.email && userHasValidSubscription(stripeCustomer) ? (
                             <button
                                 className="dropdown-item"
                                 data-bs-toggle="modal"
