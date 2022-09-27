@@ -48,7 +48,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                     <>
                                         <LightBoxImage
                                             image={
-                                                allWeeklyEvents.event.posterImage.length
+                                                allWeeklyEvents.event.posterImage !== ''
                                                     ? allWeeklyEvents.event.posterImage
                                                     : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
                                             }
