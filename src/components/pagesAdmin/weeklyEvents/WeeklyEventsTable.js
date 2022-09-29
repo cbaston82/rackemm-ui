@@ -1,8 +1,8 @@
 import currencyFormatter from 'currency-formatter'
 import { Link } from 'react-router-dom'
 import { FaEdit, FaExternalLinkAlt, FaTrashAlt } from 'react-icons/fa'
-import EventsCreated from '../../EventsCreated'
 import DataTable from 'react-data-table-component'
+import EventsCreated from '../../EventsCreated'
 import '../../SolarizedTheme'
 import { formatTimeForWeeklyEvent } from '../../../helpers'
 
@@ -70,19 +70,21 @@ function WeeklyEventsTable({ events, handleDeleteEvent }) {
         {
             name: '',
             button: true,
+            // eslint-disable-next-line react/no-unstable-nested-components
             cell: (row) => (
                 <>
                     <Link className="ms-3" to={`/weekly-event/${row._id}`}>
-                        <button className="btn btn-light btn-sm">
+                        <button type="button" className="btn btn-light btn-sm">
                             <FaExternalLinkAlt />
                         </button>
                     </Link>
                     <Link className="ms-3" to={`/account/weekly-events/edit/${row._id}`}>
-                        <button className="btn btn-info btn-sm">
+                        <button type="button" className="btn btn-info btn-sm">
                             <FaEdit />
                         </button>
                     </Link>
                     <button
+                        type="button"
                         data-id={row._id}
                         onClick={() => handleDeleteEvent(row._id)}
                         className="btn btn-danger btn-sm ms-3"

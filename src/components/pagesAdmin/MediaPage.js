@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaTrash, FaUpload, FaImage } from 'react-icons/fa'
-import CustomLoader from '../CustomeLoader'
-import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
+import CustomLoader from '../CustomeLoader'
+import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import { allowedFileTypeUploads, cleanFileName } from '../../helpers'
 import usePageTitle from '../../hoook/usePageTitle'
 
@@ -148,6 +148,7 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                                                 />
                                             </a>
                                             <button
+                                                type="button"
                                                 onClick={() => handleImageDelete(image.publicId)}
                                                 className="btn btn-outline-danger position-absolute btn-sm"
                                                 style={{ bottom: '0', left: '0' }}

@@ -1,8 +1,7 @@
 import { plans } from './plans'
 
-export const userHasSubscription = (stripeCustomer) => {
-    return stripeCustomer.customer.subscriptionStart !== null
-}
+export const userHasSubscription = (stripeCustomer) =>
+    stripeCustomer.customer.subscriptionStart !== null
 
 export const userHasValidSubscription = (stripeCustomer) => {
     if (!userHasSubscription(stripeCustomer)) {
@@ -14,6 +13,15 @@ export const userHasValidSubscription = (stripeCustomer) => {
 
     return currentDate < subscriptionEndDate
 }
+
+export const userAllowedEvents = (stripeCustomer) =>
+    plans
+        .filter((plan) => plan.subscriptionPlanId === stripeCustomer.customer.subscriptionPlanId)
+        .pop()
+
+export const userHasEvents = (userEvents) => userEvents && userEvents.events.length > 0
+
+export const userEventsCount = (userEvents) => userEvents && userEvents.events.length
 
 export const userCanCreateEvents = (stripeCustomer, userCreatedEvents, type) => {
     if (type === 'weekly') {
@@ -27,18 +35,4 @@ export const userCanCreateEvents = (stripeCustomer, userCreatedEvents, type) => 
         userHasValidSubscription(stripeCustomer) &&
         userEventsCount(userCreatedEvents) < userAllowedEvents(stripeCustomer).yearlyEventsMax
     )
-}
-
-export const userAllowedEvents = (stripeCustomer) => {
-    return plans
-        .filter((plan) => plan.subscriptionPlanId === stripeCustomer.customer.subscriptionPlanId)
-        .pop()
-}
-
-export const userHasEvents = (userEvents) => {
-    return userEvents && userEvents.events.length > 0
-}
-
-export const userEventsCount = (userEvents) => {
-    return userEvents && userEvents.events.length
 }

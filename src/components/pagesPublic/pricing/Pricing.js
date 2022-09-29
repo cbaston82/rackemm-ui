@@ -29,6 +29,7 @@ function Pricing({ auth, stripeCustomer }) {
                 window.location.replace(data.data)
             })
             .catch((error) => {
+                // eslint-disable-next-line no-console
                 console.log(error)
             })
     }
@@ -52,6 +53,7 @@ function Pricing({ auth, stripeCustomer }) {
                 window.location.replace(data.data)
             })
             .catch((error) => {
+                // eslint-disable-next-line no-console
                 console.log(error)
             })
     }

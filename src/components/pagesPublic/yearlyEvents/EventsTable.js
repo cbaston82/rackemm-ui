@@ -1,6 +1,6 @@
 import DataTable from 'react-data-table-component'
-import CustomLoader from '../../CustomeLoader'
 import { useEffect, useMemo, useState } from 'react'
+import CustomLoader from '../../CustomeLoader'
 import FilterComponent from './Filter'
 import '../../SolarizedTheme'
 
@@ -22,13 +22,9 @@ function EventsTable({
     const tournamentCitiesInArray = events.map((item) => item.city)
     const gamesInArray = events.map((item) => item.game)
 
-    const cities = useMemo(() => {
-        return [...new Set(tournamentCitiesInArray)]
-    }, [tournamentCitiesInArray])
+    const cities = useMemo(() => [...new Set(tournamentCitiesInArray)], [tournamentCitiesInArray])
 
-    const games = useMemo(() => {
-        return [...new Set(gamesInArray)]
-    }, [gamesInArray])
+    const games = useMemo(() => [...new Set(gamesInArray)], [gamesInArray])
 
     const [pending, setPending] = useState(true)
     const [rows, setRows] = useState([])
@@ -118,19 +114,19 @@ function EventsTable({
         }
 
         const handlePriceChange = (e) => {
-            let buyIn = e.target.value
+            const buyIn = e.target.value
             setBuyIn(buyIn)
             setFilterBuyIn(buyIn)
         }
 
         const handleCityChange = (e) => {
-            let city = e.target.value
+            const city = e.target.value
             setFilterCity(city)
             setCity(city)
         }
 
         const handleGameChange = (e) => {
-            let game = e.target.value
+            const game = e.target.value
             setFilterGame(game)
             setGame(game)
         }

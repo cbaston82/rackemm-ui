@@ -1,38 +1,34 @@
-export const cleanFileName = (string) => {
-    return string.replace(/[!@#$%^&*()?><,./\\+ -]/g, '_')
-}
+export const cleanFileName = (string) => string.replace(/[!@#$%^&*()?><,./\\+ -]/g, '_')
 
 export const getDateTimeFromTimeString = (timeStamp) => {
-    let a = new Date(timeStamp * 1000)
-    let year = a.getFullYear()
+    const a = new Date(timeStamp * 1000)
+    const year = a.getFullYear()
     let month = a.getMonth() + 1
     let date = a.getDate()
     let hour = a.getHours()
     let min = a.getMinutes()
     if (month.toString().length < 2) {
-        month = '0' + month
+        month = `0${month}`
     }
 
     if (date.toString().length < 2) {
-        date = '0' + date
+        date = `0${date}`
     }
 
     if (min.toString().length < 2) {
-        min = '0' + min
+        min = `0${min}`
     }
 
     if (hour === 0) {
         hour = '00'
     }
 
-    return year + '-' + month + '-' + date + 'T' + hour + ':' + min
+    return `${year}-${month}-${date}T${hour}:${min}`
 }
 
 export const allowedFileTypeUploads = () => ['image/jpeg', 'image/png', 'image/jpg']
 
-export const cleanPublicImageName = (publicId) => {
-    return publicId.split('/')[1].split('-')[0]
-}
+export const cleanPublicImageName = (publicId) => publicId.split('/')[1].split('-')[0]
 
 export const formatPhoneNumber = (value) => {
     // if input value is falsy eg if the user deletes the input, then just return
@@ -163,15 +159,13 @@ export const formatTimeForWeeklyEvent = (time) => {
             nonMilitary: '12',
         },
     ]
-    let hours = time.split(':')[0]
-    let minutes = time.split(':')[1]
-    let timeOfDay = hours <= 11 || hours === '24' ? 'AM' : 'PM'
+    const hours = time.split(':')[0]
+    const minutes = time.split(':')[1]
+    const timeOfDay = hours <= 11 || hours === '24' ? 'AM' : 'PM'
 
-    let cleanHour = militaryTo24.filter((ch) => ch.military === hours).pop().nonMilitary
+    const cleanHour = militaryTo24.filter((ch) => ch.military === hours).pop().nonMilitary
 
     return `${cleanHour}:${minutes} ${timeOfDay}`
 }
 
-export const getApiUrl = () => {
-    return '/api/v1/'
-}
+export const getApiUrl = () => '/api/v1/'

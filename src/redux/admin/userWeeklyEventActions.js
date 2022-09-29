@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import {
     CREATE_USER_WEEKLY_EVENT_REQUEST,
     CREATE_USER_WEEKLY_EVENT_SUCCESS,
@@ -14,7 +15,6 @@ import {
     UPDATE_USER_WEEKLY_EVENT_REQUEST,
     RESET_USER_WEEKLY_EVENTS_REQUEST,
 } from './userWeeklyEventTypes'
-import { toast } from 'react-toastify'
 import { getApiUrl } from '../../helpers'
 
 export const createWeeklyEventRequest = () => ({
@@ -116,7 +116,7 @@ export const getUserWeeklyEvents = () => (dispatch, state) => {
         .catch((error) => {
             const errorMsg = error.response.statusText
             dispatch(getUserWeeklyEventsFailure(errorMsg))
-            toast.error('Events could not be loaded!')
+            toast.error(errorMsg)
         })
 }
 export const deleteUserWeeklyEvent = (eventId) => (dispatch, state) => {
@@ -135,7 +135,7 @@ export const deleteUserWeeklyEvent = (eventId) => (dispatch, state) => {
         .catch((error) => {
             const errorMsg = error.response.statusText
             dispatch(deleteUserWeeklyEventFailure(errorMsg))
-            toast.error('Event could not be deleted!')
+            toast.error(errorMsg)
         })
 }
 
@@ -155,6 +155,6 @@ export const updateUserWeeklyEvent = (event) => (dispatch, state) => {
         .catch((error) => {
             const errorMsg = error.response.statusText
             dispatch(updateUserWeeklyEventFailure(errorMsg))
-            toast.error('Event could not be updated!')
+            toast.error(errorMsg)
         })
 }

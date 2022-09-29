@@ -12,20 +12,19 @@ function Register({ signupUser, auth }) {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        password2: '',
+        passwordConfirm: '',
         fullName: '',
     })
 
-    const { email, password, password2, fullName } = formData
+    const { email, password, passwordConfirm, fullName } = formData
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
 
-        if (password !== password2) {
+        if (password !== passwordConfirm) {
             return toast.error('Passwords do not match')
-        } else {
-            signupUser(formData)
         }
+        signupUser(formData)
     }
 
     const handleOnChange = (e) => {
@@ -52,7 +51,7 @@ function Register({ signupUser, auth }) {
                         <div className="card-body">
                             {auth.loading ? (
                                 <div className="d-flex justify-content-center align-content-center">
-                                    <MoonLoader size={150} loading={true} />
+                                    <MoonLoader size={150} loading />
                                 </div>
                             ) : (
                                 <form onSubmit={handleOnSubmit}>
@@ -114,9 +113,9 @@ function Register({ signupUser, auth }) {
                                         <input
                                             onChange={handleOnChange}
                                             type="password"
-                                            name="password2"
+                                            name="passwordConfirm"
                                             className="form-control"
-                                            value={password2}
+                                            value={passwordConfirm}
                                             placeholder="Confirm your password"
                                         />
                                     </div>

@@ -43,13 +43,11 @@ export const getAllYearlyEvents = () => (dispatch) => {
     axios
         .get(`${getApiUrl()}/yearly-events/get`)
         .then((response) => {
-            let events = response.data.map((event) => {
-                return {
-                    ...event,
-                    startTime: getDateTimeFromTimeString(event.startTime),
-                    endTime: getDateTimeFromTimeString(event.endTime),
-                }
-            })
+            const events = response.data.map((event) => ({
+                ...event,
+                startTime: getDateTimeFromTimeString(event.startTime),
+                endTime: getDateTimeFromTimeString(event.endTime),
+            }))
             dispatch(yearlyEventsSuccess(events))
         })
         .catch((error) => {

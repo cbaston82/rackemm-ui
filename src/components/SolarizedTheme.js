@@ -1,4 +1,5 @@
 import { createTheme } from 'react-data-table-component'
+
 createTheme(
     'rackemm_theme',
     {

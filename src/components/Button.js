@@ -11,7 +11,7 @@ function Button({
 }) {
     if (disabled) {
         return (
-            <button onClick={onClick} className={className}>
+            <button type="button" onClick={onClick} className={className}>
                 {buttonText} {children}
             </button>
         )
@@ -20,7 +20,12 @@ function Button({
     if (link) {
         return (
             <a href={link} target="_blank" rel="noreferrer">
-                <button disabled={disabled} onClick={onClick && onClick} className={className}>
+                <button
+                    type="button"
+                    disabled={disabled}
+                    onClick={onClick && onClick}
+                    className={className}
+                >
                     {buttonText} {children}
                 </button>
             </a>
@@ -29,7 +34,12 @@ function Button({
 
     return (
         <Link to={path}>
-            <button disabled={disabled} onClick={onClick && onClick} className={className}>
+            <button
+                type="button"
+                disabled={disabled}
+                onClick={onClick && onClick}
+                className={className}
+            >
                 {buttonText} {children}
             </button>
         </Link>

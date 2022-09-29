@@ -8,7 +8,7 @@ function FiltersTable({ filters, handleDelete }) {
                     <th>description</th>
                     <th>type</th>
                     <th>url</th>
-                    <th></th>
+                    <th> </th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +22,7 @@ function FiltersTable({ filters, handleDelete }) {
                                 <div className="d-flex justify-content-center">
                                     <div className="ms-3">
                                         <button
+                                            type="button"
                                             onClick={() => handleDelete(filter._id)}
                                             className="btn btn-outline-danger btn-sm"
                                         >

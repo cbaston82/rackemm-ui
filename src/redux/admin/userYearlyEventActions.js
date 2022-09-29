@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import { getApiUrl, getDateTimeFromTimeString } from '../../helpers'
 import {
     CREATE_USER_YEARLY_EVENT_REQUEST,
@@ -18,7 +19,6 @@ import {
     GET_USER_YEARLY_EVENT_REQUEST,
     RESET_USER_YEARLY_EVENTS_REQUEST,
 } from './userYearlyEventTypes'
-import { toast } from 'react-toastify'
 
 export const createYearlyEventRequest = () => ({
     type: CREATE_USER_YEARLY_EVENT_REQUEST,
@@ -115,7 +115,7 @@ export const createYearlyEvent = (event) => (dispatch, state) => {
         )
         .then((response) => {
             dispatch(createYearlyEventSuccess(response.data))
-            toast.success(' successfully!')
+            toast.success('Event created successfully!')
         })
         .catch((error) => {
             const errorMsg = error.response.data.error
@@ -134,20 +134,18 @@ export const getUserYearlyEvents = () => (dispatch, state) => {
             },
         })
         .then((response) => {
-            let events = response.data.map((event) => {
-                return {
-                    ...event,
-                    startTime: getDateTimeFromTimeString(event.startTime),
-                    endTime: getDateTimeFromTimeString(event.endTime),
-                }
-            })
+            const events = response.data.map((event) => ({
+                ...event,
+                startTime: getDateTimeFromTimeString(event.startTime),
+                endTime: getDateTimeFromTimeString(event.endTime),
+            }))
 
             dispatch(getUserYearlyEventsSuccess(events))
         })
         .catch((error) => {
             const errorMsg = error.response.statusText
             dispatch(getUserYearlyEventsFailure(errorMsg))
-            toast.error('Events could not be loaded!')
+            toast.error(errorMsg)
         })
 }
 
@@ -167,7 +165,7 @@ export const deleteUserYearlyEvent = (eventId) => (dispatch, state) => {
         .catch((error) => {
             const errorMsg = error.response.statusText
             dispatch(deleteUserYearlyEventFailure(errorMsg))
-            toast.error('Event could not be deleted!')
+            toast.error(errorMsg)
         })
 }
 
@@ -175,8 +173,6 @@ export const updateUserYearlyEvent = (event) => (dispatch, state) => {
     dispatch(updateUserYearlyEventRequest())
     const startTime = new Date(event.startTime).getTime() / 1000
     const endTime = new Date(event.endTime).getTime() / 1000
-
-    console.log({ ...event, startTime, endTime })
 
     axios
         .patch(
@@ -195,7 +191,7 @@ export const updateUserYearlyEvent = (event) => (dispatch, state) => {
         .catch((error) => {
             const errorMsg = error.response.statusText
             dispatch(updateUserYearlyEventFailure(errorMsg))
-            toast.error('Event could not be updated!')
+            toast.error(errorMsg)
         })
 }
 

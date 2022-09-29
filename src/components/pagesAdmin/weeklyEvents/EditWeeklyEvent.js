@@ -21,7 +21,7 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia
                 name === 'pointOfContactPhone'
                     ? formatPhoneNumber(value)
                     : name === 'buyIn'
-                    ? parseInt(value)
+                    ? parseInt(value, 10)
                     : value,
         })
     }
@@ -51,13 +51,13 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia
                     handleFormValueChange={handleFormValueChange}
                     handleFormSubmit={handleFormSubmit}
                     editEvent={editEvent}
-                    pageRequest={'Edit Event'}
+                    pageRequest="Edit Event"
                 />
             ) : (
                 <NotFound404
                     message="Event does not exists "
-                    buttonText={'Back to yearly events'}
-                    redirectTo={'account/weekly-events'}
+                    buttonText="Back to yearly events"
+                    redirectTo="account/weekly-events"
                 />
             )}
         </div>

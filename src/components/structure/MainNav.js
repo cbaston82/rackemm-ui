@@ -28,7 +28,7 @@ function MainNav({ logoutUser, auth, stripeCustomer }) {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon" />
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -46,7 +46,7 @@ function MainNav({ logoutUser, auth, stripeCustomer }) {
                             <li className="nav-item dropdown">
                                 <Link
                                     className="nav-link dropdown-toggle"
-                                    to="#"
+                                    to="#/"
                                     id="navbarDropdown"
                                     role="button"
                                     data-bs-toggle="dropdown"
@@ -105,7 +105,11 @@ function MainNav({ logoutUser, auth, stripeCustomer }) {
                                         </>
                                     )}
                                     <li>
-                                        <button className="dropdown-item" onClick={handleLogout}>
+                                        <button
+                                            type="button"
+                                            className="dropdown-item"
+                                            onClick={handleLogout}
+                                        >
                                             <FaSignOutAlt /> Logout
                                         </button>
                                     </li>
@@ -138,7 +142,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    logoutUser: (user) => dispatch(logoutUser()),
+    logoutUser: () => dispatch(logoutUser()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainNav)

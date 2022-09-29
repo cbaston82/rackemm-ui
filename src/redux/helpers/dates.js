@@ -8,12 +8,7 @@ export const daysInWeek = {
     Sunday: 7,
 }
 
-export const sortByDayInWeek = (data) => {
-    return data.sort((a, b) => daysInWeek[a.day] - daysInWeek[b.day])
-}
+export const sortByDayInWeek = (data) => data.sort((a, b) => daysInWeek[a.day] - daysInWeek[b.day])
 
-export const sortByDate = (data) => {
-    return data.sort((a, b) => {
-        return new Date(a.startDate) - new Date(b.startDate)
-    })
-}
+export const sortByDate = (data) =>
+    data.sort((a, b) => new Date(a.startDate) - new Date(b.startDate))

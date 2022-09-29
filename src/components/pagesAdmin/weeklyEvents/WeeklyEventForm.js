@@ -1,8 +1,8 @@
 import { differenceInDays, formatDistance, subDays } from 'date-fns'
 import { MoonLoader } from 'react-spinners'
+import { FaRegSave } from 'react-icons/fa'
 import { cleanPublicImageName } from '../../../helpers'
 import BreadCrumbs from '../../BreadCrumbs'
-import { FaRegSave } from 'react-icons/fa'
 
 function WeeklyEventForm({
     handleFormValueChange,
@@ -33,7 +33,7 @@ function WeeklyEventForm({
                 <div className="card-body">
                     {loading ? (
                         <div className="d-flex justify-content-center align-content-center">
-                            <MoonLoader size={150} loading={true} />
+                            <MoonLoader size={150} loading />
                         </div>
                     ) : (
                         <form onSubmit={handleFormSubmit} className="grid-form">

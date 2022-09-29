@@ -35,7 +35,7 @@ export const loginUser = (user) => (dispatch) => {
     dispatch(loginUserRequest())
 
     axios
-        .post('/api/v1/user/login', user)
+        .post('/api/v1/auth/login', user)
         .then((response) => {
             toast.success('You are now logged in')
             dispatch(loginUserSuccess(response.data))
@@ -51,7 +51,7 @@ export const signupUser = (user) => (dispatch) => {
     dispatch(loginUserRequest())
 
     axios
-        .post('/api/v1/user/signup ', user)
+        .post('/api/v1/auth/signup ', user)
         .then((response) => {
             dispatch(loginUserSuccess(response.data))
             toast.success('You are now logged in')

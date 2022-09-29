@@ -65,7 +65,9 @@ function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId, loadUserStrip
                     </>
                 ) : (
                     <Link to="/login">
-                        <button className="btn btn-outline-secondary mb-3">Sign Up</button>
+                        <button type="button" className="btn btn-outline-secondary mb-3">
+                            Sign Up
+                        </button>
                     </Link>
                 )}
             </div>

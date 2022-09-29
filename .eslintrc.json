@@ -1,0 +1,31 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "default-param-last": "off",
+    "react/jsx-filename-extension": "off",
+    "prettier/prettier": "error",
+    "spaced-comment": "off",
+    "no-console": "warn",
+    "consistent-return": "off",
+    "func-names": "off",
+    "object-shorthand": "off",
+    "no-process-exit": "off",
+    "no-param-reassign": "off",
+    "no-return-await": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "import/no-extraneous-dependencies": "off",
+    "prefer-destructuring": ["error", { "object": true, "array": false}],
+    "no-unused-vars": ["error", {"argsIgnorePattern": "req|res|next|val|localStorage|window"}],
+    "no-undef": "off",
+    "react/no-array-index-key": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "import/prefer-default-export": "off",
+    "no-shadow": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-nested-ternary": "off"
+  }
+}

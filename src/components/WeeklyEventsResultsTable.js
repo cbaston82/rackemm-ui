@@ -26,6 +26,7 @@ function WeeklyEventsResultsTable() {
         },
         {
             name: 'url',
+            // eslint-disable-next-line react/no-unstable-nested-components
             cell: (row) => (
                 <a
                     href={row.url}

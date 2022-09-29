@@ -20,7 +20,11 @@ function BreadCrumbs({
                     <>
                         {navigateToPreviousLink && (
                             <li className="breadcrumb-item">
-                                <button className="btn btn-link p-0" onClick={() => navigate(-1)}>
+                                <button
+                                    type="button"
+                                    className="btn btn-link p-0"
+                                    onClick={() => navigate(-1)}
+                                >
                                     Back
                                 </button>
                             </li>

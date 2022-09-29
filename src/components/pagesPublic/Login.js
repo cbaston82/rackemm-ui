@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../redux'
 import usePageTitle from '../../hoook/usePageTitle'
 
-function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
+function LoginPage({ loginUser, auth }) {
     usePageTitle('- Login')
     const [formData, setFormData] = useState({
         email: '',
@@ -44,7 +44,7 @@ function LoginPage({ loginUser, auth, getUserStripeCustomer }) {
                         <div className="card-body">
                             {auth.loading ? (
                                 <div className="d-flex justify-content-center align-content-center">
-                                    <MoonLoader size={150} loading={true} />
+                                    <MoonLoader size={150} loading />
                                 </div>
                             ) : (
                                 <form onSubmit={handleOnSubmit}>

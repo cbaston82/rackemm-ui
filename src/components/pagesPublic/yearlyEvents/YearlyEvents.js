@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import { tournamentColumns } from './yearlyEventsColumns'
 import EventsTable from './EventsTable'
 import { getAllYearlyEvents } from '../../../redux'
-import { connect } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
 import { sortByDate } from '../../../redux/helpers/dates'
 import BreadCrumbs from '../../BreadCrumbs'
 import Filters from '../../Filters'
 import usePageTitle from '../../../hoook/usePageTitle'
 import { userHasValidSubscription } from '../../../helpers/config'
 
-function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents, stripeCustomer }) {
+function YearlyEvents({ getAllYearlyEvents, allYearlyEvents, stripeCustomer }) {
     usePageTitle('- Yearly Events')
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -67,7 +67,6 @@ function YearlyEvents({ auth, getAllYearlyEvents, allYearlyEvents, stripeCustome
 
 const mapStateToProps = (state) => ({
     allYearlyEvents: state.allYearlyEvents,
-    auth: state.auth,
     stripeCustomer: state.stripeCustomer,
 })
 

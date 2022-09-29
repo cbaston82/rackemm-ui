@@ -15,6 +15,7 @@ function useCreateCalendarEvent() {
                 scope: SCOPES,
             })
 
+            // eslint-disable-next-line no-console
             gapi.client.load('calendar', 'v3', () => console.log('bam!'))
 
             gapi.auth2
@@ -49,9 +50,9 @@ function useCreateCalendarEvent() {
                         resource: event,
                     })
 
-                    request.execute((event) => {
-                        console.log(event)
-                        window.open(event.htmlLink)
+                    request.execute((calendarEvent) => {
+                        // eslint-disable-next-line no-undef
+                        window.open(calendarEvent.htmlLink)
                     })
                 })
         })

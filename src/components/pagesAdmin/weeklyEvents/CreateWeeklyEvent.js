@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import WeeklyEventForm from './WeeklyEventForm'
 import { useNavigate } from 'react-router-dom'
+import WeeklyEventForm from './WeeklyEventForm'
 import { createWeeklyEvent, getUserMedia } from '../../../redux'
 import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
@@ -40,7 +40,7 @@ function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, 
                 name === 'pointOfContactPhone'
                     ? formatPhoneNumber(value)
                     : name === 'buyIn'
-                    ? parseInt(value)
+                    ? parseInt(value, 10)
                     : value,
         })
     }
@@ -69,7 +69,7 @@ function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, 
                 handleFormSubmit={handleFormSubmit}
                 editEvent={editEvent}
                 loading={userWeeklyEvents.loading}
-                pageRequest={'Create Weekly Event'}
+                pageRequest="Create Weekly Event"
             />
         </div>
     )

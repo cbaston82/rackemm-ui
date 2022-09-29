@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify'
+import axios from 'axios'
 import {
     GET_SAVED_FILTERS_REQUEST,
     GET_SAVED_FILTERS_FAILURE,
@@ -12,9 +14,7 @@ import {
     SET_FILTER_REQUEST,
 } from './filterTypes'
 
-import { toast } from 'react-toastify'
 import { getApiUrl } from '../../helpers'
-import axios from 'axios'
 
 export const getSavedFiltersRequest = () => ({
     type: GET_SAVED_FILTERS_REQUEST,
@@ -108,7 +108,8 @@ export const saveFilter = (filter) => (dispatch, state) => {
         })
         .catch((error) => {
             dispatch(saveFilterFailure(error.response.data.error))
-            toast.error('Filter could not be saved!')
+            const errorMsg = error.response.data.error
+            toast.error(errorMsg)
         })
 }
 

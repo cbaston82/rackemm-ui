@@ -11,7 +11,8 @@ function Rate({
     const getColor = (index) => {
         if (hoverRating >= index) {
             return color.filled
-        } else if (!hoverRating && rating >= index) {
+        }
+        if (!hoverRating && rating >= index) {
             return color.filled
         }
 

@@ -7,7 +7,7 @@ function HeroSection() {
         <section className="rackemm-hero-1">
             <div className="container">
                 <div className="row">
-                    <div className="col-xs-1 col col-md-2 col-lg-2 col-xl-2 col-xxl-2"></div>
+                    <div className="col-xs-1 col col-md-2 col-lg-2 col-xl-2 col-xxl-2" />
                     <div className="col-xs-1 col-sm-12 col-md-8 col-lg-8 col-xl-12 col-xxl-12">
                         <div className="text-center text-white mt-5">
                             <h1
@@ -25,7 +25,7 @@ function HeroSection() {
                             <p className="text-white font-monospace fst-italic">
                                 Find a tournament anywhere. anytime. any place
                             </p>
-                            <button className="btn btn-outline-secondary mt-3 btn-lg">
+                            <button type="button" className="btn btn-outline-secondary mt-3 btn-lg">
                                 <Link
                                     to="/register"
                                     className="text-white"

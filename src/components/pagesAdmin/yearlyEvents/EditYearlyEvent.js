@@ -7,7 +7,7 @@ import NotFound404 from '../../pagesPublic/NotFound404'
 import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
-function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, getUserMedia, userMedia }) {
+function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, userMedia }) {
     usePageTitle('- Account Yearly Event Edit')
     const { id } = useParams()
     const [editEvent, setEditEvent] = useState(null)
@@ -18,11 +18,11 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, getUserMedia
         setEditEvent({
             ...editEvent,
             [name]:
-                name === 'pointOfContactPhone'
-                    ? formatPhoneNumber(value)
-                    : name === 'buyIn'
-                    ? parseInt(value)
-                    : value,
+                name !== 'pointOfContactPhone'
+                    ? name === 'buyIn'
+                        ? parseInt(value, 10)
+                        : value
+                    : formatPhoneNumber(value),
         })
     }
 
@@ -47,13 +47,13 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, getUserMedia
                     handleFormValueChange={handleFormValueChange}
                     handleFormSubmit={handleFormSubmit}
                     editEvent={editEvent}
-                    pageRequest={'Edit Event'}
+                    pageRequest="Edit Event"
                 />
             ) : (
                 <NotFound404
                     message="Event does not exists "
-                    buttonText={'Back to yearly events'}
-                    redirectTo={'account/yearly-events'}
+                    buttonText="Back to yearly events"
+                    redirectTo="account/yearly-events"
                 />
             )}
         </div>

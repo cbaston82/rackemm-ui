@@ -3,6 +3,7 @@ import { FaExternalLinkAlt, FaPlus } from 'react-icons/fa'
 import { Octokit } from 'octokit'
 import Button from '../Button'
 import CustomLoader from '../CustomeLoader'
+
 const octokit = new Octokit({
     auth: process.env.REACT_GITHUB_ACCESS_TOKEN,
 })
@@ -12,26 +13,26 @@ function Features() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        test()
-    }, [])
+        const getProjectIssues = async () => {
+            setLoading(true)
+            await octokit
+                .request('GET /repos/{owner}/{repo}/issues', {
+                    owner: 'cbaston82',
+                    assignee: 'cbaston82',
+                    state: 'open',
+                    repo: 'rackemm-public',
+                })
+                .then((response) => {
+                    setLoading(false)
+                    setIssues(response.data)
+                })
+                .catch(() => {
+                    setLoading(false)
+                })
+        }
 
-    const test = async () => {
-        setLoading(true)
-        await octokit
-            .request('GET /repos/{owner}/{repo}/issues', {
-                owner: 'cbaston82',
-                assignee: 'cbaston82',
-                state: 'open',
-                repo: 'rackemm-public',
-            })
-            .then((response) => {
-                setLoading(false)
-                setIssues(response.data)
-            })
-            .catch((error) => {
-                setLoading(false)
-            })
-    }
+        getProjectIssues()
+    }, [])
 
     return (
         <div className="container mt-5">
@@ -63,7 +64,7 @@ function Features() {
                         </div>
                         {issues &&
                             issues.map((issue) => {
-                                let milestone = issue.milestone.title.split(' ')[0].toString()
+                                const milestone = issue.milestone.title.split(' ')[0].toString()
                                 return (
                                     <div key={issue.id} className="p-4 mb-3 bg-white">
                                         <span className="fw-bolder text-black">{issue.title}</span>
@@ -79,20 +80,18 @@ function Features() {
                                                 >
                                                     {issue.state}
                                                 </span>
-                                                {issue.labels.map((label) => {
-                                                    return (
-                                                        <span
-                                                            key={label.id}
-                                                            className={`badge ${
-                                                                label.name === 'feature request'
-                                                                    ? 'bg-warning'
-                                                                    : 'bg-danger'
-                                                            } mx-1`}
-                                                        >
-                                                            {label.name}
-                                                        </span>
-                                                    )
-                                                })}
+                                                {issue.labels.map((label) => (
+                                                    <span
+                                                        key={label.id}
+                                                        className={`badge ${
+                                                            label.name === 'feature request'
+                                                                ? 'bg-warning'
+                                                                : 'bg-danger'
+                                                        } mx-1`}
+                                                    >
+                                                        {label.name}
+                                                    </span>
+                                                ))}
                                             </div>
                                             <Button
                                                 className="btn btn-outline-secondary btn-sm"
@@ -111,7 +110,7 @@ function Features() {
                                                     style={{
                                                         width: milestone,
                                                     }}
-                                                ></div>
+                                                />
                                             </div>
                                             <div className="d-md-flex justify-content-between mt-2">
                                                 <p className="progress-info text-black-50 fw-light mt-2 fst-italic">

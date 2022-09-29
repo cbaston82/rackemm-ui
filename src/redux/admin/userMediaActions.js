@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify'
+import axios from 'axios'
 import {
     UPLOAD_USER_MEDIA_FAILURE,
     UPLOAD_USER_MEDIA_REQUEST,
@@ -10,9 +12,7 @@ import {
     DELETE_USER_MEDIA_REQUEST,
     DELETE_USER_MEDIA_SUCCESS,
 } from './userMediaTypes'
-import { toast } from 'react-toastify'
 import { getApiUrl } from '../../helpers'
-import axios from 'axios'
 
 export const uploadUserMediaRequest = () => ({
     type: UPLOAD_USER_MEDIA_REQUEST,
@@ -105,7 +105,7 @@ export const uploadUserMedia = (media, fileName) => (dispatch, state) => {
 
     axios
         .post(
-            `${getApiUrl()}media/upload`,
+            `${getApiUrl()}media/`,
             { data: media, fileName },
             {
                 headers: {

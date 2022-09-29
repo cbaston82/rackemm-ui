@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { getUserStripeCustomer } from '../../redux'
 import axios from 'axios'
+import { getUserStripeCustomer } from '../../redux'
 import { getApiUrl } from '../../helpers'
 import CustomLoader from '../CustomeLoader'
 import usePageTitle from '../../hoook/usePageTitle'
@@ -10,12 +10,12 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
     usePageTitle('- Account Profile')
 
     const initialValues = {
-        fullName: auth.user.fullName ?? '',
-        email: auth.user.email ?? '',
+        fullName: auth.user.fullName ? auth.user.fullName : '',
+        email: auth.user.email ? auth.user.email : '',
     }
 
     const [userInfo, setUserInfo] = useState(initialValues)
-    let [sessionId, setSessionId] = useState('')
+    const [sessionId, setSessionId] = useState('')
 
     const handleOnChange = (e) => {
         const { name, value } = e.target
@@ -54,6 +54,7 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer }) {
                 window.location.replace(data.data)
             })
             .catch((error) => {
+                // eslint-disable-next-line no-console
                 console.log(error)
             })
     }

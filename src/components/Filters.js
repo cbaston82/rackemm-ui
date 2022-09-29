@@ -63,6 +63,7 @@ function Filters({
                                 <div key={filter._id}>
                                     <li>
                                         <button
+                                            type="button"
                                             className={`dropdown-item ${
                                                 savedFilters.loadedFilter === filter._id
                                                     ? 'active'
@@ -82,6 +83,7 @@ function Filters({
                     <li>
                         {auth.user.email && userHasValidSubscription(stripeCustomer) ? (
                             <button
+                                type="button"
                                 className="dropdown-item"
                                 data-bs-toggle="modal"
                                 data-bs-target="#exampleModal"
@@ -89,7 +91,11 @@ function Filters({
                                 <FaSave /> Save current filter
                             </button>
                         ) : (
-                            <button onClick={handleNoSubscription} className="dropdown-item">
+                            <button
+                                type="button"
+                                onClick={handleNoSubscription}
+                                className="dropdown-item"
+                            >
                                 <FaSave /> Save current filter
                             </button>
                         )}
@@ -115,7 +121,7 @@ function Filters({
                                 className="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
-                            ></button>
+                            />
                         </div>
                         <div className="modal-body">
                             {!savedFilters.filterCreated ? (
