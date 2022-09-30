@@ -89,8 +89,15 @@ function LoginPage({ loginUser, auth }) {
                                         </button>
                                     </div>
                                     <span className="text-black-50">Already have an account?</span>{' '}
-                                    <Link className="link-cyan" to="/login">
+                                    <Link className="link-secondary" to="/login">
                                         Login
+                                    </Link>
+                                    <br />
+                                    <span className="text-black-50">
+                                        Forgot your password?
+                                    </span>{' '}
+                                    <Link className="link-secondary " to="/forgot-password">
+                                        Reset password
                                     </Link>
                                 </form>
                             )}

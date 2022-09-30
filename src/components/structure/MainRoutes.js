@@ -26,6 +26,7 @@ import LoggedIn from '../LoggedIn'
 import MediaPage from '../pagesAdmin/MediaPage'
 import FiltersPage from '../pagesAdmin/filters/FiltersPage'
 import HasSubscriptionRoutes from './HasSubscriptionRoutes'
+import ForgotPassword from '../pagesPublic/ForgotPassword'
 
 function MainRoutes({ auth, stripeCustomer }) {
     return (
@@ -41,6 +42,7 @@ function MainRoutes({ auth, stripeCustomer }) {
             <Route exact path="/pricing" element={<Pricing />} />
             <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route exact path="/terms-of-use" element={<TermsOfUse />} />
+            <Route exact path="/forgot-password" element={<ForgotPassword />} />
             {/* Auth Routes */}
             <Route
                 exact
