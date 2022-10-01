@@ -20,8 +20,8 @@ function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
                 <div className="row">
                     {allYearlyEvents.events &&
                         allYearlyEvents.events
-                            .filter((event) => new Date(event.startDate) > new Date())
-                            .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+                            .filter((event) => new Date(event.startTime) > new Date())
+                            .sort((a, b) => new Date(a.startTime) - new Date(b.startTime))
                             .slice(0, 6)
                             .map((event) => (
                                 <UpcomingYearlyEventCard key={event._id} event={event} />

@@ -22,7 +22,7 @@ function UpcomingYearlyEventCard({ event }) {
                     </a>
                 </div>
                 <div className="card-footer text-white fw-light">
-                    {formatISO(new Date(event.startDate), {
+                    {formatISO(new Date(event.startTime), {
                         representation: 'date',
                     })}
                 </div>
