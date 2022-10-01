@@ -1,62 +1,14 @@
-import { useEffect } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
-import { getApiUrl } from '../../../helpers'
 import { plans } from '../../../helpers/plans'
 import PriceCard from './PriceCard'
 import usePageTitle from '../../../hoook/usePageTitle'
+import useLoadUserStripeAccountDetails from '../../../hoook/useLoadUserStripeAccountDetails'
+import useCheckoutUser from '../../../hoook/useCheckoutUser'
 
 function Pricing({ auth, stripeCustomer }) {
     usePageTitle('- Pricing')
-    useEffect(() => {}, [])
-
-    const checkoutUser = async (e, priceId) => {
-        e.preventDefault()
-
-        await axios
-            .post(
-                `${getApiUrl()}stripe/checkout-user`,
-                {
-                    priceId: priceId,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${auth.user.token}`,
-                    },
-                },
-            )
-            .then((data) => {
-                window.location.replace(data.data)
-            })
-            .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.log(error)
-            })
-    }
-
-    const loadUserStripeAccountDetails = async (e) => {
-        e.preventDefault()
-
-        await axios
-            .post(
-                `${getApiUrl()}stripe/create-portal-session`,
-                {
-                    customerId: stripeCustomer.customer.customerId,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${auth.user.token}`,
-                    },
-                },
-            )
-            .then((data) => {
-                window.location.replace(data.data)
-            })
-            .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.log(error)
-            })
-    }
+    const [loadUserStripeAccountDetails] = useLoadUserStripeAccountDetails(auth, stripeCustomer)
+    const [checkoutUser] = useCheckoutUser(auth)
 
     return (
         <div className="container" id="pricing-section">

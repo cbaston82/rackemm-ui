@@ -1,46 +1,12 @@
-import React, { useState } from 'react'
-import axios from 'axios'
 import { FaKey, FaCheck } from 'react-icons/fa'
-import { toast } from 'react-toastify'
 import usePageTitle from '../../hoook/usePageTitle'
-import { getApiUrl } from '../../helpers'
 import CustomLoader from '../CustomeLoader'
+import useForgotPassword from '../../hoook/useForgotPassword'
 
 function ForgotPassword() {
     usePageTitle('- Forgot Password')
-
-    const [tokenSent, setTokenSent] = useState(false)
-    const [formData, setFormData] = useState({
-        email: '',
-    })
-
-    const handleOnSubmit = async (e) => {
-        e.preventDefault()
-
-        if (formData.email === '') {
-            return toast.error('Email cannot be blank')
-        }
-
-        setTokenSent(true)
-
-        await axios
-            .post(`${getApiUrl()}auth/forgot-password`, formData)
-            .then((response) => {
-                setTokenSent(false)
-                toast.success(response.data)
-            })
-            .catch((error) => {
-                setTokenSent(false)
-                toast.error(error.response.data.error)
-            })
-    }
-
-    const handleOnChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }))
-    }
+    const [handleForgotPasswordSubmit, handleInputChange, loading, forgotPasswordForm] =
+        useForgotPassword()
 
     return (
         <div className="container">
@@ -55,29 +21,29 @@ function ForgotPassword() {
             </div>
             <div className="row d-flex justify-content-center mt-3">
                 <div className="col-sm-10 col-md-6 col-lg-4">
-                    {tokenSent ? (
+                    {loading ? (
                         <CustomLoader color="white" loaderMessage="Requesting reset link" />
                     ) : (
                         <div className="card">
                             <div className="card-body">
-                                <form onSubmit={handleOnSubmit}>
+                                <form onSubmit={handleForgotPasswordSubmit}>
                                     <div className="mb-3">
                                         <input
-                                            onChange={handleOnChange}
+                                            onChange={handleInputChange}
                                             type="email"
                                             name="email"
                                             className="form-control"
-                                            value={formData.email}
+                                            value={forgotPasswordForm.email}
                                             placeholder="Please enter your email"
                                         />
                                     </div>
                                     <div className="mb-3">
                                         <button
-                                            disabled={!formData.email}
+                                            disabled={!forgotPasswordForm.email}
                                             type="submit"
                                             className="form-control btn btn-outline-secondary"
                                         >
-                                            Request Link {tokenSent && <FaCheck />}
+                                            Request Link {loading && <FaCheck />}
                                         </button>
                                     </div>
                                 </form>

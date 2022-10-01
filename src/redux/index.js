@@ -1,5 +1,5 @@
 // Used for exporting redux component folders
-export { loginUser, logoutUser, signupUser } from './auth/authActions'
+export { loginUser, logoutUser, signupUser, updatePassword } from './auth/authActions'
 export { getAllWeeklyEvents, fetchSingleWeeklyEvent } from './events/weeklyEventActions'
 export { getAllYearlyEvents, fetchSingleYearlyEvent } from './events/yearlyEventActions'
 // Auth

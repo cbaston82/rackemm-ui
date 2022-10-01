@@ -1,11 +1,11 @@
 import { userCanCreateEvents } from '../helpers/config'
-import AlertMessageWithLinkEnd from '../components/AlertMessageWithLinkEnd'
+import AlertMessage from '../components/AlertMessage'
 
 function useCanUserCreateEventsAlertMessage() {
     const canUserCreateEventsAlertMessage = (stripeCustomer, userEvents, type) => {
         if (userCanCreateEvents(stripeCustomer, userEvents, type)) {
             return (
-                <AlertMessageWithLinkEnd
+                <AlertMessage
                     className="alert alert-info mt-3"
                     path={`/account/${type}/create`}
                     linkText="Create event"
@@ -15,7 +15,7 @@ function useCanUserCreateEventsAlertMessage() {
         }
 
         return (
-            <AlertMessageWithLinkEnd
+            <AlertMessage
                 path="/pricing"
                 linkText="Subscribe now"
                 message="You have no active subscription."

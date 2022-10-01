@@ -1,12 +1,6 @@
 import { Link } from 'react-router-dom'
 
-function AlertMessageWithLinkEnd({
-    className = '',
-    message = '',
-    link = '',
-    path = '',
-    linkText = '',
-}) {
+function AlertMessage({ className = '', message = '', link = '', path = '', linkText = '' }) {
     if (link) {
         return (
             <div className={className} role="alert">
@@ -19,10 +13,10 @@ function AlertMessageWithLinkEnd({
     }
 
     return (
-        <div className="alert alert-info mt-3" role="alert">
+        <div className={className} role="alert">
             {message} <Link to={path}>{linkText}</Link>
         </div>
     )
 }
 
-export default AlertMessageWithLinkEnd
+export default AlertMessage

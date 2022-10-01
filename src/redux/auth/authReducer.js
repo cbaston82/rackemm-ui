@@ -27,8 +27,8 @@ const reducer = (state = initialState, action) => {
             }
         case LOGIN_USER_FAILURE:
             return {
+                ...state,
                 loading: false,
-                user: {},
                 error: action.payload,
             }
         case LOGOUT_USER_REQUEST:

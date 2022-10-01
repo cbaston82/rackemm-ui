@@ -62,6 +62,26 @@ export const signupUser = (user) => (dispatch) => {
         })
 }
 
+export const updatePassword = (password) => (dispatch, state) => {
+    dispatch(loginUserRequest())
+    console.log(password)
+
+    axios
+        .patch('/api/v1/auth/update-password ', password, {
+            headers: {
+                Authorization: `Bearer ${state().auth.user.token}`,
+            },
+        })
+        .then((response) => {
+            dispatch(loginUserSuccess(response.data))
+            toast.success('You are now logged in')
+        })
+        .catch((error) => {
+            dispatch(loginUserFailure(error.response.data.error))
+            toast.error(error.response.data.error)
+        })
+}
+
 export const logoutUser = () => (dispatch) => {
     dispatch(logoutUserRequest())
     dispatch(resetUserStripeCustomer())
