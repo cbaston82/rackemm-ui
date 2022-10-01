@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { millisecondsToSeconds } from 'date-fns'
 import { getApiUrl, getDateTimeFromTimeString } from '../../helpers'
 import {
     CREATE_USER_YEARLY_EVENT_REQUEST,
@@ -100,8 +101,8 @@ export const resetUserYearlyEvents = () => (dispatch) => {
 
 export const createYearlyEvent = (event) => (dispatch, state) => {
     dispatch(createYearlyEventRequest())
-    const startTime = new Date(event.startTime).getTime() / 1000
-    const endTime = new Date(event.endTime).getTime() / 1000
+    const startTime = millisecondsToSeconds(new Date(event.startTime).getTime())
+    const endTime = millisecondsToSeconds(new Date(event.endTime).getTime())
 
     axios
         .post(
@@ -171,8 +172,8 @@ export const deleteUserYearlyEvent = (eventId) => (dispatch, state) => {
 
 export const updateUserYearlyEvent = (event) => (dispatch, state) => {
     dispatch(updateUserYearlyEventRequest())
-    const startTime = new Date(event.startTime).getTime() / 1000
-    const endTime = new Date(event.endTime).getTime() / 1000
+    const startTime = millisecondsToSeconds(new Date(event.startTime).getTime())
+    const endTime = millisecondsToSeconds(new Date(event.endTime).getTime())
 
     axios
         .patch(

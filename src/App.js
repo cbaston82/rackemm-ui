@@ -14,7 +14,7 @@ function App() {
                 <MainRoutes />
             </main>
             <Footer />
-            <ToastContainer />
+            <ToastContainer position="top-left" pauseOnHover />
         </>
     )
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { FaTrash, FaUpload, FaImage } from 'react-icons/fa'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
+import { millisecondsToSeconds } from 'date-fns'
 import CustomLoader from '../CustomeLoader'
 import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import { allowedFileTypeUploads, cleanFileName } from '../../helpers'
@@ -62,7 +63,7 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
         setErrorMessage('')
         e.preventDefault()
 
-        const timeStamp = new Date().getTime()
+        const timeStamp = millisecondsToSeconds(new Date().getTime())
 
         if (!previewSource) return
 
