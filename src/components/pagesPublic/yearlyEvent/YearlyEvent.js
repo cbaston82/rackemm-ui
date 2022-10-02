@@ -50,7 +50,7 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent }
                             <div className="col-md-3">
                                 <LightBoxImage
                                     image={
-                                        allYearlyEvents.event.length
+                                        allYearlyEvents.event.posterImage !== ''
                                             ? allYearlyEvents.event.posterImage
                                             : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
                                     }

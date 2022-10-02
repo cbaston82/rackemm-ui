@@ -41,7 +41,7 @@ export const getAllYearlyEvents = () => (dispatch) => {
     dispatch(yearlyEventsRequest())
 
     axios
-        .get(`${getApiUrl()}/yearly-events/get`)
+        .get(`${getApiUrl()}/events/yearly-events/public`)
         .then((response) => {
             const events = response.data.map((event) => ({
                 ...event,
@@ -60,11 +60,11 @@ export const fetchSingleYearlyEvent = (id) => (dispatch) => {
     dispatch(fetchSingleYearlyEventRequest())
 
     axios
-        .get(`${getApiUrl()}/yearly-events/get/${id}`)
+        .get(`${getApiUrl()}events/yearly-events/public/${id}`)
         .then((response) => {
             dispatch(
                 fetchSingleYearlyEventSuccess({
-                    ...response.data,
+                    ...response.data.pop(),
                     startTime: getDateTimeFromTimeString(response.data.startTime),
                     endTime: getDateTimeFromTimeString(response.data.endTime),
                 }),

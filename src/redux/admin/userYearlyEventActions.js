@@ -106,7 +106,7 @@ export const createYearlyEvent = (event) => (dispatch, state) => {
 
     axios
         .post(
-            `${getApiUrl()}/yearly-events`,
+            `${getApiUrl()}/events/yearly-events`,
             { ...event, startTime, endTime },
             {
                 headers: {
@@ -129,7 +129,7 @@ export const getUserYearlyEvents = () => (dispatch, state) => {
     dispatch(getUserYearlyEventsRequest())
 
     axios
-        .get(`${getApiUrl()}/yearly-events`, {
+        .get(`${getApiUrl()}/events/yearly-events`, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },
@@ -154,7 +154,7 @@ export const deleteUserYearlyEvent = (eventId) => (dispatch, state) => {
     dispatch(deleteUserYearlyEventRequest())
 
     axios
-        .delete(`${getApiUrl()}/yearly-events/${eventId}`, {
+        .delete(`${getApiUrl()}/events/${eventId}`, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },
@@ -177,7 +177,7 @@ export const updateUserYearlyEvent = (event) => (dispatch, state) => {
 
     axios
         .patch(
-            `${getApiUrl()}/yearly-events/${event._id}`,
+            `${getApiUrl()}/events/yearly-events/${event._id}`,
             { ...event, startTime, endTime },
             {
                 headers: {

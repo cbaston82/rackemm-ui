@@ -9,7 +9,7 @@ import usePageTitle from '../../../hoook/usePageTitle'
 function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, userMedia }) {
     usePageTitle('- Account Weekly Event Create')
     const initialFormValues = {
-        type: 'weekly-event',
+        type: 'weekly',
         title: '',
         description: '',
         pointOfContact: '',

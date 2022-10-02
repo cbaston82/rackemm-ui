@@ -10,7 +10,7 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, userMedia }) {
     usePageTitle('- Account Yearly Event Create')
 
     const initialFormValues = {
-        type: 'yearly-event',
+        type: 'yearly',
         bracket: '',
         title: '',
         description: '',
@@ -26,7 +26,6 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, userMedia }) {
         zipCode: '',
         ratingSystem: '',
         game: '',
-        playerList: [],
         status: '',
         posterImage: '',
     }

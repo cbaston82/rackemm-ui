@@ -41,7 +41,7 @@ export const getAllWeeklyEvents = () => (dispatch) => {
     dispatch(weeklyEventsRequest())
 
     axios
-        .get(`${getApiUrl()}/weekly-events/get`)
+        .get(`${getApiUrl()}/events/weekly-events/public`)
         .then((response) => {
             dispatch(weeklyEventsSuccess(response.data))
         })
@@ -55,9 +55,9 @@ export const fetchSingleWeeklyEvent = (id) => (dispatch) => {
     dispatch(fetchSingleWeeklyEventRequest())
 
     axios
-        .get(`${getApiUrl()}/weekly-events/get/${id}`)
+        .get(`${getApiUrl()}events/weekly-events/public/${id}`)
         .then((response) => {
-            dispatch(fetchSingleWeeklyEventSuccess(response.data))
+            dispatch(fetchSingleWeeklyEventSuccess(response.data.pop()))
         })
         .catch((error) => {
             const errorMsg = error.response.data.error

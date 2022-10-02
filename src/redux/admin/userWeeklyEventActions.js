@@ -85,7 +85,7 @@ export const createWeeklyEvent = (event) => (dispatch, state) => {
     dispatch(createWeeklyEventRequest())
 
     axios
-        .post(`${getApiUrl()}/weekly-events`, event, {
+        .post(`${getApiUrl()}/events/weekly-events`, event, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },
@@ -105,7 +105,7 @@ export const getUserWeeklyEvents = () => (dispatch, state) => {
     dispatch(getUserWeeklyEventsRequest())
 
     axios
-        .get(`${getApiUrl()}/weekly-events`, {
+        .get(`${getApiUrl()}/events/weekly-events`, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },
@@ -123,7 +123,7 @@ export const deleteUserWeeklyEvent = (eventId) => (dispatch, state) => {
     dispatch(deleteUserWeeklyEventRequest())
 
     axios
-        .delete(`${getApiUrl()}/weekly-events/${eventId}`, {
+        .delete(`${getApiUrl()}/events/${eventId}`, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },
@@ -143,7 +143,7 @@ export const updateUserWeeklyEvent = (event) => (dispatch, state) => {
     dispatch(updateUserWeeklyEventRequest())
 
     axios
-        .patch(`${getApiUrl()}/weekly-events/${event._id}`, event, {
+        .patch(`${getApiUrl()}/events/weekly-events/${event._id}`, event, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },
