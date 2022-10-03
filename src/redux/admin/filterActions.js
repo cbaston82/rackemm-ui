@@ -85,10 +85,10 @@ export const getSavedFilters = () => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(getSavedFiltersSuccess(response.data))
+            dispatch(getSavedFiltersSuccess(response.data.data))
         })
         .catch((error) => {
-            dispatch(getSavedFiltersFailure(error.response.data.error))
+            dispatch(getSavedFiltersFailure(error.response.data.message))
         })
 }
 
@@ -102,13 +102,13 @@ export const saveFilter = (filter) => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(saveFilterSuccess(response.data))
+            dispatch(saveFilterSuccess(response.data.data))
             window.location.reload()
             toast.success('Filter successfully saved!')
         })
         .catch((error) => {
-            dispatch(saveFilterFailure(error.response.data.error))
-            const errorMsg = error.response.data.error
+            dispatch(saveFilterFailure(error.response.data.message))
+            const errorMsg = error.response.data.message
             toast.error(errorMsg)
         })
 }

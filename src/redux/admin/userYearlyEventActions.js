@@ -106,7 +106,7 @@ export const createYearlyEvent = (event) => (dispatch, state) => {
 
     axios
         .post(
-            `${getApiUrl()}/events/yearly-events`,
+            `${getApiUrl()}/events`,
             { ...event, startTime, endTime },
             {
                 headers: {
@@ -115,11 +115,11 @@ export const createYearlyEvent = (event) => (dispatch, state) => {
             },
         )
         .then((response) => {
-            dispatch(createYearlyEventSuccess(response.data))
+            dispatch(createYearlyEventSuccess(response.data.data))
             toast.success('Event created successfully!')
         })
         .catch((error) => {
-            const errorMsg = error.response.data.error
+            const errorMsg = error.response.data.message
             dispatch(createYearlyEventFailure(errorMsg))
             toast.error(errorMsg)
         })
@@ -135,7 +135,7 @@ export const getUserYearlyEvents = () => (dispatch, state) => {
             },
         })
         .then((response) => {
-            const events = response.data.map((event) => ({
+            const events = response.data.data.map((event) => ({
                 ...event,
                 startTime: getDateTimeFromTimeString(event.startTime),
                 endTime: getDateTimeFromTimeString(event.endTime),
@@ -144,7 +144,7 @@ export const getUserYearlyEvents = () => (dispatch, state) => {
             dispatch(getUserYearlyEventsSuccess(events))
         })
         .catch((error) => {
-            const errorMsg = error.response.statusText
+            const errorMsg = error.response.data.message
             dispatch(getUserYearlyEventsFailure(errorMsg))
             toast.error(errorMsg)
         })
@@ -160,11 +160,11 @@ export const deleteUserYearlyEvent = (eventId) => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(deleteUserYearlyEventSuccess(response.data))
+            dispatch(deleteUserYearlyEventSuccess(response.data.data))
             toast.success('Event was deleted successfully!')
         })
         .catch((error) => {
-            const errorMsg = error.response.statusText
+            const errorMsg = error.response.message
             dispatch(deleteUserYearlyEventFailure(errorMsg))
             toast.error(errorMsg)
         })
@@ -177,7 +177,7 @@ export const updateUserYearlyEvent = (event) => (dispatch, state) => {
 
     axios
         .patch(
-            `${getApiUrl()}/events/yearly-events/${event._id}`,
+            `${getApiUrl()}/events/${event._id}`,
             { ...event, startTime, endTime },
             {
                 headers: {
@@ -186,11 +186,11 @@ export const updateUserYearlyEvent = (event) => (dispatch, state) => {
             },
         )
         .then((response) => {
-            dispatch(updateUserYearlyEventSuccess(response.data))
+            dispatch(updateUserYearlyEventSuccess(response.data.data))
             toast.success('Event was updated successfully!')
         })
         .catch((error) => {
-            const errorMsg = error.response.statusText
+            const errorMsg = error.response.message
             dispatch(updateUserYearlyEventFailure(errorMsg))
             toast.error(errorMsg)
         })

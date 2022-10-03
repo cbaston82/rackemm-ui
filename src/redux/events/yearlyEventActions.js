@@ -43,7 +43,7 @@ export const getAllYearlyEvents = () => (dispatch) => {
     axios
         .get(`${getApiUrl()}/events/yearly-events/public`)
         .then((response) => {
-            const events = response.data.map((event) => ({
+            const events = response.data.data.map((event) => ({
                 ...event,
                 startTime: getDateTimeFromTimeString(event.startTime),
                 endTime: getDateTimeFromTimeString(event.endTime),
@@ -51,7 +51,7 @@ export const getAllYearlyEvents = () => (dispatch) => {
             dispatch(yearlyEventsSuccess(events))
         })
         .catch((error) => {
-            const errorMsg = error.message
+            const errorMsg = error.response.data.message
             dispatch(yearlyEventsFailure(errorMsg))
         })
 }
@@ -60,18 +60,18 @@ export const fetchSingleYearlyEvent = (id) => (dispatch) => {
     dispatch(fetchSingleYearlyEventRequest())
 
     axios
-        .get(`${getApiUrl()}events/yearly-events/public/${id}`)
+        .get(`${getApiUrl()}events/public/${id}`)
         .then((response) => {
             dispatch(
                 fetchSingleYearlyEventSuccess({
-                    ...response.data.pop(),
-                    startTime: getDateTimeFromTimeString(response.data.startTime),
-                    endTime: getDateTimeFromTimeString(response.data.endTime),
+                    ...response.data.data,
+                    startTime: getDateTimeFromTimeString(response.data.data.startTime),
+                    endTime: getDateTimeFromTimeString(response.data.data.endTime),
                 }),
             )
         })
         .catch((error) => {
-            const errorMsg = error.response.data.error
+            const errorMsg = error.response.data.message
             dispatch(fetchSingleYearlyEventFailure(errorMsg))
         })
 }

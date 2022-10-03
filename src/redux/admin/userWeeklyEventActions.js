@@ -85,17 +85,17 @@ export const createWeeklyEvent = (event) => (dispatch, state) => {
     dispatch(createWeeklyEventRequest())
 
     axios
-        .post(`${getApiUrl()}/events/weekly-events`, event, {
+        .post(`${getApiUrl()}/events`, event, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },
         })
         .then((response) => {
-            dispatch(createWeeklyEventSuccess(response.data))
+            dispatch(createWeeklyEventSuccess(response.data.data))
             toast.success(' successfully!')
         })
         .catch((error) => {
-            const errorMsg = error.response.data.error
+            const errorMsg = error.response.data.message
             dispatch(createWeeklyEventFailure(errorMsg))
             toast.error(errorMsg)
         })
@@ -111,10 +111,10 @@ export const getUserWeeklyEvents = () => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(getUserWeeklyEventsSuccess(response.data))
+            dispatch(getUserWeeklyEventsSuccess(response.data.data))
         })
         .catch((error) => {
-            const errorMsg = error.response.statusText
+            const errorMsg = error.response.data.message
             dispatch(getUserWeeklyEventsFailure(errorMsg))
             toast.error(errorMsg)
         })
@@ -129,11 +129,11 @@ export const deleteUserWeeklyEvent = (eventId) => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(deleteUserWeeklyEventSuccess(response.data))
+            dispatch(deleteUserWeeklyEventSuccess(response.data.data))
             toast.success('Event was deleted successfully!')
         })
         .catch((error) => {
-            const errorMsg = error.response.statusText
+            const errorMsg = error.response.message
             dispatch(deleteUserWeeklyEventFailure(errorMsg))
             toast.error(errorMsg)
         })
@@ -143,17 +143,17 @@ export const updateUserWeeklyEvent = (event) => (dispatch, state) => {
     dispatch(updateUserWeeklyEventRequest())
 
     axios
-        .patch(`${getApiUrl()}/events/weekly-events/${event._id}`, event, {
+        .patch(`${getApiUrl()}/events/${event._id}`, event, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },
         })
         .then((response) => {
-            dispatch(updateUserWeeklyEventSuccess(response.data))
+            dispatch(updateUserWeeklyEventSuccess(response.data.data))
             toast.success('Event was updated successfully!')
         })
         .catch((error) => {
-            const errorMsg = error.response.statusText
+            const errorMsg = error.response.message
             dispatch(updateUserWeeklyEventFailure(errorMsg))
             toast.error(errorMsg)
         })

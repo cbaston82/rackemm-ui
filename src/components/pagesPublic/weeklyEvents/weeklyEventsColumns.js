@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import { formatTimeForWeeklyEvent } from '../../../helpers'
 
@@ -31,13 +32,13 @@ export const tournamentColumns = [
         name: '',
         button: true,
         cell: (row) => (
-            <a
+            <Link
                 className="btn btn-light btn-sm"
-                href={`/weekly-event/${row._id}`}
+                to={`/weekly-event/${row._id}`}
                 rel="noopener noreferrer"
             >
                 <FaExternalLinkAlt />
-            </a>
+            </Link>
         ),
     },
     // {

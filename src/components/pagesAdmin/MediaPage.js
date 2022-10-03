@@ -139,8 +139,8 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                         >
                             <div className="row">
                                 {userMedia.media.map((image) => (
-                                    <div className="col-md-4 col-lg-3">
-                                        <div key={image._id} className="position-relative my-3">
+                                    <div key={image._id} className="col-md-4 col-lg-3">
+                                        <div className="position-relative my-3">
                                             <a href={image.secureUrl} data-lightbox="photos">
                                                 <img
                                                     className="img-fluid"

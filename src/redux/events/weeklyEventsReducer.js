@@ -51,7 +51,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                event: {},
                 error: action.payload,
             }
         default:

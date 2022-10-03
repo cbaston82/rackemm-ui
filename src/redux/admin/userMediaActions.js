@@ -74,10 +74,10 @@ export const getUserMedia = () => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(getUserMediaSuccess(response.data))
+            dispatch(getUserMediaSuccess(response.data.data))
         })
         .catch((error) => {
-            const errorMsg = error.response.data.error
+            const errorMsg = error.response.data.message
             dispatch(getUserMediaFailure(errorMsg))
         })
 }
@@ -95,7 +95,7 @@ export const deleteUserMedia = (publicId) => (dispatch, state) => {
             dispatch(deleteUserMediaSuccess(publicId))
         })
         .catch((error) => {
-            const errorMsg = error.response.data.error
+            const errorMsg = error.response.data.message
             dispatch(deleteUserMediaFailure(errorMsg))
         })
 }
@@ -114,11 +114,11 @@ export const uploadUserMedia = (media, fileName) => (dispatch, state) => {
             },
         )
         .then((response) => {
-            dispatch(uploadUserMediaSuccess(response.data))
+            dispatch(uploadUserMediaSuccess(response.data.data))
             toast.success('Media uploaded successfully!')
         })
         .catch((error) => {
-            const errorMsg = error.response.data.error
+            const errorMsg = error.response.data.message
             dispatch(uploadUserMediaFailure(errorMsg))
             toast.error(errorMsg)
         })
