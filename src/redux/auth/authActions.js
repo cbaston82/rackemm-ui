@@ -38,12 +38,12 @@ export const loginUser = (user) => (dispatch) => {
         .post('/api/v1/auth/login', user)
         .then((response) => {
             toast.success('You are now logged in')
-            dispatch(loginUserSuccess(response.data))
+            dispatch(loginUserSuccess(response.data.data))
             dispatch(getUserStripeCustomer())
         })
         .catch((error) => {
-            dispatch(loginUserFailure(error.response.data.error))
-            toast.error(error.response.data.error)
+            dispatch(loginUserFailure(error.response.data.message))
+            toast.error(error.response.data.message)
         })
 }
 
@@ -53,18 +53,17 @@ export const signupUser = (user) => (dispatch) => {
     axios
         .post('/api/v1/auth/signup ', user)
         .then((response) => {
-            dispatch(loginUserSuccess(response.data))
+            dispatch(loginUserSuccess(response.data.data))
             toast.success('You are now logged in')
         })
         .catch((error) => {
-            dispatch(loginUserFailure(error.response.data.error))
-            toast.error(error.response.data.error)
+            dispatch(loginUserFailure(error.response.data.message))
+            toast.error(error.response.data.message)
         })
 }
 
 export const updatePassword = (password) => (dispatch, state) => {
     dispatch(loginUserRequest())
-    console.log(password)
 
     axios
         .patch('/api/v1/auth/update-password ', password, {
@@ -73,12 +72,12 @@ export const updatePassword = (password) => (dispatch, state) => {
             },
         })
         .then((response) => {
-            dispatch(loginUserSuccess(response.data))
+            dispatch(loginUserSuccess(response.data.data))
             toast.success('You are now logged in')
         })
         .catch((error) => {
-            dispatch(loginUserFailure(error.response.data.error))
-            toast.error(error.response.data.error)
+            dispatch(loginUserFailure(error.response.data.message))
+            toast.error(error.response.data.message)
         })
 }
 
