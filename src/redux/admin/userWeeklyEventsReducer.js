@@ -72,7 +72,6 @@ const reducer = (state = initialState, action) => {
                 eventCreated: false,
             }
         case DELETE_USER_WEEKLY_EVENT_SUCCESS:
-            console.log('dddddddddddddddddddd', action.payload)
             return {
                 ...state,
                 loading: false,

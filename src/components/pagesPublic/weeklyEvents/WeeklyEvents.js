@@ -38,7 +38,6 @@ function WeeklyEvents({ stripeCustomer, getAllWeeklyEvents, allWeeklyEvents }) {
 
     useEffect(() => {
         getAllWeeklyEvents()
-        console.log(allWeeklyEvents)
     }, [getAllWeeklyEvents])
 
     return (

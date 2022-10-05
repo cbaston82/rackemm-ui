@@ -37,7 +37,11 @@ function WeeklyEvents({
                 <>
                     {userHasEvents(userWeeklyEvents) ? (
                         <>
-                            {canUserCreateEventButton(stripeCustomer, userWeeklyEvents, 'weekly')}
+                            {canUserCreateEventButton(
+                                stripeCustomer,
+                                userWeeklyEvents,
+                                'weekly-events',
+                            )}
                             <WeeklyEventsTable
                                 events={userWeeklyEvents.events}
                                 handleDeleteEvent={handleDelete}
