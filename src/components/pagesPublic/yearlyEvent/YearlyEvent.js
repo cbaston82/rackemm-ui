@@ -13,6 +13,7 @@ import Button from '../../Button'
 import { userHasValidSubscription } from '../../../helpers/config'
 import EventDetails from '../../EventDetails'
 import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
+import Reviews from '../../Reviews'
 
 function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, auth }) {
     usePageTitle('- Yearly Event')
@@ -46,37 +47,42 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, 
                     <MoonLoader size={150} loading />
                 </div>
             ) : (
-                <div className="card rounded-0 p-3">
-                    <div className="card-body">
-                        <div className="row">
-                            <div className="col-md-3">
-                                <LightBoxImage
-                                    image={
-                                        allYearlyEvents.event.posterImage !== ''
-                                            ? allYearlyEvents.event.posterImage
-                                            : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
-                                    }
-                                />
-                                {userHasValidSubscription(stripeCustomer) && (
-                                    <Button
-                                        className="btn btn-primary w-100 mt-3"
-                                        onClick={() => handleCreateCalendarEvent(allYearlyEvents)}
-                                    >
-                                        Add to calendar <FaGoogle />
-                                    </Button>
-                                )}
-                            </div>
-                            <div className="col-md-9">
-                                <EventDetails
-                                    rateEvent={(rating) =>
-                                        rateEvent(rating, auth, allYearlyEvents.event._id)
-                                    }
-                                    event={allYearlyEvents.event}
-                                />
+                <>
+                    <div className="card rounded-0 p-3">
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-md-3">
+                                    <LightBoxImage
+                                        image={
+                                            allYearlyEvents.event.posterImage !== ''
+                                                ? allYearlyEvents.event.posterImage
+                                                : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
+                                        }
+                                    />
+                                    {userHasValidSubscription(stripeCustomer) && (
+                                        <Button
+                                            className="btn btn-primary w-100 mt-3"
+                                            onClick={() =>
+                                                handleCreateCalendarEvent(allYearlyEvents)
+                                            }
+                                        >
+                                            Add to calendar <FaGoogle />
+                                        </Button>
+                                    )}
+                                </div>
+                                <div className="col-md-9">
+                                    <EventDetails
+                                        rateEvent={(rating) =>
+                                            rateEvent(rating, auth, allYearlyEvents.event._id)
+                                        }
+                                        event={allYearlyEvents.event}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <Reviews event={allYearlyEvents.event} auth={auth} />
+                </>
             )}
         </div>
     )

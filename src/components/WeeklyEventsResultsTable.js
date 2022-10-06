@@ -42,20 +42,26 @@ function WeeklyEventsResultsTable() {
 
     return (
         <>
-            <div className="row d-flex flex-row-reverse mt-5">
-                <h4 className="fw-bolder mt-4 mt-sm-0 border-bottom">
-                    Weekly Results <FaTrophy color="gold" />
-                </h4>
-            </div>
-            <div className="row">
-                <DataTable
-                    className="mt-3"
-                    theme="rackemm_theme_admin"
-                    columns={columns}
-                    data={weeklyResults}
-                    pagination
-                    paginationComponentOptions={paginationComponentOptions}
-                />
+            <div className="card rounded-0 p-3 mt-3" id="reviews-section">
+                <div className="card-body">
+                    <div className="row d-flex flex-row-reverse">
+                        <div className="col">
+                            <h5 className="fw-bolder mt-4 mt-sm-0 border-bottom">
+                                Weekly Results <FaTrophy color="gold" />{' '}
+                            </h5>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <DataTable
+                            className="mt-3"
+                            theme="rackemm_theme_admin"
+                            columns={columns}
+                            data={weeklyResults}
+                            pagination
+                            paginationComponentOptions={paginationComponentOptions}
+                        />
+                    </div>
+                </div>
             </div>
         </>
     )

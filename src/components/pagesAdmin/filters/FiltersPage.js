@@ -19,7 +19,7 @@ function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
             {savedFilters.loading ? (
                 <CustomLoader color="white" loaderMessage="fetching events" />
             ) : (
-                <FiltersTable handleDelete={handleDelete} filters={savedFilters.filters} />
+                <FiltersTable handleDeleteFilter={handleDelete} filters={savedFilters.filters} />
             )}
         </div>
     )

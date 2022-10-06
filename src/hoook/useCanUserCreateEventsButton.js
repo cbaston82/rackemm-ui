@@ -15,7 +15,7 @@ function useCanUserCreateEventsButton() {
                         handleNoSubscriptionToast(stripeCustomer, userCreatedEvents, type)
                     }
                     buttonText="New Event"
-                    className="btn btn-outline-secondary btn-sm"
+                    className="btn btn-outline-warning btn-sm"
                 >
                     <FaPlus />
                 </Button>

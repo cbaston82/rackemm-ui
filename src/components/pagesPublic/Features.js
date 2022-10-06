@@ -56,10 +56,11 @@ function Features() {
                                 ({issues.length}) Feature requests / Bug fixes{' '}
                             </h5>
                             <Button
-                                className="btn btn-outline-secondary btn-sm"
+                                className="btn btn-outline-warning btn-sm"
                                 link="https://github.com/cbaston82/rackemm-public/issues"
+                                buttonText="New Issue"
                             >
-                                <span className="d-none d-sm-inline">New Issue</span> <FaPlus />
+                                <FaPlus />
                             </Button>
                         </div>
                         {issues &&

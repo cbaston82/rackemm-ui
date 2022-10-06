@@ -1,40 +1,58 @@
-import { FaTrashAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import { FaExternalLinkAlt, FaTrashAlt } from 'react-icons/fa'
+import DataTable from 'react-data-table-component'
+import '../../SolarizedTheme'
 
-function FiltersTable({ filters, handleDelete }) {
+function FiltersTable({ filters, handleDeleteFilter }) {
+    const paginationComponentOptions = {
+        rowsPerPageText: 'Filters per page',
+        rangeSeparatorText: 'of',
+    }
+    const columns = [
+        {
+            name: 'description',
+            selector: (row) => row.description,
+            sortable: true,
+        },
+        {
+            name: 'URL',
+            selector: (row) => row.url,
+            sortable: true,
+        },
+        {
+            name: '',
+            button: true,
+            // eslint-disable-next-line react/no-unstable-nested-components
+            cell: (row) => (
+                <>
+                    <Link className="ms-3" to={row.url}>
+                        <button type="button" className="btn btn-light btn-sm">
+                            <FaExternalLinkAlt />
+                        </button>
+                    </Link>
+                    <button
+                        type="button"
+                        data-id={row._id}
+                        onClick={() => handleDeleteFilter(row._id)}
+                        className="btn btn-danger btn-sm ms-3"
+                    >
+                        <FaTrashAlt />
+                    </button>
+                </>
+            ),
+        },
+    ]
     return (
-        <table className="table table-dark mt-3">
-            <thead>
-                <tr>
-                    <th>description</th>
-                    <th>type</th>
-                    <th>url</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tbody>
-                {filters &&
-                    filters.map((filter) => (
-                        <tr key={filter._id}>
-                            <td className="text-white-50">{filter.description}</td>
-                            <td className="text-white-50">{filter.type}</td>
-                            <td className="text-white-50">{filter.url}</td>
-                            <td>
-                                <div className="d-flex justify-content-center">
-                                    <div className="ms-3">
-                                        <button
-                                            type="button"
-                                            onClick={() => handleDelete(filter._id)}
-                                            className="btn btn-outline-danger btn-sm"
-                                        >
-                                            <FaTrashAlt />
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-            </tbody>
-        </table>
+        <>
+            <DataTable
+                className="mt-3"
+                theme="rackemm_theme_admin"
+                columns={columns}
+                data={filters}
+                pagination
+                paginationComponentOptions={paginationComponentOptions}
+            />
+        </>
     )
 }
 export default FiltersTable

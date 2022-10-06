@@ -9,7 +9,7 @@ function useRateEventSwalModal() {
 
     const rateEvent = async (rating, auth, eventId) => {
         MySwal.fire({
-            title: 'Thank you for your feedback!',
+            title: 'Review this event',
             html: (
                 <StarRatings
                     rating={rating}

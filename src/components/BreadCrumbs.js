@@ -1,4 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom'
+import { FaArrowAltCircleLeft } from 'react-icons/fa'
 
 function BreadCrumbs({
     previousLinks = [],
@@ -13,7 +14,9 @@ function BreadCrumbs({
                 {previousLinks.length > 0 ? (
                     previousLinks.map((link) => (
                         <li key={link.name} className="breadcrumb-item">
-                            <Link to={link.path}>{link.name}</Link>
+                            <Link to={link.path}>
+                                <FaArrowAltCircleLeft size={20} color="cyan" />
+                            </Link>
                         </li>
                     ))
                 ) : (
@@ -25,7 +28,7 @@ function BreadCrumbs({
                                     className="btn btn-link p-0"
                                     onClick={() => navigate(-1)}
                                 >
-                                    Back
+                                    <FaArrowAltCircleLeft size={20} color="cyan" />
                                 </button>
                             </li>
                         )}

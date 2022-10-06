@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { FaArrowCircleRight } from 'react-icons/fa'
 import UpcomingYearlyEventCard from './UpcomingYearlyEventCard'
 import { getAllYearlyEvents } from '../../../redux'
 import Button from '../../Button'
@@ -30,10 +31,12 @@ function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
                 </div>
                 <div className="row text-center">
                     <Button
-                        className="btn btn-secondary btn-lg"
+                        className="btn btn-outline-warning btn-lg"
                         path="/yearly-events"
                         buttonText="View All"
-                    />
+                    >
+                        <FaArrowCircleRight />
+                    </Button>
                 </div>
             </div>
         </div>

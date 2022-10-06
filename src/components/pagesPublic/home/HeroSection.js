@@ -1,6 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { FaArrowCircleRight } from 'react-icons/fa'
+import Button from '../../Button'
 
 function HeroSection() {
     return (
@@ -25,16 +24,13 @@ function HeroSection() {
                             <p className="text-white font-monospace fst-italic">
                                 Find a tournament anywhere. anytime. any place
                             </p>
-                            <button type="button" className="btn btn-outline-secondary mt-3 btn-lg">
-                                <Link
-                                    to="/register"
-                                    className="text-white"
-                                    style={{ textDecoration: 'none' }}
-                                >
-                                    Sign up for free{' '}
-                                    <FontAwesomeIcon icon={faCaretRight} className="fa-search" />
-                                </Link>
-                            </button>
+                            <Button
+                                className="btn btn-outline-warning btn-lg mt-5"
+                                path="/register"
+                                buttonText="Sign up for free"
+                            >
+                                <FaArrowCircleRight />
+                            </Button>
                         </div>
                     </div>
                 </div>

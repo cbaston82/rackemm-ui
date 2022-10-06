@@ -1,4 +1,5 @@
 import StarRatings from 'react-star-ratings'
+import '../reviews.css'
 
 function EventDetails({ event, rateEvent }) {
     return (

@@ -10,6 +10,7 @@ import usePageTitle from '../../../hoook/usePageTitle'
 import EventDetails from '../../EventDetails'
 import WeeklyEventsResultsTable from '../../WeeklyEventsResultsTable'
 import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
+import Reviews from '../../Reviews'
 
 function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
     usePageTitle('- Weekly Event')
@@ -42,31 +43,33 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
                     <MoonLoader size={150} loading />
                 </div>
             ) : (
-                <div className="card rounded-0 p-3">
-                    <div className="card-body">
-                        <div className="row">
-                            <div className="col-md-3">
-                                <LightBoxImage
-                                    image={
-                                        allWeeklyEvents.event.posterImage !== ''
-                                            ? allWeeklyEvents.event.posterImage
-                                            : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
-                                    }
-                                />
-                            </div>
-                            <div className="col-md-9">
-                                <EventDetails
-                                    rateEvent={(rating) =>
-                                        rateEvent(rating, auth, allWeeklyEvents.event._id)
-                                    }
-                                    event={allWeeklyEvents.event}
-                                />
-
-                                <WeeklyEventsResultsTable />
+                <>
+                    <div className="card rounded-0 p-3">
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-md-3">
+                                    <LightBoxImage
+                                        image={
+                                            allWeeklyEvents.event.posterImage !== ''
+                                                ? allWeeklyEvents.event.posterImage
+                                                : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
+                                        }
+                                    />
+                                </div>
+                                <div className="col-md-9">
+                                    <EventDetails
+                                        rateEvent={(rating) =>
+                                            rateEvent(rating, auth, allWeeklyEvents.event._id)
+                                        }
+                                        event={allWeeklyEvents.event}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <WeeklyEventsResultsTable />
+                    <Reviews event={allWeeklyEvents.event} auth={auth} />
+                </>
             )}
         </div>
     )

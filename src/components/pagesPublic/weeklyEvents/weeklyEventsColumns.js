@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import { FaExternalLinkAlt } from 'react-icons/fa'
+import { FaArrowCircleRight } from 'react-icons/fa'
 import StarRatings from 'react-star-ratings'
 import { formatTimeForWeeklyEvent } from '../../../helpers'
+import Button from '../../Button'
 
 export const tournamentColumns = [
     {
@@ -35,10 +35,9 @@ export const tournamentColumns = [
             <StarRatings
                 rating={row.ratingsAverage}
                 starRatedColor="gold"
-                starHoverColor="#6c5f1a"
-                starDimension="18px"
+                starDimension="15px"
                 numberOfStars={5}
-                starSpacing="3px"
+                starSpacing="1px"
                 name="rating"
             />
         ),
@@ -48,13 +47,13 @@ export const tournamentColumns = [
         name: '',
         button: true,
         cell: (row) => (
-            <Link
-                className="btn btn-light btn-sm"
-                to={`/weekly-event/${row._id}`}
-                rel="noopener noreferrer"
+            <Button
+                className="btn btn-outline-warning btn-sm"
+                path={`/weekly-event/${row._id}`}
+                buttonText="View"
             >
-                <FaExternalLinkAlt />
-            </Link>
+                <FaArrowCircleRight />
+            </Button>
         ),
     },
     // {
