@@ -19,7 +19,7 @@
     "class-methods-use-this": "off",
     "import/no-extraneous-dependencies": "off",
     "prefer-destructuring": ["error", { "object": true, "array": false}],
-    "no-unused-vars": ["error", {"argsIgnorePattern": "req|res|next|val|localStorage|window"}],
+    "no-unused-vars": ["error", {"argsIgnorePattern": "req|res|next|val|localStorage|window|showRatingsQuantity"}],
     "no-undef": "off",
     "react/no-array-index-key": "off",
     "react/jsx-no-useless-fragment": "off",

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaExternalLinkAlt } from 'react-icons/fa'
+import StarRatings from 'react-star-ratings'
 import { formatTimeForWeeklyEvent } from '../../../helpers'
 
 export const tournamentColumns = [
@@ -8,11 +9,11 @@ export const tournamentColumns = [
         selector: (row) => row.day,
         sortable: true,
     },
-    {
-        name: 'Venue',
-        selector: (row) => row.venue,
-        sortable: true,
-    },
+    // {
+    //     name: 'Venue',
+    //     selector: (row) => row.venue,
+    //     sortable: true,
+    // },
     {
         name: 'Time',
         selector: (row) => formatTimeForWeeklyEvent(row.startTime),
@@ -27,6 +28,21 @@ export const tournamentColumns = [
         name: 'City',
         selector: (row) => row.city,
         sortable: true,
+    },
+    {
+        name: 'Rating',
+        selector: (row) => (
+            <StarRatings
+                rating={row.ratingsAverage}
+                starRatedColor="gold"
+                starHoverColor="#6c5f1a"
+                starDimension="18px"
+                numberOfStars={5}
+                starSpacing="3px"
+                name="rating"
+            />
+        ),
+        sortable: false,
     },
     {
         name: '',

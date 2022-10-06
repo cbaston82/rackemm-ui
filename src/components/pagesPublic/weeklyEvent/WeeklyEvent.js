@@ -9,9 +9,11 @@ import BreadCrumbs from '../../BreadCrumbs'
 import usePageTitle from '../../../hoook/usePageTitle'
 import EventDetails from '../../EventDetails'
 import WeeklyEventsResultsTable from '../../WeeklyEventsResultsTable'
+import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
 
-function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
+function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
     usePageTitle('- Weekly Event')
+    const [rateEvent] = useRateEventSwalModal(auth)
     const { id } = useParams()
 
     useEffect(() => {
@@ -53,7 +55,12 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
                                 />
                             </div>
                             <div className="col-md-9">
-                                <EventDetails event={allWeeklyEvents.event} />
+                                <EventDetails
+                                    rateEvent={(rating) =>
+                                        rateEvent(rating, auth, allWeeklyEvents.event._id)
+                                    }
+                                    event={allWeeklyEvents.event}
+                                />
 
                                 <WeeklyEventsResultsTable />
                             </div>
@@ -67,6 +74,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent }) {
 
 const mapStateToProps = (state) => ({
     allWeeklyEvents: state.allWeeklyEvents,
+    auth: state.auth,
 })
 
 const mapDispatchToProps = (dispatch) => ({

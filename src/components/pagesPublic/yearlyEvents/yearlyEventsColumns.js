@@ -1,5 +1,6 @@
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import StarRatings from 'react-star-ratings'
 
 export const tournamentColumns = [
     {
@@ -27,6 +28,20 @@ export const tournamentColumns = [
     {
         name: 'City',
         selector: (row) => row.city,
+        sortable: true,
+    },
+    {
+        name: 'Rating',
+        selector: (row) => (
+            <StarRatings
+                rating={row.ratingsAverage}
+                starRatedColor="gold"
+                starDimension="18"
+                numberOfStars={5}
+                starSpacing="3px"
+                name="rating"
+            />
+        ),
         sortable: true,
     },
     {

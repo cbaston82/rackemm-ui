@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import UpcomingYearlyEventCard from './UpcomingYearlyEventCard'
 import { getAllYearlyEvents } from '../../../redux'
+import Button from '../../Button'
 
 function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
     useEffect(() => {
@@ -26,6 +27,13 @@ function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
                             .map((event) => (
                                 <UpcomingYearlyEventCard key={event._id} event={event} />
                             ))}
+                </div>
+                <div className="row text-center">
+                    <Button
+                        className="btn btn-secondary btn-lg"
+                        path="/yearly-events"
+                        buttonText="View All"
+                    />
                 </div>
             </div>
         </div>

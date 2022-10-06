@@ -12,9 +12,11 @@ import useCreateCalendarEvent from '../../../hoook/useCreateCalendarEvent'
 import Button from '../../Button'
 import { userHasValidSubscription } from '../../../helpers/config'
 import EventDetails from '../../EventDetails'
+import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
 
-function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent }) {
+function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, auth }) {
     usePageTitle('- Yearly Event')
+    const [rateEvent] = useRateEventSwalModal(auth)
     const [handleCreateCalendarEvent] = useCreateCalendarEvent()
     const { id } = useParams()
 
@@ -65,7 +67,12 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent }
                                 )}
                             </div>
                             <div className="col-md-9">
-                                <EventDetails event={allYearlyEvents.event} />
+                                <EventDetails
+                                    rateEvent={(rating) =>
+                                        rateEvent(rating, auth, allYearlyEvents.event._id)
+                                    }
+                                    event={allYearlyEvents.event}
+                                />
                             </div>
                         </div>
                     </div>
@@ -78,6 +85,7 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent }
 const mapStateToProps = (state) => ({
     allYearlyEvents: state.allYearlyEvents,
     stripeCustomer: state.stripeCustomer,
+    auth: state.auth,
 })
 
 const mapDispatchToProps = (dispatch) => ({
