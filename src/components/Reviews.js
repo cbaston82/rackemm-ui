@@ -1,22 +1,20 @@
 import StarRatings from 'react-star-ratings'
 import moment from 'moment'
-import { FaStar } from 'react-icons/fa'
+import Button from './Button'
 
-function Reviews({ event, auth }) {
+function Reviews({ event, auth, handleDeleteReview }) {
     return (
         <div className="card rounded-0 p-3 mt-3" id="reviews-section">
             <div className="card-body">
                 <div className="row d-flex flex-row-reverse">
                     <div className="col">
-                        <h5 className="fw-bolder mt-4 mt-sm-0 border-bottom">
-                            Reviews <FaStar color="gold" />
-                        </h5>
+                        <h5 className="fw-bolder mt-4 mt-sm-0 border-bottom">Reviews</h5>
                     </div>
                 </div>
                 <div className="row mt-3">
                     <div className="review-list">
                         <ul>
-                            {event.reviews.length > 0 ? (
+                            {event.reviews && event.reviews.length > 0 ? (
                                 event.reviews.map((review) => (
                                     <li key={review._id}>
                                         <div className="d-flex">
@@ -57,12 +55,15 @@ function Reviews({ event, auth }) {
                                                             >
                                                                 Edit
                                                             </button>
-                                                            <button
+                                                            <Button
                                                                 type="button"
+                                                                onClick={() =>
+                                                                    handleDeleteReview(review._id)
+                                                                }
                                                                 className="btn btn-link btn-sm"
                                                             >
                                                                 Delete
-                                                            </button>
+                                                            </Button>
                                                         </>
                                                     )}
                                                 </div>

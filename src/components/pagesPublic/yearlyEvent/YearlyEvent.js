@@ -14,10 +14,12 @@ import { userHasValidSubscription } from '../../../helpers/config'
 import EventDetails from '../../EventDetails'
 import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
 import Reviews from '../../Reviews'
+import useDeleteReviewSwalModal from '../../../hoook/useDeleteReviewSwalModal'
 
 function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, auth }) {
     usePageTitle('- Yearly Event')
     const [rateEvent] = useRateEventSwalModal(auth)
+    const [handleDeleteReview] = useDeleteReviewSwalModal(auth)
     const [handleCreateCalendarEvent] = useCreateCalendarEvent()
     const { id } = useParams()
 
@@ -81,7 +83,11 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, 
                             </div>
                         </div>
                     </div>
-                    <Reviews event={allYearlyEvents.event} auth={auth} />
+                    <Reviews
+                        handleDeleteReview={handleDeleteReview}
+                        event={allYearlyEvents.event}
+                        auth={auth}
+                    />
                 </>
             )}
         </div>

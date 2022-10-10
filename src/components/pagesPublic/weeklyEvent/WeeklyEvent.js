@@ -11,10 +11,12 @@ import EventDetails from '../../EventDetails'
 import WeeklyEventsResultsTable from '../../WeeklyEventsResultsTable'
 import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
 import Reviews from '../../Reviews'
+import useDeleteReviewSwalModal from '../../../hoook/useDeleteReviewSwalModal'
 
 function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
     usePageTitle('- Weekly Event')
     const [rateEvent] = useRateEventSwalModal(auth)
+    const [handleDeleteReview] = useDeleteReviewSwalModal(auth)
     const { id } = useParams()
 
     useEffect(() => {
@@ -68,7 +70,11 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
                         </div>
                     </div>
                     <WeeklyEventsResultsTable />
-                    <Reviews event={allWeeklyEvents.event} auth={auth} />
+                    <Reviews
+                        handleDeleteReview={handleDeleteReview}
+                        event={allWeeklyEvents.event}
+                        auth={auth}
+                    />
                 </>
             )}
         </div>
