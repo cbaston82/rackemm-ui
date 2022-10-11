@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
-import { fetchSingleWeeklyEvent } from '../../../redux'
+import { fetchSinglePublicEvent } from '../../../redux'
 import NotFound404 from '../NotFound404'
 import LightBoxImage from '../../LightBoxImage'
 import BreadCrumbs from '../../BreadCrumbs'
@@ -13,20 +13,20 @@ import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
 import Reviews from '../../Reviews'
 import useDeleteReviewSwalModal from '../../../hoook/useDeleteReviewSwalModal'
 
-function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
+function WeeklyEvent({ publicEvents, fetchSinglePublicEvent, auth }) {
     usePageTitle('- Weekly Event')
     const [rateEvent] = useRateEventSwalModal(auth)
     const [handleDeleteReview] = useDeleteReviewSwalModal(auth)
     const { id } = useParams()
 
     useEffect(() => {
-        fetchSingleWeeklyEvent(id)
-    }, [fetchSingleWeeklyEvent, id])
+        fetchSinglePublicEvent(id)
+    }, [fetchSinglePublicEvent, id])
 
-    if (allWeeklyEvents.event && allWeeklyEvents.error) {
+    if (publicEvents.event && publicEvents.error) {
         return (
             <NotFound404
-                message={allWeeklyEvents.error}
+                message={publicEvents.error}
                 buttonText="Back to weekly events"
                 redirectTo="weekly-events"
             />
@@ -35,12 +35,9 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
 
     return (
         <div className="container" id="event-section">
-            <BreadCrumbs
-                navigateToPreviousLink
-                activeBreadcrumbTitle={allWeeklyEvents.event.title}
-            />
+            <BreadCrumbs navigateToPreviousLink activeBreadcrumbTitle={publicEvents.event.title} />
 
-            {allWeeklyEvents.loading ? (
+            {publicEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
                     <MoonLoader size={150} loading />
                 </div>
@@ -52,8 +49,8 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
                                 <div className="col-md-3">
                                     <LightBoxImage
                                         image={
-                                            allWeeklyEvents.event.posterImage !== ''
-                                                ? allWeeklyEvents.event.posterImage
+                                            publicEvents.event.posterImage !== ''
+                                                ? publicEvents.event.posterImage
                                                 : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
                                         }
                                     />
@@ -61,9 +58,9 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
                                 <div className="col-md-9">
                                     <EventDetails
                                         rateEvent={(rating) =>
-                                            rateEvent(rating, auth, allWeeklyEvents.event._id)
+                                            rateEvent(rating, auth, publicEvents.event._id)
                                         }
-                                        event={allWeeklyEvents.event}
+                                        event={publicEvents.event}
                                     />
                                 </div>
                             </div>
@@ -72,7 +69,7 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
                     <WeeklyEventsResultsTable />
                     <Reviews
                         handleDeleteReview={handleDeleteReview}
-                        event={allWeeklyEvents.event}
+                        event={publicEvents.event}
                         auth={auth}
                     />
                 </>
@@ -82,11 +79,11 @@ function WeeklyEvent({ allWeeklyEvents, fetchSingleWeeklyEvent, auth }) {
 }
 
 const mapStateToProps = (state) => ({
-    allWeeklyEvents: state.allWeeklyEvents,
+    publicEvents: state.publicEvents,
     auth: state.auth,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchSingleWeeklyEvent: (id) => dispatch(fetchSingleWeeklyEvent(id)),
+    fetchSinglePublicEvent: (id) => dispatch(fetchSinglePublicEvent(id)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(WeeklyEvent)

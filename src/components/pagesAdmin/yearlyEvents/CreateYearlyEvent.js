@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import YearlyEventForm from './YearlyEventForm'
-import { createYearlyEvent, getUserMedia } from '../../../redux'
+import { createUserEvent, getUserMedia } from '../../../redux'
 import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
-function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, userMedia }) {
+function CreateYearlyEvent({ userEvents, createUserEvent, userMedia }) {
     usePageTitle('- Account Yearly Event Create')
 
     const initialFormValues = {
@@ -50,14 +50,14 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, userMedia }) {
     const handleFormSubmit = async (e) => {
         e.preventDefault()
 
-        createYearlyEvent(editEvent)
+        createUserEvent(editEvent)
     }
 
     useEffect(() => {
-        if (userYearlyEvents.eventCreated) {
+        if (userEvents.eventCreated) {
             navigate('/account/yearly-events')
         }
-    }, [userYearlyEvents, navigate])
+    }, [userEvents, navigate])
 
     return (
         <div className="container">
@@ -66,7 +66,7 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, userMedia }) {
                 handleFormValueChange={handleFormValueChange}
                 handleFormSubmit={handleFormSubmit}
                 editEvent={editEvent}
-                loading={userYearlyEvents.loading}
+                loading={userEvents.loading}
                 pageRequest="Create Yearly Event"
             />
         </div>
@@ -74,12 +74,12 @@ function CreateYearlyEvent({ userYearlyEvents, createYearlyEvent, userMedia }) {
 }
 
 const mapStateToProps = (state) => ({
-    userYearlyEvents: state.userYearlyEvents,
+    userEvents: state.userEvents,
     userMedia: state.userMedia,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    createYearlyEvent: (editEvent) => dispatch(createYearlyEvent(editEvent)),
+    createUserEvent: (editEvent) => dispatch(createUserEvent(editEvent)),
     getUserMedia: () => dispatch(getUserMedia()),
 })
 

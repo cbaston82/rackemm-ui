@@ -1,19 +1,15 @@
 import { combineReducers } from 'redux'
 import authReducer from './auth/authReducer'
-import weeklyEventsReducer from './events/weeklyEventsReducer'
-import yearlyEventsReducer from './events/yearlyEventsReducer'
-import userWeeklyEventsReducer from './admin/userWeeklyEventsReducer'
-import userYearlyEventsReducer from './admin/userYearlyEventsReducer'
+import publicEventsReducer from './events/publicEventsReducer'
+import eventsReducer from './admin/eventsReducer'
 import stripeCustomerReducer from './admin/stripeCustomerReducer'
 import userMedia from './admin/userMediaReducer'
 import filtersReducer from './admin/filtersReducer'
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    userWeeklyEvents: userWeeklyEventsReducer,
-    userYearlyEvents: userYearlyEventsReducer,
-    allWeeklyEvents: weeklyEventsReducer,
-    allYearlyEvents: yearlyEventsReducer,
+    userEvents: eventsReducer,
+    publicEvents: publicEventsReducer,
     stripeCustomer: stripeCustomerReducer,
     userMedia: userMedia,
     savedFilters: filtersReducer,

@@ -1,14 +1,15 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaArrowCircleRight } from 'react-icons/fa'
+import { secondsToMilliseconds } from 'date-fns'
 import UpcomingYearlyEventCard from './UpcomingYearlyEventCard'
-import { getAllYearlyEvents } from '../../../redux'
+import { getAllPublicEvents } from '../../../redux'
 import Button from '../../Button'
 
-function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
+function UpcomingEventsSection({ getAllPublicEvents, publicEvents }) {
     useEffect(() => {
-        getAllYearlyEvents()
-    }, [getAllYearlyEvents])
+        getAllPublicEvents('yearly')
+    }, [getAllPublicEvents])
 
     return (
         <div className="py-5 rackemm-hero-3">
@@ -20,10 +21,15 @@ function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
                 </div>
 
                 <div className="row">
-                    {allYearlyEvents.events &&
-                        allYearlyEvents.events
-                            .filter((event) => new Date(event.startTime) > new Date())
-                            .sort((a, b) => new Date(a.startTime) - new Date(b.startTime))
+                    {publicEvents.events &&
+                        publicEvents.events
+                            .filter((event) => secondsToMilliseconds(event.startTime) > Date.now())
+                            .sort(
+                                (a, b) =>
+                                    secondsToMilliseconds(a.startTime) -
+                                    secondsToMilliseconds(b.startTime),
+                            )
+
                             .slice(0, 6)
                             .map((event) => (
                                 <UpcomingYearlyEventCard key={event._id} event={event} />
@@ -44,11 +50,11 @@ function UpcomingEventsSection({ getAllYearlyEvents, allYearlyEvents }) {
 }
 
 const mapStateToProps = (state) => ({
-    allYearlyEvents: state.allYearlyEvents,
+    publicEvents: state.publicEvents,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getAllYearlyEvents: () => dispatch(getAllYearlyEvents()),
+    getAllPublicEvents: (type) => dispatch(getAllPublicEvents(type)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpcomingEventsSection)

@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { tournamentColumns } from './yearlyEventsColumns'
 import EventsTable from './EventsTable'
-import { getAllYearlyEvents } from '../../../redux'
+import { getAllPublicEvents } from '../../../redux'
 import { sortByDate } from '../../../redux/helpers/dates'
 import BreadCrumbs from '../../BreadCrumbs'
 import Filters from '../../Filters'
 import usePageTitle from '../../../hoook/usePageTitle'
 import { userHasValidSubscription } from '../../../helpers/config'
 
-function YearlyEvents({ getAllYearlyEvents, allYearlyEvents, stripeCustomer }) {
+function YearlyEvents({ getAllPublicEvents, publicEvents, stripeCustomer }) {
     usePageTitle('- Yearly Events')
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -36,8 +36,8 @@ function YearlyEvents({ getAllYearlyEvents, allYearlyEvents, stripeCustomer }) {
     }, [buyIn, city, game, filter, setSearchParams])
 
     useEffect(() => {
-        getAllYearlyEvents()
-    }, [getAllYearlyEvents])
+        getAllPublicEvents('yearly')
+    }, [getAllPublicEvents])
 
     return (
         <div className="container">
@@ -51,27 +51,29 @@ function YearlyEvents({ getAllYearlyEvents, allYearlyEvents, stripeCustomer }) {
                     />
                 )}
             </div>
-            <EventsTable
-                setFilter={setFilter}
-                setCity={setCity}
-                setGame={setGame}
-                setBuyIn={setBuyIn}
-                filterValues={filterValues}
-                loaderMessage="Fetching Special Events..."
-                tournamentColumns={tournamentColumns}
-                events={sortByDate(allYearlyEvents.events)}
-            />
+            {!publicEvents.loading && (
+                <EventsTable
+                    setFilter={setFilter}
+                    setCity={setCity}
+                    setGame={setGame}
+                    setBuyIn={setBuyIn}
+                    filterValues={filterValues}
+                    loaderMessage="Fetching Special Events..."
+                    tournamentColumns={tournamentColumns}
+                    events={sortByDate(publicEvents.events)}
+                />
+            )}
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    allYearlyEvents: state.allYearlyEvents,
+    publicEvents: state.publicEvents,
     stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getAllYearlyEvents: () => dispatch(getAllYearlyEvents()),
+    getAllPublicEvents: (type) => dispatch(getAllPublicEvents(type)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvents)

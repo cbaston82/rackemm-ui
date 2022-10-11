@@ -1,23 +1,13 @@
-// Used for exporting redux component folders
 export { loginUser, logoutUser, signupUser, updatePassword } from './auth/authActions'
-export { getAllWeeklyEvents, fetchSingleWeeklyEvent } from './events/weeklyEventActions'
-export { getAllYearlyEvents, fetchSingleYearlyEvent } from './events/yearlyEventActions'
+export { getAllPublicEvents, fetchSinglePublicEvent } from './events/publicEventActions'
 // Auth
 export {
-    createWeeklyEvent,
-    updateUserWeeklyEvent,
-    deleteUserWeeklyEvent,
-    getUserWeeklyEvents,
-    resetUserWeeklyEvents,
-} from './admin/userWeeklyEventActions'
-export {
-    createYearlyEvent,
-    getUserYearlyEvents,
-    resetUserYearlyEvents,
-    deleteUserYearlyEvent,
-    updateUserYearlyEvent,
-} from './admin/userYearlyEventActions'
-export { getUserYearlyEvent } from './admin/userYearlyEventActions'
+    createUserEvent,
+    updateUserEvent,
+    deleteUserEvent,
+    getUserEvents,
+    resetUserEvents,
+} from './admin/eventActions'
 export { getUserStripeCustomer, resetUserStripeCustomer } from './admin/stripeCustomerActions'
 export {
     uploadUserMedia,

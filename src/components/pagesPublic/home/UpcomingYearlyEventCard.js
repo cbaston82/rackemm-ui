@@ -50,7 +50,7 @@ function UpcomingYearlyEventCard({ event }) {
                     </div>
                 </div>
                 <div className="card-footer text-black fw-light">
-                    {new Date(event.startTime).toLocaleString([], {
+                    {new Date(event.startTime * 1000).toLocaleString([], {
                         month: '2-digit',
                         day: '2-digit',
                         year: '2-digit',

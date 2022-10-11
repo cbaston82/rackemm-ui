@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { tournamentColumns } from './weeklyEventsColumns'
 import EventsTable from './EventsTable'
-import { getAllWeeklyEvents } from '../../../redux'
+import { getAllPublicEvents } from '../../../redux'
 import { sortByDayInWeek } from '../../../redux/helpers/dates'
 import usePageTitle from '../../../hoook/usePageTitle'
 import BreadCrumbs from '../../BreadCrumbs'
 import { userHasValidSubscription } from '../../../helpers/config'
 import Filters from '../../Filters'
 
-function WeeklyEvents({ stripeCustomer, getAllWeeklyEvents, allWeeklyEvents }) {
+function WeeklyEvents({ stripeCustomer, getAllPublicEvents, publicEvents }) {
     usePageTitle('- Weekly Events')
     const [searchParams, setSearchParams] = useSearchParams()
     const [buyIn, setBuyIn] = useState(decodeURI(searchParams.get('buyIn')))
@@ -37,8 +37,8 @@ function WeeklyEvents({ stripeCustomer, getAllWeeklyEvents, allWeeklyEvents }) {
     }, [buyIn, city, game, day, filter, setSearchParams])
 
     useEffect(() => {
-        getAllWeeklyEvents()
-    }, [getAllWeeklyEvents])
+        getAllPublicEvents('weekly')
+    }, [getAllPublicEvents])
 
     return (
         <div className="container">
@@ -52,28 +52,30 @@ function WeeklyEvents({ stripeCustomer, getAllWeeklyEvents, allWeeklyEvents }) {
                     />
                 )}
             </div>
-            <EventsTable
-                setBuyIn={setBuyIn}
-                setCity={setCity}
-                setGame={setGame}
-                setDay={setDay}
-                setFilter={setFilter}
-                filterValues={filterValues}
-                loaderMessage="Fetching Weekly WeeklyEvents..."
-                tournamentColumns={tournamentColumns}
-                events={sortByDayInWeek(allWeeklyEvents.events)}
-            />
+            {!publicEvents.loading && (
+                <EventsTable
+                    setBuyIn={setBuyIn}
+                    setCity={setCity}
+                    setGame={setGame}
+                    setDay={setDay}
+                    setFilter={setFilter}
+                    filterValues={filterValues}
+                    loaderMessage="Fetching Weekly WeeklyEvents..."
+                    tournamentColumns={tournamentColumns}
+                    events={sortByDayInWeek(publicEvents.events)}
+                />
+            )}
         </div>
     )
 }
 const mapStateToProps = (state) => ({
-    allWeeklyEvents: state.allWeeklyEvents,
+    publicEvents: state.publicEvents,
     auth: state.auth,
     stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getAllWeeklyEvents: () => dispatch(getAllWeeklyEvents()),
+    getAllPublicEvents: (type) => dispatch(getAllPublicEvents(type)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeeklyEvents)

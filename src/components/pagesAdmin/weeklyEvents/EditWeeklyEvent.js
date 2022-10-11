@@ -2,12 +2,12 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import WeeklyEventForm from './WeeklyEventForm'
-import { getUserMedia, updateUserWeeklyEvent } from '../../../redux'
+import { getUserMedia, updateUserEvent } from '../../../redux'
 import NotFound404 from '../../pagesPublic/NotFound404'
 import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
-function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia, userMedia }) {
+function EditWeeklyEvent({ userEvents, updateUserEvent, getUserMedia, userMedia }) {
     usePageTitle('- Account Weekly Event Edit')
     const { id } = useParams()
     const [editEvent, setEditEvent] = useState(null)
@@ -28,7 +28,7 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
-        updateUserWeeklyEvent(editEvent)
+        updateUserEvent(editEvent)
     }
 
     useEffect(() => {
@@ -36,12 +36,12 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia
     }, [getUserMedia])
 
     useEffect(() => {
-        setEditEvent(userWeeklyEvents.events.filter((event) => event._id === id).pop())
+        setEditEvent(userEvents.events.filter((event) => event._id === id).pop())
 
-        if (userWeeklyEvents.eventUpdated) {
+        if (userEvents.eventUpdated) {
             navigate('/account/weekly-events')
         }
-    }, [userWeeklyEvents, navigate, id])
+    }, [userEvents, navigate, id])
 
     return (
         <div className="container">
@@ -65,12 +65,12 @@ function EditWeeklyEvent({ userWeeklyEvents, updateUserWeeklyEvent, getUserMedia
 }
 
 const mapStateToProps = (state) => ({
-    userWeeklyEvents: state.userWeeklyEvents,
+    userEvents: state.userEvents,
     userMedia: state.userMedia,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    updateUserWeeklyEvent: (event) => dispatch(updateUserWeeklyEvent(event)),
+    updateUserEvent: (event) => dispatch(updateUserEvent(event)),
     getUserMedia: () => dispatch(getUserMedia()),
 })
 

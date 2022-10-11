@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { getUserWeeklyEvents, deleteUserWeeklyEvent } from '../../../redux'
+import { deleteUserEvent, getUserEvents } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import WeeklyEventsTable from './WeeklyEventsTable'
 import BreadCrumbs from '../../BreadCrumbs'
@@ -10,20 +10,17 @@ import { userHasEvents } from '../../../helpers/config'
 import useCanUserCreateEventsAlertMessage from '../../../hoook/useCanUserCreateEventsAlertMessage'
 import useCanUserCreateEventsButton from '../../../hoook/useCanUserCreateEventsButton'
 
-function WeeklyEvents({
-    getUserWeeklyEvents,
-    userWeeklyEvents,
-    stripeCustomer,
-    deleteUserWeeklyEvent,
-}) {
+function WeeklyEvents({ getUserEvents, userEvents, stripeCustomer, deleteUserEvent }) {
     usePageTitle('- Account Weekly Events')
     const [canUserCreateEventsAlertMessage] = useCanUserCreateEventsAlertMessage()
-    const [handleDelete] = useDeleteSwalModal(deleteUserWeeklyEvent)
+    const [handleDelete] = useDeleteSwalModal(deleteUserEvent)
     const [canUserCreateEventButton] = useCanUserCreateEventsButton()
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        getUserWeeklyEvents()
-    }, [getUserWeeklyEvents])
+        getUserEvents('weekly')
+        setLoading(userEvents.loading)
+    }, [getUserEvents])
 
     return (
         <div className="container">
@@ -31,28 +28,20 @@ function WeeklyEvents({
                 navigateToPreviousLink={false}
                 activeBreadcrumbTitle="Account Weekly Events"
             />
-            {userWeeklyEvents.loading ? (
+            {userEvents.loading || loading ? (
                 <CustomLoader color="white" loaderMessage="fetching events" />
             ) : (
                 <>
-                    {userHasEvents(userWeeklyEvents) ? (
+                    {userHasEvents(userEvents) ? (
                         <>
-                            {canUserCreateEventButton(
-                                stripeCustomer,
-                                userWeeklyEvents,
-                                'weekly-events',
-                            )}
+                            {canUserCreateEventButton(stripeCustomer, userEvents, 'weekly-events')}
                             <WeeklyEventsTable
-                                events={userWeeklyEvents.events}
+                                events={userEvents.events}
                                 handleDeleteEvent={handleDelete}
                             />
                         </>
                     ) : (
-                        canUserCreateEventsAlertMessage(
-                            stripeCustomer,
-                            userWeeklyEvents,
-                            'weekly-events',
-                        )
+                        canUserCreateEventsAlertMessage(stripeCustomer, userEvents, 'weekly-events')
                     )}
                 </>
             )}
@@ -61,13 +50,13 @@ function WeeklyEvents({
 }
 
 const mapStateToProps = (state) => ({
-    userWeeklyEvents: state.userWeeklyEvents,
+    userEvents: state.userEvents,
     stripeCustomer: state.stripeCustomer,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getUserWeeklyEvents: () => dispatch(getUserWeeklyEvents()),
-    deleteUserWeeklyEvent: (eventId) => dispatch(deleteUserWeeklyEvent(eventId)),
+    getUserEvents: (type) => dispatch(getUserEvents(type)),
+    deleteUserEvent: (eventId) => dispatch(deleteUserEvent(eventId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeeklyEvents)

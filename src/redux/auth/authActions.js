@@ -8,8 +8,7 @@ import {
     LOGOUT_USER_REQUEST,
 } from './authTypes'
 import { getUserStripeCustomer, resetUserStripeCustomer } from '../admin/stripeCustomerActions'
-import { resetUserWeeklyEvents } from '../admin/userWeeklyEventActions'
-import { resetUserYearlyEvents } from '../admin/userYearlyEventActions'
+import { resetUserEvents } from '../admin/eventActions'
 import { resetUserMedia } from '../admin/userMediaActions'
 import { resetFilters } from '../admin/filterActions'
 
@@ -84,8 +83,7 @@ export const updatePassword = (password) => (dispatch, state) => {
 export const logoutUser = () => (dispatch) => {
     dispatch(logoutUserRequest())
     dispatch(resetUserStripeCustomer())
-    dispatch(resetUserWeeklyEvents())
-    dispatch(resetUserYearlyEvents())
+    dispatch(resetUserEvents())
     dispatch(resetUserMedia())
     dispatch(resetFilters())
     localStorage.setItem('state', '')

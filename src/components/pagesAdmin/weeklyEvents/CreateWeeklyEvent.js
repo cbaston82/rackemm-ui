@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import WeeklyEventForm from './WeeklyEventForm'
-import { createWeeklyEvent, getUserMedia } from '../../../redux'
+import { createUserEvent, getUserMedia } from '../../../redux'
 import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
-function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, userMedia }) {
+function CreateWeeklyEvent({ userEvents, createUserEvent, getUserMedia, userMedia }) {
     usePageTitle('- Account Weekly Event Create')
     const initialFormValues = {
         type: 'weekly',
@@ -48,7 +48,7 @@ function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, 
     const handleFormSubmit = (e) => {
         e.preventDefault()
 
-        createWeeklyEvent(editEvent)
+        createUserEvent(editEvent)
     }
 
     useEffect(() => {
@@ -56,10 +56,10 @@ function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, 
     }, [getUserMedia])
 
     useEffect(() => {
-        if (userWeeklyEvents.eventCreated) {
+        if (userEvents.eventCreated) {
             navigate('/account/weekly-events')
         }
-    }, [userWeeklyEvents, navigate])
+    }, [userEvents, navigate])
 
     return (
         <div className="container">
@@ -68,19 +68,19 @@ function CreateWeeklyEvent({ userWeeklyEvents, createWeeklyEvent, getUserMedia, 
                 handleFormValueChange={handleFormValueChange}
                 handleFormSubmit={handleFormSubmit}
                 editEvent={editEvent}
-                loading={userWeeklyEvents.loading}
+                loading={userEvents.loading}
                 pageRequest="Create Weekly Event"
             />
         </div>
     )
 }
 const mapStateToProps = (state) => ({
-    userWeeklyEvents: state.userWeeklyEvents,
+    userEvents: state.userEvents,
     userMedia: state.userMedia,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    createWeeklyEvent: (editEvent) => dispatch(createWeeklyEvent(editEvent)),
+    createUserEvent: (editEvent) => dispatch(createUserEvent(editEvent)),
     getUserMedia: () => dispatch(getUserMedia()),
 })
 

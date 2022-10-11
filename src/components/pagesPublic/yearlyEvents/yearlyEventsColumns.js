@@ -6,7 +6,7 @@ export const tournamentColumns = [
     {
         name: 'Start Time',
         selector: (row) =>
-            new Date(row.startTime).toLocaleString([], {
+            new Date(row.startTime * 1000).toLocaleString([], {
                 month: '2-digit',
                 day: '2-digit',
                 year: '2-digit',

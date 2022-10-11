@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
 import { FaGoogle } from 'react-icons/fa'
-import { fetchSingleYearlyEvent } from '../../../redux'
+import { fetchSinglePublicEvent } from '../../../redux'
 import NotFound404 from '../NotFound404'
 import LightBoxImage from '../../LightBoxImage'
 import BreadCrumbs from '../../BreadCrumbs'
@@ -16,7 +16,7 @@ import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
 import Reviews from '../../Reviews'
 import useDeleteReviewSwalModal from '../../../hoook/useDeleteReviewSwalModal'
 
-function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, auth }) {
+function YearlyEvent({ stripeCustomer, publicEvents, fetchSinglePublicEvent, auth }) {
     usePageTitle('- Yearly Event')
     const [rateEvent] = useRateEventSwalModal(auth)
     const [handleDeleteReview] = useDeleteReviewSwalModal(auth)
@@ -24,13 +24,13 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, 
     const { id } = useParams()
 
     useEffect(() => {
-        fetchSingleYearlyEvent(id)
-    }, [fetchSingleYearlyEvent, id])
+        fetchSinglePublicEvent(id)
+    }, [fetchSinglePublicEvent, id])
 
-    if (allYearlyEvents.event && allYearlyEvents.error) {
+    if (publicEvents.event && publicEvents.error) {
         return (
             <NotFound404
-                message={allYearlyEvents.error}
+                message={publicEvents.error}
                 buttonText="Back to yearly events"
                 redirectTo="yearly-events"
             />
@@ -39,12 +39,9 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, 
 
     return (
         <div className="container" id="event-section">
-            <BreadCrumbs
-                navigateToPreviousLink
-                activeBreadcrumbTitle={allYearlyEvents.event.title}
-            />
+            <BreadCrumbs navigateToPreviousLink activeBreadcrumbTitle={publicEvents.event.title} />
 
-            {allYearlyEvents.loading ? (
+            {publicEvents.loading ? (
                 <div className="d-flex justify-content-center align-content-center">
                     <MoonLoader size={150} loading />
                 </div>
@@ -56,17 +53,15 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, 
                                 <div className="col-md-3">
                                     <LightBoxImage
                                         image={
-                                            allYearlyEvents.event.posterImage !== ''
-                                                ? allYearlyEvents.event.posterImage
+                                            publicEvents.event.posterImage !== ''
+                                                ? publicEvents.event.posterImage
                                                 : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
                                         }
                                     />
                                     {userHasValidSubscription(stripeCustomer) && (
                                         <Button
                                             className="btn btn-primary w-100 mt-3"
-                                            onClick={() =>
-                                                handleCreateCalendarEvent(allYearlyEvents)
-                                            }
+                                            onClick={() => handleCreateCalendarEvent(publicEvents)}
                                         >
                                             Add to calendar <FaGoogle />
                                         </Button>
@@ -75,9 +70,9 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, 
                                 <div className="col-md-9">
                                     <EventDetails
                                         rateEvent={(rating) =>
-                                            rateEvent(rating, auth, allYearlyEvents.event._id)
+                                            rateEvent(rating, auth, publicEvents.event._id)
                                         }
-                                        event={allYearlyEvents.event}
+                                        event={publicEvents.event}
                                     />
                                 </div>
                             </div>
@@ -85,7 +80,7 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, 
                     </div>
                     <Reviews
                         handleDeleteReview={handleDeleteReview}
-                        event={allYearlyEvents.event}
+                        event={publicEvents.event}
                         auth={auth}
                     />
                 </>
@@ -95,12 +90,12 @@ function YearlyEvent({ stripeCustomer, allYearlyEvents, fetchSingleYearlyEvent, 
 }
 
 const mapStateToProps = (state) => ({
-    allYearlyEvents: state.allYearlyEvents,
+    publicEvents: state.publicEvents,
     stripeCustomer: state.stripeCustomer,
     auth: state.auth,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchSingleYearlyEvent: (id) => dispatch(fetchSingleYearlyEvent(id)),
+    fetchSinglePublicEvent: (id) => dispatch(fetchSinglePublicEvent(id)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvent)

@@ -2,12 +2,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import YearlyEventForm from './YearlyEventForm'
-import { getUserMedia, updateUserYearlyEvent } from '../../../redux'
+import { getUserMedia, updateUserEvent } from '../../../redux'
 import NotFound404 from '../../pagesPublic/NotFound404'
 import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
-function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, userMedia }) {
+function EditYearlyEvent({ userEvents, updateUserEvent, userMedia }) {
     usePageTitle('- Account Yearly Event Edit')
     const { id } = useParams()
     const [editEvent, setEditEvent] = useState(null)
@@ -28,16 +28,16 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, userMedia })
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
-        updateUserYearlyEvent(editEvent)
+        updateUserEvent(editEvent)
     }
 
     useEffect(() => {
-        setEditEvent(userYearlyEvents.events.filter((event) => event._id === id).pop())
+        setEditEvent(userEvents.events.filter((event) => event._id === id).pop())
 
-        if (userYearlyEvents.eventUpdated) {
+        if (userEvents.eventUpdated) {
             navigate('/account/yearly-events')
         }
-    }, [userYearlyEvents, id, navigate])
+    }, [userEvents, id, navigate])
 
     return (
         <div className="container">
@@ -61,12 +61,12 @@ function EditYearlyEvent({ userYearlyEvents, updateUserYearlyEvent, userMedia })
 }
 
 const mapStateToProps = (state) => ({
-    userYearlyEvents: state.userYearlyEvents,
+    userEvents: state.userEvents,
     userMedia: state.userMedia,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    updateUserYearlyEvent: (event) => dispatch(updateUserYearlyEvent(event)),
+    updateUserEvent: (event) => dispatch(updateUserEvent(event)),
     getUserMedia: () => dispatch(getUserMedia()),
 })
 
