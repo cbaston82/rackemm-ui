@@ -5,6 +5,7 @@ import eventsReducer from './admin/eventsReducer'
 import stripeCustomerReducer from './admin/stripeCustomerReducer'
 import userMedia from './admin/userMediaReducer'
 import filtersReducer from './admin/filtersReducer'
+import reviewsReducer from './admin/reviewsReducer'
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     stripeCustomer: stripeCustomerReducer,
     userMedia: userMedia,
     savedFilters: filtersReducer,
+    givenReview: reviewsReducer,
 })
 
 export default rootReducer

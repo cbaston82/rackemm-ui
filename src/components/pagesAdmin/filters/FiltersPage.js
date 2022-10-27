@@ -4,14 +4,14 @@ import BreadCrumbs from '../../BreadCrumbs'
 import CustomLoader from '../../CustomeLoader'
 import { getSavedFilters, deleteFilter } from '../../../redux'
 import FiltersTable from './FiltersTable'
-import useDeleteSwalModal from '../../../hoook/useDeleteSwalModal'
+import useSwalModalsHooks from '../../../hoook/useSwalModalsHooks'
 
 function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
     useEffect(() => {
         getSavedFilters()
     }, [getSavedFilters])
 
-    const [handleDelete] = useDeleteSwalModal(deleteFilter)
+    const [handleDelete] = useSwalModalsHooks(deleteFilter)
 
     return (
         <div className="container">

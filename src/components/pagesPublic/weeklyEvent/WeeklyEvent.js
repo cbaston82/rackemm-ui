@@ -2,21 +2,30 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
-import { fetchSinglePublicEvent } from '../../../redux'
+import { createReview, editReview, fetchSinglePublicEvent } from '../../../redux'
 import NotFound404 from '../NotFound404'
 import LightBoxImage from '../../LightBoxImage'
 import BreadCrumbs from '../../BreadCrumbs'
 import usePageTitle from '../../../hoook/usePageTitle'
 import EventDetails from '../../EventDetails'
 import WeeklyEventsResultsTable from '../../WeeklyEventsResultsTable'
-import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
 import Reviews from '../../Reviews'
-import useDeleteReviewSwalModal from '../../../hoook/useDeleteReviewSwalModal'
+import useReviewHooks from '../../../hoook/useReviewHooks'
 
-function WeeklyEvent({ publicEvents, fetchSinglePublicEvent, auth }) {
+function WeeklyEvent({
+    publicEvents,
+    fetchSinglePublicEvent,
+    auth,
+    createReview,
+    editReview,
+    updateReview,
+    givenReview,
+}) {
     usePageTitle('- Weekly Event')
-    const [rateEvent] = useRateEventSwalModal(auth)
-    const [handleDeleteReview] = useDeleteReviewSwalModal(auth)
+    const { handleDeleteReview } = useReviewHooks(null, auth)
+    const { handleSaveReview } = useReviewHooks(createReview, auth)
+    const { handleEditReview } = useReviewHooks(editReview, auth)
+
     const { id } = useParams()
 
     useEffect(() => {
@@ -56,19 +65,19 @@ function WeeklyEvent({ publicEvents, fetchSinglePublicEvent, auth }) {
                                     />
                                 </div>
                                 <div className="col-md-9">
-                                    <EventDetails
-                                        rateEvent={(rating) =>
-                                            rateEvent(rating, auth, publicEvents.event._id)
-                                        }
-                                        event={publicEvents.event}
-                                    />
+                                    <EventDetails event={publicEvents.event} />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <WeeklyEventsResultsTable />
                     <Reviews
+                        createReview={createReview}
+                        updateReview={{ updateReview }}
+                        handleSaveReview={handleSaveReview}
+                        handleEditReview={handleEditReview}
                         handleDeleteReview={handleDeleteReview}
+                        givenReview={givenReview}
                         event={publicEvents.event}
                         auth={auth}
                     />
@@ -81,9 +90,12 @@ function WeeklyEvent({ publicEvents, fetchSinglePublicEvent, auth }) {
 const mapStateToProps = (state) => ({
     publicEvents: state.publicEvents,
     auth: state.auth,
+    givenReview: state.givenReview,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     fetchSinglePublicEvent: (id) => dispatch(fetchSinglePublicEvent(id)),
+    createReview: (rating, review, eventId) => dispatch(createReview(rating, review, eventId)),
+    editReview: (rating, review, reviewId) => dispatch(editReview(rating, review, reviewId)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(WeeklyEvent)

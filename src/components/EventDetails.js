@@ -1,7 +1,7 @@
 import StarRatings from 'react-star-ratings'
 import '../reviews.css'
 
-function EventDetails({ event, rateEvent }) {
+function EventDetails({ event }) {
     return (
         <>
             <div className="row d-flex flex-row-reverse">
@@ -11,18 +11,23 @@ function EventDetails({ event, rateEvent }) {
             <div className="row mt-5">
                 <div className="col-md-12">
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item d-flex flex-row justify-content-between">
+                        <li className="list-group-item d-flex flex-row justify-content-between align-middle">
                             <label className="fw-bolder">Rating</label>
-                            <StarRatings
-                                rating={event.ratingsAverage}
-                                starRatedColor="gold"
-                                starHoverColor="#6c5f1a"
-                                starDimension="18px"
-                                numberOfStars={5}
-                                changeRating={rateEvent}
-                                starSpacing="3px"
-                                name="rating"
-                            />
+                            <div className="d-flex">
+                                <StarRatings
+                                    rating={event.ratingsAverage}
+                                    starRatedColor="gold"
+                                    starHoverColor="#6c5f1a"
+                                    starDimension="18px"
+                                    numberOfStars={5}
+                                    starSpacing="3px"
+                                    name="rating"
+                                />
+                                <span className="ms-3">
+                                    {event.ratingsQuantity} review
+                                    {event.ratingsQuantity > 1 ? 's' : ''}
+                                </span>
+                            </div>
                         </li>
                         <li className="list-group-item d-flex flex-row justify-content-between">
                             <label className="fw-bolder">Venue</label>

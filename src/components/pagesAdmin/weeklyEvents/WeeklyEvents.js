@@ -4,18 +4,16 @@ import { deleteUserEvent, getUserEvents } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import WeeklyEventsTable from './WeeklyEventsTable'
 import BreadCrumbs from '../../BreadCrumbs'
-import useDeleteSwalModal from '../../../hoook/useDeleteSwalModal'
 import usePageTitle from '../../../hoook/usePageTitle'
 import { userHasEvents } from '../../../helpers/config'
-import useCanUserCreateEventsAlertMessage from '../../../hoook/useCanUserCreateEventsAlertMessage'
-import useCanUserCreateEventsButton from '../../../hoook/useCanUserCreateEventsButton'
+import useSubscriptionHooks from '../../../hoook/useSubscriptionHooks'
+import useSwalModalHooks from '../../../hoook/useSwalModalsHooks'
 
 function WeeklyEvents({ getUserEvents, userEvents, stripeCustomer, deleteUserEvent }) {
-    usePageTitle('- Account Weekly Events')
-    const [canUserCreateEventsAlertMessage] = useCanUserCreateEventsAlertMessage()
-    const [handleDelete] = useDeleteSwalModal(deleteUserEvent)
-    const [canUserCreateEventButton] = useCanUserCreateEventsButton()
     const [loading, setLoading] = useState(true)
+    usePageTitle('- Account Weekly Events')
+    const { handleDelete } = useSwalModalHooks(deleteUserEvent)
+    const { canUserCreateEventButton, canUserCreateEventsAlertMessage } = useSubscriptionHooks()
 
     useEffect(() => {
         getUserEvents('weekly')

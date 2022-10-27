@@ -14,6 +14,10 @@ export const userHasValidSubscription = (stripeCustomer) => {
     return currentDate < subscriptionEndDate
 }
 
+export const userIsLoggedIn = (auth) => auth.user.email
+
+export const getUserId = (auth) => auth.user.id
+
 export const userAllowedEvents = (stripeCustomer) =>
     plans
         .filter((plan) => plan.subscriptionPlanId === stripeCustomer.customer.subscriptionPlanId)

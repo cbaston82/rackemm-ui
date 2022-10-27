@@ -4,7 +4,7 @@ import { FaSave, FaFilter, FaRegSave } from 'react-icons/fa'
 import CustomLoader from './CustomeLoader'
 import { getSavedFilters, saveFilter, setFilter } from '../redux'
 import { userHasValidSubscription } from '../helpers/config'
-import useNoSubscriptionToast from '../hoook/useNoSubscriptionToast'
+import useSubscriptionHooks from '../hoook/useSubscriptionHooks'
 
 function Filters({
     getSavedFilters,
@@ -16,7 +16,7 @@ function Filters({
     auth,
     stripeCustomer,
 }) {
-    const [handleNoSubscription] = useNoSubscriptionToast()
+    const { handleNoSubscriptionToast } = useSubscriptionHooks()
     const [filterDescription, setFilterDescription] = useState('')
     const url = window.location.pathname + window.location.search
 
@@ -93,7 +93,7 @@ function Filters({
                         ) : (
                             <button
                                 type="button"
-                                onClick={handleNoSubscription}
+                                onClick={() => handleNoSubscriptionToast(stripeCustomer)}
                                 className="dropdown-item"
                             >
                                 <FaSave /> Save current filter

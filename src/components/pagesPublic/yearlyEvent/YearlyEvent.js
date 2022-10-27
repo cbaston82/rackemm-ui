@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
 import { FaGoogle } from 'react-icons/fa'
-import { fetchSinglePublicEvent } from '../../../redux'
+import { createReview, editReview, fetchSinglePublicEvent } from '../../../redux'
 import NotFound404 from '../NotFound404'
 import LightBoxImage from '../../LightBoxImage'
 import BreadCrumbs from '../../BreadCrumbs'
@@ -12,14 +12,23 @@ import useCreateCalendarEvent from '../../../hoook/useCreateCalendarEvent'
 import Button from '../../Button'
 import { userHasValidSubscription } from '../../../helpers/config'
 import EventDetails from '../../EventDetails'
-import useRateEventSwalModal from '../../../hoook/useRateEventSwalModal'
 import Reviews from '../../Reviews'
-import useDeleteReviewSwalModal from '../../../hoook/useDeleteReviewSwalModal'
+import useReviewHooks from '../../../hoook/useReviewHooks'
 
-function YearlyEvent({ stripeCustomer, publicEvents, fetchSinglePublicEvent, auth }) {
+function YearlyEvent({
+    stripeCustomer,
+    publicEvents,
+    fetchSinglePublicEvent,
+    auth,
+    createReview,
+    editReview,
+    givenReview,
+}) {
     usePageTitle('- Yearly Event')
-    const [rateEvent] = useRateEventSwalModal(auth)
-    const [handleDeleteReview] = useDeleteReviewSwalModal(auth)
+    const { handleDeleteReview } = useReviewHooks(null, auth)
+    const { handleSaveReview } = useReviewHooks(createReview, auth)
+    const { handleEditReview } = useReviewHooks(editReview, auth)
+
     const [handleCreateCalendarEvent] = useCreateCalendarEvent()
     const { id } = useParams()
 
@@ -69,8 +78,8 @@ function YearlyEvent({ stripeCustomer, publicEvents, fetchSinglePublicEvent, aut
                                 </div>
                                 <div className="col-md-9">
                                     <EventDetails
-                                        rateEvent={(rating) =>
-                                            rateEvent(rating, auth, publicEvents.event._id)
+                                        handleRateEvent={(rating) =>
+                                            handleRateEvent(rating, publicEvents.event._id)
                                         }
                                         event={publicEvents.event}
                                     />
@@ -79,7 +88,11 @@ function YearlyEvent({ stripeCustomer, publicEvents, fetchSinglePublicEvent, aut
                         </div>
                     </div>
                     <Reviews
+                        createReview={createReview}
+                        handleSaveReview={handleSaveReview}
                         handleDeleteReview={handleDeleteReview}
+                        givenReview={givenReview}
+                        handleEditReview={handleEditReview}
                         event={publicEvents.event}
                         auth={auth}
                     />
@@ -92,10 +105,13 @@ function YearlyEvent({ stripeCustomer, publicEvents, fetchSinglePublicEvent, aut
 const mapStateToProps = (state) => ({
     publicEvents: state.publicEvents,
     stripeCustomer: state.stripeCustomer,
+    givenReview: state.givenReview,
     auth: state.auth,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     fetchSinglePublicEvent: (id) => dispatch(fetchSinglePublicEvent(id)),
+    createReview: (rating, review, eventId) => dispatch(createReview(rating, review, eventId)),
+    editReview: (rating, review, reviewId) => dispatch(editReview(rating, review, reviewId)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvent)
