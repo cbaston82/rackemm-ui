@@ -2,18 +2,15 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
-import { FaGoogle } from 'react-icons/fa'
 import { createReview, editReview, fetchSinglePublicEvent } from '../../../redux'
 import NotFound404 from '../NotFound404'
 import LightBoxImage from '../../LightBoxImage'
 import BreadCrumbs from '../../BreadCrumbs'
 import usePageTitle from '../../../hoook/usePageTitle'
-import useCreateCalendarEvent from '../../../hoook/useCreateCalendarEvent'
-import Button from '../../Button'
-import { userHasValidSubscription } from '../../../helpers/config'
 import EventDetails from '../../EventDetails'
 import Reviews from '../../reviews/Reviews'
 import useReviewHooks from '../../../hoook/useReviewHooks'
+import AddToCalendarButton from './AddToCalendarButton'
 
 function YearlyEvent({
     stripeCustomer,
@@ -29,7 +26,6 @@ function YearlyEvent({
     const { handleSaveReview } = useReviewHooks(createReview, auth)
     const { handleEditReview } = useReviewHooks(editReview, auth)
 
-    const [handleCreateCalendarEvent] = useCreateCalendarEvent()
     const { id } = useParams()
 
     useEffect(() => {
@@ -67,22 +63,13 @@ function YearlyEvent({
                                                 : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
                                         }
                                     />
-                                    {userHasValidSubscription(stripeCustomer) && (
-                                        <Button
-                                            className="btn btn-primary w-100 mt-3"
-                                            onClick={() => handleCreateCalendarEvent(publicEvents)}
-                                        >
-                                            Add to calendar <FaGoogle />
-                                        </Button>
-                                    )}
+                                    <AddToCalendarButton
+                                        event={publicEvents.event}
+                                        stripeCustomer={stripeCustomer}
+                                    />
                                 </div>
                                 <div className="col-md-9">
-                                    <EventDetails
-                                        handleRateEvent={(rating) =>
-                                            handleRateEvent(rating, publicEvents.event._id)
-                                        }
-                                        event={publicEvents.event}
-                                    />
+                                    <EventDetails event={publicEvents.event} />
                                 </div>
                             </div>
                         </div>

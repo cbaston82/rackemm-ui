@@ -1,4 +1,5 @@
 import { gapi } from 'gapi-script'
+import { secondsToMilliseconds } from 'date-fns'
 
 function useCreateCalendarEvent() {
     const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID
@@ -6,7 +7,7 @@ function useCreateCalendarEvent() {
     const DISCOVERY_DOCS = [`${process.env.REACT_APP_DISCOVERY_DOCS}`]
     const SCOPES = process.env.REACT_APP_SCOPES
 
-    const handleCreateCalendarEvent = (allYearlyEvents) => {
+    const handleCreateCalendarEvent = (event) => {
         gapi.load('client:auth2', () => {
             gapi.client.init({
                 apiKey: API_KEY,
@@ -22,16 +23,16 @@ function useCreateCalendarEvent() {
                 .getAuthInstance()
                 .signIn()
                 .then(() => {
-                    const event = {
-                        summary: allYearlyEvents.event.title,
-                        location: `${allYearlyEvents.event.address}, ${allYearlyEvents.event.city}, ${allYearlyEvents.event.state} ${allYearlyEvents.event.zipCode}`,
-                        description: allYearlyEvents.event.description,
+                    const calendarEvent = {
+                        summary: event.title,
+                        location: `${event.address}, ${event.city}, ${event.state} ${event.zipCode}`,
+                        description: event.description,
                         start: {
-                            dateTime: new Date(allYearlyEvents.event.startTime),
+                            dateTime: new Date(secondsToMilliseconds(event.startTime)),
                             timeZone: 'America/Los_Angeles',
                         },
                         end: {
-                            dateTime: new Date(allYearlyEvents.event.endTime),
+                            dateTime: new Date(secondsToMilliseconds(event.endTime)),
                             timeZone: 'America/Los_Angeles',
                         },
                         recurrence: ['RRULE:FREQ=DAILY;COUNT=2'],
@@ -47,7 +48,7 @@ function useCreateCalendarEvent() {
 
                     const request = gapi.client.calendar.events.insert({
                         calendarId: 'primary',
-                        resource: event,
+                        resource: calendarEvent,
                     })
 
                     request.execute((calendarEvent) => {

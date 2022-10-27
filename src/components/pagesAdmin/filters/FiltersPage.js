@@ -11,7 +11,7 @@ function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
         getSavedFilters()
     }, [getSavedFilters])
 
-    const [handleDelete] = useSwalModalsHooks(deleteFilter)
+    const { handleDelete } = useSwalModalsHooks(deleteFilter)
 
     return (
         <div className="container">
