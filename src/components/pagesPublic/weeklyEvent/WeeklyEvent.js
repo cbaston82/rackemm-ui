@@ -9,7 +9,7 @@ import BreadCrumbs from '../../BreadCrumbs'
 import usePageTitle from '../../../hoook/usePageTitle'
 import EventDetails from '../../EventDetails'
 import WeeklyEventsResultsTable from '../../WeeklyEventsResultsTable'
-import Reviews from '../../Reviews'
+import Reviews from '../../reviews/Reviews'
 import useReviewHooks from '../../../hoook/useReviewHooks'
 
 function WeeklyEvent({

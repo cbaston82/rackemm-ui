@@ -12,7 +12,7 @@ import useCreateCalendarEvent from '../../../hoook/useCreateCalendarEvent'
 import Button from '../../Button'
 import { userHasValidSubscription } from '../../../helpers/config'
 import EventDetails from '../../EventDetails'
-import Reviews from '../../Reviews'
+import Reviews from '../../reviews/Reviews'
 import useReviewHooks from '../../../hoook/useReviewHooks'
 
 function YearlyEvent({
