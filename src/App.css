@@ -5,6 +5,7 @@
     --white: #ffffff;
     --error: #e7195a;
     --cyan: #00cdcd;
+    --cyan-light: #bfffff;
     --light-gray: #eef4ff;
     --medium-gray: #525559;
     --dark-gray: #292c31;
@@ -311,4 +312,19 @@ PAGINATION
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+}
+
+.offcanvas-body a {
+    padding: 10px
+}
+
+.offcanvas-body a:hover {
+    background-color: var(--dark-gray);
+    padding: 10px;
+    color: var(--white)!important;
+}
+
+.active-side-nav {
+    background-color: var(--cyan) !important;
+    padding: 10px;
 }

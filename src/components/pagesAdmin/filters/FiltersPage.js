@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { FaBars } from 'react-icons/fa'
 import BreadCrumbs from '../../BreadCrumbs'
 import CustomLoader from '../../CustomeLoader'
 import { getSavedFilters, deleteFilter } from '../../../redux'
@@ -15,6 +16,16 @@ function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
 
     return (
         <div className="container">
+            <a
+                className="btn btn-secondary mb-5"
+                data-bs-toggle="offcanvas"
+                href="#offCanvasNavigation"
+                role="button"
+                aria-controls="offCanvasNavigation"
+            >
+                Menu <FaBars />
+            </a>
+
             <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Saved Filters" />
             {savedFilters.loading ? (
                 <CustomLoader color="white" loaderMessage="fetching events" />

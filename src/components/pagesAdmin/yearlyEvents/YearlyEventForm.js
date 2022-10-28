@@ -14,7 +14,9 @@ function YearlyEventForm({
     return (
         <>
             <BreadCrumbs
-                previousLinks={[{ path: '/account/yearly-events', name: 'Account Yearly Events' }]}
+                previousLinks={[
+                    { path: '/account/yearly-events', name: 'Dashboard Yearly Events' },
+                ]}
                 activeBreadcrumbTitle="Create Yearly Event"
             />
             <div className="card rounded-0 rackemm-card-grid-form">

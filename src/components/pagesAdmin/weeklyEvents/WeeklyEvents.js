@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { FaBars } from 'react-icons/fa'
 import { deleteUserEvent, getUserEvents } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import WeeklyEventsTable from './WeeklyEventsTable'
@@ -11,7 +12,7 @@ import useSwalModalHooks from '../../../hoook/useSwalModalsHooks'
 
 function WeeklyEvents({ getUserEvents, userEvents, stripeCustomer, deleteUserEvent }) {
     const [loading, setLoading] = useState(true)
-    usePageTitle('- Account Weekly Events')
+    usePageTitle('- Dashboard Weekly Events')
     const { handleDelete } = useSwalModalHooks(deleteUserEvent)
     const { canUserCreateEventButton, canUserCreateEventsAlertMessage } = useSubscriptionHooks()
 
@@ -22,10 +23,17 @@ function WeeklyEvents({ getUserEvents, userEvents, stripeCustomer, deleteUserEve
 
     return (
         <div className="container">
-            <BreadCrumbs
-                navigateToPreviousLink={false}
-                activeBreadcrumbTitle="Account Weekly Events"
-            />
+            <a
+                className="btn btn-secondary mb-5"
+                data-bs-toggle="offcanvas"
+                href="#offCanvasNavigation"
+                role="button"
+                aria-controls="offCanvasNavigation"
+            >
+                Menu <FaBars />
+            </a>
+
+            <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Weekly Events" />
             {userEvents.loading || loading ? (
                 <CustomLoader color="white" loaderMessage="fetching events" />
             ) : (

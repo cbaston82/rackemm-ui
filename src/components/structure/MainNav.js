@@ -2,9 +2,8 @@ import { connect } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { FaUserAlt, FaSignOutAlt } from 'react-icons/fa'
 import { logoutUser } from '../../redux'
-import { userHasSubscription } from '../../helpers/config'
 
-function MainNav({ logoutUser, auth, stripeCustomer }) {
+function MainNav({ logoutUser, auth }) {
     const handleLogout = () => {
         logoutUser()
     }
@@ -59,51 +58,11 @@ function MainNav({ logoutUser, auth, stripeCustomer }) {
                                     aria-labelledby="navbarDropdown"
                                 >
                                     <li>
-                                        <NavLink className="dropdown-item" to="/account/profile">
-                                            Profile
+                                        <NavLink className="dropdown-item" to="/account">
+                                            Account
                                         </NavLink>
                                     </li>
                                     <hr />
-                                    {userHasSubscription(stripeCustomer) && (
-                                        <>
-                                            <li>
-                                                <NavLink
-                                                    className="dropdown-item"
-                                                    to="/account/media"
-                                                >
-                                                    Media
-                                                </NavLink>
-                                            </li>
-                                            <hr />
-                                            <li>
-                                                <NavLink
-                                                    className="dropdown-item"
-                                                    to="/account/filters"
-                                                >
-                                                    Filters
-                                                </NavLink>
-                                            </li>
-                                            <hr />
-                                            <li>
-                                                <NavLink
-                                                    className="dropdown-item"
-                                                    to="/account/weekly-events"
-                                                >
-                                                    Weekly Events
-                                                </NavLink>
-                                            </li>
-                                            <hr />
-                                            <li>
-                                                <NavLink
-                                                    className="dropdown-item"
-                                                    to="/account/yearly-events"
-                                                >
-                                                    Yearly Events
-                                                </NavLink>
-                                            </li>
-                                            <hr />
-                                        </>
-                                    )}
                                     <li>
                                         <button
                                             type="button"

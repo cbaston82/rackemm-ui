@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Protected from './Protected'
-import ProfilePage from '../pagesAdmin/profile/ProfilePage'
+import AccountPage from '../pagesAdmin/profile/AccountPage'
 import WeeklyEvents from '../pagesPublic/weeklyEvents/WeeklyEvents'
 import Landing from '../pagesPublic/home/Landing'
 import About from '../pagesPublic/About'
@@ -27,6 +27,7 @@ import MediaPage from '../pagesAdmin/MediaPage'
 import FiltersPage from '../pagesAdmin/filters/FiltersPage'
 import HasSubscriptionRoutes from './HasSubscriptionRoutes'
 import ForgotPassword from '../pagesPublic/ForgotPassword'
+import Dashboard from '../pagesAdmin/Dashboard'
 
 function MainRoutes({ auth, stripeCustomer }) {
     return (
@@ -64,10 +65,19 @@ function MainRoutes({ auth, stripeCustomer }) {
             />
             <Route
                 exact
-                path="/account/profile"
+                path="/account"
                 element={
                     <Protected auth={auth}>
-                        <ProfilePage />
+                        <AccountPage />
+                    </Protected>
+                }
+            />
+            <Route
+                exact
+                path="/account/dashboard"
+                element={
+                    <Protected auth={auth}>
+                        <Dashboard />
                     </Protected>
                 }
             />

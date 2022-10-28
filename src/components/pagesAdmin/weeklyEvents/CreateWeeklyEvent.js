@@ -7,7 +7,7 @@ import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
 function CreateWeeklyEvent({ userEvents, createUserEvent, getUserMedia, userMedia }) {
-    usePageTitle('- Account Weekly Event Create')
+    usePageTitle('- Dashboard Weekly Event Create')
     const initialFormValues = {
         type: 'weekly',
         title: '',

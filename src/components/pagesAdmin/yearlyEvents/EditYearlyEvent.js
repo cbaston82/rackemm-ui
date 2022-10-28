@@ -8,7 +8,7 @@ import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
 function EditYearlyEvent({ userEvents, updateUserEvent, userMedia }) {
-    usePageTitle('- Account Yearly Event Edit')
+    usePageTitle('- Dashboard Yearly Event Edit')
     const { id } = useParams()
     const [editEvent, setEditEvent] = useState(null)
     const navigate = useNavigate()

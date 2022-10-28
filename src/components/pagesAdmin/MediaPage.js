@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { FaTrash, FaUpload, FaImage } from 'react-icons/fa'
+import { FaTrash, FaUpload, FaImage, FaBars } from 'react-icons/fa'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
 import { millisecondsToSeconds } from 'date-fns'
@@ -8,9 +8,10 @@ import CustomLoader from '../CustomeLoader'
 import { uploadUserMedia, getUserMedia, deleteUserMedia } from '../../redux'
 import { allowedFileTypeUploads, cleanFileName } from '../../helpers'
 import usePageTitle from '../../hoook/usePageTitle'
+import BreadCrumbs from '../BreadCrumbs'
 
 function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }) {
-    usePageTitle('- Account Media')
+    usePageTitle('- Dashboard Media')
     const [errorMessage, setErrorMessage] = useState('')
     const [previewSource, setPreviewSource] = useState('')
     const [fileName, setFileName] = useState('')
@@ -94,6 +95,18 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
 
     return (
         <div className="container">
+            <a
+                className="btn btn-secondary mb-5"
+                data-bs-toggle="offcanvas"
+                href="#offCanvasNavigation"
+                role="button"
+                aria-controls="offCanvasNavigation"
+            >
+                Menu <FaBars />
+            </a>
+
+            <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Saved Media" />
+
             {userMedia.loading ? (
                 <CustomLoader color="white" loaderMessage="Fetching media." />
             ) : (

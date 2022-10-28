@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { FaBars } from 'react-icons/fa'
 import { getUserEvents, deleteUserEvent } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import YearlyEventsTable from './YearlyEventsTable'
@@ -10,7 +11,7 @@ import useSubscriptionHooks from '../../../hoook/useSubscriptionHooks'
 import useSwalModalHooks from '../../../hoook/useSwalModalsHooks'
 
 function YearlyEvents({ getUserEvents, userEvents, deleteUserEvent, stripeCustomer }) {
-    usePageTitle('- Account Yearly Event')
+    usePageTitle('- Dashboard Yearly Event')
     const { handleDelete } = useSwalModalHooks(deleteUserEvent)
     const { canUserCreateEventButton, canUserCreateEventsAlertMessage } = useSubscriptionHooks()
     const [loading, setLoading] = useState(true)
@@ -22,10 +23,17 @@ function YearlyEvents({ getUserEvents, userEvents, deleteUserEvent, stripeCustom
 
     return (
         <div className="container">
-            <BreadCrumbs
-                navigateToPreviousLink={false}
-                activeBreadcrumbTitle="Account Year Events"
-            />
+            <a
+                className="btn btn-secondary mb-5"
+                data-bs-toggle="offcanvas"
+                href="#offCanvasNavigation"
+                role="button"
+                aria-controls="offCanvasNavigation"
+            >
+                Menu <FaBars />
+            </a>
+
+            <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Yearly Events" />
             {userEvents.loading || loading ? (
                 <CustomLoader color="white" loaderMessage="Fetching events" />
             ) : (

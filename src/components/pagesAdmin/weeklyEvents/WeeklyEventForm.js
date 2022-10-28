@@ -14,7 +14,9 @@ function WeeklyEventForm({
     return (
         <>
             <BreadCrumbs
-                previousLinks={[{ path: '/account/weekly-events', name: 'Account Weekly Events' }]}
+                previousLinks={[
+                    { path: '/account/weekly-events', name: 'Dashboard Weekly Events' },
+                ]}
                 activeBreadcrumbTitle="Create Weekly Event"
             />
             <div className="card rounded-0 rackemm-card-grid-form">

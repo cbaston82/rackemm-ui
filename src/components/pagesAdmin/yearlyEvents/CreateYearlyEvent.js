@@ -7,7 +7,7 @@ import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
 function CreateYearlyEvent({ userEvents, createUserEvent, userMedia }) {
-    usePageTitle('- Account Yearly Event Create')
+    usePageTitle('- Dashboard Yearly Event Create')
 
     const initialFormValues = {
         type: 'yearly',

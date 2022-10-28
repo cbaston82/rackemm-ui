@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { FaBars } from 'react-icons/fa'
 import { getUserStripeCustomer, updatePassword } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import usePageTitle from '../../../hoook/usePageTitle'
@@ -10,8 +11,8 @@ import useUpdatePassword from '../../../hoook/useUpdatePassword'
 import useUpdateUserInfo from '../../../hoook/useUpdateUserInfo'
 import ManagePassword from './ManagePassword'
 
-function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer, updatePassword }) {
-    usePageTitle('- Account Profile')
+function AccountPage({ auth, getUserStripeCustomer, stripeCustomer, updatePassword }) {
+    usePageTitle('- Dashboard Profile')
     const [loadUserStripeAccountDetails] = useLoadUserStripeAccountDetails(auth, stripeCustomer)
     const [handlePasswordUpdate, handleOnChangePassword, updatePasswordForm] = useUpdatePassword(
         auth,
@@ -25,6 +26,15 @@ function ProfilePage({ auth, getUserStripeCustomer, stripeCustomer, updatePasswo
 
     return (
         <div className="container">
+            <a
+                className="btn btn-secondary mb-5"
+                data-bs-toggle="offcanvas"
+                href="#offCanvasNavigation"
+                role="button"
+                aria-controls="offCanvasNavigation"
+            >
+                Menu <FaBars />
+            </a>
             {stripeCustomer.loading ? (
                 <CustomLoader loaderMessage="Fetching user data." color="white" />
             ) : (
@@ -61,4 +71,4 @@ const mapDispatchToProps = (dispatch) => ({
     updatePassword: (updatePasswordForm) => dispatch(updatePassword(updatePasswordForm)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
+export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)
