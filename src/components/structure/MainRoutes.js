@@ -10,8 +10,7 @@ import YearlyEvents from '../pagesPublic/yearlyEvents/YearlyEvents'
 import Pricing from '../pagesPublic/pricing/Pricing'
 import Faq from '../pagesPublic/Faq'
 import Features from '../pagesPublic/Features'
-import WeeklyEvent from '../pagesPublic/weeklyEvent/WeeklyEvent'
-import YearlyEvent from '../pagesPublic/yearlyEvent/YearlyEvent'
+import Event from '../pagesPublic/Event/Event'
 import Login from '../pagesPublic/Login'
 import Register from '../pagesPublic/Register'
 import AccountYearlyEvents from '../pagesAdmin/yearlyEvents/YearlyEvents'
@@ -34,9 +33,8 @@ function MainRoutes({ auth, stripeCustomer }) {
         <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route exact path="/weekly-events" element={<WeeklyEvents />} />
-            <Route exact path="/weekly-event/:id" element={<WeeklyEvent />} />
-            <Route exact path="/yearly-event/:id" element={<YearlyEvent />} />
             <Route exact path="/yearly-events" element={<YearlyEvents />} />
+            <Route exact path="/event/:id" element={<Event />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/features" element={<Features />} />
             <Route exact path="/faq" element={<Faq />} />

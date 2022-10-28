@@ -49,7 +49,7 @@ export const tournamentColumns = [
         cell: (row) => (
             <Button
                 className="btn btn-outline-warning btn-sm"
-                path={`/weekly-event/${row._id}`}
+                path={`/event/${row._id}`}
                 buttonText="View"
             >
                 <FaArrowCircleRight />

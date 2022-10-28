@@ -11,8 +11,9 @@ import EventDetails from '../../EventDetails'
 import Reviews from '../../reviews/Reviews'
 import useReviewHooks from '../../../hoook/useReviewHooks'
 import AddToCalendarButton from './AddToCalendarButton'
+import WeeklyEventsResultsTable from '../../WeeklyEventsResultsTable'
 
-function YearlyEvent({
+function Event({
     stripeCustomer,
     publicEvents,
     fetchSinglePublicEvent,
@@ -21,11 +22,10 @@ function YearlyEvent({
     editReview,
     givenReview,
 }) {
-    usePageTitle('- Yearly Event')
+    usePageTitle(`- Event`)
     const { handleDeleteReview } = useReviewHooks(null, auth)
     const { handleSaveReview } = useReviewHooks(createReview, auth)
     const { handleEditReview } = useReviewHooks(editReview, auth)
-
     const { id } = useParams()
 
     useEffect(() => {
@@ -63,10 +63,12 @@ function YearlyEvent({
                                                 : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
                                         }
                                     />
-                                    <AddToCalendarButton
-                                        event={publicEvents.event}
-                                        stripeCustomer={stripeCustomer}
-                                    />
+                                    {publicEvents.event.type === 'yearly' && (
+                                        <AddToCalendarButton
+                                            event={publicEvents.event}
+                                            stripeCustomer={stripeCustomer}
+                                        />
+                                    )}
                                 </div>
                                 <div className="col-md-9">
                                     <EventDetails event={publicEvents.event} />
@@ -74,6 +76,7 @@ function YearlyEvent({
                             </div>
                         </div>
                     </div>
+                    {publicEvents.event.type === 'weekly' && <WeeklyEventsResultsTable />}
                     <Reviews
                         createReview={createReview}
                         handleSaveReview={handleSaveReview}
@@ -101,4 +104,4 @@ const mapDispatchToProps = (dispatch) => ({
     createReview: (rating, review, eventId) => dispatch(createReview(rating, review, eventId)),
     editReview: (rating, review, reviewId) => dispatch(editReview(rating, review, reviewId)),
 })
-export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(Event)
