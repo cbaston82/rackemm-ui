@@ -44,7 +44,7 @@ export const createReview = (rating, review, eventId) => (dispatch, state) => {
 
     axios
         .post(
-            `${getApiUrl()}events/${eventId}/reviews`,
+            `${getApiUrl()}/events/${eventId}/reviews`,
             {
                 review,
                 rating,
@@ -72,7 +72,7 @@ export const editReview = (rating, review, reviewId) => (dispatch, state) => {
 
     axios
         .patch(
-            `${getApiUrl()}reviews/${reviewId}`,
+            `${getApiUrl()}/reviews/${reviewId}`,
             {
                 review,
                 rating,
