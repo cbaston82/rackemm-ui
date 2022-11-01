@@ -11,7 +11,6 @@ function useReviewHooks(callBack = null, auth = null) {
     }
 
     const handleEditReview = (rating, review, id) => {
-        console.log('dfsdfsdfsdfds')
         callBack(rating, review, id)
     }
 
@@ -27,7 +26,7 @@ function useReviewHooks(callBack = null, auth = null) {
         }).then((willDelete) => {
             if (willDelete.isConfirmed) {
                 axios
-                    .delete(`${getApiUrl()}reviews/${id}`, {
+                    .delete(`${getApiUrl()}/reviews/${id}`, {
                         headers: {
                             Authorization: `Bearer ${auth.user.token}`,
                         },
