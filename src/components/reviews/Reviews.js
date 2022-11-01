@@ -48,15 +48,17 @@ function Reviews({
     return (
         <div className="card rounded-0 p-3 mt-3" id="reviews-section">
             <div className="card-body">
-                <ReviewsTitle
-                    auth={auth}
-                    handleShowEditReviewModal={handleShowEditReviewModal}
-                    userCreatedReview={event.reviews
-                        .filter((review) => review.user._id === getUserId(auth))
-                        .pop()}
-                    handleNotAuthenticatedToast={handleNotAuthenticatedToast}
-                    handleShowReviewModal={handleShowReviewModal}
-                />
+                {event.reviews && (
+                    <ReviewsTitle
+                        auth={auth}
+                        handleShowEditReviewModal={handleShowEditReviewModal}
+                        userCreatedReview={event.reviews
+                            .filter((review) => review.user._id === getUserId(auth))
+                            .pop()}
+                        handleNotAuthenticatedToast={handleNotAuthenticatedToast}
+                        handleShowReviewModal={handleShowReviewModal}
+                    />
+                )}
                 <div className="row mt-3">
                     <div className="review-list">
                         <Items
