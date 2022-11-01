@@ -12,6 +12,7 @@ import { resetUserEvents } from '../admin/eventActions'
 import { resetUserMedia } from '../admin/userMediaActions'
 import { resetFilters } from '../admin/filterActions'
 import { getApiUrl } from '../../helpers'
+import { resetReview } from '../admin/reviewActions'
 
 export const loginUserRequest = () => ({
     type: LOGIN_USER_REQUEST,
@@ -87,5 +88,6 @@ export const logoutUser = () => (dispatch) => {
     dispatch(resetUserEvents())
     dispatch(resetUserMedia())
     dispatch(resetFilters())
+    dispatch(resetReview())
     localStorage.setItem('state', '')
 }

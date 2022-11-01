@@ -22,4 +22,4 @@ export {
     setFilter,
     deleteFilter,
 } from './admin/filterActions'
-export { createReview, editReview } from './admin/reviewActions'
+export { createReview, editReview, resetReview } from './admin/reviewActions'

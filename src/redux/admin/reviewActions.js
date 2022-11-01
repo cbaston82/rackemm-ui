@@ -7,6 +7,7 @@ import {
     UPDATE_REVIEW_FAILURE,
     UPDATE_REVIEW_REQUEST,
     UPDATE_REVIEW_SUCCESS,
+    REVIEW_RESET,
 } from './reviewTypes'
 import { getApiUrl } from '../../helpers'
 import { fetchSinglePublicEvent } from '../events/publicEventActions'
@@ -37,6 +38,10 @@ export const editReviewFailure = (error) => ({
 export const editReviewSuccess = (data) => ({
     type: UPDATE_REVIEW_SUCCESS,
     payload: data,
+})
+
+export const resetReview = () => ({
+    type: REVIEW_RESET,
 })
 
 export const createReview = (rating, review, eventId) => (dispatch, state) => {

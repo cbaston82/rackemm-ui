@@ -5,6 +5,7 @@ import {
     UPDATE_REVIEW_SUCCESS,
     UPDATE_REVIEW_REQUEST,
     UPDATE_REVIEW_FAILURE,
+    REVIEW_RESET,
 } from './reviewTypes'
 
 const initialState = {
@@ -48,6 +49,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 review: {},
+            }
+
+        case REVIEW_RESET:
+            return {
+                ...initialState,
             }
         default:
             return state
