@@ -30,9 +30,6 @@ function Reviews({
     }
     const { handleNotAuthenticatedToast } = userAuthenticatedHooks()
 
-    const userCreatedReview =
-        event.reviews && event.reviews.filter((review) => review.user._id === getUserId(auth)).pop()
-
     const [currentItems, setCurrentItems] = useState(null)
     const [pageCount, setPageCount] = useState(0)
     const [itemOffset, setItemOffset] = useState(0)
@@ -41,7 +38,7 @@ function Reviews({
         const endOffset = itemOffset + itemsPerPage
         setCurrentItems(event.reviews.slice(itemOffset, endOffset))
         setPageCount(Math.ceil(event.reviews.length / itemsPerPage))
-    }, [itemOffset, itemsPerPage])
+    }, [itemOffset, itemsPerPage, event])
 
     const handlePageClick = (e) => {
         const newOffset = (e.selected * itemsPerPage) % event.reviews.length
@@ -54,7 +51,9 @@ function Reviews({
                 <ReviewsTitle
                     auth={auth}
                     handleShowEditReviewModal={handleShowEditReviewModal}
-                    userCreatedReview={userCreatedReview}
+                    userCreatedReview={event.reviews
+                        .filter((review) => review.user._id === getUserId(auth))
+                        .pop()}
                     handleNotAuthenticatedToast={handleNotAuthenticatedToast}
                     handleShowReviewModal={handleShowReviewModal}
                 />
