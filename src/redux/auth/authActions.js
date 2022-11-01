@@ -11,6 +11,7 @@ import { getUserStripeCustomer, resetUserStripeCustomer } from '../admin/stripeC
 import { resetUserEvents } from '../admin/eventActions'
 import { resetUserMedia } from '../admin/userMediaActions'
 import { resetFilters } from '../admin/filterActions'
+import { getApiUrl } from '../../helpers'
 
 export const loginUserRequest = () => ({
     type: LOGIN_USER_REQUEST,
@@ -34,7 +35,7 @@ export const loginUser = (user) => (dispatch) => {
     dispatch(loginUserRequest())
 
     axios
-        .post('/api/v1/auth/login', user)
+        .post(`${getApiUrl()}/auth/login`, user)
         .then((response) => {
             toast.success('You are now logged in')
             dispatch(loginUserSuccess(response.data.data))
@@ -50,7 +51,7 @@ export const signupUser = (user) => (dispatch) => {
     dispatch(loginUserRequest())
 
     axios
-        .post('/api/v1/auth/signup ', user)
+        .post(`${getApiUrl()}/auth/signup`, user)
         .then((response) => {
             dispatch(loginUserSuccess(response.data.data))
             toast.success('You are now logged in')
@@ -65,7 +66,7 @@ export const updatePassword = (password) => (dispatch, state) => {
     dispatch(loginUserRequest())
 
     axios
-        .patch('/api/v1/auth/update-password ', password, {
+        .patch(`${getApiUrl()}/auth/update-password`, password, {
             headers: {
                 Authorization: `Bearer ${state().auth.user.token}`,
             },

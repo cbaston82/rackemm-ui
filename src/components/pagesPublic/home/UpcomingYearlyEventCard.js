@@ -41,7 +41,7 @@ function UpcomingYearlyEventCard({ event }) {
                         </div>
                         <div>
                             <Link
-                                to={`/yearly-event/${event._id}`}
+                                to={`/event/${event._id}`}
                                 className="btn btn-sm btn-outline-secondary"
                             >
                                 View Details <FaArrowCircleRight />

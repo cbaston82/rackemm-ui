@@ -168,4 +168,5 @@ export const formatTimeForWeeklyEvent = (time) => {
     return `${cleanHour}:${minutes} ${timeOfDay}`
 }
 
-export const getApiUrl = () => '/api/v1/'
+export const getApiUrl = () => 'https://rackemm.herokuapp.com/api/v1'
+// export const getApiUrl = () => '/api/v1'

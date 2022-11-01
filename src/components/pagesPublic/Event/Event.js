@@ -76,7 +76,7 @@ function Event({
                             </div>
                         </div>
                     </div>
-                    {publicEvents.event.type === 'weekly' && <WeeklyEventsResultsTable />}
+                    <WeeklyEventsResultsTable brackets={publicEvents.event.brackets} />
                     <Reviews
                         createReview={createReview}
                         handleSaveReview={handleSaveReview}

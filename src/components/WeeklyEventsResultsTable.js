@@ -1,18 +1,8 @@
 import DataTable from 'react-data-table-component'
 import { FaTrophy } from 'react-icons/fa'
+import { format } from 'date-fns'
 
-function WeeklyEventsResultsTable() {
-    const weeklyResults = [
-        {
-            date: '2022-09-08',
-            url: 'https://challonge.com/xj2sgfzk?fbclid=IwAR2nnKFaxdEFGJW-nbU_1xogcyvdhXrHiStRCktjKs3vpG55LgxZ7zI9Y9k',
-        },
-        {
-            date: '2022-09-10',
-            url: 'https://challonge.com/xj2sgfzk?fbclid=IwAR2nnKFaxdEFGJW-nbU_1xogcyvdhXrHiStRCktjKs3vpG55LgxZ7zI9Y9k',
-        },
-    ]
-
+function WeeklyEventsResultsTable({ brackets }) {
     const paginationComponentOptions = {
         rowsPerPageText: 'Events per page',
         rangeSeparatorText: 'of',
@@ -20,10 +10,16 @@ function WeeklyEventsResultsTable() {
 
     const columns = [
         {
-            name: 'date',
-            selector: (row) => row.date,
+            name: 'title',
+            selector: (row) => row.title,
             sortable: true,
         },
+        {
+            name: 'date',
+            selector: (row) => format(new Date(row.date * 1000), 'MM-dd-yyyy'),
+            sortable: true,
+        },
+
         {
             name: 'url',
             // eslint-disable-next-line react/no-unstable-nested-components
@@ -32,9 +28,9 @@ function WeeklyEventsResultsTable() {
                     href={row.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="link-light text-decoration-none text-truncate"
+                    className="link-info text-decoration-none text-truncate"
                 >
-                    {row.url}
+                    View Bracket
                 </a>
             ),
         },
@@ -47,7 +43,7 @@ function WeeklyEventsResultsTable() {
                     <div className="row d-flex flex-row-reverse">
                         <div className="col">
                             <h5 className="fw-bolder mt-4 mt-sm-0 border-bottom">
-                                Weekly Results <FaTrophy color="gold" />{' '}
+                                Event Results <FaTrophy color="gold" />{' '}
                             </h5>
                         </div>
                     </div>
@@ -56,7 +52,7 @@ function WeeklyEventsResultsTable() {
                             className="mt-3"
                             theme="rackemm_theme_admin"
                             columns={columns}
-                            data={weeklyResults}
+                            data={brackets}
                             pagination
                             paginationComponentOptions={paginationComponentOptions}
                         />

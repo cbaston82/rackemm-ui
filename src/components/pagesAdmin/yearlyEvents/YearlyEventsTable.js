@@ -73,7 +73,7 @@ function YearlyEventsTable({ events, handleDeleteEvent }) {
             // eslint-disable-next-line react/no-unstable-nested-components
             cell: (row) => (
                 <>
-                    <Link className="ms-3" to={`/yearly-event/${row._id}`}>
+                    <Link className="ms-3" to={`/event/${row._id}`}>
                         <button type="button" className="btn btn-light btn-sm">
                             <FaExternalLinkAlt />
                         </button>
