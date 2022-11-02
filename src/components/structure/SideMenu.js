@@ -5,7 +5,6 @@ import { userHasSubscription } from '../../helpers/config'
 
 function SideMenu({ stripeCustomer }) {
     const location = useLocation()
-    console.log(location.pathname)
 
     return (
         <div

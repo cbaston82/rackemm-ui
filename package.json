@@ -1,4 +1,5 @@
 {
+    "proxy": "http://127.0.0.1:4000",
     "name": "rackemm",
     "version": "0.0.1",
     "private": true,

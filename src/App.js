@@ -8,8 +8,6 @@ import './App.css'
 import Footer from './components/structure/Footer'
 import SideMenu from './components/structure/SideMenu'
 
-console.log(process.env.TEST)
-
 function App() {
     return (
         <>

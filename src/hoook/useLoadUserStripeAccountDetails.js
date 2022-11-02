@@ -7,7 +7,7 @@ function useLoadUserStripeAccountDetails(auth, stripeCustomer) {
 
         await axios
             .post(
-                `${getApiUrl()}stripe/create-portal-session`,
+                `${getApiUrl()}/stripe/create-portal-session`,
                 {
                     customerId: stripeCustomer.customer.customerId,
                 },

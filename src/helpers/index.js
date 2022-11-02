@@ -168,5 +168,11 @@ export const formatTimeForWeeklyEvent = (time) => {
     return `${cleanHour}:${minutes} ${timeOfDay}`
 }
 
-export const getApiUrl = () => 'https://rackemm.herokuapp.com/api/v1'
-// export const getApiUrl = () => '/api/v1'
+let url = ''
+if (window.location.host.includes('localhost')) {
+    url = '/api/v1'
+} else if (window.location.host.includes('netlify')) {
+    url = 'https://rackemm.herokuapp.com/api/v1'
+}
+
+export const getApiUrl = () => url

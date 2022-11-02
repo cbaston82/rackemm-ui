@@ -7,7 +7,7 @@ function useCheckoutUser(auth) {
 
         await axios
             .post(
-                `${getApiUrl()}stripe/checkout-user`,
+                `${getApiUrl()}/stripe/checkout-user`,
                 {
                     priceId: priceId,
                 },
