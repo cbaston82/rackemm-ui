@@ -105,7 +105,7 @@ export const uploadUserMedia = (media, fileName) => (dispatch, state) => {
 
     axios
         .post(
-            `${getApiUrl()}media/`,
+            `${getApiUrl()}/media/`,
             { data: media, fileName },
             {
                 headers: {
