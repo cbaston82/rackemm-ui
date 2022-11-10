@@ -21,10 +21,7 @@ function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId, loadUserStrip
                         ))}
                     </ul>
                     <hr />
-                    <p className="text-black-50 p-4">
-                        Geared towards the regular player that might throw a tournament every now
-                        and again.
-                    </p>
+                    <p className="text-black-50 p-4">{plan.description}</p>
                 </div>
 
                 {auth.user.email ? (
