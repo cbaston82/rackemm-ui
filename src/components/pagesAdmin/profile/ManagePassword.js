@@ -1,4 +1,4 @@
-import CustomeLoader from '../../CustomeLoader'
+import CustomLoader from '../../CustomeLoader'
 
 function ManagePassword({
     handlePasswordUpdate,
@@ -12,7 +12,7 @@ function ManagePassword({
                 <div className="card-header">Manage Password</div>
                 <div className="card-body">
                     {auth.loading ? (
-                        <CustomeLoader loaderMessage="Updating password" color="black" />
+                        <CustomLoader loaderMessage="Updating password" color="black" />
                     ) : (
                         <form onSubmit={handlePasswordUpdate}>
                             <div className="row gx-3 mb-3">

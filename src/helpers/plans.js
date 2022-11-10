@@ -11,8 +11,8 @@ export const plans = [
             'Save filter searches',
         ],
         description:
-            'Geared towards the regular player that might throw a tournament every now and again. Or a player wanting to unlock the following',
-        subscriptionPlanId: 'price_1LgioiKr4ipGkAARyXuLXnF4',
+            'Allows you to create 1 weekly and 1 yearly tournament. Plus all the basic features.',
+        subscriptionPlanId: 'price_1M2ePMKr4ipGkAARRBdd6UGe',
     },
     {
         name: 'Level 2',
@@ -21,8 +21,8 @@ export const plans = [
         price: '2.99',
         features: ['3 weekly event', '3 yearly event', 'Plus everything from Level 1'],
         description:
-            'Geared towards the regular player that might throw a tournament every now and again. Or a player wanting to unlock the following',
-        subscriptionPlanId: 'price_1LgipIKr4ipGkAARuCv8fu2a',
+            'Allows you to create up to 3 weekly, and 3 yearly tournaments. Plus all the basic features.',
+        subscriptionPlanId: 'price_1M2eTfKr4ipGkAARLND8MZpv',
     },
     {
         name: 'Level 3',
@@ -35,7 +35,7 @@ export const plans = [
             'Plus everything from Level 2',
         ],
         description:
-            'Geared towards the regular player that might throw a tournament every now and again. Or a player wanting to unlock the following',
-        subscriptionPlanId: 'price_1LgipcKr4ipGkAAR3nDQNOw0',
+            'Allows you to create unlimited weekly and unlimited yearly tournaments. Plus all the basic features.',
+        subscriptionPlanId: 'price_1M2eWKKr4ipGkAARrPIUdL82',
     },
 ]
