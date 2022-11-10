@@ -3,7 +3,7 @@ export const plans = [
         name: 'Level 1',
         weeklyEventsMax: 1,
         yearlyEventsMax: 1,
-        price: '1.99',
+        price: '10.99',
         features: [
             '1 weekly event',
             '1 yearly event',
