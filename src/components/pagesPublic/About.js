@@ -16,7 +16,7 @@ function About() {
                                 alt=""
                                 width="200"
                             />
-                            <h4 className="mt-3 fw-bold">Carlos Baston</h4>
+                            <h4 className="mt-3 fw-bold">Carlos Baston.</h4>
                             <p className="fw-semibold text-black-50">
                                 Software Engineer / Pool Player
                             </p>
