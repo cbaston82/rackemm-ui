@@ -7,7 +7,7 @@ import Button from '../components/Button'
 function useSubscriptionHooks() {
     const handleNoSubscriptionToast = (stripeCustomer, userCreatedEvents = [], type = '') => {
         if (!userHasValidSubscription(stripeCustomer)) {
-            return toast.info('Reactivate your subscription to continue')
+            return toast.info('You need a valid subscription for this feature.')
         }
 
         if (!userCanCreateEvents(stripeCustomer, userCreatedEvents, type)) {

@@ -7,10 +7,9 @@ import { getAllPublicEvents } from '../../../redux'
 import { sortByDayInWeek } from '../../../redux/helpers/dates'
 import usePageTitle from '../../../hoook/usePageTitle'
 import BreadCrumbs from '../../BreadCrumbs'
-import { userHasValidSubscription } from '../../../helpers/config'
 import Filters from '../../Filters'
 
-function WeeklyEvents({ stripeCustomer, getAllPublicEvents, publicEvents }) {
+function WeeklyEvents({ getAllPublicEvents, publicEvents }) {
     usePageTitle('- Weekly Events')
     const [searchParams, setSearchParams] = useSearchParams()
     const [buyIn, setBuyIn] = useState(decodeURI(searchParams.get('buyIn')))
@@ -44,13 +43,11 @@ function WeeklyEvents({ stripeCustomer, getAllPublicEvents, publicEvents }) {
         <div className="container">
             <div className="d-flex justify-content-between">
                 <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
-                {userHasValidSubscription(stripeCustomer) && (
-                    <Filters
-                        filterValues={filterValues}
-                        filterType="weekly"
-                        buttonTitle="Weekly Filters"
-                    />
-                )}
+                <Filters
+                    filterValues={filterValues}
+                    filterType="weekly"
+                    buttonTitle="Weekly Filters"
+                />
             </div>
             {!publicEvents.loading && (
                 <EventsTable

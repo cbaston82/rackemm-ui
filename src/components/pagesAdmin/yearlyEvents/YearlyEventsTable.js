@@ -11,14 +11,9 @@ function YearlyEventsTable({ events, handleDeleteEvent }) {
     }
     const columns = [
         {
-            name: 'Venue',
-            selector: (row) => row.venue,
-            sortable: true,
-        },
-        {
-            name: 'start',
+            name: 'Start Time',
             selector: (row) =>
-                new Date(row.startTime * 1000).toLocaleString([], {
+                new Date(row.startTime).toLocaleString([], {
                     month: '2-digit',
                     day: '2-digit',
                     year: '2-digit',

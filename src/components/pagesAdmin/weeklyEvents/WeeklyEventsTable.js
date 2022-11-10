@@ -18,11 +18,6 @@ function WeeklyEventsTable({ events, handleDeleteEvent }) {
             sortable: true,
         },
         {
-            name: 'Venue',
-            selector: (row) => row.venue,
-            sortable: true,
-        },
-        {
             name: 'Time',
             selector: (row) => formatTimeForWeeklyEvent(row.startTime),
             sortable: true,

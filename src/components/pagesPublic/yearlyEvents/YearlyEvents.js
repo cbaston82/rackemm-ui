@@ -8,9 +8,8 @@ import { sortByDate } from '../../../redux/helpers/dates'
 import BreadCrumbs from '../../BreadCrumbs'
 import Filters from '../../Filters'
 import usePageTitle from '../../../hoook/usePageTitle'
-import { userHasValidSubscription } from '../../../helpers/config'
 
-function YearlyEvents({ getAllPublicEvents, publicEvents, stripeCustomer }) {
+function YearlyEvents({ getAllPublicEvents, publicEvents }) {
     usePageTitle('- Yearly Events')
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -43,13 +42,11 @@ function YearlyEvents({ getAllPublicEvents, publicEvents, stripeCustomer }) {
         <div className="container">
             <div className="d-flex justify-content-between">
                 <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
-                {userHasValidSubscription(stripeCustomer) && (
-                    <Filters
-                        filterValues={filterValues}
-                        filterType="yearly"
-                        buttonTitle="Yearly Filters"
-                    />
-                )}
+                <Filters
+                    filterValues={filterValues}
+                    filterType="yearly"
+                    buttonTitle="Yearly Filters"
+                />
             </div>
             {!publicEvents.loading && (
                 <EventsTable

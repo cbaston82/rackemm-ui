@@ -59,7 +59,7 @@ function useCreateCalendarEvent() {
         })
     }
 
-    return [handleCreateCalendarEvent]
+    return { handleCreateCalendarEvent }
 }
 
 export default useCreateCalendarEvent

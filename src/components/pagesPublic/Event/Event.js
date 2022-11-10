@@ -11,7 +11,6 @@ import EventDetails from '../../EventDetails'
 import Reviews from '../../reviews/Reviews'
 import useReviewHooks from '../../../hoook/useReviewHooks'
 import AddToCalendarButton from './AddToCalendarButton'
-import WeeklyEventsResultsTable from '../../WeeklyEventsResultsTable'
 
 function Event({
     stripeCustomer,
@@ -65,6 +64,7 @@ function Event({
                                     />
                                     {publicEvents.event.type === 'yearly' && (
                                         <AddToCalendarButton
+                                            auth={auth}
                                             event={publicEvents.event}
                                             stripeCustomer={stripeCustomer}
                                         />
@@ -76,7 +76,7 @@ function Event({
                             </div>
                         </div>
                     </div>
-                    <WeeklyEventsResultsTable brackets={publicEvents.event.brackets} />
+                    {/*<WeeklyEventsResultsTable brackets={publicEvents.event.brackets} />*/}
                     <Reviews
                         createReview={createReview}
                         handleSaveReview={handleSaveReview}

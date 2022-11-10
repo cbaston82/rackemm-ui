@@ -1,5 +1,7 @@
 import { FaArrowCircleRight } from 'react-icons/fa'
 import StarRatings from 'react-star-ratings'
+import LinesEllipsis from 'react-lines-ellipsis'
+import currencyFormatter from 'currency-formatter'
 import { formatTimeForWeeklyEvent } from '../../../helpers'
 import Button from '../../Button'
 
@@ -9,19 +11,32 @@ export const tournamentColumns = [
         selector: (row) => row.day,
         sortable: true,
     },
-    // {
-    //     name: 'Venue',
-    //     selector: (row) => row.venue,
-    //     sortable: true,
-    // },
     {
         name: 'Time',
         selector: (row) => formatTimeForWeeklyEvent(row.startTime),
         sortable: true,
     },
     {
-        name: 'Game',
-        selector: (row) => row.game,
+        name: 'Title',
+        selector: (row) => row.title,
+        sortable: true,
+        maxWidth: '600px', // when using custom you should use width or maxWidth, otherwise, the table will default to flex grow behavior
+        cell: (row) => (
+            <LinesEllipsis
+                text={row.title}
+                maxLine="3"
+                ellipsis="..."
+                trimRight
+                basedOn="letters"
+            />
+        ),
+    },
+    {
+        name: 'Buy-In',
+        selector: (row) =>
+            currencyFormatter.format(row.buyIn, {
+                code: 'USD',
+            }),
         sortable: true,
     },
     {
@@ -35,7 +50,7 @@ export const tournamentColumns = [
             <StarRatings
                 rating={row.ratingsAverage}
                 starRatedColor="gold"
-                starDimension="15px"
+                starDimension="12px"
                 numberOfStars={5}
                 starSpacing="1px"
                 name="rating"
