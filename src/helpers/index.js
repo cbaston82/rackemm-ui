@@ -172,6 +172,7 @@ let url = ''
 if (window.location.host.includes('localhost')) {
     url = '/api/v1'
 } else {
+    console.log('non local')
     url = 'https://rackemm.herokuapp.com/api/v1'
 }
 
