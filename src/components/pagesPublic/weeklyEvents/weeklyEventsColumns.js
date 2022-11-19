@@ -10,11 +10,11 @@ export const tournamentColumns = [
         name: 'Day',
         selector: (row) => row.day,
         sortable: true,
-    },
-    {
-        name: 'Time',
-        selector: (row) => formatTimeForWeeklyEvent(row.startTime),
-        sortable: true,
+        cell: (row) => (
+            <>
+                {row.day} {formatTimeForWeeklyEvent(row.startTime)}
+            </>
+        ),
     },
     {
         name: 'Title',

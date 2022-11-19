@@ -171,7 +171,7 @@ export const formatTimeForWeeklyEvent = (time) => {
 let url = ''
 if (window.location.host.includes('localhost')) {
     url = '/api/v1'
-} else if (window.location.host.includes('netlify')) {
+} else {
     url = 'https://rackemm.herokuapp.com/api/v1'
 }
 

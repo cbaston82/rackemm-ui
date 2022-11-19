@@ -6,7 +6,7 @@ import Button from '../../Button'
 
 export const tournamentColumns = [
     {
-        name: 'Start Time',
+        name: 'Date',
         selector: (row) =>
             new Date(row.startTime).toLocaleString([], {
                 month: '2-digit',

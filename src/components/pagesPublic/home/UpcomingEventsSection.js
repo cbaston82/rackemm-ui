@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaArrowCircleRight } from 'react-icons/fa'
-import { secondsToMilliseconds } from 'date-fns'
 import UpcomingYearlyEventCard from './UpcomingYearlyEventCard'
 import { getAllPublicEvents } from '../../../redux'
 import Button from '../../Button'
@@ -23,12 +22,8 @@ function UpcomingEventsSection({ getAllPublicEvents, publicEvents }) {
                 <div className="row">
                     {publicEvents.events &&
                         publicEvents.events
-                            .filter((event) => secondsToMilliseconds(event.startTime) > Date.now())
-                            .sort(
-                                (a, b) =>
-                                    secondsToMilliseconds(a.startTime) -
-                                    secondsToMilliseconds(b.startTime),
-                            )
+                            .filter((event) => new Date(event.startTime) > Date.now())
+                            .sort((a, b) => new Date(a.startTime) - new Date(b.startTime))
 
                             .slice(0, 6)
                             .map((event) => (

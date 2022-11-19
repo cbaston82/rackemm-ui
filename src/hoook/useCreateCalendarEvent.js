@@ -1,5 +1,4 @@
 import { gapi } from 'gapi-script'
-import { secondsToMilliseconds } from 'date-fns'
 
 function useCreateCalendarEvent() {
     const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID
@@ -28,11 +27,11 @@ function useCreateCalendarEvent() {
                         location: `${event.address}, ${event.city}, ${event.state} ${event.zipCode}`,
                         description: event.description,
                         start: {
-                            dateTime: new Date(secondsToMilliseconds(event.startTime)),
+                            dateTime: new Date(event.startTime),
                             timeZone: 'America/Los_Angeles',
                         },
                         end: {
-                            dateTime: new Date(secondsToMilliseconds(event.endTime)),
+                            dateTime: new Date(event.endTime),
                             timeZone: 'America/Los_Angeles',
                         },
                         recurrence: ['RRULE:FREQ=DAILY;COUNT=2'],
