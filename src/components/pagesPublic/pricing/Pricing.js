@@ -16,7 +16,7 @@ function Pricing({ auth, stripeCustomer }) {
             {console.log(disableSubscription())}
             {disableSubscription() === 'true' && (
                 <div className="alert alert-info rounded-0" role="alert">
-                    Subscription signups are disabled while in beta. Please{' '}
+                    While in beta all subscriptions are disabled. Please{' '}
                     <a href="mailto:support@rackemm.com" className="alert-link">
                         Contact Us
                     </a>{' '}
