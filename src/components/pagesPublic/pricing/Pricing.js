@@ -12,6 +12,15 @@ function Pricing({ auth, stripeCustomer }) {
 
     return (
         <div className="container" id="pricing-section">
+            {console.log(process.env.NODE_ENV)}
+            <div className="alert alert-info rounded-0" role="alert">
+                Subscription signups are disabled while in beta. Please{' '}
+                <a href="mailto:support@rackemm.com" className="alert-link">
+                    Contact Us
+                </a>{' '}
+                if you would like to help test while in beta. You would be grandfathered in for life
+                for helping.
+            </div>
             <div className="row">
                 <div className="pricing card-deck d-lg-flex justify-content-between mb-3">
                     {plans.map((plan) => (
