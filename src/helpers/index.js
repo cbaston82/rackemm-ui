@@ -168,6 +168,8 @@ export const formatTimeForWeeklyEvent = (time) => {
     return `${cleanHour}:${minutes} ${timeOfDay}`
 }
 
+export const disableSubscription = () => true
+
 let url = ''
 if (window.location.host.includes('localhost')) {
     url = '/api/v1'

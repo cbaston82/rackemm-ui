@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
+import { disableSubscription } from '../../../helpers'
 
 function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId, loadUserStripeAccountDetails }) {
     return (
@@ -23,49 +24,54 @@ function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId, loadUserStrip
                     <hr />
                     <p className="text-black-50 p-4">{plan.description}</p>
                 </div>
-
-                {auth.user.email ? (
+                {process.env.NODE_ENV === 'production' && disableSubscription && (
                     <>
-                        {subscriptionPlanId === plan.subscriptionPlanId && (
-                            <button
-                                disabled
-                                className="btn disabled btn-outline-success mb-3"
-                                id=" checkout-and-portal-button btn btn-outline-secondary mb-3"
-                                type="submit"
-                            >
-                                <FaCheck /> Subscribed
-                            </button>
-                        )}
-                        {subscriptionPlanId !== '' &&
-                            subscriptionPlanId !== plan.subscriptionPlanId && (
-                                <form onSubmit={loadUserStripeAccountDetails}>
+                        {auth.user.email ? (
+                            <>
+                                {subscriptionPlanId === plan.subscriptionPlanId && (
                                     <button
-                                        className="btn btn-outline-secondary mb-3"
+                                        disabled
+                                        className="btn disabled btn-outline-success mb-3"
                                         id=" checkout-and-portal-button btn btn-outline-secondary mb-3"
                                         type="submit"
                                     >
-                                        Change Subscription
+                                        <FaCheck /> Subscribed
                                     </button>
-                                </form>
-                            )}
-                        {subscriptionPlanId === '' && (
-                            <form onSubmit={(e) => checkoutUser(e, plan.subscriptionPlanId)}>
-                                <button
-                                    className="btn btn-outline-secondary mb-3"
-                                    id=" checkout-and-portal-button btn btn-outline-secondary mb-3"
-                                    type="submit"
-                                >
-                                    Subscribe
+                                )}
+                                {subscriptionPlanId !== '' &&
+                                    subscriptionPlanId !== plan.subscriptionPlanId && (
+                                        <form onSubmit={loadUserStripeAccountDetails}>
+                                            <button
+                                                className="btn btn-outline-secondary mb-3"
+                                                id=" checkout-and-portal-button btn btn-outline-secondary mb-3"
+                                                type="submit"
+                                            >
+                                                Change Subscription
+                                            </button>
+                                        </form>
+                                    )}
+                                {subscriptionPlanId === '' && (
+                                    <form
+                                        onSubmit={(e) => checkoutUser(e, plan.subscriptionPlanId)}
+                                    >
+                                        <button
+                                            className="btn btn-outline-secondary mb-3"
+                                            id=" checkout-and-portal-button btn btn-outline-secondary mb-3"
+                                            type="submit"
+                                        >
+                                            Subscribe
+                                        </button>
+                                    </form>
+                                )}
+                            </>
+                        ) : (
+                            <Link to="/login">
+                                <button type="button" className="btn btn-outline-secondary mb-3">
+                                    Sign Up
                                 </button>
-                            </form>
+                            </Link>
                         )}
                     </>
-                ) : (
-                    <Link to="/login">
-                        <button type="button" className="btn btn-outline-secondary mb-3">
-                            Sign Up
-                        </button>
-                    </Link>
                 )}
             </div>
         </div>
