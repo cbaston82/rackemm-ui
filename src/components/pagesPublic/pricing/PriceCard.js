@@ -24,7 +24,7 @@ function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId, loadUserStrip
                     <hr />
                     <p className="text-black-50 p-4">{plan.description}</p>
                 </div>
-                {process.env.NODE_ENV === 'production' && disableSubscription && (
+                {disableSubscription() !== 'true' && (
                     <>
                         {auth.user.email ? (
                             <>

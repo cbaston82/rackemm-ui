@@ -168,7 +168,7 @@ export const formatTimeForWeeklyEvent = (time) => {
     return `${cleanHour}:${minutes} ${timeOfDay}`
 }
 
-export const disableSubscription = () => true
+export const disableSubscription = () => process.env.REACT_APP_DISABLE_SUBSCRIPTION
 
 let url = ''
 if (window.location.host.includes('localhost')) {

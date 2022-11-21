@@ -13,14 +13,15 @@ function Pricing({ auth, stripeCustomer }) {
 
     return (
         <div className="container" id="pricing-section">
-            {process.env.NODE_ENV === 'production' && disableSubscription && (
+            {console.log(disableSubscription())}
+            {disableSubscription() === 'true' && (
                 <div className="alert alert-info rounded-0" role="alert">
                     Subscription signups are disabled while in beta. Please{' '}
                     <a href="mailto:support@rackemm.com" className="alert-link">
                         Contact Us
                     </a>{' '}
-                    if you would like to help test while in beta. You would be grandfathered in for
-                    life for helping.
+                    if you would like to help test. You would be grandfathered in for life for
+                    helping.
                 </div>
             )}
             <div className="row">
