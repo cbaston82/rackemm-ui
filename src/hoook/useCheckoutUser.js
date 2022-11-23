@@ -14,6 +14,7 @@ function useCheckoutUser(auth) {
                 {
                     headers: {
                         Authorization: `Bearer ${auth.user.token}`,
+                        'Access-Control-Allow-Origin': '*',
                     },
                 },
             )

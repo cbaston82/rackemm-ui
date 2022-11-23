@@ -25,14 +25,24 @@ function Footer() {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/privacy-policy" className="nav-link px-2 text-white-50">
+                    <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href="https://app.termly.io/document/privacy-policy/8181b809-9699-42a3-801e-29dfb04f0396"
+                        className="nav-link px-2 text-white-50"
+                    >
                         Privacy Policy
-                    </Link>
+                    </a>
                 </li>
                 <li className="nav-item">
-                    <Link to="/terms-of-use" className="nav-link px-2 text-white-50">
+                    <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href="https://app.termly.io/document/terms-of-use-for-saas/b77937b2-7c78-44e7-8fea-dafedb245d4b"
+                        className="nav-link px-2 text-white-50"
+                    >
                         Terms of Use
-                    </Link>
+                    </a>
                 </li>
             </ul>
             <div className="d-flex flex-row justify-content-center align-items-center">
