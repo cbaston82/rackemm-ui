@@ -12,7 +12,7 @@ export const plans = [
         ],
         description:
             'Allows you to create 1 weekly and 1 yearly tournament. Plus all the basic features.',
-        subscriptionPlanId: 'price_1M2ePMKr4ipGkAARRBdd6UGe',
+        subscriptionPlanId: 'price_1M7Rx2Kr4ipGkAARh7XuyemK',
     },
     {
         name: 'Level 2',
@@ -22,12 +22,12 @@ export const plans = [
         features: ['3 weekly event', '3 yearly event', 'Plus everything from Level 1'],
         description:
             'Allows you to create up to 3 weekly, and 3 yearly tournaments. Plus all the basic features.',
-        subscriptionPlanId: 'price_1M2eTfKr4ipGkAARLND8MZpv',
+        subscriptionPlanId: 'price_1M7RxXKr4ipGkAARPxux9So3',
     },
     {
         name: 'Level 3',
-        weeklyEventsMax: 1000,
-        yearlyEventsMax: 1000,
+        weeklyEventsMax: 100,
+        yearlyEventsMax: 100,
         price: '3.99',
         features: [
             'Unlimited weekly events',
@@ -36,6 +36,6 @@ export const plans = [
         ],
         description:
             'Allows you to create unlimited weekly and unlimited yearly tournaments. Plus all the basic features.',
-        subscriptionPlanId: 'price_1M2eWKKr4ipGkAARrPIUdL82',
+        subscriptionPlanId: 'price_1M7Ry3Kr4ipGkAARG4JiAsxX',
     },
 ]
