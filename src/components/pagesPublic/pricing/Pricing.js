@@ -13,7 +13,6 @@ function Pricing({ auth, stripeCustomer }) {
 
     return (
         <div className="container" id="pricing-section">
-            {console.log(disableSubscription())}
             {disableSubscription() === 'true' && (
                 <div className="alert alert-info rounded-0" role="alert">
                     While in beta all subscriptions are disabled. Please{' '}
