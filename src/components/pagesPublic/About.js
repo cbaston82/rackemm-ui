@@ -59,7 +59,7 @@ function About() {
                                 believe I understand what it is the average pool player is looking
                                 and that is find a tournament without hassle. This is going to be a
                                 growing application geared towards the pool player first and open to
-                                all <Link to="/feature">suggestions and feature requests</Link>.
+                                all <Link to="/features">suggestions and feature requests</Link>.
                             </p>
                         </div>
                     </div>
