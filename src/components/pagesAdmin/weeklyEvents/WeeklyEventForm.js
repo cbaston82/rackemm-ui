@@ -93,6 +93,7 @@ function WeeklyEventForm({
                                                 <span className="text-danger fw-bolder">*</span>
                                             </label>
                                             <input
+                                                id="autocomplete"
                                                 onChange={(e) => handleFormValueChange(e)}
                                                 type="text"
                                                 name="venue"

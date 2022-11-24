@@ -28,8 +28,39 @@ function CreateWeeklyEvent({ userEvents, createUserEvent, getUserMedia, userMedi
         status: '',
     }
 
+    let autocomplete = null
+
     const [editEvent, setEditEvent] = useState(initialFormValues)
     const navigate = useNavigate()
+
+    const handlePlaceSelect = () => {
+        const addressObject = autocomplete.getPlace()
+        const address = addressObject.address_components
+        console.log(`${address[0].long_name} ${address[1].long_name}`)
+        console.log(addressObject)
+        setEditEvent({
+            ...editEvent,
+            address:
+                address.length === 9
+                    ? `${address[1].long_name} ${address[2].long_name}`
+                    : `${address[0].long_name} ${address[1].long_name}`,
+
+            city: address.length === 9 ? `${address[3].long_name}` : `${address[2].long_name}`,
+            state: address.length === 9 ? `${address[5].long_name}` : `${address[4].long_name}`,
+            zipCode: address.length === 9 ? `${address[7].long_name}` : `${address[6].long_name}`,
+            venue: addressObject.name,
+        })
+        console.log('ddddddddddd', editEvent)
+    }
+
+    useEffect(() => {
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('autocomplete'),
+            {},
+        )
+
+        autocomplete.addListener('place_changed', handlePlaceSelect)
+    }, [autocomplete])
 
     const handleFormValueChange = (e) => {
         const { name, value } = e.target
