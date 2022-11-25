@@ -11,7 +11,6 @@ const weeklyColumns = (handleDeleteEvent) => [
         name: 'Day',
         selector: (row) => row.day,
         sortable: true,
-        maxWidth: '25%', // when using custom you should use width or maxWidth, otherwise, the table will default to flex grow behavior
         cell: (row) => (
             <>
                 {row.day} {formatTimeForWeeklyEvent(row.startTime)}
@@ -22,7 +21,6 @@ const weeklyColumns = (handleDeleteEvent) => [
         name: 'Title',
         selector: (row) => row.title,
         sortable: true,
-        maxWidth: '25%', //
         cell: (row) => (
             <LinesEllipsis
                 text={row.title}
@@ -45,7 +43,6 @@ const weeklyColumns = (handleDeleteEvent) => [
         name: 'Status',
         selector: (row) => row.status,
         sortable: true,
-        maxWidth: '25%', //
         conditionalCellStyles: [
             {
                 when: (row) => row.status === 'active',
@@ -75,7 +72,7 @@ const weeklyColumns = (handleDeleteEvent) => [
         // maxWidth: '25%', // when using custom you should use width or maxWidth, otherwise, the table will default to flex grow behavior
         // eslint-disable-next-line react/no-unstable-nested-components
         cell: (row) => (
-            <>
+            <div className="flex flex-row align-items-center justify-content-around">
                 <Link className="ms-3" to={`/event/${row._id}`}>
                     <button type="button" className="btn btn-light btn-sm">
                         <FaExternalLinkAlt />
@@ -94,7 +91,7 @@ const weeklyColumns = (handleDeleteEvent) => [
                 >
                     <FaTrashAlt />
                 </button>
-            </>
+            </div>
         ),
     },
 ]
