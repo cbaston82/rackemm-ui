@@ -1,7 +1,7 @@
 import { differenceInDays, formatDistance, subDays } from 'date-fns'
 import { MoonLoader } from 'react-spinners'
 import { FaRegSave } from 'react-icons/fa'
-import { cleanPublicImageName } from '../../../helpers'
+import { cleanPublicImageName, formatPhoneNumber } from '../../../helpers'
 import BreadCrumbs from '../../BreadCrumbs'
 
 function WeeklyEventForm({
@@ -41,6 +41,7 @@ function WeeklyEventForm({
                         <form onSubmit={handleFormSubmit} className="grid-form">
                             <div className="row gx-3 mb-3">
                                 <fieldset>
+                                    <legend>Tournament Details</legend>
                                     <div data-row-span="2">
                                         <div data-field-span="1">
                                             <label>
@@ -71,7 +72,6 @@ function WeeklyEventForm({
                                             </select>
                                         </div>
                                     </div>
-
                                     <div data-row-span="1">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="description">
@@ -85,21 +85,7 @@ function WeeklyEventForm({
                                             />
                                         </div>
                                     </div>
-
-                                    <div data-row-span="2">
-                                        <div data-field-span="1">
-                                            <label className="small mb-1" htmlFor="venue">
-                                                Venue{' '}
-                                                <span className="text-danger fw-bolder">*</span>
-                                            </label>
-                                            <input
-                                                id="autocomplete"
-                                                onChange={(e) => handleFormValueChange(e)}
-                                                type="text"
-                                                name="venue"
-                                                value={editEvent.venue}
-                                            />
-                                        </div>
+                                    <div data-row-span="1">
                                         <div data-field-span="1">
                                             <label>
                                                 Buy-in{' '}
@@ -113,39 +99,6 @@ function WeeklyEventForm({
                                             />
                                         </div>
                                     </div>
-                                </fieldset>
-                                <fieldset>
-                                    <div data-row-span="2">
-                                        <div data-field-span="1">
-                                            <label className="small mb-1" htmlFor="pointOfContact">
-                                                Point of contact{' '}
-                                                <span className="text-danger fw-bolder">*</span>
-                                            </label>
-                                            <input
-                                                onChange={(e) => handleFormValueChange(e)}
-                                                type="text"
-                                                name="pointOfContact"
-                                                value={editEvent.pointOfContact}
-                                            />
-                                        </div>
-                                        <div data-field-span="1">
-                                            <label
-                                                className="small mb-1"
-                                                htmlFor="pointOfContactPhone"
-                                            >
-                                                Point of contact phone{' '}
-                                                <span className="text-danger fw-bolder">*</span>
-                                            </label>
-                                            <input
-                                                onChange={(e) => handleFormValueChange(e)}
-                                                type="text"
-                                                name="pointOfContactPhone"
-                                                value={editEvent.pointOfContactPhone}
-                                            />
-                                        </div>
-                                    </div>
-                                </fieldset>
-                                <fieldset>
                                     <div data-row-span="3">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="day">
@@ -177,6 +130,117 @@ function WeeklyEventForm({
                                                 type="time"
                                                 name="startTime"
                                                 value={editEvent.startTime}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div data-row-span="3">
+                                        <div data-field-span="1">
+                                            <label className="small mb-1" htmlFor="ratingSystem">
+                                                Rating system{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
+                                            <input
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                type="text"
+                                                name="ratingSystem"
+                                                value={editEvent.ratingSystem}
+                                            />
+                                        </div>
+                                        <div data-field-span="1">
+                                            <label className="small mb-1" htmlFor="game">
+                                                Game Type{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
+                                            <select
+                                                value={editEvent.game}
+                                                name="game"
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                className="form-control rounded-0"
+                                            >
+                                                <option value="">Choose...</option>
+                                                <option value="8-ball">8-Ball</option>
+                                                <option value="9-ball">9-Ball</option>
+                                                <option value="10-ball">10-Ball</option>
+                                            </select>
+                                        </div>
+                                        <div data-field-span="1">
+                                            <label className="small mb-1" htmlFor="status">
+                                                Status{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
+                                            <select
+                                                value={editEvent.status}
+                                                name="status"
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                className="form-control rounded-0"
+                                            >
+                                                <option value="">Choose...</option>
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div className="mt-5" />
+                                <fieldset>
+                                    <legend>Point of Contact Info</legend>
+                                    <div data-row-span="2">
+                                        <div data-field-span="1">
+                                            <label className="small mb-1" htmlFor="pointOfContact">
+                                                Point of contact{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
+                                            <input
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                type="text"
+                                                name="pointOfContact"
+                                                value={editEvent.pointOfContact}
+                                            />
+                                        </div>
+                                        <div data-field-span="1">
+                                            <label
+                                                className="small mb-1"
+                                                htmlFor="pointOfContactPhone"
+                                            >
+                                                Point of contact phone{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
+                                            <input
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                type="text"
+                                                name="pointOfContactPhone"
+                                                value={editEvent.pointOfContactPhone}
+                                            />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div className="mt-5" />
+                                <fieldset>
+                                    <legend>Venue Info</legend>
+                                    <div data-row-span="2">
+                                        <div data-field-span="1">
+                                            <label className="small mb-1" htmlFor="venue">
+                                                Venue{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
+                                            <input
+                                                id="autocomplete"
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                type="text"
+                                                name="venue"
+                                                value={editEvent.venue}
+                                            />
+                                        </div>
+                                        <div data-field-span="1">
+                                            <label className="small mb-1" htmlFor="phoneNumber">
+                                                Phone{' '}
+                                                <span className="text-danger fw-bolder">*</span>
+                                            </label>
+                                            <input
+                                                onChange={(e) => handleFormValueChange(e)}
+                                                type="text"
+                                                name="phoneNumber"
+                                                value={formatPhoneNumber(editEvent.phoneNumber)}
                                             />
                                         </div>
                                     </div>
@@ -230,53 +294,7 @@ function WeeklyEventForm({
                                             />
                                         </div>
                                     </div>
-                                    <div data-row-span="3">
-                                        <div data-field-span="1">
-                                            <label className="small mb-1" htmlFor="ratingSystem">
-                                                Rating system{' '}
-                                                <span className="text-danger fw-bolder">*</span>
-                                            </label>
-                                            <input
-                                                onChange={(e) => handleFormValueChange(e)}
-                                                type="text"
-                                                name="ratingSystem"
-                                                value={editEvent.ratingSystem}
-                                            />
-                                        </div>
-                                        <div data-field-span="1">
-                                            <label className="small mb-1" htmlFor="game">
-                                                Game Type{' '}
-                                                <span className="text-danger fw-bolder">*</span>
-                                            </label>
-                                            <select
-                                                value={editEvent.game}
-                                                name="game"
-                                                onChange={(e) => handleFormValueChange(e)}
-                                                className="form-control rounded-0"
-                                            >
-                                                <option value="">Choose...</option>
-                                                <option value="8-ball">8-Ball</option>
-                                                <option value="9-ball">9-Ball</option>
-                                                <option value="10-ball">10-Ball</option>
-                                            </select>
-                                        </div>
-                                        <div data-field-span="1">
-                                            <label className="small mb-1" htmlFor="status">
-                                                Status{' '}
-                                                <span className="text-danger fw-bolder">*</span>
-                                            </label>
-                                            <select
-                                                value={editEvent.status}
-                                                name="status"
-                                                onChange={(e) => handleFormValueChange(e)}
-                                                className="form-control rounded-0"
-                                            >
-                                                <option value="">Choose...</option>
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
                                     <button
                                         className="btn btn-success rounded-0 mt-3"
                                         type="submit"

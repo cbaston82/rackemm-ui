@@ -22,6 +22,7 @@ function CreateWeeklyEvent({ userEvents, createUserEvent, getUserMedia, userMedi
         city: '',
         state: '',
         zipCode: '',
+        phoneNumber: '',
         ratingSystem: '',
         game: '',
         posterImage: '',
@@ -36,10 +37,8 @@ function CreateWeeklyEvent({ userEvents, createUserEvent, getUserMedia, userMedi
     const handlePlaceSelect = () => {
         const addressObject = autocomplete.getPlace()
         const address = addressObject.address_components
-        console.log(`${address[0].long_name} ${address[1].long_name}`)
-        console.log(addressObject)
-        setEditEvent({
-            ...editEvent,
+        setEditEvent((prevState) => ({
+            ...prevState,
             address:
                 address.length === 9
                     ? `${address[1].long_name} ${address[2].long_name}`
@@ -49,8 +48,8 @@ function CreateWeeklyEvent({ userEvents, createUserEvent, getUserMedia, userMedi
             state: address.length === 9 ? `${address[5].long_name}` : `${address[4].long_name}`,
             zipCode: address.length === 9 ? `${address[7].long_name}` : `${address[6].long_name}`,
             venue: addressObject.name,
-        })
-        console.log('ddddddddddd', editEvent)
+            phoneNumber: addressObject.formatted_phone_number,
+        }))
     }
 
     useEffect(() => {
