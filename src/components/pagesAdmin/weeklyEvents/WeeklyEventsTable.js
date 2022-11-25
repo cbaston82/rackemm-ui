@@ -21,7 +21,7 @@ const weeklyColumns = (handleDeleteEvent) => [
         name: 'Title',
         selector: (row) => row.title,
         sortable: true,
-        maxWidth: '600px', // when using custom you should use width or maxWidth, otherwise, the table will default to flex grow behavior
+        maxWidth: '400px', // when using custom you should use width or maxWidth, otherwise, the table will default to flex grow behavior
         cell: (row) => (
             <LinesEllipsis
                 text={row.title}
