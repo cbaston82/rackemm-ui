@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import MainRoutes from './components/structure/MainRoutes'
 import MainNav from './components/structure/MainNav'
-import './App.css'
 import Footer from './components/structure/Footer'
 import SideMenu from './components/structure/SideMenu'
 
