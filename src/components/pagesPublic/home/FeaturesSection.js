@@ -37,7 +37,7 @@ function FeaturesSection() {
                             </h4>
                             <div className="d-flex">
                                 <p className="text-white-50 w-75 mx-auto">
-                                    Filter through thousands of events in second. Spend more time
+                                    Filter through thousands of events in seconds. Spend more time
                                     playing and less time searching.
                                 </p>
                             </div>

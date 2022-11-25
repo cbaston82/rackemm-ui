@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FaFacebook } from 'react-icons/fa'
 import usePageTitle from '../../hoook/usePageTitle'
 
 function About() {
@@ -53,7 +54,7 @@ function About() {
                                 I&apos;m not just the developer, and creator of{' '}
                                 <span className="rackemm-text-cyan">RACKEMM</span>. I&apos;m also a
                                 pool player and love the game quite a bit and believe I understand
-                                what it is the average pool player is looking and that is find a
+                                what it is the average pool player is looking for and that is find a
                                 tournament without hassle. This is going to be a growing application
                                 geared towards the pool player first and open to all{' '}
                                 <Link
@@ -64,6 +65,13 @@ function About() {
                                 </Link>
                                 .
                             </p>
+                            <a
+                                className="text-white"
+                                href="https://www.facebook.com/profile.php?id=100088219356877"
+                            >
+                                <FaFacebook className="mt-5" size={40} />
+                            </a>
+                            <p className="mt-2"> Like us on facebook</p>
                         </div>
                     </div>
                 </div>
