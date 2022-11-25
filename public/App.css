@@ -286,7 +286,7 @@ REACT TABLE COMPONENT OVERRIDES
 .rdt_TableRow {
     font-size: .9rem !important;
 }
-.hITlxo {
+.rdt_TableCell {
     min-width: 180px !important;
 }
 
