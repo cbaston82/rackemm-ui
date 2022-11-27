@@ -181,7 +181,7 @@ function MediaPage({ userMedia, uploadUserMedia, getUserMedia, deleteUserMedia }
                             aria-labelledby="nav-upload-tab"
                         >
                             <div className="row d-flex flex-row justify-content-center">
-                                <div className="col-4">
+                                <div className="col-md-6 col-lg-4">
                                     <form onSubmit={handleUploadImage}>
                                         <div className="card rounded-0 mt-3">
                                             <div className="card-body">
