@@ -3,7 +3,7 @@ export const plans = [
         name: 'Level 1',
         weeklyEventsMax: 1,
         yearlyEventsMax: 1,
-        price: '1.99',
+        price: '0.00',
         features: [
             '1 weekly event',
             '1 yearly event',
@@ -18,7 +18,7 @@ export const plans = [
         name: 'Level 2',
         weeklyEventsMax: 3,
         yearlyEventsMax: 3,
-        price: '3.99',
+        price: '0.00',
         features: ['3 weekly event', '3 yearly event', 'Plus everything from Level 1'],
         description:
             'Allows you to create up to 3 weekly, and 3 yearly tournaments. Plus all the basic features.',
@@ -28,7 +28,7 @@ export const plans = [
         name: 'Level 3',
         weeklyEventsMax: 100,
         yearlyEventsMax: 100,
-        price: '5.99',
+        price: '0.00',
         features: [
             'Unlimited weekly events',
             'Unlimited yearly events',
