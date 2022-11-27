@@ -281,6 +281,13 @@ REACT TABLE COMPONENT OVERRIDES
 }
 
 /*==================================================
+Offcanvas
+===================================================*/
+.offcanvas-header .btn-close {
+    background-color: var(--white);
+}
+
+/*==================================================
 PAGINATION
 ===================================================*/
 .reviews-pagination ul {
