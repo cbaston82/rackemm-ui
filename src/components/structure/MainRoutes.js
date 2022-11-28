@@ -72,6 +72,16 @@ function MainRoutes({ auth, stripeCustomer }) {
             />
             <Route
                 exact
+                path="/account/filters"
+                element={
+                    <Protected auth={auth} stripeCustomer={stripeCustomer}>
+                        <FiltersPage />
+                    </Protected>
+                }
+            />
+
+            <Route
+                exact
                 path="/account/dashboard"
                 element={
                     <Protected auth={auth}>
@@ -139,15 +149,6 @@ function MainRoutes({ auth, stripeCustomer }) {
                 element={
                     <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <MediaPage />
-                    </HasSubscriptionRoutes>
-                }
-            />
-            <Route
-                exact
-                path="/account/filters"
-                element={
-                    <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
-                        <FiltersPage />
                     </HasSubscriptionRoutes>
                 }
             />

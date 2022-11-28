@@ -4,12 +4,7 @@ export const plans = [
         weeklyEventsMax: 1,
         yearlyEventsMax: 1,
         price: '0.00',
-        features: [
-            '1 weekly event',
-            '1 yearly event',
-            'Add yearly event to calendar',
-            'Save filter searches',
-        ],
+        features: ['1 weekly event', '1 yearly event'],
         description:
             'Allows you to create 1 weekly and 1 yearly tournament. Plus all the basic features.',
         subscriptionPlanId: process.env.REACT_APP_STRIPE_PRICE_LEVEL_1,

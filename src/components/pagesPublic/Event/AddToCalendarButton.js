@@ -1,5 +1,4 @@
 import { FaGoogle } from 'react-icons/fa'
-import { userHasValidSubscription } from '../../../helpers/config'
 import Button from '../../Button'
 import useCreateCalendarEvent from '../../../hoook/useCreateCalendarEvent'
 import useSubscriptionHooks from '../../../hoook/useSubscriptionHooks'
@@ -10,7 +9,7 @@ function AddToCalendarButton({ stripeCustomer, event, auth }) {
 
     return (
         <>
-            {auth.user.email && userHasValidSubscription(stripeCustomer) ? (
+            {auth.user.email ? (
                 <Button
                     className="btn btn-primary w-100 mt-3"
                     onClick={() => handleCreateCalendarEvent(event)}

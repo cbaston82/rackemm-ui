@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { FaSave, FaFilter, FaRegSave } from 'react-icons/fa'
 import CustomLoader from './CustomeLoader'
 import { getSavedFilters, saveFilter, setFilter } from '../redux'
-import { userHasValidSubscription } from '../helpers/config'
 import useSubscriptionHooks from '../hoook/useSubscriptionHooks'
 
 function Filters({
@@ -81,7 +80,7 @@ function Filters({
                             ),
                     )}
                     <li>
-                        {auth.user.email && userHasValidSubscription(stripeCustomer) ? (
+                        {auth.user.email ? (
                             <button
                                 type="button"
                                 className="dropdown-item"

@@ -37,6 +37,16 @@ function SideMenu({ stripeCustomer }) {
                         </NavLink>
                     </li>
                     <hr className="m-0 p-0 text-white" />
+                    <li>
+                        <NavLink
+                            className={`${
+                                location.pathname === '/account/filters' ? 'active-side-nav' : ''
+                            } dropdown-item text-white`}
+                            to="/account/filters"
+                        >
+                            Filters
+                        </NavLink>
+                    </li>
                     {userHasSubscription(stripeCustomer) && (
                         <>
                             <li>
@@ -49,19 +59,6 @@ function SideMenu({ stripeCustomer }) {
                                     to="/account/media"
                                 >
                                     Media
-                                </NavLink>
-                            </li>
-                            <hr className="m-0 p-0 text-white" />
-                            <li>
-                                <NavLink
-                                    className={`${
-                                        location.pathname === '/account/filters'
-                                            ? 'active-side-nav'
-                                            : ''
-                                    } dropdown-item text-white`}
-                                    to="/account/filters"
-                                >
-                                    Filters
                                 </NavLink>
                             </li>
                             <hr className="m-0 p-0 text-white" />
