@@ -59,7 +59,9 @@ function WeeklyEvents({ getAllPublicEvents, publicEvents }) {
                     filterValues={filterValues}
                     loaderMessage="Fetching Weekly WeeklyEvents..."
                     tournamentColumns={tournamentColumns}
-                    events={sortByDayInWeek(publicEvents.events)}
+                    events={sortByDayInWeek(publicEvents.events).filter(
+                        (event) => event.status === 'active',
+                    )}
                 />
             )}
         </div>

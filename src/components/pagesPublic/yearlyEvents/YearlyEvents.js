@@ -57,7 +57,9 @@ function YearlyEvents({ getAllPublicEvents, publicEvents }) {
                     filterValues={filterValues}
                     loaderMessage="Fetching Special Events..."
                     tournamentColumns={tournamentColumns}
-                    events={sortByDate(publicEvents.events)}
+                    events={sortByDate(publicEvents.events).filter(
+                        (event) => event.status === 'active',
+                    )}
                 />
             )}
         </div>
