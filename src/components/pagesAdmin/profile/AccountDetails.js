@@ -14,6 +14,7 @@ function AccountDetails({ handleOnChangeUserInfo, userInfoForm }) {
                                     className="form-control"
                                     name="fullName"
                                     type="text"
+                                    readOnly
                                     placeholder="Enter your first name"
                                     onChange={(e) => handleOnChangeUserInfo(e)}
                                     value={userInfoForm.fullName}
@@ -28,15 +29,16 @@ function AccountDetails({ handleOnChangeUserInfo, userInfoForm }) {
                                     id="email"
                                     name="email"
                                     type="email"
+                                    readOnly
                                     placeholder="Enter your email address"
                                     onChange={(e) => handleOnChangeUserInfo(e)}
                                     value={userInfoForm.email}
                                 />
                             </div>
                         </div>
-                        <button className="btn btn-outline-secondary text-black-50" type="button">
-                            Save changes
-                        </button>
+                        {/*<button className="btn btn-outline-secondary text-black-50" type="button">*/}
+                        {/*    Save changes*/}
+                        {/*</button>*/}
                     </form>
                 </div>
             </div>

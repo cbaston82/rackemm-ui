@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { FaBars } from 'react-icons/fa'
+import { useLocation } from 'react-router-dom'
 import { getUserStripeCustomer, updatePassword } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import usePageTitle from '../../../hoook/usePageTitle'
@@ -10,9 +10,11 @@ import useLoadUserStripeAccountDetails from '../../../hoook/useLoadUserStripeAcc
 import useUpdatePassword from '../../../hoook/useUpdatePassword'
 import useUpdateUserInfo from '../../../hoook/useUpdateUserInfo'
 import ManagePassword from './ManagePassword'
+import { userHasSubscription } from '../../../helpers/config'
+import SideMenu from '../../structure/SideMenu'
 
 function AccountPage({ auth, getUserStripeCustomer, stripeCustomer, updatePassword }) {
-    usePageTitle('- Dashboard Profile')
+    usePageTitle('- Account')
     const [loadUserStripeAccountDetails] = useLoadUserStripeAccountDetails(auth, stripeCustomer)
     const [handlePasswordUpdate, handleOnChangePassword, updatePasswordForm] = useUpdatePassword(
         auth,
@@ -24,17 +26,16 @@ function AccountPage({ auth, getUserStripeCustomer, stripeCustomer, updatePasswo
         getUserStripeCustomer()
     }, [getUserStripeCustomer])
 
+    const location = useLocation()
+
     return (
         <div className="container">
-            <a
-                className="btn btn-secondary mb-5"
-                data-bs-toggle="offcanvas"
-                href="#offCanvasNavigation"
-                role="button"
-                aria-controls="offCanvasNavigation"
-            >
-                Menu <FaBars />
-            </a>
+            <SideMenu
+                className="mt-5"
+                userIsSubscribed={userHasSubscription(stripeCustomer)}
+                location={location.pathname}
+            />
+
             {stripeCustomer.loading ? (
                 <CustomLoader loaderMessage="Fetching user data." color="white" />
             ) : (

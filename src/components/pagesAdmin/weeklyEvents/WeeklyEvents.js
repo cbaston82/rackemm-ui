@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { FaBars } from 'react-icons/fa'
+import { useLocation } from 'react-router-dom'
 import { deleteUserEvent, getUserEvents } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import WeeklyEventsTable from './WeeklyEventsTable'
 import BreadCrumbs from '../../BreadCrumbs'
 import usePageTitle from '../../../hoook/usePageTitle'
-import { userHasEvents } from '../../../helpers/config'
+import { userHasEvents, userHasSubscription } from '../../../helpers/config'
 import useSubscriptionHooks from '../../../hoook/useSubscriptionHooks'
 import useSwalModalHooks from '../../../hoook/useSwalModalsHooks'
+import SideMenu from '../../structure/SideMenu'
 
 function WeeklyEvents({ getUserEvents, userEvents, stripeCustomer, deleteUserEvent }) {
     const [loading, setLoading] = useState(true)
-    usePageTitle('- Dashboard Weekly Events')
+    usePageTitle('- Weekly Events')
     const { handleDelete } = useSwalModalHooks(deleteUserEvent)
     const { canUserCreateEventButton, canUserCreateEventsAlertMessage } = useSubscriptionHooks()
 
@@ -21,17 +22,15 @@ function WeeklyEvents({ getUserEvents, userEvents, stripeCustomer, deleteUserEve
         setLoading(userEvents.loading)
     }, [getUserEvents])
 
+    const location = useLocation()
+
     return (
         <div className="container">
-            <a
-                className="btn btn-secondary mb-5"
-                data-bs-toggle="offcanvas"
-                href="#offCanvasNavigation"
-                role="button"
-                aria-controls="offCanvasNavigation"
-            >
-                Menu <FaBars />
-            </a>
+            <SideMenu
+                className="mt-5"
+                userIsSubscribed={userHasSubscription(stripeCustomer)}
+                location={location.pathname}
+            />
 
             <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Weekly Events" />
             {userEvents.loading || loading ? (

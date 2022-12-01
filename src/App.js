@@ -6,7 +6,6 @@ import MainRoutes from './components/structure/MainRoutes'
 import MainNav from './components/structure/MainNav'
 import './App.css'
 import Footer from './components/structure/Footer'
-import SideMenu from './components/structure/SideMenu'
 
 function App() {
     return (
@@ -16,7 +15,6 @@ function App() {
                 <MainRoutes />
             </main>
             <Footer />
-            <SideMenu />
             <ToastContainer position="top-left" pauseOnHover />
         </>
     )

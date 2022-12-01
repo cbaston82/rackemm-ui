@@ -1,103 +1,93 @@
-// import { useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { userHasSubscription } from '../../helpers/config'
+import Offcanvas from 'react-bootstrap/Offcanvas'
+import { NavLink } from 'react-router-dom'
+import { FaBars } from 'react-icons/fa'
+import { useState } from 'react'
 
-function SideMenu({ stripeCustomer }) {
-    const location = useLocation()
+function SideMenu({ location, userIsSubscribed }) {
+    const [show, setShow] = useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
 
     return (
-        <div
-            className="offcanvas offcanvas-start bg-black"
-            tabIndex="-1"
-            id="offCanvasNavigation"
-            aria-labelledby="offcanvasExampleLabel"
-        >
-            <div className="offcanvas-header">
-                <h5 className="offcanvas-title text-white" id="offcanvasExampleLabel">
-                    Menu
-                </h5>
-                <button
-                    type="button"
-                    className="btn-close text-reset"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                />
-            </div>
-            <div className="offcanvas-body">
-                <ul>
-                    <li>
-                        <NavLink
-                            className={`${
-                                location.pathname === '/account' ? 'active-side-nav' : ''
-                            } dropdown-item text-white`}
-                            to="/account"
-                        >
-                            Account
-                        </NavLink>
-                    </li>
-                    <hr className="m-0 p-0 text-white" />
-                    <li>
-                        <NavLink
-                            className={`${
-                                location.pathname === '/account/filters' ? 'active-side-nav' : ''
-                            } dropdown-item text-white`}
-                            to="/account/filters"
-                        >
-                            Filters
-                        </NavLink>
-                    </li>
-                    {userHasSubscription(stripeCustomer) && (
-                        <>
-                            <li>
-                                <NavLink
-                                    className={`${
-                                        location.pathname === '/account/media'
-                                            ? 'active-side-nav'
-                                            : ''
-                                    } dropdown-item text-white`}
-                                    to="/account/media"
-                                >
-                                    Media
-                                </NavLink>
-                            </li>
+        <>
+            <button type="button" className="mb-5 btn btn-secondary" onClick={handleShow}>
+                Menu <FaBars />
+            </button>
+            <Offcanvas show={show} onHide={handleClose} className="bg-dark">
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <ul>
+                        <li>
+                            <NavLink
+                                className={`${
+                                    location === '/account' ? 'active-side-nav' : ''
+                                } dropdown-item text-white`}
+                                to="/account"
+                            >
+                                Account
+                            </NavLink>
+                        </li>
+                        <hr className="m-0 p-0 text-white" />
+                        <li>
+                            <NavLink
+                                className={`${
+                                    location === '/account/filters' ? 'active-side-nav' : ''
+                                } dropdown-item text-white`}
+                                to="/account/filters"
+                            >
+                                Filters
+                            </NavLink>
                             <hr className="m-0 p-0 text-white" />
-                            <li>
-                                <NavLink
-                                    className={`${
-                                        location.pathname === '/account/weekly-events'
-                                            ? 'active-side-nav'
-                                            : ''
-                                    } dropdown-item text-white`}
-                                    to="/account/weekly-events"
-                                >
-                                    Weekly Events
-                                </NavLink>
-                            </li>
-                            <hr className="m-0 p-0 text-white" />
-                            <li>
-                                <NavLink
-                                    className={`${
-                                        location.pathname === '/account/yearly-events'
-                                            ? 'active-side-nav'
-                                            : ''
-                                    } dropdown-item text-white`}
-                                    to="/account/yearly-events"
-                                >
-                                    Yearly Events
-                                </NavLink>
-                            </li>
-                            <hr className="m-0 p-0 text-white" />
-                        </>
-                    )}
-                </ul>
-            </div>
-        </div>
+                        </li>
+                        {userIsSubscribed && (
+                            <>
+                                <li>
+                                    <NavLink
+                                        className={`${
+                                            location === '/account/media' ? 'active-side-nav' : ''
+                                        } dropdown-item text-white`}
+                                        to="/account/media"
+                                    >
+                                        Media
+                                    </NavLink>
+                                </li>
+                                <hr className="m-0 p-0 text-white" />
+                                <li>
+                                    <NavLink
+                                        className={`${
+                                            location === '/account/weekly-events'
+                                                ? 'active-side-nav'
+                                                : ''
+                                        } dropdown-item text-white`}
+                                        to="/account/weekly-events"
+                                    >
+                                        Weekly Events
+                                    </NavLink>
+                                </li>
+                                <hr className="m-0 p-0 text-white" />
+                                <li>
+                                    <NavLink
+                                        className={`${
+                                            location === '/account/yearly-events'
+                                                ? 'active-side-nav'
+                                                : ''
+                                        } dropdown-item text-white`}
+                                        to="/account/yearly-events"
+                                    >
+                                        Yearly Events
+                                    </NavLink>
+                                </li>
+                                <hr className="m-0 p-0 text-white" />
+                            </>
+                        )}
+                    </ul>
+                </Offcanvas.Body>
+            </Offcanvas>
+        </>
     )
 }
 
-const mapStateToProps = (state) => ({
-    stripeCustomer: state.stripeCustomer,
-})
-
-export default connect(mapStateToProps, null)(SideMenu)
+export default SideMenu

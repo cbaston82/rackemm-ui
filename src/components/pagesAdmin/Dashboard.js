@@ -1,19 +1,20 @@
 import { connect } from 'react-redux'
-import { FaBars } from 'react-icons/fa'
+import { useLocation } from 'react-router-dom'
 import { logoutUser } from '../../redux'
+import SideMenu from '../structure/SideMenu'
+import { userHasSubscription } from '../../helpers/config'
+import usePageTitle from '../../hoook/usePageTitle'
 
-function Dashboard() {
+function Dashboard({ stripeCustomer }) {
+    usePageTitle('- Dashboard')
+    const location = useLocation()
+
     return (
         <div className="container">
-            <a
-                className="btn btn-secondary"
-                data-bs-toggle="offcanvas"
-                href="#offCanvasNavigation"
-                role="button"
-                aria-controls="offCanvasNavigation"
-            >
-                <FaBars />
-            </a>
+            <SideMenu
+                userIsSubscribed={userHasSubscription(stripeCustomer)}
+                location={location.pathname}
+            />
         </div>
     )
 }

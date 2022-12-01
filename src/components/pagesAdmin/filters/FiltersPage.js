@@ -1,30 +1,32 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { FaBars } from 'react-icons/fa'
+import { useLocation } from 'react-router-dom'
 import BreadCrumbs from '../../BreadCrumbs'
 import CustomLoader from '../../CustomeLoader'
 import { getSavedFilters, deleteFilter } from '../../../redux'
 import FiltersTable from './FiltersTable'
 import useSwalModalsHooks from '../../../hoook/useSwalModalsHooks'
+import SideMenu from '../../structure/SideMenu'
+import { userHasSubscription } from '../../../helpers/config'
+import usePageTitle from '../../../hoook/usePageTitle'
 
-function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
+function FiltersPage({ savedFilters, getSavedFilters, deleteFilter, stripeCustomer }) {
+    usePageTitle('- Filters')
     useEffect(() => {
         getSavedFilters()
     }, [getSavedFilters])
 
     const { handleDelete } = useSwalModalsHooks(deleteFilter)
 
+    const location = useLocation()
+
     return (
         <div className="container">
-            <a
-                className="btn btn-secondary mb-5"
-                data-bs-toggle="offcanvas"
-                href="#offCanvasNavigation"
-                role="button"
-                aria-controls="offCanvasNavigation"
-            >
-                Menu <FaBars />
-            </a>
+            <SideMenu
+                className="mt-5"
+                userIsSubscribed={userHasSubscription(stripeCustomer)}
+                location={location.pathname}
+            />
 
             <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Saved Filters" />
             {savedFilters.loading ? (
@@ -37,6 +39,7 @@ function FiltersPage({ savedFilters, getSavedFilters, deleteFilter }) {
 }
 
 const mapStateToProps = (state) => ({
+    stripeCustomer: state.stripeCustomer,
     savedFilters: state.savedFilters,
 })
 
