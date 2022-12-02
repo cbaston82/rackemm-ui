@@ -19,7 +19,7 @@ function useForgotPassword() {
         setLoading(true)
 
         await axios
-            .post(`${getApiUrl()}auth/forgot-password`, forgotPasswordForm)
+            .post(`${getApiUrl()}/auth/forgot-password`, forgotPasswordForm)
             .then((response) => {
                 setLoading(false)
                 toast.success(response.data.message)
