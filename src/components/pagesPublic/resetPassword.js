@@ -23,7 +23,6 @@ function resetPassword({ resetPasswordAction, auth }) {
                 <h1 className="text-white">
                     <FaKey className="rackemm-text-cyan" /> Reset Password
                 </h1>
-                <p className="h5 text-white-50 mt-3">Request password reset link</p>
             </div>
             <div className="row d-flex justify-content-center mt-3">
                 <div className="col-sm-10 col-md-6 col-lg-4">
