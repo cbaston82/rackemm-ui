@@ -1,4 +1,10 @@
-export { loginUser, logoutUser, signupUser, updatePassword } from './auth/authActions'
+export {
+    loginUser,
+    logoutUser,
+    signupUser,
+    updatePassword,
+    resetPassword,
+} from './auth/authActions'
 export { getAllPublicEvents, fetchSinglePublicEvent } from './events/publicEventActions'
 // Auth
 export {

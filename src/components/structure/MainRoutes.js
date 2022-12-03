@@ -27,6 +27,7 @@ import FiltersPage from '../pagesAdmin/filters/FiltersPage'
 import HasSubscriptionRoutes from './HasSubscriptionRoutes'
 import ForgotPassword from '../pagesPublic/ForgotPassword'
 import Dashboard from '../pagesAdmin/Dashboard'
+import ResetPassword from '../pagesPublic/resetPassword'
 
 function MainRoutes({ auth, stripeCustomer }) {
     return (
@@ -42,6 +43,7 @@ function MainRoutes({ auth, stripeCustomer }) {
             <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route exact path="/terms-of-use" element={<TermsOfUse />} />
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
+            <Route exact path="/reset-password/:resetToken" element={<ResetPassword />} />
             {/* Auth Routes */}
             <Route
                 exact

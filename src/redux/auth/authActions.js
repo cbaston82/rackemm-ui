@@ -84,6 +84,26 @@ export const updatePassword = (password) => (dispatch, state) => {
         })
 }
 
+export const resetPassword = (token, passwordForm) => (dispatch) => {
+    dispatch(loginUserRequest())
+
+    axios
+        .patch(`${getApiUrl()}/auth/reset-password/${token}`, passwordForm)
+        .then((response) => {
+            dispatch(loginUserSuccess(response.data.token))
+            dispatch(getUserInfo())
+            dispatch(getUserStripeCustomer())
+            toast.success('You are now logged in')
+            setTimeout(() => {
+                window.location.href = '/'
+            }, 1000)
+        })
+        .catch((error) => {
+            dispatch(loginUserFailure(error.response.data.message))
+            toast.error(error.response.data.message)
+        })
+}
+
 export const logoutUser = () => (dispatch) => {
     dispatch(logoutUserRequest())
     dispatch(resetUserStripeCustomer())
