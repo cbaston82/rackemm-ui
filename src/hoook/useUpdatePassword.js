@@ -23,7 +23,7 @@ function useUpdatePassword(auth, updatePassword) {
         updatePassword(updatePasswordForm)
     }
 
-    return [handlePasswordUpdate, handleOnChangePassword, updatePasswordForm]
+    return { handlePasswordUpdate, handleOnChangePassword, updatePasswordForm }
 }
 
 export default useUpdatePassword

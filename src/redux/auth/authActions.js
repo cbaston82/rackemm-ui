@@ -13,6 +13,7 @@ import { resetUserMedia } from '../admin/userMediaActions'
 import { resetFilters } from '../admin/filterActions'
 import { getApiUrl } from '../../helpers'
 import { resetReview } from '../admin/reviewActions'
+import { getUserInfo, resetUserInfo } from '../admin/userInfoActions'
 
 export const loginUserRequest = () => ({
     type: LOGIN_USER_REQUEST,
@@ -39,7 +40,8 @@ export const loginUser = (user) => (dispatch) => {
         .post(`${getApiUrl()}/auth/login`, user)
         .then((response) => {
             toast.success('You are now logged in')
-            dispatch(loginUserSuccess(response.data.data))
+            dispatch(loginUserSuccess(response.data.data.token))
+            dispatch(getUserInfo())
             dispatch(getUserStripeCustomer())
         })
         .catch((error) => {
@@ -69,7 +71,7 @@ export const updatePassword = (password) => (dispatch, state) => {
     axios
         .patch(`${getApiUrl()}/auth/update-password`, password, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {
@@ -89,5 +91,6 @@ export const logoutUser = () => (dispatch) => {
     dispatch(resetUserMedia())
     dispatch(resetFilters())
     dispatch(resetReview())
+    dispatch(resetUserInfo())
     localStorage.setItem('state', '')
 }

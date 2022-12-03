@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 
 function Protected({ auth, children }) {
-    if (!auth.user.email) {
+    if (!auth.token) {
         return <Navigate path="*" to="/" replace />
     }
 

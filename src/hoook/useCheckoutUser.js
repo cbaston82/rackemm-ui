@@ -13,7 +13,7 @@ function useCheckoutUser(auth) {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${auth.user.token}`,
+                        Authorization: `Bearer ${auth.token}`,
                     },
                 },
             )

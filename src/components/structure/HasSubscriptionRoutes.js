@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 
 function HasSubscriptionRoutes({ auth, children, stripeCustomer }) {
-    if (!auth.user.email) {
+    if (!auth.token) {
         return <Navigate path="*" to="/" replace />
     }
 

@@ -80,7 +80,7 @@ function Filters({
                             ),
                     )}
                     <li>
-                        {auth.user.email ? (
+                        {auth.token ? (
                             <button
                                 type="button"
                                 className="dropdown-item"

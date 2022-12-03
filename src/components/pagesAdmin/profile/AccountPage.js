@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { getUserStripeCustomer, updatePassword } from '../../../redux'
+import { getUserStripeCustomer, updatePassword, updateUserInfo } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import usePageTitle from '../../../hoook/usePageTitle'
 import AccountDetails from './AccountDetails'
@@ -13,14 +13,24 @@ import ManagePassword from './ManagePassword'
 import { userHasSubscription } from '../../../helpers/config'
 import SideMenu from '../../structure/SideMenu'
 
-function AccountPage({ auth, getUserStripeCustomer, stripeCustomer, updatePassword }) {
+function AccountPage({
+    auth,
+    getUserStripeCustomer,
+    stripeCustomer,
+    updatePassword,
+    updateUserInfo,
+    userInfo,
+}) {
     usePageTitle('- Account')
-    const [loadUserStripeAccountDetails] = useLoadUserStripeAccountDetails(auth, stripeCustomer)
-    const [handlePasswordUpdate, handleOnChangePassword, updatePasswordForm] = useUpdatePassword(
+    const { loadUserStripeAccountDetails } = useLoadUserStripeAccountDetails(auth, stripeCustomer)
+    const { handlePasswordUpdate, handleOnChangePassword, updatePasswordForm } = useUpdatePassword(
         auth,
         updatePassword,
     )
-    const [handleOnChangeUserInfo, userInfoForm] = useUpdateUserInfo(auth)
+    const { handleOnChangeUserInfo, userInfoForm, handleUserInfoUpdate } = useUpdateUserInfo(
+        updateUserInfo,
+        userInfo,
+    )
 
     useEffect(() => {
         getUserStripeCustomer()
@@ -36,12 +46,14 @@ function AccountPage({ auth, getUserStripeCustomer, stripeCustomer, updatePasswo
                 location={location.pathname}
             />
 
-            {stripeCustomer.loading ? (
+            {stripeCustomer.loading || userInfo.loading ? (
                 <CustomLoader loaderMessage="Fetching user data." color="white" />
             ) : (
                 <div className="row">
                     <AccountDetails
+                        userInfo={userInfo}
                         userInfoForm={userInfoForm}
+                        handleUserInfoUpdate={handleUserInfoUpdate}
                         handleOnChangeUserInfo={handleOnChangeUserInfo}
                     />
                     {stripeCustomer.customer.customerId !== '' && (
@@ -65,11 +77,13 @@ function AccountPage({ auth, getUserStripeCustomer, stripeCustomer, updatePasswo
 const mapStateToProps = (state) => ({
     auth: state.auth,
     stripeCustomer: state.stripeCustomer,
+    userInfo: state.userInfo,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     getUserStripeCustomer: () => dispatch(getUserStripeCustomer()),
     updatePassword: (updatePasswordForm) => dispatch(updatePassword(updatePasswordForm)),
+    updateUserInfo: (userInfo) => dispatch(updateUserInfo(userInfo)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)

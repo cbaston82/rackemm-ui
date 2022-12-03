@@ -28,7 +28,7 @@ function useReviewHooks(callBack = null, auth = null) {
                 axios
                     .delete(`${getApiUrl()}/reviews/${id}`, {
                         headers: {
-                            Authorization: `Bearer ${auth.user.token}`,
+                            Authorization: `Bearer ${auth.token}`,
                         },
                     })
                     .then((response) => {

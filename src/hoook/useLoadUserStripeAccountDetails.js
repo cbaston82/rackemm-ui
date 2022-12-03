@@ -13,7 +13,7 @@ function useLoadUserStripeAccountDetails(auth, stripeCustomer) {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${auth.user.token}`,
+                        Authorization: `Bearer ${auth.token}`,
                     },
                 },
             )
@@ -26,7 +26,7 @@ function useLoadUserStripeAccountDetails(auth, stripeCustomer) {
             })
     }
 
-    return [loadUserStripeAccountDetails]
+    return { loadUserStripeAccountDetails }
 }
 
 export default useLoadUserStripeAccountDetails

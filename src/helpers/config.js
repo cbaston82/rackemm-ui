@@ -14,7 +14,7 @@ export const userHasValidSubscription = (stripeCustomer) => {
     return currentDate < subscriptionEndDate
 }
 
-export const userIsLoggedIn = (auth) => auth.user.email
+export const userIsLoggedIn = (auth) => auth.token
 
 export const getUserId = (auth) => auth.user.id
 

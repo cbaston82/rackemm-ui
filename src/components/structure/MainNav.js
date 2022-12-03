@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { FaUserAlt, FaSignOutAlt } from 'react-icons/fa'
 import { logoutUser } from '../../redux'
 
-function MainNav({ logoutUser, auth }) {
+function MainNav({ logoutUser, auth, userInfo }) {
     const handleLogout = () => {
         logoutUser()
     }
@@ -41,7 +41,7 @@ function MainNav({ logoutUser, auth }) {
                                 Yearly Events
                             </NavLink>
                         </li>
-                        {auth.user.email ? (
+                        {auth.token ? (
                             <li className="nav-item dropdown">
                                 <Link
                                     className="nav-link dropdown-toggle"
@@ -51,7 +51,7 @@ function MainNav({ logoutUser, auth }) {
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                 >
-                                    <FaUserAlt /> {auth.user.email}
+                                    <FaUserAlt /> {userInfo.me.email}
                                 </Link>
                                 <ul
                                     className="dropdown-menu rackemm-dropdown-menu"
@@ -98,6 +98,7 @@ function MainNav({ logoutUser, auth }) {
 const mapStateToProps = (state) => ({
     auth: state.auth,
     stripeCustomer: state.stripeCustomer,
+    userInfo: state.userInfo,
 })
 
 const mapDispatchToProps = (dispatch) => ({

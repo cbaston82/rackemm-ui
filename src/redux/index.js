@@ -23,3 +23,4 @@ export {
     deleteFilter,
 } from './admin/filterActions'
 export { createReview, editReview, resetReview } from './admin/reviewActions'
+export { updateUserInfo, getUserInfo } from './admin/userInfoActions'

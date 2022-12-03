@@ -19,6 +19,7 @@ function ManagePassword({
                                 <div className="col-md-3">
                                     <div className="form-group">
                                         <input
+                                            autoComplete="on"
                                             placeholder="Current password"
                                             className="form-control"
                                             value={updatePasswordForm.currentPassword}
@@ -31,6 +32,7 @@ function ManagePassword({
                                 <div className="col-md-3">
                                     <div className="form-group">
                                         <input
+                                            autoComplete="false"
                                             placeholder="New password"
                                             value={updatePasswordForm.newPassword}
                                             className="form-control"
@@ -43,6 +45,7 @@ function ManagePassword({
                                 <div className="col-md-3">
                                     <div className="form-group">
                                         <input
+                                            autoComplete="false"
                                             placeholder="Confirm new password"
                                             className="form-control"
                                             value={updatePasswordForm.newPasswordConfirm}

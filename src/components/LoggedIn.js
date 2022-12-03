@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom'
 
 function LoggedIn({ auth, children }) {
-    if (auth.user.email) {
-        return <Navigate path="*" to="/account" replace />
+    if (auth.token) {
+        return <Navigate path="*" to="/" replace />
     }
 
     return children

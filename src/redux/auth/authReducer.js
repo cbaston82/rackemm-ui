@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     loading: false,
-    user: {},
+    token: '',
     error: '',
 }
 
@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                user: action.payload,
+                token: action.payload,
                 error: '',
             }
         case LOGIN_USER_FAILURE:
@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
         case LOGOUT_USER_REQUEST:
             return {
                 loading: false,
-                user: {},
+                token: '',
                 error: '',
             }
         default:

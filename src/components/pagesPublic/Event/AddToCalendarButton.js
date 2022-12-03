@@ -9,7 +9,7 @@ function AddToCalendarButton({ stripeCustomer, event, auth }) {
 
     return (
         <>
-            {auth.user.email ? (
+            {auth.token ? (
                 <Button
                     className="btn btn-primary w-100 mt-3"
                     onClick={() => handleCreateCalendarEvent(event)}

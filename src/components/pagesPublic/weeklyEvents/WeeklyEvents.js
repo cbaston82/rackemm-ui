@@ -42,7 +42,7 @@ function WeeklyEvents({ getAllPublicEvents, publicEvents }) {
     return (
         <div className="container">
             <div className="d-flex justify-content-between">
-                <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
+                <BreadCrumbs activeBreadcrumbTitle="Weekly Events" />
                 <Filters
                     filterValues={filterValues}
                     filterType="weekly"

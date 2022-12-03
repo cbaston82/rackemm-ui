@@ -36,7 +36,7 @@ export const getUserStripeCustomer = () => (dispatch, state) => {
     axios
         .get(`${getApiUrl()}/stripe/get-user-stripe-customer`, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {

@@ -26,7 +26,7 @@ function PriceCard({ auth, checkoutUser, plan, subscriptionPlanId, loadUserStrip
                 </div>
                 {disableSubscription() !== 'true' && (
                     <>
-                        {auth.user.email ? (
+                        {auth.token ? (
                             <>
                                 {subscriptionPlanId === plan.subscriptionPlanId && (
                                     <button

@@ -70,7 +70,7 @@ export const getUserMedia = () => (dispatch, state) => {
     axios
         .get(`${getApiUrl()}/media/`, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {
@@ -88,7 +88,7 @@ export const deleteUserMedia = (publicId) => (dispatch, state) => {
     axios
         .delete(`${getApiUrl()}/media/${publicId.split('/')[1]}`, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {
@@ -109,7 +109,7 @@ export const uploadUserMedia = (media, fileName) => (dispatch, state) => {
             { data: media, fileName },
             {
                 headers: {
-                    Authorization: `Bearer ${state().auth.user.token}`,
+                    Authorization: `Bearer ${state().auth.token}`,
                 },
             },
         )

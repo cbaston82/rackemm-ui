@@ -81,7 +81,7 @@ export const getSavedFilters = () => (dispatch, state) => {
     axios
         .get(`${getApiUrl()}/filters`, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {
@@ -98,7 +98,7 @@ export const saveFilter = (filter) => (dispatch, state) => {
     axios
         .post(`${getApiUrl()}/filters`, filter, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {
@@ -119,7 +119,7 @@ export const deleteFilter = (filterId) => (dispatch, state) => {
     axios
         .delete(`${getApiUrl()}/filters/${filterId}`, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {

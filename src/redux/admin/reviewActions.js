@@ -56,7 +56,7 @@ export const createReview = (rating, review, eventId) => (dispatch, state) => {
             },
             {
                 headers: {
-                    Authorization: `Bearer ${state().auth.user.token}`,
+                    Authorization: `Bearer ${state().auth.token}`,
                 },
             },
         )
@@ -84,7 +84,7 @@ export const editReview = (rating, review, reviewId) => (dispatch, state) => {
             },
             {
                 headers: {
-                    Authorization: `Bearer ${state().auth.user.token}`,
+                    Authorization: `Bearer ${state().auth.token}`,
                 },
             },
         )

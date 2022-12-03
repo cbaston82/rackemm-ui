@@ -87,7 +87,7 @@ export const createUserEvent = (event) => (dispatch, state) => {
     axios
         .post(`${getApiUrl()}/events`, event, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {
@@ -107,7 +107,7 @@ export const getUserEvents = (type) => (dispatch, state) => {
     axios
         .get(`${getApiUrl()}/events?type=${type}`, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {
@@ -126,7 +126,7 @@ export const deleteUserEvent = (eventId) => (dispatch, state) => {
     axios
         .delete(`${getApiUrl()}/events/${eventId}`, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {
@@ -146,7 +146,7 @@ export const updateUserEvent = (event) => (dispatch, state) => {
     axios
         .patch(`${getApiUrl()}/events/${event._id}`, event, {
             headers: {
-                Authorization: `Bearer ${state().auth.user.token}`,
+                Authorization: `Bearer ${state().auth.token}`,
             },
         })
         .then((response) => {

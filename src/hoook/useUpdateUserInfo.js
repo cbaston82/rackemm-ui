@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-function useUpdateUserInfo(auth) {
+function useUpdateUserInfo(updateMe, userInfo) {
     const userInfoFormValues = {
-        fullName: auth.user.fullName ? auth.user.fullName : '',
-        email: auth.user.email ? auth.user.email : '',
+        fullName: userInfo.me.fullName ? userInfo.me.fullName : '',
+        email: userInfo.me.email ? userInfo.me.email : '',
     }
 
     const [userInfoForm, setUserInfoForm] = useState(userInfoFormValues)
@@ -17,7 +17,12 @@ function useUpdateUserInfo(auth) {
         })
     }
 
-    return [handleOnChangeUserInfo, userInfoForm]
+    const handleUserInfoUpdate = (e) => {
+        e.preventDefault()
+        updateMe(userInfoForm)
+    }
+
+    return { handleOnChangeUserInfo, userInfoForm, handleUserInfoUpdate }
 }
 
 export default useUpdateUserInfo
