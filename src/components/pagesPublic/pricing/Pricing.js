@@ -8,7 +8,7 @@ import { disableSubscription } from '../../../helpers'
 
 function Pricing({ auth, stripeCustomer }) {
     usePageTitle('- Pricing')
-    const [loadUserStripeAccountDetails] = useLoadUserStripeAccountDetails(auth, stripeCustomer)
+    const { loadUserStripeAccountDetails } = useLoadUserStripeAccountDetails(auth, stripeCustomer)
     const [checkoutUser] = useCheckoutUser(auth)
 
     return (
