@@ -14,6 +14,7 @@ function Reviews({
     auth,
     handleDeleteReview,
     givenReview,
+    userInfo,
 }) {
     const [show, setShow] = useState(false)
     const [showEditModal, setShowEditModal] = useState(false)
@@ -53,7 +54,7 @@ function Reviews({
                         auth={auth}
                         handleShowEditReviewModal={handleShowEditReviewModal}
                         userCreatedReview={event.reviews
-                            .filter((review) => review.user._id === getUserId(auth))
+                            .filter((review) => review.user._id === getUserId(userInfo))
                             .pop()}
                         handleNotAuthenticatedToast={handleNotAuthenticatedToast}
                         handleShowReviewModal={handleShowReviewModal}
@@ -65,7 +66,7 @@ function Reviews({
                             currentItems={currentItems}
                             handleDeleteReview={handleDeleteReview}
                             handleShowEditReviewModal={handleShowEditReviewModal}
-                            auth={auth}
+                            userInfo={userInfo}
                         />
                         <div className="reviews-pagination">
                             <ReactPaginate

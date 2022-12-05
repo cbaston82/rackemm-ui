@@ -16,7 +16,7 @@ export const userHasValidSubscription = (stripeCustomer) => {
 
 export const userIsLoggedIn = (auth) => auth.token
 
-export const getUserId = (auth) => auth.user.id
+export const getUserId = (userInfo) => userInfo.me._id
 
 export const userAllowedEvents = (stripeCustomer) =>
     plans

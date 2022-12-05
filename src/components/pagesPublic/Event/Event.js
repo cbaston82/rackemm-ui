@@ -20,6 +20,7 @@ function Event({
     createReview,
     editReview,
     givenReview,
+    userInfo,
 }) {
     usePageTitle(`- Event`)
     const { handleDeleteReview } = useReviewHooks(null, auth)
@@ -85,6 +86,7 @@ function Event({
                         handleEditReview={handleEditReview}
                         event={publicEvents.event}
                         auth={auth}
+                        userInfo={userInfo}
                     />
                 </>
             )}
@@ -97,6 +99,7 @@ const mapStateToProps = (state) => ({
     stripeCustomer: state.stripeCustomer,
     givenReview: state.givenReview,
     auth: state.auth,
+    userInfo: state.userInfo,
 })
 
 const mapDispatchToProps = (dispatch) => ({

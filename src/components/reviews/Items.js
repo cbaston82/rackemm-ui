@@ -2,7 +2,7 @@ import moment from 'moment'
 import StarRatings from 'react-star-ratings'
 import Button from '../Button'
 
-function Items({ currentItems, handleDeleteReview, handleShowEditReviewModal, auth }) {
+function Items({ currentItems, handleDeleteReview, handleShowEditReviewModal, userInfo }) {
     return (
         <ul>
             {currentItems && currentItems.length > 0 ? (
@@ -38,7 +38,7 @@ function Items({ currentItems, handleDeleteReview, handleShowEditReviewModal, au
                                 </h4>
                                 <div className="review-description">
                                     <p>{review.review}</p>
-                                    {review.user._id === auth.user.id && (
+                                    {review.user._id === userInfo.me._id && (
                                         <>
                                             <button
                                                 type="button"
