@@ -1,5 +1,6 @@
 import StarRatings from 'react-star-ratings'
 import '../reviews.css'
+import { formatTimeForWeeklyEvent } from '../helpers'
 
 function EventDetails({ event }) {
     return (
@@ -32,6 +33,12 @@ function EventDetails({ event }) {
                         <li className="list-group-item d-flex flex-row justify-content-between">
                             <label className="fw-bolder">Venue</label>
                             <p className="mb-0 fw-light">{event.venue}</p>
+                        </li>
+                        <li className="list-group-item d-flex flex-row justify-content-between">
+                            <label className="fw-bolder">Time</label>
+                            <p className="mb-0 fw-light">
+                                {event.day} @ {formatTimeForWeeklyEvent(event.startTime)}
+                            </p>
                         </li>
                         <li className="list-group-item d-flex flex-row justify-content-between">
                             <label className="fw-bolder">Address</label>
