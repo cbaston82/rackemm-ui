@@ -37,7 +37,15 @@ function EventDetails({ event }) {
                         <li className="list-group-item d-flex flex-row justify-content-between">
                             <label className="fw-bolder">Time</label>
                             <p className="mb-0 fw-light">
-                                {event.day} @ {formatTimeForWeeklyEvent(event.startTime)}
+                                {event.type === 'weekly'
+                                    ? `${event.day} @ ${formatTimeForWeeklyEvent(event.startTime)}`
+                                    : new Date(event.startTime).toLocaleString([], {
+                                          month: '2-digit',
+                                          day: '2-digit',
+                                          year: '2-digit',
+                                          hour: '2-digit',
+                                          minute: '2-digit',
+                                      })}
                             </p>
                         </li>
                         <li className="list-group-item d-flex flex-row justify-content-between">
