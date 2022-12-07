@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { getUserEvents, deleteUserEvent } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
-import YearlyEventsTable from './YearlyEventsTable'
+import SpecialEventsTable from './SpecialEventsTable'
 import BreadCrumbs from '../../BreadCrumbs'
 import usePageTitle from '../../../hoook/usePageTitle'
 import { userHasEvents, userHasSubscription } from '../../../helpers/config'
@@ -11,14 +11,14 @@ import useSubscriptionHooks from '../../../hoook/useSubscriptionHooks'
 import useSwalModalHooks from '../../../hoook/useSwalModalsHooks'
 import SideMenu from '../../structure/SideMenu'
 
-function YearlyEvents({ getUserEvents, userEvents, deleteUserEvent, stripeCustomer }) {
+function SpecialEvents({ getUserEvents, userEvents, deleteUserEvent, stripeCustomer }) {
     usePageTitle('- Special Event')
     const { handleDelete } = useSwalModalHooks(deleteUserEvent)
     const { canUserCreateEventButton, canUserCreateEventsAlertMessage } = useSubscriptionHooks()
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        getUserEvents('yearly')
+        getUserEvents('special')
         setLoading(userEvents.loading)
     }, [getUserEvents])
 
@@ -38,14 +38,18 @@ function YearlyEvents({ getUserEvents, userEvents, deleteUserEvent, stripeCustom
                 <>
                     {userHasEvents(userEvents) ? (
                         <>
-                            {canUserCreateEventButton(stripeCustomer, userEvents, 'yearly-events')}
-                            <YearlyEventsTable
+                            {canUserCreateEventButton(stripeCustomer, userEvents, 'special-events')}
+                            <SpecialEventsTable
                                 events={userEvents.events}
                                 handleDeleteEvent={handleDelete}
                             />
                         </>
                     ) : (
-                        canUserCreateEventsAlertMessage(stripeCustomer, userEvents, 'yearly-events')
+                        canUserCreateEventsAlertMessage(
+                            stripeCustomer,
+                            userEvents,
+                            'special-events',
+                        )
                     )}
                 </>
             )}
@@ -63,4 +67,4 @@ const mapDispatchToProps = (dispatch) => ({
     deleteUserEvent: (eventId) => dispatch(deleteUserEvent(eventId)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvents)
+export default connect(mapStateToProps, mapDispatchToProps)(SpecialEvents)

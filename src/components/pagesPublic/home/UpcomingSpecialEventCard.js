@@ -2,7 +2,7 @@ import { FaArrowCircleRight, FaMapPin } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings/build/star-ratings'
 
-function UpcomingYearlyEventCard({ event }) {
+function UpcomingSpecialEventCard({ event }) {
     return (
         <div className="col-md-6 col-lg-4">
             <div className="card text-center mb-4 rackemm-card">
@@ -63,4 +63,4 @@ function UpcomingYearlyEventCard({ event }) {
     )
 }
 
-export default UpcomingYearlyEventCard
+export default UpcomingSpecialEventCard

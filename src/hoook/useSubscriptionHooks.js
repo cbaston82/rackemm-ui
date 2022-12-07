@@ -23,7 +23,7 @@ function useSubscriptionHooks() {
                 <AlertMessage
                     className="alert alert-info mt-3"
                     path={`/account/${
-                        type === 'yearly-events' ? 'special-events' : 'weekly-events'
+                        type === 'special-events' ? 'special-events' : 'weekly-events'
                     }/create`}
                     linkText="Create event"
                     message="You have no events yet."
@@ -61,7 +61,7 @@ function useSubscriptionHooks() {
                 buttonText="New Event"
                 className="btn btn-outline-secondary btn-sm"
                 path={`/account/${
-                    type === 'yearly-events' ? 'special-events' : 'weekly-events'
+                    type === 'special-events' ? 'special-events' : 'weekly-events'
                 }/create`}
             >
                 <FaPlus />

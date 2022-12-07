@@ -4,7 +4,7 @@ import { FaRegSave } from 'react-icons/fa'
 import { cleanPublicImageName, formatPhoneNumber } from '../../../helpers'
 import BreadCrumbs from '../../BreadCrumbs'
 
-function YearlyEventForm({
+function SpecialEventForm({
     handleFormValueChange,
     handleFormSubmit,
     editEvent,
@@ -338,4 +338,4 @@ function YearlyEventForm({
     )
 }
 
-export default YearlyEventForm
+export default SpecialEventForm

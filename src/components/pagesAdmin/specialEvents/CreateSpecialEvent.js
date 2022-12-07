@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import YearlyEventForm from './YearlyEventForm'
+import SpecialEventForm from './SpecialEventForm'
 import { createUserEvent, getUserMedia } from '../../../redux'
 import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
-function CreateYearlyEvent({ userEvents, createUserEvent, userMedia }) {
-    usePageTitle('- Dashboard Yearly Event Create')
+function CreateSpecialEvent({ userEvents, createUserEvent, userMedia }) {
+    usePageTitle('- Dashboard Special Event Create')
 
     const initialFormValues = {
-        type: 'yearly',
+        type: 'special',
         bracket: '',
         title: '',
         description: '',
@@ -91,13 +91,13 @@ function CreateYearlyEvent({ userEvents, createUserEvent, userMedia }) {
 
     return (
         <div className="container">
-            <YearlyEventForm
+            <SpecialEventForm
                 userMedia={userMedia}
                 handleFormValueChange={handleFormValueChange}
                 handleFormSubmit={handleFormSubmit}
                 editEvent={editEvent}
                 loading={userEvents.loading}
-                pageRequest="Create Yearly Event"
+                pageRequest="Create Special Event"
             />
         </div>
     )
@@ -113,4 +113,4 @@ const mapDispatchToProps = (dispatch) => ({
     getUserMedia: () => dispatch(getUserMedia()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateYearlyEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSpecialEvent)

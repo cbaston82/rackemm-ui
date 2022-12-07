@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import { tournamentColumns } from './yearlyEventsColumns'
+import { tournamentColumns } from './specialEventsColumns'
 import EventsTable from './EventsTable'
 import { getAllPublicEvents } from '../../../redux'
 import { sortByDate } from '../../../redux/helpers/dates'
@@ -9,8 +9,8 @@ import BreadCrumbs from '../../BreadCrumbs'
 import Filters from '../../Filters'
 import usePageTitle from '../../../hoook/usePageTitle'
 
-function YearlyEvents({ getAllPublicEvents, publicEvents }) {
-    usePageTitle('- Yearly Events')
+function SpecialEvents({ getAllPublicEvents, publicEvents }) {
+    usePageTitle('- Special Events')
     const [searchParams, setSearchParams] = useSearchParams()
 
     const [buyIn, setBuyIn] = useState(decodeURI(searchParams.get('buyIn')))
@@ -35,7 +35,7 @@ function YearlyEvents({ getAllPublicEvents, publicEvents }) {
     }, [buyIn, city, game, filter, setSearchParams])
 
     useEffect(() => {
-        getAllPublicEvents('yearly')
+        getAllPublicEvents('special')
     }, [getAllPublicEvents])
 
     return (
@@ -44,7 +44,7 @@ function YearlyEvents({ getAllPublicEvents, publicEvents }) {
                 <BreadCrumbs activeBreadcrumbTitle="Special Events" />
                 <Filters
                     filterValues={filterValues}
-                    filterType="yearly"
+                    filterType="special"
                     buttonTitle="Special Event Filters"
                 />
             </div>
@@ -75,4 +75,4 @@ const mapDispatchToProps = (dispatch) => ({
     getAllPublicEvents: (type) => dispatch(getAllPublicEvents(type)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(YearlyEvents)
+export default connect(mapStateToProps, mapDispatchToProps)(SpecialEvents)

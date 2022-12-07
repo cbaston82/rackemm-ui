@@ -1,14 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import YearlyEventForm from './YearlyEventForm'
+import SpecialEventForm from './SpecialEventForm'
 import { getUserMedia, updateUserEvent } from '../../../redux'
 import NotFound404 from '../../pagesPublic/NotFound404'
 import { formatPhoneNumber } from '../../../helpers'
 import usePageTitle from '../../../hoook/usePageTitle'
 
-function EditYearlyEvent({ userEvents, updateUserEvent, userMedia }) {
-    usePageTitle('- Dashboard Yearly Event Edit')
+function EditSpecialEvent({ userEvents, updateUserEvent, userMedia }) {
+    usePageTitle('- Dashboard Special Event Edit')
     const { id } = useParams()
     let autocomplete = null
     const [editEvent, setEditEvent] = useState(null)
@@ -72,7 +72,7 @@ function EditYearlyEvent({ userEvents, updateUserEvent, userMedia }) {
     return (
         <div className="container">
             {editEvent ? (
-                <YearlyEventForm
+                <SpecialEventForm
                     userMedia={userMedia}
                     handleFormValueChange={handleFormValueChange}
                     handleFormSubmit={handleFormSubmit}
@@ -100,4 +100,4 @@ const mapDispatchToProps = (dispatch) => ({
     getUserMedia: () => dispatch(getUserMedia()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditYearlyEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(EditSpecialEvent)

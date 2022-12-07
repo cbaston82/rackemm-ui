@@ -6,18 +6,16 @@ import AccountPage from '../pagesAdmin/profile/AccountPage'
 import WeeklyEvents from '../pagesPublic/weeklyEvents/WeeklyEvents'
 import Landing from '../pagesPublic/home/Landing'
 import About from '../pagesPublic/About'
-import YearlyEvents from '../pagesPublic/yearlyEvents/YearlyEvents'
+import SpecialEvents from '../pagesPublic/specialEvents/SpecialEvents'
 import Pricing from '../pagesPublic/pricing/Pricing'
 import Faq from '../pagesPublic/Faq'
 import Features from '../pagesPublic/Features'
 import Event from '../pagesPublic/Event/Event'
 import Login from '../pagesPublic/Login'
 import Register from '../pagesPublic/Register'
-import AccountYearlyEvents from '../pagesAdmin/yearlyEvents/YearlyEvents'
+import AccountSpecialEvents from '../pagesAdmin/specialEvents/SpecialEvents'
 import TermsOfUse from '../pagesPublic/TermsOfUse'
 import PrivacyPolicy from '../pagesPublic/PrivacyPolicy'
-import CreateYearlyEvent from '../pagesAdmin/yearlyEvents/CreateYearlyEvent'
-import EditYearlyEvent from '../pagesAdmin/yearlyEvents/EditYearlyEvent'
 import AccountWeeklyEvents from '../pagesAdmin/weeklyEvents/WeeklyEvents'
 import CreateWeeklyEvent from '../pagesAdmin/weeklyEvents/CreateWeeklyEvent'
 import EditWeeklyEvent from '../pagesAdmin/weeklyEvents/EditWeeklyEvent'
@@ -28,13 +26,15 @@ import HasSubscriptionRoutes from './HasSubscriptionRoutes'
 import ForgotPassword from '../pagesPublic/ForgotPassword'
 import Dashboard from '../pagesAdmin/Dashboard'
 import ResetPassword from '../pagesPublic/resetPassword'
+import CreateSpecialEvent from '../pagesAdmin/specialEvents/CreateSpecialEvent'
+import EditSpecialEvent from '../pagesAdmin/specialEvents/EditSpecialEvent'
 
 function MainRoutes({ auth, stripeCustomer }) {
     return (
         <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route exact path="/weekly-events" element={<WeeklyEvents />} />
-            <Route exact path="/special-events" element={<YearlyEvents />} />
+            <Route exact path="/special-events" element={<SpecialEvents />} />
             <Route exact path="/event/:id" element={<Event />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/features" element={<Features />} />
@@ -96,7 +96,7 @@ function MainRoutes({ auth, stripeCustomer }) {
                 path="/account/special-events/"
                 element={
                     <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
-                        <AccountYearlyEvents />
+                        <AccountSpecialEvents />
                     </HasSubscriptionRoutes>
                 }
             />
@@ -105,7 +105,7 @@ function MainRoutes({ auth, stripeCustomer }) {
                 path="/account/special-events/create"
                 element={
                     <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
-                        <CreateYearlyEvent />
+                        <CreateSpecialEvent />
                     </HasSubscriptionRoutes>
                 }
             />
@@ -114,7 +114,7 @@ function MainRoutes({ auth, stripeCustomer }) {
                 path="/account/special-events/edit/:id"
                 element={
                     <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
-                        <EditYearlyEvent />
+                        <EditSpecialEvent />
                     </HasSubscriptionRoutes>
                 }
             />

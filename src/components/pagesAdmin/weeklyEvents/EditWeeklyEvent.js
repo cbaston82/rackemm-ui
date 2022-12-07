@@ -87,7 +87,7 @@ function EditWeeklyEvent({ userEvents, updateUserEvent, getUserMedia, userMedia 
             ) : (
                 <NotFound404
                     message="Event does not exists "
-                    buttonText="Back to yearly events"
+                    buttonText="Back to special events"
                     redirectTo="account/weekly-events"
                 />
             )}

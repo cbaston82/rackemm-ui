@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { FaArrowCircleRight } from 'react-icons/fa'
-import UpcomingYearlyEventCard from './UpcomingYearlyEventCard'
+import UpcomingSpecialEventCard from './UpcomingSpecialEventCard'
 import { getAllPublicEvents } from '../../../redux'
 import Button from '../../Button'
 
 function UpcomingEventsSection({ getAllPublicEvents, publicEvents }) {
     useEffect(() => {
-        getAllPublicEvents('yearly')
+        getAllPublicEvents('special')
     }, [getAllPublicEvents])
 
     return (
@@ -27,7 +27,7 @@ function UpcomingEventsSection({ getAllPublicEvents, publicEvents }) {
                             .sort((a, b) => new Date(a.startTime) - new Date(b.startTime))
                             .slice(0, 6)
                             .map((event) => (
-                                <UpcomingYearlyEventCard key={event._id} event={event} />
+                                <UpcomingSpecialEventCard key={event._id} event={event} />
                             ))}
                 </div>
                 <div className="row text-center">

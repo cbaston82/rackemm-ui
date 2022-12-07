@@ -101,7 +101,7 @@ const tableColumns = (handleDeleteEvent) => [
     },
 ]
 
-function YearlyEventsTable({ events, handleDeleteEvent }) {
+function SpecialEventsTable({ events, handleDeleteEvent }) {
     const paginationComponentOptions = {
         rowsPerPageText: 'Events per page',
         rangeSeparatorText: 'of',
@@ -123,4 +123,4 @@ function YearlyEventsTable({ events, handleDeleteEvent }) {
     )
 }
 
-export default YearlyEventsTable
+export default SpecialEventsTable

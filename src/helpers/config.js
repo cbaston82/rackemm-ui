@@ -37,6 +37,6 @@ export const userCanCreateEvents = (stripeCustomer, userCreatedEvents, type) => 
 
     return (
         userHasValidSubscription(stripeCustomer) &&
-        userEventsCount(userCreatedEvents) < userAllowedEvents(stripeCustomer).yearlyEventsMax
+        userEventsCount(userCreatedEvents) < userAllowedEvents(stripeCustomer).specialEventsMax
     )
 }
