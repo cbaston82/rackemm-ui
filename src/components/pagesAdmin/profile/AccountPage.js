@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { getUserStripeCustomer, updatePassword, updateUserInfo } from '../../../redux'
+import { getUserStripeCustomer, logoutUser, updatePassword, updateUserInfo } from '../../../redux'
 import CustomLoader from '../../CustomeLoader'
 import usePageTitle from '../../../hoook/usePageTitle'
 import AccountDetails from './AccountDetails'
@@ -9,6 +9,7 @@ import BillingDetails from './BillingDetails'
 import useLoadUserStripeAccountDetails from '../../../hoook/useLoadUserStripeAccountDetails'
 import useUpdatePassword from '../../../hoook/useUpdatePassword'
 import useUpdateUserInfo from '../../../hoook/useUpdateUserInfo'
+import useDeleteAccount from '../../../hoook/useDeleteAccount'
 import ManagePassword from './ManagePassword'
 import { userHasSubscription } from '../../../helpers/config'
 import SideMenu from '../../structure/SideMenu'
@@ -21,6 +22,7 @@ function AccountPage({
     updatePassword,
     updateUserInfo,
     userInfo,
+    logoutUser,
 }) {
     usePageTitle('- Account')
     const { loadUserStripeAccountDetails } = useLoadUserStripeAccountDetails(auth, stripeCustomer)
@@ -32,6 +34,9 @@ function AccountPage({
         updateUserInfo,
         userInfo,
     )
+
+    const { handleDeleteAccount, loading, deleteAccountForm, handleOnChangeDeleteAccount } =
+        useDeleteAccount(auth, logoutUser)
 
     useEffect(() => {
         getUserStripeCustomer()
@@ -69,7 +74,12 @@ function AccountPage({
                         handlePasswordUpdate={handlePasswordUpdate}
                         updatePasswordForm={updatePasswordForm}
                     />
-                    <DeleteAccount />
+                    <DeleteAccount
+                        deleteAccountForm={deleteAccountForm}
+                        handleOnChangeDeleteAccount={handleOnChangeDeleteAccount}
+                        handleDeleteAccount={handleDeleteAccount}
+                        loading={loading}
+                    />
                 </div>
             )}
         </div>
@@ -86,6 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
     getUserStripeCustomer: () => dispatch(getUserStripeCustomer()),
     updatePassword: (updatePasswordForm) => dispatch(updatePassword(updatePasswordForm)),
     updateUserInfo: (userInfo) => dispatch(updateUserInfo(userInfo)),
+    logoutUser: () => dispatch(logoutUser()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)
