@@ -12,6 +12,7 @@ import useUpdateUserInfo from '../../../hoook/useUpdateUserInfo'
 import ManagePassword from './ManagePassword'
 import { userHasSubscription } from '../../../helpers/config'
 import SideMenu from '../../structure/SideMenu'
+import DeleteAccount from './DeleteAccount'
 
 function AccountPage({
     auth,
@@ -68,6 +69,7 @@ function AccountPage({
                         handlePasswordUpdate={handlePasswordUpdate}
                         updatePasswordForm={updatePasswordForm}
                     />
+                    <DeleteAccount />
                 </div>
             )}
         </div>

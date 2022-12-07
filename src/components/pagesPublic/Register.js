@@ -16,6 +16,8 @@ function Register({ signupUser, auth }) {
         fullName: '',
     })
 
+    const [token, setToken] = useState('')
+
     const { email, password, passwordConfirm, fullName } = formData
 
     const handleOnSubmit = (e) => {
@@ -25,6 +27,12 @@ function Register({ signupUser, auth }) {
             return toast.error('Passwords do not match')
         }
         signupUser(formData)
+
+        setToken(null)
+
+        setTimeout(() => {
+            setToken('')
+        }, 3000)
     }
 
     const handleOnChange = (e) => {
@@ -49,7 +57,7 @@ function Register({ signupUser, auth }) {
                 <div className="col-sm-10 col-md-6 col-lg-4">
                     <div className="card">
                         <div className="card-body">
-                            {auth.loading ? (
+                            {auth.loading || token === null ? (
                                 <div className="d-flex justify-content-center align-content-center">
                                     <MoonLoader size={150} loading />
                                 </div>

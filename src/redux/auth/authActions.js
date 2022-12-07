@@ -56,8 +56,11 @@ export const signupUser = (user) => (dispatch) => {
     axios
         .post(`${getApiUrl()}/auth/signup`, user)
         .then((response) => {
-            dispatch(loginUserSuccess(response.data.data))
-            toast.success('You are now logged in')
+            dispatch(loginUserSuccess(null))
+            toast.success('Successfully registered. Please login.')
+            setTimeout(() => {
+                window.location.href = '/login'
+            }, 2000)
         })
         .catch((error) => {
             dispatch(loginUserFailure(error.response.data.message))
