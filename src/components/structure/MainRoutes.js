@@ -34,7 +34,7 @@ function MainRoutes({ auth, stripeCustomer }) {
         <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route exact path="/weekly-events" element={<WeeklyEvents />} />
-            <Route exact path="/yearly-events" element={<YearlyEvents />} />
+            <Route exact path="/special-events" element={<YearlyEvents />} />
             <Route exact path="/event/:id" element={<Event />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/features" element={<Features />} />
@@ -93,7 +93,7 @@ function MainRoutes({ auth, stripeCustomer }) {
             />
             <Route
                 exact
-                path="/account/yearly-events/"
+                path="/account/special-events/"
                 element={
                     <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <AccountYearlyEvents />
@@ -102,7 +102,7 @@ function MainRoutes({ auth, stripeCustomer }) {
             />
             <Route
                 exact
-                path="/account/yearly-events/create"
+                path="/account/special-events/create"
                 element={
                     <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <CreateYearlyEvent />
@@ -111,7 +111,7 @@ function MainRoutes({ auth, stripeCustomer }) {
             />
             <Route
                 exact
-                path="/account/yearly-events/edit/:id"
+                path="/account/special-events/edit/:id"
                 element={
                     <HasSubscriptionRoutes auth={auth} stripeCustomer={stripeCustomer}>
                         <EditYearlyEvent />

@@ -158,9 +158,11 @@ function WeeklyEventForm({
                                                 className="form-control rounded-0"
                                             >
                                                 <option value="">Choose...</option>
-                                                <option value="8-ball">8-Ball</option>
-                                                <option value="9-ball">9-Ball</option>
-                                                <option value="10-ball">10-Ball</option>
+                                                <option value="8-ball">8 Ball</option>
+                                                <option value="9-ball">9 Ball</option>
+                                                <option value="10-ball">10 Ball</option>
+                                                <option value="0ne-Pocket">One Pocket</option>
+                                                <option value="bank-pool">Bank Pool</option>
                                             </select>
                                         </div>
                                         <div data-field-span="1">

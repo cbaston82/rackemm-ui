@@ -41,11 +41,11 @@ function YearlyEvents({ getAllPublicEvents, publicEvents }) {
     return (
         <div className="container">
             <div className="d-flex justify-content-between">
-                <BreadCrumbs activeBreadcrumbTitle="Yearly Events" />
+                <BreadCrumbs activeBreadcrumbTitle="Special Events" />
                 <Filters
                     filterValues={filterValues}
                     filterType="yearly"
-                    buttonTitle="Yearly Filters"
+                    buttonTitle="Special Event Filters"
                 />
             </div>
             {!publicEvents.loading && (

@@ -44,7 +44,7 @@ function EventsTable({
 
     const filteredItems = rows.filter(
         (item) =>
-            (item.event &&
+            (item.title &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'
                     ? item.city.toLowerCase().includes(filterCity.toLowerCase())
@@ -52,7 +52,28 @@ function EventsTable({
                 (filterGame !== 'all'
                     ? item.game.toLowerCase().includes(filterGame.toLowerCase())
                     : item.game.toLowerCase()) &&
-                item.event.toLowerCase().includes(filterText.toLowerCase())) ||
+                item.title.toLowerCase().includes(filterText.toLowerCase())) ||
+            (item.description &&
+                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
+                (filterCity !== 'all'
+                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
+                    : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
+                item.description
+                    .replace(/[\r\n]/gm, ' ')
+                    .toLowerCase()
+                    .includes(filterText.toLowerCase())) ||
+            (item.pointOfContact &&
+                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
+                (filterCity !== 'all'
+                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
+                    : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
+                item.pointOfContact.toLowerCase().includes(filterText.toLowerCase())) ||
             (item.venue &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'
@@ -62,7 +83,7 @@ function EventsTable({
                     ? item.game.toLowerCase().includes(filterGame.toLowerCase())
                     : item.game.toLowerCase()) &&
                 item.venue.toLowerCase().includes(filterText.toLowerCase())) ||
-            (item.day &&
+            (item.state &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'
                     ? item.city.toLowerCase().includes(filterCity.toLowerCase())
@@ -70,7 +91,16 @@ function EventsTable({
                 (filterGame !== 'all'
                     ? item.game.toLowerCase().includes(filterGame.toLowerCase())
                     : item.game.toLowerCase()) &&
-                item.day.toLowerCase().includes(filterText.toLowerCase())) ||
+                item.state.toLowerCase().includes(filterText.toLowerCase())) ||
+            (item.zipCode &&
+                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
+                (filterCity !== 'all'
+                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
+                    : item.city.toLowerCase()) &&
+                (filterGame !== 'all'
+                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                    : item.game.toLowerCase()) &&
+                item.zipCode.toLowerCase().includes(filterText.toLowerCase())) ||
             (item.time &&
                 parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
                 (filterCity !== 'all'

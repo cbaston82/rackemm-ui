@@ -85,7 +85,7 @@ function CreateYearlyEvent({ userEvents, createUserEvent, userMedia }) {
 
     useEffect(() => {
         if (userEvents.eventCreated) {
-            navigate('/account/yearly-events')
+            navigate('/account/special-events')
         }
     }, [userEvents, navigate])
 

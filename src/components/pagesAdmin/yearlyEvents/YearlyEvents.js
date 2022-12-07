@@ -12,7 +12,7 @@ import useSwalModalHooks from '../../../hoook/useSwalModalsHooks'
 import SideMenu from '../../structure/SideMenu'
 
 function YearlyEvents({ getUserEvents, userEvents, deleteUserEvent, stripeCustomer }) {
-    usePageTitle('- Yearly Event')
+    usePageTitle('- Special Event')
     const { handleDelete } = useSwalModalHooks(deleteUserEvent)
     const { canUserCreateEventButton, canUserCreateEventsAlertMessage } = useSubscriptionHooks()
     const [loading, setLoading] = useState(true)
@@ -31,7 +31,7 @@ function YearlyEvents({ getUserEvents, userEvents, deleteUserEvent, stripeCustom
                 userIsSubscribed={userHasSubscription(stripeCustomer)}
                 location={location.pathname}
             />
-            <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Yearly Events" />
+            <BreadCrumbs navigateToPreviousLink={false} activeBreadcrumbTitle="Special Events" />
             {userEvents.loading || loading ? (
                 <CustomLoader color="white" loaderMessage="Fetching events" />
             ) : (

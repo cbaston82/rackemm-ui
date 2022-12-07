@@ -36,8 +36,8 @@ function Event({
         return (
             <NotFound404
                 message={publicEvents.error}
-                buttonText="Back to yearly events"
-                redirectTo="yearly-events"
+                buttonText="Back to special events"
+                redirectTo="special-events"
             />
         )
     }

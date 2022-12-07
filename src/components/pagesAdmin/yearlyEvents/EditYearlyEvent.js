@@ -65,7 +65,7 @@ function EditYearlyEvent({ userEvents, updateUserEvent, userMedia }) {
         setEditEvent(userEvents.events.filter((event) => event._id === id).pop())
 
         if (userEvents.eventUpdated) {
-            navigate('/account/yearly-events')
+            navigate('/account/special-events')
         }
     }, [userEvents, id, navigate])
 
@@ -82,8 +82,8 @@ function EditYearlyEvent({ userEvents, updateUserEvent, userMedia }) {
             ) : (
                 <NotFound404
                     message="Event does not exists "
-                    buttonText="Back to yearly events"
-                    redirectTo="account/yearly-events"
+                    buttonText="Back to special events"
+                    redirectTo="account/special-events"
                 />
             )}
         </div>

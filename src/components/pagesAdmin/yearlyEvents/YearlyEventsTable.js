@@ -83,7 +83,7 @@ const tableColumns = (handleDeleteEvent) => [
                         <FaExternalLinkAlt />
                     </button>
                 </Link>
-                <Link className="ms-3" to={`/account/yearly-events/edit/${row._id}`}>
+                <Link className="ms-3" to={`/account/special-events/edit/${row._id}`}>
                     <button type="button" className="btn btn-info btn-sm">
                         <FaEdit />
                     </button>

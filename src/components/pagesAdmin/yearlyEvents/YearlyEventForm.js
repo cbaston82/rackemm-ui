@@ -15,9 +15,9 @@ function YearlyEventForm({
         <>
             <BreadCrumbs
                 previousLinks={[
-                    { path: '/account/yearly-events', name: 'Dashboard Yearly Events' },
+                    { path: '/account/special-events', name: 'Dashboard Special Events' },
                 ]}
-                activeBreadcrumbTitle="Create Yearly Event"
+                activeBreadcrumbTitle="Create Special Event"
             />
             <div className="card rounded-0 rackemm-card-grid-form">
                 <div className="card-header">
@@ -89,7 +89,10 @@ function YearlyEventForm({
                                     <div data-row-span="1">
                                         <div data-field-span="1">
                                             <label className="small mb-1" htmlFor="description">
-                                                Bracket
+                                                Bracket{' '}
+                                                <span className="fw-light text-lowercase fw-bolder text-danger">
+                                                    URL to bracket i.e challonge or digitalpool
+                                                </span>
                                             </label>
                                             <input
                                                 onChange={(e) => handleFormValueChange(e)}
@@ -164,9 +167,11 @@ function YearlyEventForm({
                                                 className="form-control rounded-0"
                                             >
                                                 <option value="">Choose...</option>
-                                                <option value="8-ball">8-Ball</option>
-                                                <option value="9-ball">9-Ball</option>
-                                                <option value="10-ball">10-Ball</option>
+                                                <option value="8-ball">8 Ball</option>
+                                                <option value="9-ball">9 Ball</option>
+                                                <option value="10-ball">10 Ball</option>
+                                                <option value="0ne-Pocket">One Pocket</option>
+                                                <option value="bank-pool">Bank Pool</option>
                                             </select>
                                         </div>
                                         <div data-field-span="1">

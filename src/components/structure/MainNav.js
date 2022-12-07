@@ -32,13 +32,13 @@ function MainNav({ logoutUser, auth, userInfo }) {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink className="nav-link" aria-current="page" to="/weekly-events">
-                                Weekly Events
+                            <NavLink className="nav-link" to="/special-events">
+                                Special Events
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/yearly-events">
-                                Yearly Events
+                            <NavLink className="nav-link" aria-current="page" to="/weekly-events">
+                                Weekly Events
                             </NavLink>
                         </li>
                         {auth.token ? (

@@ -33,7 +33,7 @@ function UpcomingEventsSection({ getAllPublicEvents, publicEvents }) {
                 <div className="row text-center">
                     <Button
                         className="btn btn-outline-warning btn-lg"
-                        path="/yearly-events"
+                        path="/special-events"
                         buttonText="View All"
                     >
                         <FaArrowCircleRight />

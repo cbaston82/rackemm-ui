@@ -58,6 +58,20 @@ function SideMenu({ location, userIsSubscribed }) {
                                 <li>
                                     <NavLink
                                         className={`${
+                                            location === '/account/special-events'
+                                                ? 'active-side-nav'
+                                                : ''
+                                        } dropdown-item text-white`}
+                                        to="/account/special-events"
+                                    >
+                                        Special Events
+                                    </NavLink>
+                                </li>
+                                <hr className="m-0 p-0 text-white" />
+
+                                <li>
+                                    <NavLink
+                                        className={`${
                                             location === '/account/weekly-events'
                                                 ? 'active-side-nav'
                                                 : ''
@@ -65,19 +79,6 @@ function SideMenu({ location, userIsSubscribed }) {
                                         to="/account/weekly-events"
                                     >
                                         Weekly Events
-                                    </NavLink>
-                                </li>
-                                <hr className="m-0 p-0 text-white" />
-                                <li>
-                                    <NavLink
-                                        className={`${
-                                            location === '/account/yearly-events'
-                                                ? 'active-side-nav'
-                                                : ''
-                                        } dropdown-item text-white`}
-                                        to="/account/yearly-events"
-                                    >
-                                        Yearly Events
                                     </NavLink>
                                 </li>
                                 <hr className="m-0 p-0 text-white" />

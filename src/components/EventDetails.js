@@ -70,6 +70,19 @@ function EventDetails({ event }) {
                             <label className="fw-bolder">Point of Contact Phone</label>
                             <p className="mb-0 fw-light">{event.pointOfContactPhone}</p>
                         </li>
+                        {event.bracket && (
+                            <li className="list-group-item d-flex flex-row justify-content-between">
+                                <label className="fw-bolder">Bracket</label>
+                                <a
+                                    href={event.bracket}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                    className="mb-0 fw-light"
+                                >
+                                    {event.bracket}
+                                </a>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>
