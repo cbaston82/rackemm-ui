@@ -22,9 +22,9 @@ function UpcomingEventsSection({ getAllPublicEvents, publicEvents }) {
                 <div className="row">
                     {publicEvents.events &&
                         publicEvents.events
-                            .filter((event) => new Date(event.startTime) > Date.now())
+                            .filter((event) => new Date(event.startTime) >= Date.now())
+                            .filter((event) => event.status === 'active')
                             .sort((a, b) => new Date(a.startTime) - new Date(b.startTime))
-
                             .slice(0, 6)
                             .map((event) => (
                                 <UpcomingYearlyEventCard key={event._id} event={event} />
