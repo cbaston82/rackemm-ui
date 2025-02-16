@@ -23,7 +23,7 @@ function FeaturesSection() {
                         >
                             <img
                                 className="img-fluid img-thumbnail bg-transparent border-0"
-                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663863933/rackemm_images/app_images/web_and_mobile_view_forms.png"
+                                src="https://res.cloudinary.com/hoo/image/upload/v1663863933/rackemm_images/app_images/web_and_mobile_view_forms.png"
                                 alt=""
                             />
                         </div>
@@ -50,7 +50,7 @@ function FeaturesSection() {
                         >
                             <img
                                 className="img-fluid img-thumbnail border-0 bg-transparent"
-                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663798938/rackemm_images/app_images/filtering_features.png"
+                                src="https://res.cloudinary.com/hoo/image/upload/v1663798938/rackemm_images/app_images/filtering_features.png"
                                 alt=""
                             />
                         </div>

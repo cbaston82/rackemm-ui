@@ -12,7 +12,7 @@ function About() {
                     <div className="text-center px-5">
                         <div className="position-relative mr-3" style={{ top: '-62px' }}>
                             <img
-                                src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663302985/rackemm_images/app_images/4C3BEB2A-AD23-4804-9E1E-31F703A7DAE1.jpg"
+                                src="https://res.cloudinary.com/hoo/image/upload/v1663302985/rackemm_images/app_images/4C3BEB2A-AD23-4804-9E1E-31F703A7DAE1.jpg"
                                 className="rounded"
                                 alt=""
                                 width="200"

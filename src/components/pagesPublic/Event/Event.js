@@ -60,7 +60,7 @@ function Event({
                                         image={
                                             publicEvents.event.posterImage !== ''
                                                 ? publicEvents.event.posterImage
-                                                : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1663793568/rackemm_images/app_images/img.png'
+                                                : 'https://res.cloudinary.com/hoo/image/upload/v1663793568/rackemm_images/app_images/img.png'
                                         }
                                     />
                                     {publicEvents.event.type === 'special' && (

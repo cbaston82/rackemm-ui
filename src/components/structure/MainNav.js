@@ -13,7 +13,7 @@ function MainNav({ logoutUser, auth, userInfo }) {
             <div className="container">
                 <Link className="navbar-brand" to="/">
                     <img
-                        src="https://res.cloudinary.com/imagine-design-develop/image/upload/v1663402485/rackemm_images/app_images/logo-white.png"
+                        src="https://res.cloudinary.com/hoo/image/upload/v1663402485/rackemm_images/app_images/logo-white.png"
                         height="40"
                         alt=""
                     />
