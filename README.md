@@ -1,73 +1,74 @@
-# RACKEMM CLIENT
+# RACKEMM UI
 
-A POOL TOURNAMENTS DATABASE. Find a tournament anywhere anytime. any place.
+A pool tournament database. Find a tournament anywhere, anytime.
 
-## Authors
-
--   [@cbaston82](https://github.com/cbaston82)
-
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/cbaston82/rackemm-ui
-```
-
-Go to the project directory
-
-```bash
-  cd radkemm-ui
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-```bash
-  add .env
-```
-
-Start the server
-
-```bash
-  npm run start
-```
-
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`REACT_APP_DISABLE_SUBSCRIPTION`=true
-`REACT_APP_STRIPE_PRICE_LEVEL_1`=
-`REACT_APP_STRIPE_PRICE_LEVEL_2`=
-`REACT_APP_STRIPE_PRICE_LEVEL_3`=
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+**Backend repo:** [rackemm-api-node](https://github.com/cbaston82/rackemm-api-node)
 
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
+- React 18, Redux (redux-persist + redux-thunk), React Router v6
+- Bootstrap 5, React Bootstrap
+- Stripe (subscriptions), Algolia (search), Cloudinary (media), Google Places (autocomplete)
 
-**Server:** Node, Express
-[rackemm-api](https://github.com/cbaston82/rackemm-api)
+## Prerequisites
+
+- Node 16+ (tested on v22 with `--openssl-legacy-provider`)
+- The [rackemm-api-node](https://github.com/cbaston82/rackemm-api-node) backend running on port 4000
+
+## Run Locally
+
+```bash
+git clone https://github.com/cbaston82/rackemm-ui
+cd rackemm-ui
+npm install
+cp .env.example .env   # then fill in values
+npm start              # runs on http://localhost:3900
+```
+
+The dev server proxies all `/api/*` requests to `http://localhost:4000` (configured in `package.json`).
+
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+# Set to true to bypass Stripe subscription checks during development
+REACT_APP_DISABLE_SUBSCRIPTION=true
+
+# Stripe price IDs (from your Stripe dashboard) — only needed for subscription testing
+REACT_APP_STRIPE_PRICE_LEVEL_1=
+REACT_APP_STRIPE_PRICE_LEVEL_2=
+REACT_APP_STRIPE_PRICE_LEVEL_3=
+
+# Production API URL — set this when deploying (e.g. your Railway backend URL)
+REACT_APP_API_URL=
+```
+
+## Deploy to Netlify
+
+1. Push to GitHub
+2. Connect the repo in Netlify
+3. Set build settings:
+   - **Build command:** `npm run build`
+   - **Publish directory:** `build`
+4. Add environment variables in Netlify dashboard (same as `.env` above, plus `REACT_APP_API_URL` pointing to your backend)
+5. The `public/_redirects` file handles SPA routing automatically
 
 ## Features
 
--   Stripe Checkout with multiple subscriptions
--   Create weekely and special events
--   Save custom filters and make them shareable
--   Save events to your calendar
--   Allow logged in users to leave reviews on events
+- Browse weekly and special pool events
+- Filter events by game, buy-in, day, venue, city, rating system
+- View event details with reviews and add-to-calendar
+- Auth: register, login, forgot/reset password
+- Subscribed users: create/edit events, upload media, manage shareable filters
+- 3-tier Stripe subscription plans
 
 ## Screenshots
 
 ![App Screenshot](https://res.cloudinary.com/hoo/image/upload/v1739676096/rackemm_images/Screenshot_2025-02-15_at_7.21.21_PM.png)
 
-![Logo](https://res.cloudinary.com/hoo/image/upload/v1663402485/rackemm_images/app_images/logo.png)
-
 ![Logo](https://res.cloudinary.com/hoo/image/upload/v1695232082/rackemm_images/app_images/rackemm-logo-transparent.png)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

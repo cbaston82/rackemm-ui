@@ -34,9 +34,7 @@ function useReviewHooks(callBack = null, auth = null) {
                     .then((response) => {
                         window.location.reload()
                     })
-                    .catch((error) => {
-                        console.log(error)
-                    })
+                    .catch(() => {})
 
                 MySwal.fire({
                     confirmButtonColor: '#00cdcd',

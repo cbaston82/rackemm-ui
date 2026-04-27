@@ -174,7 +174,7 @@ let url = ''
 if (window.location.host.includes('localhost')) {
     url = '/api/v1'
 } else {
-    url = 'https://rackemm.herokuapp.com/api/v1'
+    url = process.env.REACT_APP_API_URL || 'https://rackemm.herokuapp.com/api/v1'
 }
 
 export const getApiUrl = () => url
