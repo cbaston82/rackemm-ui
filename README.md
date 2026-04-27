@@ -2,7 +2,9 @@
 
 A pool tournament database. Find a tournament anywhere, anytime.
 
-**Backend repo:** [rackemm-api-node](https://github.com/cbaston82/rackemm-api-node)
+**Live site:** https://rackemm.netlify.app  
+**Backend repo:** [rackemm-api-node](https://github.com/cbaston82/rackemm-api-node)  
+**Live API:** https://web-production-897fe.up.railway.app
 
 ## Tech Stack
 
@@ -12,7 +14,7 @@ A pool tournament database. Find a tournament anywhere, anytime.
 
 ## Prerequisites
 
-- Node 16+ (tested on v22 with `--openssl-legacy-provider`)
+- Node 16+ (tested on v22 — requires `--openssl-legacy-provider` due to webpack 4)
 - The [rackemm-api-node](https://github.com/cbaston82/rackemm-api-node) backend running on port 4000
 
 ## Run Locally
@@ -25,34 +27,49 @@ cp .env.example .env   # then fill in values
 npm start              # runs on http://localhost:3900
 ```
 
-The dev server proxies all `/api/*` requests to `http://localhost:4000` (configured in `package.json`).
+The dev server proxies all `/api/*` requests to `http://localhost:4000` (configured in `package.json`).  
+`REACT_APP_API_URL` is not needed locally — the proxy handles it.
 
 ## Environment Variables
 
-Create a `.env` file in the project root:
+### Local (`.env`)
 
 ```env
-# Set to true to bypass Stripe subscription checks during development
+# Bypass Stripe subscription checks during development
 REACT_APP_DISABLE_SUBSCRIPTION=true
 
-# Stripe price IDs (from your Stripe dashboard) — only needed for subscription testing
+# Not needed locally — proxy handles API routing
+REACT_APP_API_URL=
+
+# Stripe price IDs — only needed if testing subscriptions locally
 REACT_APP_STRIPE_PRICE_LEVEL_1=
 REACT_APP_STRIPE_PRICE_LEVEL_2=
 REACT_APP_STRIPE_PRICE_LEVEL_3=
 
-# Production API URL — set this when deploying (e.g. your Railway backend URL)
-REACT_APP_API_URL=
+# GitHub personal access token — optional, increases API rate limit for Features page
+REACT_APP_GITHUB_ACCESS_TOKEN=
+```
+
+### Production (Netlify environment variables)
+
+```env
+REACT_APP_API_URL=https://web-production-897fe.up.railway.app/api/v1
+REACT_APP_DISABLE_SUBSCRIPTION=false
+REACT_APP_STRIPE_PRICE_LEVEL_1=price_1M2ePMKr4ipGkAARRBdd6UGe
+REACT_APP_STRIPE_PRICE_LEVEL_2=price_1M2eTfKr4ipGkAARLND8MZpv
+REACT_APP_STRIPE_PRICE_LEVEL_3=price_1M2eWKKr4ipGkAARrPIUdL82
+REACT_APP_GITHUB_ACCESS_TOKEN=<your_github_token>
 ```
 
 ## Deploy to Netlify
 
 1. Push to GitHub
-2. Connect the repo in Netlify
-3. Set build settings:
-   - **Build command:** `npm run build`
+2. Connect repo in Netlify → branch: `development`
+3. Build settings are auto-configured from `netlify.toml`:
+   - **Build command:** `NODE_OPTIONS=--openssl-legacy-provider npm run build`
    - **Publish directory:** `build`
-4. Add environment variables in Netlify dashboard (same as `.env` above, plus `REACT_APP_API_URL` pointing to your backend)
-5. The `public/_redirects` file handles SPA routing automatically
+4. Add production environment variables above in Netlify dashboard
+5. SPA routing is handled by `netlify.toml` and `public/_redirects`
 
 ## Features
 
@@ -62,6 +79,7 @@ REACT_APP_API_URL=
 - Auth: register, login, forgot/reset password
 - Subscribed users: create/edit events, upload media, manage shareable filters
 - 3-tier Stripe subscription plans
+- Feature request / bug tracking via GitHub Issues
 
 ## Screenshots
 

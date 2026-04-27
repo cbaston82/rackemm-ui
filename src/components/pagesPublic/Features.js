@@ -65,7 +65,9 @@ function Features() {
                         </div>
                         {issues &&
                             issues.map((issue) => {
-                                const milestone = issue.milestone ? issue.milestone.title.split(' ')[0].toString() : '0%'
+                                const milestone = issue.milestone
+                                    ? issue.milestone.title.split(' ')[0].toString()
+                                    : '0%'
                                 return (
                                     <div key={issue.id} className="p-4 mb-3 bg-white">
                                         <span className="fw-bolder text-black">{issue.title}</span>
