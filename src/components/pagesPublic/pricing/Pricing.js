@@ -14,16 +14,9 @@ function Pricing({ auth, stripeCustomer }) {
     return (
         <div className="container" id="pricing-section">
             {disableSubscription() === 'true' && (
-                <div className="alert alert-info rounded-0" role="alert">
-                    While in beta all subscriptions are disabled. Please{' '}
-                    <a
-                        href="mailto:support@rackemm.com"
-                        className="alert-link text-decoration-none"
-                    >
-                        Contact Us
-                    </a>{' '}
-                    if you would like to help test. You would be grandfathered in for life for
-                    helping.
+                <div className="alert alert-warning rounded-0 text-center" role="alert">
+                    Subscriptions are currently disabled for demo purposes. This is a portfolio
+                    project — no real payments are processed.
                 </div>
             )}
             <div className="row">
