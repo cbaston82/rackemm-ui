@@ -5,7 +5,7 @@ import Button from '../Button'
 import CustomLoader from '../CustomeLoader'
 
 const octokit = new Octokit({
-    auth: process.env.REACT_GITHUB_ACCESS_TOKEN,
+    auth: process.env.REACT_APP_GITHUB_ACCESS_TOKEN,
 })
 
 function Features() {
