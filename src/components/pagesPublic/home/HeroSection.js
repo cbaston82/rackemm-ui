@@ -1,4 +1,4 @@
-import { FaArrowCircleRight } from 'react-icons/fa'
+import { FaArrowCircleRight, FaSearch } from 'react-icons/fa'
 import Button from '../../Button'
 
 function HeroSection() {
@@ -22,15 +22,24 @@ function HeroSection() {
                                 DATABASE
                             </h1>
                             <p className="text-white font-monospace fst-italic">
-                                Find a tournament anywhere. anytime. any place
+                                Find a tournament anywhere, anytime, any place.
                             </p>
-                            <Button
-                                className="btn btn-outline-warning btn-lg mt-5"
-                                path="/register"
-                                buttonText="Sign up for free"
-                            >
-                                <FaArrowCircleRight />
-                            </Button>
+                            <div className="d-flex gap-3 justify-content-center mt-5 flex-wrap">
+                                <Button
+                                    className="btn btn-outline-warning btn-lg"
+                                    path="/register"
+                                    buttonText="Sign up for free"
+                                >
+                                    <FaArrowCircleRight />
+                                </Button>
+                                <Button
+                                    className="btn btn-outline-light btn-lg"
+                                    path="/special-events"
+                                    buttonText="Browse events"
+                                >
+                                    <FaSearch />
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>

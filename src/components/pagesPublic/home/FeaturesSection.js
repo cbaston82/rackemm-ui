@@ -1,60 +1,44 @@
+import { FaCalendarPlus, FaSearch, FaStar } from 'react-icons/fa'
+
+const features = [
+    {
+        icon: <FaSearch size={36} />,
+        title: 'Find Any Tournament',
+        description:
+            'Filter through events by location, buy-in, and game type. Spend more time playing and less time searching.',
+    },
+    {
+        icon: <FaCalendarPlus size={36} />,
+        title: 'Create Events Quickly',
+        description:
+            'Easy-to-use forms let you list a tournament in minutes — no back-and-forth, no hassle.',
+    },
+    {
+        icon: <FaStar size={36} />,
+        title: 'Ratings & Reviews',
+        description:
+            "Leave reviews on tournaments you've played. Help the community know which events are worth their time.",
+    },
+]
+
 function FeaturesSection() {
     return (
         <section className="py-5 rackemm-gradient-black-to-dark-gray">
             <div className="container">
-                <div className="row d-flex flex-row-reverse">
-                    <div className="col-md-6 gx-5 mt-5 mb-5 my-md-0 d-flex flex-column justify-content-around">
-                        <div className="text-center">
-                            <h4 className="text-white">
-                                <strong>Create Events Quickly</strong>
-                            </h4>
-                            <div className="d-flex">
-                                <p className="text-white-50 w-75 mx-auto">
-                                    Our easy to use forms allow you to quickly create events hassle
-                                    free.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-6 gx-5 mb-4">
-                        <div
-                            className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
-                            data-mdb-ripple-color="light"
-                        >
-                            <img
-                                className="img-fluid img-thumbnail bg-transparent border-0"
-                                src="https://res.cloudinary.com/hoo/image/upload/v1663863933/rackemm_images/app_images/web_and_mobile_view_forms.png"
-                                alt=""
-                            />
-                        </div>
-                    </div>
+                <div className="text-center mb-5">
+                    <h2 className="text-white fw-bold">Everything you need to stay in the game</h2>
+                    <p className="text-white-50">Built by a pool player, for pool players.</p>
                 </div>
-                <div className="row mt-5">
-                    <div className="col-md-6 gx-5 mt-5 mb-5 mt-md-0 d-flex flex-column justify-content-around a">
-                        <div className="text-center">
-                            <h4 className="text-white">
-                                <strong>Find any game</strong>
-                            </h4>
-                            <div className="d-flex">
-                                <p className="text-white-50 w-75 mx-auto">
-                                    Filter through thousands of events in seconds. Spend more time
-                                    playing and less time searching.
-                                </p>
+                <div className="row g-4 justify-content-center">
+                    {features.map((feature) => (
+                        <div key={feature.title} className="col-sm-12 col-md-4">
+                            <div className="text-center p-4 h-100">
+                                <div className="rackemm-text-cyan mb-3">{feature.icon}</div>
+                                <h5 className="text-white fw-bold mb-2">{feature.title}</h5>
+                                <p className="text-white-50 mb-0">{feature.description}</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-md-6 gx-5 mb-4">
-                        <div
-                            className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
-                            data-mdb-ripple-color="light"
-                        >
-                            <img
-                                className="img-fluid img-thumbnail border-0 bg-transparent"
-                                src="https://res.cloudinary.com/hoo/image/upload/v1663798938/rackemm_images/app_images/filtering_features.png"
-                                alt=""
-                            />
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </section>
