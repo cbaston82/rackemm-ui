@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import { tournamentColumns } from './weeklyEventsColumns'
 import EventsTable from './EventsTable'
 import { getAllPublicEvents } from '../../../redux'
 import { sortByDayInWeek } from '../../../redux/helpers/dates'
 import usePageTitle from '../../../hoook/usePageTitle'
 import BreadCrumbs from '../../BreadCrumbs'
-import Filters from '../../Filters'
 
 function WeeklyEvents({ getAllPublicEvents, publicEvents }) {
     usePageTitle('- Weekly Events')
@@ -41,13 +39,12 @@ function WeeklyEvents({ getAllPublicEvents, publicEvents }) {
 
     return (
         <div className="container">
-            <div className="d-flex justify-content-between">
-                <BreadCrumbs activeBreadcrumbTitle="Weekly Events" />
-                <Filters
-                    filterValues={filterValues}
-                    filterType="weekly"
-                    buttonTitle="Weekly Filters"
-                />
+            <BreadCrumbs activeBreadcrumbTitle="Weekly Events" />
+            <div className="mb-4">
+                <h2 className="text-white fw-bold mb-1">Weekly Tournaments</h2>
+                <p className="text-white-50 mb-0">
+                    Recurring pool tournaments sorted by day of the week.
+                </p>
             </div>
             {!publicEvents.loading && (
                 <EventsTable
@@ -57,8 +54,7 @@ function WeeklyEvents({ getAllPublicEvents, publicEvents }) {
                     setDay={setDay}
                     setFilter={setFilter}
                     filterValues={filterValues}
-                    loaderMessage="Fetching Weekly WeeklyEvents..."
-                    tournamentColumns={tournamentColumns}
+                    loaderMessage="Fetching Weekly Events..."
                     events={sortByDayInWeek(publicEvents.events).filter(
                         (event) => event.status === 'active',
                     )}
