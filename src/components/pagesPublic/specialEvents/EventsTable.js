@@ -1,12 +1,13 @@
-import DataTable from 'react-data-table-component'
 import { useEffect, useMemo, useState } from 'react'
+import ReactPaginate from 'react-paginate'
 import CustomLoader from '../../CustomeLoader'
 import FilterComponent from './Filter'
-import '../../SolarizedTheme'
+import UpcomingSpecialEventCard from '../home/UpcomingSpecialEventCard'
+
+const ITEMS_PER_PAGE = 12
 
 function EventsTable({
     loaderMessage,
-    tournamentColumns,
     events,
     filterValues,
     setBuyIn,
@@ -14,7 +15,6 @@ function EventsTable({
     setCity,
     setGame,
 }) {
-    tournamentColumns[0].defaultExpanded = true
     const tournamentBuyInsArray = events.map((item) => item.buyIn)
     const minBuyIn = Math.min(...tournamentBuyInsArray).toString()
     const maxBuyIn = Math.max(...tournamentBuyInsArray).toString()
@@ -23,11 +23,11 @@ function EventsTable({
     const gamesInArray = events.map((item) => item.game)
 
     const cities = useMemo(() => [...new Set(tournamentCitiesInArray)], [tournamentCitiesInArray])
-
     const games = useMemo(() => [...new Set(gamesInArray)], [gamesInArray])
 
     const [pending, setPending] = useState(true)
     const [rows, setRows] = useState([])
+    const [currentPage, setCurrentPage] = useState(0)
     const [filterText, setFilterText] = useState(
         filterValues.filter !== 'null' ? filterValues.filter : '',
     )
@@ -40,188 +40,147 @@ function EventsTable({
     const [filterGame, setFilterGame] = useState(
         filterValues.game !== 'null' ? filterValues.game : 'all',
     )
-    const [resetPaginationToggle, setResetPaginationToggle] = useState(false)
 
     const filteredItems = rows.filter(
         (item) =>
-            (item.title &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.title.toLowerCase().includes(filterText.toLowerCase())) ||
-            (item.description &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.description
-                    .replace(/[\r\n]/gm, ' ')
-                    .toLowerCase()
-                    .includes(filterText.toLowerCase())) ||
-            (item.pointOfContact &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.pointOfContact.toLowerCase().includes(filterText.toLowerCase())) ||
-            (item.venue &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.venue.toLowerCase().includes(filterText.toLowerCase())) ||
-            (item.state &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.state.toLowerCase().includes(filterText.toLowerCase())) ||
-            (item.zipCode &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.zipCode.toLowerCase().includes(filterText.toLowerCase())) ||
-            (item.time &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.time.toLowerCase().includes(filterText.toLowerCase())) ||
-            (item.game &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.game.toLowerCase().includes(filterText.toLowerCase())) ||
-            (item.city &&
-                parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
-                (filterCity !== 'all'
-                    ? item.city.toLowerCase().includes(filterCity.toLowerCase())
-                    : item.city.toLowerCase()) &&
-                (filterGame !== 'all'
-                    ? item.game.toLowerCase().includes(filterGame.toLowerCase())
-                    : item.game.toLowerCase()) &&
-                item.city.toLowerCase().includes(filterText.toLowerCase())),
+            parseInt(item.buyIn, 10) <= parseInt(filterBuyIn, 10) &&
+            (filterCity !== 'all'
+                ? item.city.toLowerCase().includes(filterCity.toLowerCase())
+                : true) &&
+            (filterGame !== 'all'
+                ? item.game.toLowerCase().includes(filterGame.toLowerCase())
+                : true) &&
+            (filterText === '' ||
+                [item.title, item.description, item.venue, item.city, item.state, item.game]
+                    .filter(Boolean)
+                    .some((field) =>
+                        field
+                            .replace(/[\r\n]/gm, ' ')
+                            .toLowerCase()
+                            .includes(filterText.toLowerCase()),
+                    )),
     )
 
-    const subHeaderComponentMemo = useMemo(() => {
-        const handleClear = () => {
-            setResetPaginationToggle(!resetPaginationToggle)
-            setFilterBuyIn(maxBuyIn)
-            setFilterGame('all')
-            setFilterText('')
-            setFilterCity('all')
-            setFilter('')
-            setCity('all')
-            setGame('all')
-            setBuyIn(maxBuyIn)
-        }
+    const pageCount = Math.ceil(filteredItems.length / ITEMS_PER_PAGE)
+    const offset = currentPage * ITEMS_PER_PAGE
+    const currentItems = filteredItems.slice(offset, offset + ITEMS_PER_PAGE)
 
-        const handlePriceChange = (e) => {
-            const buyIn = e.target.value
-            setBuyIn(buyIn)
-            setFilterBuyIn(buyIn)
-        }
+    const handlePageClick = ({ selected }) => {
+        setCurrentPage(selected)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
 
-        const handleCityChange = (e) => {
-            const city = e.target.value
-            setFilterCity(city)
-            setCity(city)
-        }
+    const handleClear = () => {
+        setFilterBuyIn(maxBuyIn)
+        setFilterGame('all')
+        setFilterText('')
+        setFilterCity('all')
+        setFilter('')
+        setCity('all')
+        setGame('all')
+        setBuyIn(maxBuyIn)
+        setCurrentPage(0)
+    }
 
-        const handleGameChange = (e) => {
-            const game = e.target.value
-            setFilterGame(game)
-            setGame(game)
-        }
+    const handlePriceChange = (e) => {
+        setBuyIn(e.target.value)
+        setFilterBuyIn(e.target.value)
+        setCurrentPage(0)
+    }
 
-        const handleFilterChange = (e) => {
-            setFilterText(e.target.value)
-            setFilter(e.target.value)
-        }
-        return (
-            <>
-                {!pending ? (
-                    <FilterComponent
-                        onFilter={(e) => handleFilterChange(e)}
-                        onGameChange={handleGameChange}
-                        onClear={handleClear}
-                        onPriceChange={handlePriceChange}
-                        onCityChange={handleCityChange}
-                        minBuyIn={minBuyIn}
-                        maxBuyIn={maxBuyIn}
-                        cities={cities}
-                        games={games}
-                        filterGame={filterGame}
-                        filterBuyIn={filterBuyIn}
-                        filterText={filterText}
-                        filterCity={filterCity}
-                    />
-                ) : null}
-            </>
-        )
-    }, [
-        pending,
-        maxBuyIn,
-        minBuyIn,
-        resetPaginationToggle,
-        filterText,
-        filterCity,
-        filterBuyIn,
-        filterGame,
-        cities,
-        games,
-        setCity,
-        setGame,
-        setBuyIn,
-        setFilter,
-    ])
+    const handleCityChange = (e) => {
+        setFilterCity(e.target.value)
+        setCity(e.target.value)
+        setCurrentPage(0)
+    }
+
+    const handleGameChange = (e) => {
+        setFilterGame(e.target.value)
+        setGame(e.target.value)
+        setCurrentPage(0)
+    }
+
+    const handleFilterChange = (e) => {
+        setFilterText(e.target.value)
+        setFilter(e.target.value)
+        setCurrentPage(0)
+    }
 
     useEffect(() => {
         setRows(events)
         setPending(false)
-    }, [events, setRows, setPending])
+    }, [events])
+
+    if (pending) {
+        return <CustomLoader color="white" loaderMessage={loaderMessage} />
+    }
 
     return (
-        <DataTable
-            theme="rackemm_theme"
-            columns={tournamentColumns}
-            data={filteredItems}
-            progressPending={pending}
-            progressComponent={
-                pending && <CustomLoader color="white" loaderMessage={loaderMessage} />
-            }
-            paginationResetDefaultPage={resetPaginationToggle}
-            subHeaderComponent={subHeaderComponentMemo}
-            subHeader
-            pagination
-        />
+        <div>
+            <FilterComponent
+                onFilter={handleFilterChange}
+                onGameChange={handleGameChange}
+                onClear={handleClear}
+                onPriceChange={handlePriceChange}
+                onCityChange={handleCityChange}
+                minBuyIn={minBuyIn}
+                maxBuyIn={maxBuyIn}
+                cities={cities}
+                games={games}
+                filterGame={filterGame}
+                filterBuyIn={filterBuyIn}
+                filterText={filterText}
+                filterCity={filterCity}
+            />
+
+            <p className="text-white-50 mt-3 mb-4" style={{ fontSize: '0.875rem' }}>
+                {filteredItems.length} tournament{filteredItems.length !== 1 ? 's' : ''} found
+            </p>
+
+            {currentItems.length > 0 ? (
+                <div className="row">
+                    {currentItems.map((event) => (
+                        <UpcomingSpecialEventCard key={event._id} event={event} />
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center py-5">
+                    <p className="text-white-50 fst-italic">No tournaments match your filters.</p>
+                    <button
+                        type="button"
+                        className="btn btn-outline-warning btn-sm mt-2"
+                        onClick={handleClear}
+                    >
+                        Clear filters
+                    </button>
+                </div>
+            )}
+
+            {pageCount > 1 && (
+                <div className="d-flex justify-content-center mt-4">
+                    <ReactPaginate
+                        breakLabel="..."
+                        nextLabel="next >"
+                        previousLabel="< previous"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={5}
+                        pageCount={pageCount}
+                        forcePage={currentPage}
+                        renderOnZeroPageCount={null}
+                        containerClassName="pagination"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        activeClassName="active"
+                    />
+                </div>
+            )}
+        </div>
     )
 }
 

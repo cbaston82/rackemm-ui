@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import { tournamentColumns } from './specialEventsColumns'
 import EventsTable from './EventsTable'
 import { getAllPublicEvents } from '../../../redux'
 import { sortByDate } from '../../../redux/helpers/dates'
 import BreadCrumbs from '../../BreadCrumbs'
-import Filters from '../../Filters'
 import usePageTitle from '../../../hoook/usePageTitle'
 
 function SpecialEvents({ getAllPublicEvents, publicEvents }) {
@@ -40,13 +38,10 @@ function SpecialEvents({ getAllPublicEvents, publicEvents }) {
 
     return (
         <div className="container">
-            <div className="d-flex justify-content-between">
-                <BreadCrumbs activeBreadcrumbTitle="Special Events" />
-                <Filters
-                    filterValues={filterValues}
-                    filterType="special"
-                    buttonTitle="Special Event Filters"
-                />
+            <BreadCrumbs activeBreadcrumbTitle="Special Events" />
+            <div className="mb-4">
+                <h2 className="text-white fw-bold mb-1">Upcoming Tournaments</h2>
+                <p className="text-white-50 mb-0">Browse and filter pool tournaments near you.</p>
             </div>
             {!publicEvents.loading && (
                 <EventsTable
@@ -56,7 +51,6 @@ function SpecialEvents({ getAllPublicEvents, publicEvents }) {
                     setBuyIn={setBuyIn}
                     filterValues={filterValues}
                     loaderMessage="Fetching Special Events..."
-                    tournamentColumns={tournamentColumns}
                     events={sortByDate(publicEvents.events).filter(
                         (event) => event.status === 'active',
                     )}
