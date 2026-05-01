@@ -55,7 +55,7 @@ function Register({ signupUser, auth }) {
             </div>
             <div className="row d-flex justify-content-center mt-3">
                 <div className="col-sm-10 col-md-6 col-lg-4">
-                    <div className="card">
+                    <div className="card bg-dark border-secondary">
                         <div className="card-body">
                             {auth.loading || token === null ? (
                                 <div className="d-flex justify-content-center align-content-center">
@@ -66,7 +66,7 @@ function Register({ signupUser, auth }) {
                                     <div className="mb-3">
                                         <label
                                             htmlFor="exampleFormControlInput1"
-                                            className="form-label"
+                                            className="form-label text-white-50"
                                         >
                                             Full Name
                                         </label>
@@ -74,7 +74,7 @@ function Register({ signupUser, auth }) {
                                             onChange={handleOnChange}
                                             type="text"
                                             name="fullName"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={fullName}
                                             placeholder="Full Name"
                                         />
@@ -82,7 +82,7 @@ function Register({ signupUser, auth }) {
                                     <div className="mb-3">
                                         <label
                                             htmlFor="exampleFormControlInput1"
-                                            className="form-label"
+                                            className="form-label text-white-50"
                                         >
                                             Email
                                         </label>
@@ -90,7 +90,7 @@ function Register({ signupUser, auth }) {
                                             onChange={handleOnChange}
                                             type="email"
                                             name="email"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={email}
                                             placeholder="Enter your email"
                                         />
@@ -98,7 +98,7 @@ function Register({ signupUser, auth }) {
                                     <div className="mb-3">
                                         <label
                                             htmlFor="exampleFormControlInput1"
-                                            className="form-label"
+                                            className="form-label text-white-50"
                                         >
                                             Password
                                         </label>
@@ -106,7 +106,7 @@ function Register({ signupUser, auth }) {
                                             onChange={handleOnChange}
                                             type="password"
                                             name="password"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={password}
                                             placeholder="Password"
                                         />
@@ -114,7 +114,7 @@ function Register({ signupUser, auth }) {
                                     <div className="mb-3">
                                         <label
                                             htmlFor="exampleFormControlInput1"
-                                            className="form-label"
+                                            className="form-label text-white-50"
                                         >
                                             Confirm Password
                                         </label>
@@ -122,7 +122,7 @@ function Register({ signupUser, auth }) {
                                             onChange={handleOnChange}
                                             type="password"
                                             name="passwordConfirm"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={passwordConfirm}
                                             placeholder="Confirm your password"
                                         />
@@ -130,13 +130,16 @@ function Register({ signupUser, auth }) {
                                     <div className="mb-3">
                                         <button
                                             type="submit"
-                                            className="form-control btn btn-outline-secondary"
+                                            className="form-control btn btn-outline-warning"
                                         >
                                             Sign up
                                         </button>
                                     </div>
-                                    <span className="text-black-50">Already have an account?</span>{' '}
-                                    <Link className="link-cyan" to="/login">
+                                    <span className="text-white-50">Already have an account?</span>{' '}
+                                    <Link
+                                        className="rackemm-text-cyan text-decoration-none"
+                                        to="/login"
+                                    >
                                         Login
                                     </Link>
                                 </form>

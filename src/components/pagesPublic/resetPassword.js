@@ -29,7 +29,7 @@ function resetPassword({ resetPasswordAction, auth }) {
                     {auth.loading ? (
                         <CustomLoader color="white" loaderMessage="Requesting reset link" />
                     ) : (
-                        <div className="card">
+                        <div className="card bg-dark border-secondary">
                             <div className="card-body">
                                 <form onSubmit={(e) => handleResetPasswordSubmit(e, resetToken)}>
                                     <div className="mb-3">
@@ -38,7 +38,7 @@ function resetPassword({ resetPasswordAction, auth }) {
                                             onChange={handleInputChange}
                                             type="password"
                                             name="password"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={resetPasswordForm.password}
                                             placeholder="New password"
                                         />
@@ -49,7 +49,7 @@ function resetPassword({ resetPasswordAction, auth }) {
                                             onChange={handleInputChange}
                                             type="password"
                                             name="passwordConfirm"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={resetPasswordForm.passwordConfirm}
                                             placeholder="Confirm new password"
                                         />
@@ -57,7 +57,7 @@ function resetPassword({ resetPasswordAction, auth }) {
                                     <div className="mb-3">
                                         <button
                                             type="submit"
-                                            className="form-control btn btn-outline-secondary"
+                                            className="form-control btn btn-outline-warning"
                                         >
                                             Request Link {auth.loading && <FaCheck />}
                                         </button>

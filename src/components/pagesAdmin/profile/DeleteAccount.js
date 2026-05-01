@@ -8,17 +8,17 @@ function DeleteAccount({
 }) {
     return (
         <div className="col-xl-12 mt-4">
-            <div className="card rounded-0">
-                <div className="card-header text-danger">Delete Account</div>
+            <div className="card rounded-0 bg-dark border-secondary">
+                <div className="card-header text-danger border-secondary">Delete Account</div>
                 <div className="card-body">
                     {loading ? (
-                        <CustomLoader loaderMessage="Deleting account" color="black" />
+                        <CustomLoader loaderMessage="Deleting account" color="white" />
                     ) : (
                         <form onSubmit={handleDeleteAccount}>
                             <div className="row">
                                 <div className="col-md-6">
                                     <input
-                                        className="form-control"
+                                        className="form-control bg-dark text-white border-secondary"
                                         name="confirm"
                                         type="text"
                                         placeholder="Type 'DELETE' to confirm"

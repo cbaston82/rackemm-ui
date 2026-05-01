@@ -7,12 +7,14 @@ function NotFound404({ message, redirectTo, buttonText }) {
         <div className="row justify-content-center">
             <div className="col-md-12 col-sm-12">
                 <div
-                    className="card shadow-lg border-0 rounded-lg mt-5 mx-auto"
+                    className="card bg-dark border-secondary shadow-lg rounded-lg mt-5 mx-auto"
                     style={{ width: '30rem' }}
                 >
-                    <h3 className="card-header display-1 text-black-50 fw-bold text-center">404</h3>
+                    <h3 className="card-header display-1 text-white-50 fw-bold text-center border-secondary">
+                        404
+                    </h3>
 
-                    <span className="card-subtitle mb-2 mt-2 text-muted text-center">
+                    <span className="card-subtitle mb-2 mt-2 text-white-50 text-center">
                         {message}
                     </span>
 
@@ -20,9 +22,8 @@ function NotFound404({ message, redirectTo, buttonText }) {
                         <Link
                             type="button"
                             to={`/${redirectTo}`}
-                            className="btn btn-sm btn-outline-secondary"
+                            className="btn btn-sm btn-outline-warning"
                         >
-                            {' '}
                             {buttonText}
                         </Link>
                     </div>

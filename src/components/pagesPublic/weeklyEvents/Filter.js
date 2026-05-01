@@ -1,3 +1,5 @@
+import Filters from '../../Filters'
+
 function FilterComponent({
     minBuyIn,
     maxBuyIn,
@@ -16,6 +18,13 @@ function FilterComponent({
     games,
     days,
 }) {
+    const isFiltered =
+        filterCity !== 'all' ||
+        filterBuyIn !== maxBuyIn ||
+        filterText !== '' ||
+        filterDay !== 'all' ||
+        filterGame !== 'all'
+
     return (
         <div className="col-12 mt-3">
             <div className="row">
@@ -112,22 +121,17 @@ function FilterComponent({
                     </div>
                 </div>
                 <div className="col-lg-6">
-                    <div className="d-grid gap-2">
+                    <div className="d-flex gap-2">
                         <button
-                            className={`btn  btn-sm ${
-                                filterCity !== 'all' ||
-                                filterBuyIn !== maxBuyIn ||
-                                filterText !== '' ||
-                                filterDay !== 'all' ||
-                                filterGame !== 'all'
-                                    ? 'btn-danger'
-                                    : 'btn-outline-secondary'
+                            className={`btn btn-sm ${
+                                isFiltered ? 'btn-danger' : 'btn-outline-secondary'
                             }`}
                             type="button"
                             onClick={onClear}
                         >
                             Clear filters
                         </button>
+                        <Filters filterType="weekly" buttonTitle="My Filters" />
                     </div>
                 </div>
             </div>

@@ -38,13 +38,10 @@ function Features() {
         <div className="container mt-5">
             <div className="row">
                 <div className="col mb-5 text-center">
-                    <h5 className="text-white">
-                        Have a feature request? <br />{' '}
-                    </h5>
-
+                    <h3 className="text-white fw-bold">Feature Requests &amp; Bug Fixes</h3>
                     <p className="text-white-50 fw-light">
-                        All feedback is welcomed, whether its a bug fix or feature request, we would
-                        love to hear about it.
+                        All feedback is welcomed — whether it&apos;s a bug fix or a feature request,
+                        we&apos;d love to hear about it.
                     </p>
                 </div>
                 {loading ? (
@@ -69,9 +66,15 @@ function Features() {
                                     ? issue.milestone.title.split(' ')[0].toString()
                                     : '0%'
                                 return (
-                                    <div key={issue.id} className="p-4 mb-3 bg-white">
-                                        <span className="fw-bolder text-black">{issue.title}</span>
-                                        <span className="fw-light text-black"> - {issue.body}</span>
+                                    <div
+                                        key={issue.id}
+                                        className="p-4 mb-3 bg-dark border border-secondary rounded"
+                                    >
+                                        <span className="fw-bolder text-white">{issue.title}</span>
+                                        <span className="fw-light text-white-50">
+                                            {' '}
+                                            - {issue.body}
+                                        </span>
                                         <div className="d-flex justify-content-between align-items-center mt-0 py-3">
                                             <div>
                                                 <span
@@ -97,7 +100,7 @@ function Features() {
                                                 ))}
                                             </div>
                                             <Button
-                                                className="btn btn-outline-secondary btn-sm"
+                                                className="btn btn-outline-warning btn-sm"
                                                 buttonText="View Issue"
                                                 link={issue.html_url}
                                             >
@@ -105,7 +108,7 @@ function Features() {
                                             </Button>
                                         </div>
                                         <div>
-                                            <div className="progress">
+                                            <div className="progress bg-secondary bg-opacity-25">
                                                 <div
                                                     className="progress-bar bg-success"
                                                     aria-valuemin="0"
@@ -116,20 +119,20 @@ function Features() {
                                                 />
                                             </div>
                                             <div className="d-md-flex justify-content-between mt-2">
-                                                <p className="progress-info text-black-50 fw-light mt-2 fst-italic">
-                                                    <span className="fw-bolder text-black">
+                                                <p className="progress-info text-white-50 fw-light mt-2 fst-italic">
+                                                    <span className="fw-bolder text-white">
                                                         Created
                                                     </span>{' '}
                                                     - {new Date(issue.created_at).toLocaleString()}
                                                 </p>
                                                 <div className="d-flex justify-content-between">
-                                                    <p className="text-black-50 fw-light mt-2 fst-italic mx-md-3">
-                                                        <span className="fw-bolder text-black">
+                                                    <p className="text-white-50 fw-light mt-2 fst-italic mx-md-3">
+                                                        <span className="fw-bolder text-white">
                                                             Assignee
                                                         </span>{' '}
                                                         -{' '}
                                                         <a
-                                                            className="text-decoration-none"
+                                                            className="rackemm-text-cyan text-decoration-none"
                                                             href={issue.assignee.html_url}
                                                             target="_blank"
                                                             rel="noreferrer"

@@ -26,7 +26,7 @@ function FiltersTable({ filters, handleDeleteFilter }) {
             cell: (row) => (
                 <>
                     <Link className="ms-3" to={row.url}>
-                        <button type="button" className="btn btn-light btn-sm">
+                        <button type="button" className="btn btn-outline-secondary btn-sm">
                             <FaExternalLinkAlt />
                         </button>
                     </Link>

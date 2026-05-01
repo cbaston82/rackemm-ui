@@ -3,6 +3,18 @@
   publish = "build"
 
 [[redirects]]
+  from = "http://rackemm.com/*"
+  to = "https://rackemm.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.rackemm.com/*"
+  to = "https://rackemm.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

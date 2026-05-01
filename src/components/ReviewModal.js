@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import CustomLoader from './CustomeLoader'
 
@@ -8,26 +7,30 @@ function ReviewModal({ handleSaveReview, show, handleCloseReviewModal, event, gi
     const [rating, setRating] = useState()
 
     return (
-        <Modal show={show} onHide={handleCloseReviewModal}>
-            <Modal.Header closeButton>
+        <Modal
+            show={show}
+            onHide={handleCloseReviewModal}
+            contentClassName="bg-dark border-secondary"
+        >
+            <Modal.Header closeButton className="border-secondary">
                 <Modal.Title>
-                    <h1 className="modal-title fs-5" id="exampleModalLabel">
+                    <h1 className="modal-title fs-5 text-white" id="exampleModalLabel">
                         Write a review
                     </h1>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {givenReview && givenReview.loading ? (
-                    <CustomLoader loaderMessage="Sending feedback." color="black" />
+                    <CustomLoader loaderMessage="Sending feedback." color="white" />
                 ) : (
                     <>
                         <div className="row">
                             <div className="col-md-4">
                                 <div className="form-group">
-                                    <label htmlFor="">Rating</label>
+                                    <label className="text-white-50 mb-1">Rating</label>
                                     <select
                                         onChange={(e) => setRating(e.target.value)}
-                                        className="form-control"
+                                        className="form-control bg-dark text-white border-secondary"
                                         name="rating"
                                         value={rating}
                                     >
@@ -44,12 +47,12 @@ function ReviewModal({ handleSaveReview, show, handleCloseReviewModal, event, gi
                         <div className="row mt-3">
                             <div className="col">
                                 <div className="form-group">
-                                    <label htmlFor="">Review</label>
+                                    <label className="text-white-50 mb-1">Review</label>
                                     <textarea
                                         placeholder="Share your thoughts on this event to help others"
                                         value={review}
                                         onChange={(e) => setReview(e.target.value)}
-                                        className="form-control"
+                                        className="form-control bg-dark text-white border-secondary"
                                         name="review"
                                         id=""
                                         cols="30"
@@ -61,16 +64,21 @@ function ReviewModal({ handleSaveReview, show, handleCloseReviewModal, event, gi
                     </>
                 )}
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseReviewModal}>
+            <Modal.Footer className="border-secondary">
+                <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={handleCloseReviewModal}
+                >
                     Close
-                </Button>
-                <Button
-                    variant="primary"
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-outline-warning"
                     onClick={() => handleSaveReview(rating, review, event._id)}
                 >
                     Save Changes
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     )

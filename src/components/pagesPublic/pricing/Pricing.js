@@ -12,7 +12,13 @@ function Pricing({ auth, stripeCustomer }) {
     const [checkoutUser] = useCheckoutUser(auth)
 
     return (
-        <div className="container" id="pricing-section">
+        <div className="container mt-5" id="pricing-section">
+            <div className="text-center mb-5">
+                <h3 className="text-white fw-bold">Simple, Transparent Pricing</h3>
+                <p className="text-white-50 fw-light">
+                    Choose the plan that fits your game. Cancel any time.
+                </p>
+            </div>
             {disableSubscription() === 'true' && (
                 <div className="alert alert-warning rounded-0 text-center" role="alert">
                     Subscriptions are currently disabled for demo purposes. This is a portfolio

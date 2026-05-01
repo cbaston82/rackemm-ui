@@ -11,14 +11,14 @@ function AddToCalendarButton({ stripeCustomer, event, auth }) {
         <>
             {auth.token ? (
                 <Button
-                    className="btn btn-primary w-100 mt-3"
+                    className="btn btn-outline-warning w-100 mt-3"
                     onClick={() => handleCreateCalendarEvent(event)}
                 >
                     Add to calendar <FaGoogle />
                 </Button>
             ) : (
                 <Button
-                    className="btn btn-primary w-100 mt-3"
+                    className="btn btn-outline-warning w-100 mt-3"
                     onClick={() => handleNoSubscriptionToast(stripeCustomer)}
                 >
                     Add to calendar <FaGoogle />

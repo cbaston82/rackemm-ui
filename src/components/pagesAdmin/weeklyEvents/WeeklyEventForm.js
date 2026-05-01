@@ -19,10 +19,10 @@ function WeeklyEventForm({
                 ]}
                 activeBreadcrumbTitle="Create Weekly Event"
             />
-            <div className="card rounded-0 rackemm-card-grid-form">
-                <div className="card-header">
+            <div className="card rounded-0 rackemm-card-grid-form border-secondary">
+                <div className="card-header border-secondary">
                     <div className="d-flex justify-content-between">
-                        <span className="text-black-50"> Create an event</span>
+                        <span className="text-white-50"> Create an event</span>
                         <div>
                             {editEvent.status === 'active' ? (
                                 <span className="badge bg-success">active</span>
@@ -61,7 +61,6 @@ function WeeklyEventForm({
                                                 onChange={(e) => handleFormValueChange(e)}
                                                 name="posterImage"
                                                 value={editEvent.posterImage}
-                                                className="form-control rounded-0"
                                             >
                                                 <option value="">Choose...</option>
                                                 {userMedia.media.map((image) => (
@@ -108,7 +107,6 @@ function WeeklyEventForm({
                                                 value={editEvent.day}
                                                 name="day"
                                                 onChange={(e) => handleFormValueChange(e)}
-                                                className="form-control rounded-0"
                                             >
                                                 <option value="">Choose...</option>
                                                 <option value="Sunday">Sunday</option>
@@ -155,7 +153,6 @@ function WeeklyEventForm({
                                                 value={editEvent.game}
                                                 name="game"
                                                 onChange={(e) => handleFormValueChange(e)}
-                                                className="form-control rounded-0"
                                             >
                                                 <option value="">Choose...</option>
                                                 <option value="8-ball">8 Ball</option>
@@ -174,7 +171,6 @@ function WeeklyEventForm({
                                                 value={editEvent.status}
                                                 name="status"
                                                 onChange={(e) => handleFormValueChange(e)}
-                                                className="form-control rounded-0"
                                             >
                                                 <option value="">Choose...</option>
                                                 <option value="active">Active</option>
@@ -298,7 +294,7 @@ function WeeklyEventForm({
                                     </div>
 
                                     <button
-                                        className="btn btn-success rounded-0 mt-3"
+                                        className="btn btn-outline-warning rounded-0 mt-3"
                                         type="submit"
                                     >
                                         <FaRegSave /> Save
@@ -308,9 +304,9 @@ function WeeklyEventForm({
                         </form>
                     )}
                 </div>
-                <div className="card-footer">
-                    <span className="text-black-50">Created </span>
-                    <span className="fst-italic text-black-50">
+                <div className="card-footer border-secondary">
+                    <span className="text-white-50">Created </span>
+                    <span className="fst-italic text-white-50">
                         {editEvent.createdAt &&
                             formatDistance(
                                 subDays(

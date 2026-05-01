@@ -1,8 +1,8 @@
 function BillingDetails({ customer, loadUserStripeAccountDetails }) {
     return (
         <div className="col-xl-12">
-            <div className="card rounded-0">
-                <div className="card-header">Billing Details</div>
+            <div className="card rounded-0 bg-dark border-secondary">
+                <div className="card-header text-white border-secondary">Billing Details</div>
                 <div className="card-body">
                     <form onSubmit={loadUserStripeAccountDetails}>
                         <input
@@ -12,11 +12,11 @@ function BillingDetails({ customer, loadUserStripeAccountDetails }) {
                             value={customer.customerId}
                         />
                         <button
-                            className="btn btn-outline-secondary text-black-50 mb-3"
+                            className="btn btn-outline-warning mb-3"
                             id="checkout-and-portal-button"
                             type="submit"
                         >
-                            Manage
+                            Manage Billing
                         </button>
                     </form>
                 </div>

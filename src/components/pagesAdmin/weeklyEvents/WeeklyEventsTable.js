@@ -74,12 +74,12 @@ const weeklyColumns = (handleDeleteEvent) => [
         cell: (row) => (
             <div className="flex flex-row align-items-center justify-content-around">
                 <Link className="ms-3" to={`/event/${row._id}`}>
-                    <button type="button" className="btn btn-light btn-sm">
+                    <button type="button" className="btn btn-outline-secondary btn-sm">
                         <FaExternalLinkAlt />
                     </button>
                 </Link>
                 <Link className="ms-3" to={`/account/weekly-events/edit/${row._id}`}>
-                    <button type="button" className="btn btn-info btn-sm">
+                    <button type="button" className="btn btn-outline-warning btn-sm">
                         <FaEdit />
                     </button>
                 </Link>

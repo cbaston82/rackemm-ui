@@ -119,7 +119,7 @@ function MediaPage({ userMedia, uploadUserMedia, stripeCustomer, getUserMedia, d
                             role="tablist"
                         >
                             <button
-                                className="nav-link active rackemm-bg-light-gray rounded-0 border-0"
+                                className="nav-link active rounded-0 border-0 text-white"
                                 id="nav-media-tab"
                                 data-bs-toggle="tab"
                                 data-bs-target="#nav-media"
@@ -131,7 +131,7 @@ function MediaPage({ userMedia, uploadUserMedia, stripeCustomer, getUserMedia, d
                                 <FaImage /> Media
                             </button>
                             <button
-                                className="nav-link border-0 rounded-0"
+                                className="nav-link border-0 rounded-0 text-white-50"
                                 id="nav-upload-tab"
                                 data-bs-toggle="tab"
                                 data-bs-target="#nav-upload"
@@ -184,20 +184,20 @@ function MediaPage({ userMedia, uploadUserMedia, stripeCustomer, getUserMedia, d
                             <div className="row d-flex flex-row justify-content-center">
                                 <div className="col-md-6 col-lg-4">
                                     <form onSubmit={handleUploadImage}>
-                                        <div className="card rounded-0 mt-3">
+                                        <div className="card rounded-0 mt-3 bg-dark border-secondary">
                                             <div className="card-body">
                                                 <div className="form-group">
                                                     <input
                                                         disabled={userMedia.loading}
                                                         type="file"
                                                         onChange={handleImageChange}
-                                                        className="form-control"
+                                                        className="form-control bg-dark text-white border-secondary"
                                                     />
                                                 </div>
                                                 <div className="form-group mt-3">
                                                     <input
                                                         type="text"
-                                                        className="form-control"
+                                                        className="form-control bg-dark text-white border-secondary"
                                                         name="fileName"
                                                         placeholder="File name"
                                                         onChange={handleInputChange}
@@ -210,9 +210,8 @@ function MediaPage({ userMedia, uploadUserMedia, stripeCustomer, getUserMedia, d
                                                             userMedia.loading || fileName === ''
                                                         }
                                                         type="submit"
-                                                        className="btn btn-outline-secondary form-control"
+                                                        className="btn btn-outline-warning form-control"
                                                     >
-                                                        {' '}
                                                         <FaUpload /> Upload
                                                     </button>
                                                 </div>
@@ -227,7 +226,7 @@ function MediaPage({ userMedia, uploadUserMedia, stripeCustomer, getUserMedia, d
                                         {errorMessage && <p>{errorMessage}</p>}
                                         {userMedia.loading ? (
                                             <CustomLoader
-                                                color="black"
+                                                color="white"
                                                 loaderMessage="Uploading image!"
                                             />
                                         ) : (

@@ -11,12 +11,12 @@ function SideMenu({ location, userIsSubscribed }) {
 
     return (
         <>
-            <button type="button" className="mb-5 btn btn-secondary" onClick={handleShow}>
+            <button type="button" className="mb-5 btn btn-outline-secondary" onClick={handleShow}>
                 Menu <FaBars />
             </button>
             <Offcanvas show={show} onHide={handleClose} className="bg-dark">
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                <Offcanvas.Header closeButton closeVariant="white" className="border-secondary">
+                    <Offcanvas.Title className="text-white">Account Menu</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <ul>

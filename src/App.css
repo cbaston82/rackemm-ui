@@ -9,7 +9,7 @@
     --light-gray: #eef4ff;
     --medium-gray: #525559;
     --dark-gray: #292c31;
-    --grid-form: #fefce3;
+    --grid-form: #1e2124;
     --yellow: #fff8a5;
     --dark-yellow: #fff9af;
 
@@ -155,14 +155,39 @@ RACKEMM DROPDOWN
     background-color: var(--cyan);
 }
 
+/* Dark variant for public-facing filter dropdown */
+.rackemm-dropdown-menu-dark {
+    padding: 0;
+    border-radius: 0;
+    background-color: var(--dark-gray);
+    border: 1px solid rgba(255,255,255,0.15);
+    min-width: 220px;
+}
+
+.rackemm-dropdown-menu-dark .dropdown-item {
+    color: rgba(255,255,255,0.8);
+    padding: 8px 16px;
+}
+
+.rackemm-dropdown-menu-dark .dropdown-item:hover {
+    background-color: rgba(0, 205, 205, 0.1);
+    color: white;
+}
+
+.rackemm-dropdown-menu-dark .dropdown-item.active {
+    background-color: var(--cyan);
+    color: var(--dark-gray);
+}
+
 /*==================================================
 RACKEMM ACCORDION
 ===================================================*/
-.rackemm-accordion .accordion-button:not(.collapsed) {
-    border-radius: 0;
-    color: var(--light-gray);
-    background-color: var(--cyan);
-    box-shadow: inset 0calc(var(--bs-accordion-border-width) * -1) 0 var(--bs-accordion-border-color);
+.rackemm-accordion .accordion-item {
+    background-color: var(--dark-gray);
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .rackemm-accordion .accordion-item:first-of-type {
@@ -173,13 +198,39 @@ RACKEMM ACCORDION
 .rackemm-accordion .accordion-item:last-of-type {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+    border-bottom: 0 !important;
 }
 
-.rackemm-accordion .accordion-item {
-    border-top: 0 !important;
-    border-left: 0 !important;
-    border-right: 0 !important;
-    border-bottom: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
+.rackemm-accordion .accordion-button {
+    background-color: var(--dark-gray);
+    color: rgba(255,255,255,0.85);
+    border-radius: 0;
+    font-weight: 600;
+}
+
+.rackemm-accordion .accordion-button::after {
+    filter: invert(1) brightness(0.7);
+}
+
+.rackemm-accordion .accordion-button:not(.collapsed) {
+    border-radius: 0;
+    color: var(--dark-gray);
+    background-color: var(--cyan);
+    box-shadow: none;
+}
+
+.rackemm-accordion .accordion-button:not(.collapsed)::after {
+    filter: none;
+}
+
+.rackemm-accordion .accordion-button:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.rackemm-accordion .accordion-body {
+    background-color: var(--dark-gray);
+    color: rgba(255,255,255,0.6);
 }
 
 /*==================================================
@@ -247,7 +298,7 @@ RACKEMM GRID FORM
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.8rem;
-    color: #333;
+    color: rgba(255,255,255,0.5);
     display: block;
     font-weight: 600;
     margin-bottom: 4px;
@@ -255,8 +306,32 @@ RACKEMM GRID FORM
 
 .rackemm-card-grid-form [data-row-span] [data-field-span]:hover, .rackemm-card-grid-form [data-row-span] [data-field-span]:focus,
 .rackemm-card-grid-form [data-row-span] [data-field-span]:focus-within{
-    background-color: var(--dark-yellow) !important;
+    background-color: rgba(0, 205, 205, 0.05) !important;
     border: 1px solid var(--cyan)
+}
+
+.rackemm-card-grid-form .grid-form input,
+.rackemm-card-grid-form .grid-form textarea,
+.rackemm-card-grid-form .grid-form select {
+    color: rgba(255,255,255,0.9);
+}
+
+.rackemm-card-grid-form .grid-form select {
+    background-color: transparent;
+    border: none;
+}
+
+.rackemm-card-grid-form .grid-form fieldset legend {
+    border-bottom-color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.5);
+}
+
+.rackemm-card-grid-form .grid-form [data-row-span] {
+    border-bottom-color: rgba(255,255,255,0.1);
+}
+
+.rackemm-card-grid-form .grid-form [data-row-span] [data-field-span] {
+    border-right-color: rgba(255,255,255,0.1);
 }
 
 /*==================================================

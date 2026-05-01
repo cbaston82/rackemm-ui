@@ -8,11 +8,11 @@ function ManagePassword({
 }) {
     return (
         <div className="col-xl-12">
-            <div className="card rounded-0 mt-4">
-                <div className="card-header">Manage Password</div>
+            <div className="card rounded-0 mt-4 bg-dark border-secondary">
+                <div className="card-header text-white border-secondary">Manage Password</div>
                 <div className="card-body">
                     {auth.loading ? (
-                        <CustomLoader loaderMessage="Updating password" color="black" />
+                        <CustomLoader loaderMessage="Updating password" color="white" />
                     ) : (
                         <form onSubmit={handlePasswordUpdate}>
                             <div className="row gx-3 mb-3">
@@ -21,7 +21,7 @@ function ManagePassword({
                                         <input
                                             autoComplete="on"
                                             placeholder="Current password"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={updatePasswordForm.currentPassword}
                                             onChange={handleOnChangePassword}
                                             type="password"
@@ -35,7 +35,7 @@ function ManagePassword({
                                             autoComplete="false"
                                             placeholder="New password"
                                             value={updatePasswordForm.newPassword}
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             onChange={handleOnChangePassword}
                                             type="password"
                                             name="newPassword"
@@ -47,7 +47,7 @@ function ManagePassword({
                                         <input
                                             autoComplete="false"
                                             placeholder="Confirm new password"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={updatePasswordForm.newPasswordConfirm}
                                             onChange={handleOnChangePassword}
                                             type="password"

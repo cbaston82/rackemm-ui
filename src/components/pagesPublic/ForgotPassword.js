@@ -24,7 +24,7 @@ function ForgotPassword() {
                     {loading ? (
                         <CustomLoader color="white" loaderMessage="Requesting reset link" />
                     ) : (
-                        <div className="card">
+                        <div className="card bg-dark border-secondary">
                             <div className="card-body">
                                 <form onSubmit={handleForgotPasswordSubmit}>
                                     <div className="mb-3">
@@ -32,7 +32,7 @@ function ForgotPassword() {
                                             onChange={handleInputChange}
                                             type="email"
                                             name="email"
-                                            className="form-control"
+                                            className="form-control bg-dark text-white border-secondary"
                                             value={forgotPasswordForm.email}
                                             placeholder="Please enter your email"
                                         />
@@ -41,7 +41,7 @@ function ForgotPassword() {
                                         <button
                                             disabled={!forgotPasswordForm.email}
                                             type="submit"
-                                            className="form-control btn btn-outline-secondary"
+                                            className="form-control btn btn-outline-warning"
                                         >
                                             Request Link {loading && <FaCheck />}
                                         </button>
