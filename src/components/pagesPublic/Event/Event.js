@@ -52,7 +52,7 @@ function Event({
                 </div>
             ) : (
                 <>
-                    <div className="card rounded-0 p-3">
+                    <div className="card rounded-0 p-3 bg-dark border-secondary">
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-md-3">

@@ -47,7 +47,7 @@ function Reviews({
     }
 
     return (
-        <div className="card rounded-0 p-3 mt-3" id="reviews-section">
+        <div className="card rounded-0 p-3 mt-3 bg-dark border-secondary" id="reviews-section">
             <div className="card-body">
                 {event.reviews && (
                     <ReviewsTitle
@@ -60,25 +60,37 @@ function Reviews({
                         handleShowReviewModal={handleShowReviewModal}
                     />
                 )}
-                <div className="row mt-3">
-                    <div className="review-list">
+                <div className="row mt-2">
+                    <div className="col-12">
                         <Items
                             currentItems={currentItems}
                             handleDeleteReview={handleDeleteReview}
                             handleShowEditReviewModal={handleShowEditReviewModal}
                             userInfo={userInfo}
                         />
-                        <div className="reviews-pagination">
-                            <ReactPaginate
-                                breakLabel="..."
-                                nextLabel="next >"
-                                onPageChange={handlePageClick}
-                                pageRangeDisplayed={5}
-                                pageCount={pageCount}
-                                previousLabel="< previous"
-                                renderOnZeroPageCount={null}
-                            />
-                        </div>
+                        {pageCount > 1 && (
+                            <div className="d-flex justify-content-center mt-3">
+                                <ReactPaginate
+                                    breakLabel="..."
+                                    nextLabel="next >"
+                                    onPageChange={handlePageClick}
+                                    pageRangeDisplayed={5}
+                                    pageCount={pageCount}
+                                    previousLabel="< previous"
+                                    renderOnZeroPageCount={null}
+                                    containerClassName="pagination"
+                                    pageClassName="page-item"
+                                    pageLinkClassName="page-link"
+                                    previousClassName="page-item"
+                                    previousLinkClassName="page-link"
+                                    nextClassName="page-item"
+                                    nextLinkClassName="page-link"
+                                    breakClassName="page-item"
+                                    breakLinkClassName="page-link"
+                                    activeClassName="active"
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
                 <ReviewModal
