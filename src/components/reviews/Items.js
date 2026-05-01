@@ -20,7 +20,7 @@ function Items({ currentItems, handleDeleteReview, handleShowEditReviewModal, us
                             src={
                                 review.user.photo !== ''
                                     ? review.user.photo
-                                    : 'https://res.cloudinary.com/imagine-design-develop/image/upload/v1665081924/rackemm_images/app_images/profile-placeholder.png'
+                                    : 'https://res.cloudinary.com/hoo/image/upload/v1665081924/rackemm_images/app_images/profile-placeholder.png'
                             }
                             className="rounded-circle"
                             alt={review.user.fullName}
